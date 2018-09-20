@@ -1,4 +1,20 @@
-mpt to login with user name / password / password reset
+# finalProject
+
+## First Back-end Step
+
+- User login
+- Integrate database CRUDs with user login account
+
+## User Story
+
+**Home page (User not logged in):** Feed of what's been trending on the platform
+
+**Home page (User logged in):** Feed of people they follow. If none, it displays the feed of what's trending on the platform
+
+**Top right**: Display a create account / login / logout amongst other eventually dropdowns to add to user account functionality
+
+    **Create account**: Ask for user details. User name and password
+    **Login**: Prompt to login with user name / password / password reset
     **Logout**: Logs the user out of the system
     
 **Top Navigation**: 7 links, looking good on mobile
