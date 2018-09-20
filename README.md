@@ -1,4 +1,4 @@
-# finalProject
+# Bittoka (not the real name)
 
 ## First Back-end Step
 
