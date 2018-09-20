@@ -1,4 +1,4 @@
-# Bittoka (not the real name)
+# "Bittoka"
 
 ## First Back-end Step
 
