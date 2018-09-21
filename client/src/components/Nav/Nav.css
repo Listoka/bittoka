@@ -1,0 +1,65 @@
+.descriptionBox {
+    left:0;right:0;
+    box-shadow:0 0 25px 3px #333;
+    border-radius: 2px;
+    z-index:-1;
+    background-image: url("../../assets/images/sandbag.png");
+}
+
+a:hover{
+    text-decoration: none;
+}
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Varela Round', sans-serif;
+    color: #333333;
+    font-size: 16px;
+    font-weight: 100;
+}
+.hvr-glow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    border-radius: 3px;
+  }
+  .hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  }
+  
+li {
+    list-style: none;
+}
+#logoImage {
+    font-size: 18px;
+    font-family: 'Merienda', cursive;
+    margin-right: 4px;
+}
+@media screen and (max-width: 991px) {
+    #logoImage { display: none; }   /* hide it elsewhere */
+    .typewriter { display: none; }
+}
+/* Highlighted background */
+::selection {
+    background:#333333;
+    color:#2dbe60;
+}
+    
+::-moz-selection {
+    background:#333333;
+    color:#2dbe60;
+}
+    
+::-webkit-selection {
+    background:#333333;
+    color:#2dbe60;
+}
+
+

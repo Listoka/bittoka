@@ -1,5 +1,7 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  margin-top:10px;
+  background-image: url("./assets/images/paperfibers.png");
+  font-family: 'Varela Round', sans-serif;
+  color: #333333;
 }
+
