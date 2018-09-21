@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Home",
+        "href": "home"
+    },
+    {
+        "id": 2,
+        "name": "Your Bitcoin Story",
+        "href": "yourbitcoinstory"
+    },
+    {
+        "id": 3,
+        "name": "Stories",
+        "href": "stories"
+    }
+]

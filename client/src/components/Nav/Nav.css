@@ -8,6 +8,10 @@
 
 a:hover{
     text-decoration: none;
+    color: #333333;
+}
+a {
+    color: #333333;
 }
 .navbar-light .navbar-nav .nav-link {
     font-family: 'Varela Round', sans-serif;
@@ -41,6 +45,7 @@ li {
     font-size: 18px;
     font-family: 'Merienda', cursive;
     margin-right: 4px;
+    color: #333333;
 }
 @media screen and (max-width: 991px) {
     #logoImage { display: none; }   /* hide it elsewhere */
