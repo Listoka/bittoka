@@ -1,4 +1,4 @@
-# "Bittoka or Story Time or Stories for Bits"
+# "Bittoka" or "Story Time" or "Stories for Bits" or whatever you want to call it
 
 ## MVC ##
 
