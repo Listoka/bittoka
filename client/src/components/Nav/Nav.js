@@ -18,7 +18,7 @@ const Nav = () => {
           <a className="nav-link hvr-glow" href="/join">Join <span className="sr-only">Jist</span></a>
         </li>
         <li className="nav-item">
-          <a className="nav-link hvr-glow" href="/sign-up">Login <span className="sr-only">Login</span></a>
+          <a className="nav-link hvr-glow" href="/login">Login <span className="sr-only">Login</span></a>
         </li>
     </ul>
     </div>
