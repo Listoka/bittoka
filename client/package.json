@@ -2,10 +2,15 @@
   "name": "bittoka",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5"
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "draft-js": "^0.10.5",
+    "draft-js-plugins-editor": "^2.1.1",
+    "axios": "^0.18.0"
   },
   "scripts": {
     "start": "react-scripts start",

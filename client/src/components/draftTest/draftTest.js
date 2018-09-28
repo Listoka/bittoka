@@ -66,6 +66,7 @@ class draftTest extends React.Component {
         className += ' RichEditor-hidePlaceholder';
       }
     }
+    console.log("editorstate: ", editorState);
     return (
       <div className="RichEditor-root">
         <BlockStyleControls

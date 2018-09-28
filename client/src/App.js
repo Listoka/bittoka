@@ -1,7 +1,6 @@
 //React
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { EditorState } from 'draft-js';
 //JSON file and navigation
 import Nav from "./components/Nav";
 import categories from "./categories.json";
@@ -20,8 +19,7 @@ import NoMatch from "./pages/NoMatch";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty(), categories: categories};
-    this.onChange = (editorState) => this.setState({editorState});
+    this.state = {categories: categories};
   }
   
   render(){
