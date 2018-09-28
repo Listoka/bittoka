@@ -61,7 +61,8 @@ class Stories extends Component {
           </FormBtn>
         </form>
         </div>
-        <div className="col-md-8"></div>
+        <div className="col-md-2"></div>
+        <div className="col-md-6"></div>
       </div>
     )
   }
