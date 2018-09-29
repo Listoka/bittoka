@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import categories from "./categories.json";
 import SubNav from "./components/subNav";
 import FlexContainer from "./components/flexContainer";
+import draftTest from "./components/draftTest";
 //Routes
 import Home from "./pages/Home";
 import BitcoinStories from "./pages/BitcoinStories";
@@ -16,12 +17,13 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 
 class App extends Component {
-  
-  state = {
-    categories: categories
+  constructor(props) {
+    super(props);
+    this.state = {categories: categories};
   }
   
   render(){
+    console.log("state: ", this.state)
     return(
       <Router>
         <div>
@@ -44,6 +46,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/join" component={Join} />
             <Route exact path="/jist" component={Jist} />
+            <Route exact path="/drafttest" component={draftTest} />
             <Route component={NoMatch} />
           </Switch>
         </div>
