@@ -3,12 +3,16 @@ import './Stories.css';
 import { Input, TextArea, FormBtn } from "../../components/StoriesForm";
 
 class Stories extends Component {
-  state = {
-    stories: [],
-    username: "",
-    title: "",
-    text: ""
-  };
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      stories: [],
+      username: "",
+      title: "",
+      text: ""};
+  }
+  
   //Logic
 
   // componentDidMount() {

@@ -1,6 +1,8 @@
 import React from "react";
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from 'draft-js';
+import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertToRaw, convertFromRaw } from 'draft-js';
 import './draftTest.css';
+import {stateToHTML} from 'draft-js-export-html';
+import {stateFromHTML} from 'draft-js-import-html';
 
 class draftTest extends React.Component {
     constructor(props) {
@@ -14,7 +16,6 @@ class draftTest extends React.Component {
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
-
   }
   _handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -66,7 +67,8 @@ class draftTest extends React.Component {
         className += ' RichEditor-hidePlaceholder';
       }
     }
-    console.log("editorstate: ", editorState);
+    console.log("editorstate: ", stateToHTML(editorState.getCurrentContent()));
+    
     return (
       <div className="RichEditor-root">
         <BlockStyleControls
