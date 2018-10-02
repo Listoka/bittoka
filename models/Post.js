@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
@@ -23,4 +23,4 @@ PostSchema.virtual('votes').get(() => this.voters.length)
 
 const Post = mongoose.model('Post', PostSchema)
 
-export default Post
+module.exports = Post

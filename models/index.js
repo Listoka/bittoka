@@ -1,16 +1,6 @@
-// module.exports = {
-//     BitcoinStories: require("./bitcoinStories"),
-//     Stories: require("./stories")
-// };
-
-import User from './User'
-import Category from './Category'
-import Post from './Post'
-import Comment from './Comment'
-
-export {
-    User,
-    Category,
-    Post,
-    Comment
+module.exports = {
+    User: require('./User'),
+    Category: require('./Category'),
+    Post: require('./Post'),
+    Comment: require('./Comment')
 }

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
@@ -23,4 +23,4 @@ CommentSchema.virtual('votes').get(() => this.voters.length)
 
 const Comment = mongoose.model('Comment', CommentSchema)
 
-export default Comment
+module.exports = Comment
