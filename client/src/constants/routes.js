@@ -1,0 +1,8 @@
+export const LANDING = '/'
+export const HOME = '/home'
+export const STORIES = '/stories'
+export const BITCOIN_STORY = '/yourbitcoinstory'
+export const LOGIN = '/login'
+export const JOIN = '/join'
+export const GIST = '/gist'
+export const ACCOUNT = '/account'

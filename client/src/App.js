@@ -11,10 +11,15 @@ import draftTest from "./components/draftTest";
 import Home from "./pages/Home";
 import BitcoinStories from "./pages/BitcoinStories";
 import Stories from "./pages/Stories";
-import Jist from "./pages/Jist";
+import Gist from "./pages/Gist";
 import Join from "./pages/Join";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
+import * as routes from './constants/routes'
+import AccountPage from './pages/Account'
+
+// Auth Helper
+import withAuthentication from './components/AuthUserSession/withAuthentication'
 
 class App extends Component {
   constructor(props) {
@@ -39,13 +44,15 @@ class App extends Component {
           ))}
           </FlexContainer>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/stories" component={Stories} />
-            <Route exact path="/yourbitcoinstory" component={BitcoinStories} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/join" component={Join} />
-            <Route exact path="/jist" component={Jist} />
+            <Route exact path={routes.LANDING} component={Home} />
+            <Route exact path={routes.HOME} component={Home} />
+            <Route exact path={routes.STORIES} component={Stories} />
+            <Route exact path={routes.BITCOIN_STORY} component={BitcoinStories} />
+            <Route exact path={routes.LOGIN} component={Login} />
+            <Route exact path={routes.JOIN} component={Join} />
+            <Route exact path={routes.GIST} component={Gist} />
+            {/* Need user account page to test auth */}
+            <Route exact path={routes.ACCOUNT} component={AccountPage} />
             <Route exact path="/drafttest" component={draftTest} />
             <Route component={NoMatch} />
           </Switch>
@@ -55,4 +62,4 @@ class App extends Component {
   }
 };
 
-export default App;
+export default withAuthentication(App);

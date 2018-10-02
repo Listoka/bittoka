@@ -9,6 +9,7 @@
     "draft-js-export-html": "^1.2.0",
     "draft-js-import-html": "^1.2.1",
     "draft-js-plugins-editor": "^2.1.1",
+    "firebase": "^5.5.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",

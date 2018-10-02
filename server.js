@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require('path')
 // const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,6 +19,15 @@ if (process.env.NODE_ENV === "production") {
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
+
+app.post('/api/users', (req, res) => {
+  console.log(req.body)
+  res.send('posted to /api/users')
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/build/index.html'))
+})
 
 // Start the API server
 app.listen(PORT, function() {
