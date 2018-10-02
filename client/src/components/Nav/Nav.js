@@ -28,6 +28,9 @@ const Nav = () => {
             <li className="nav-item">
               <a className="nav-link hvr-glow" href="/login">Login <span className="sr-only">Login</span></a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link hvr-glow" href="/account">Account <span className="sr-only">Account</span></a>
+            </li>
             <li className='nav-item'>
               <a onClick={logOutHandler} className="nav-link hvr-glow" href="/SignOut">Sign Out <span className="sr-only">Sign Out</span></a>
             </li>

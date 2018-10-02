@@ -6,7 +6,7 @@ const Account = (props) => {
     <div>
       <p>{JSON.stringify(props.authUser)}</p>
       <AuthUserContext.Consumer>
-        {authUser => console.log(authUser)}
+        {authUser => console.log('authUser: ', authUser)}
       </AuthUserContext.Consumer>
     </div>
 
