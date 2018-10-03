@@ -6,6 +6,10 @@ const path = require('path')
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+let indexPath = './client/public/index.html'
+
+const db = require('./models')
+
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -13,6 +17,7 @@ app.use(express.static("public"));
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  indexPath = './client/build/index.html'
 }
 // Add routes, both API and view
 // app.use(routes);
@@ -26,7 +31,7 @@ app.post('/api/users', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/build/index.html'))
+  res.sendFile(path.join(__dirname, indexPath))
 })
 
 // Start the API server

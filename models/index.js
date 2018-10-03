@@ -1,4 +1,7 @@
 module.exports = {
-    BitcoinStories: require("./bitcoinStories"),
-    Stories: require("./stories")
-};
+    User: require('./User'),
+    Category: require('./Category'),
+    Post: require('./Post'),
+    Comment: require('./Comment'),
+    Transaction: require('./Transaction')
+}
