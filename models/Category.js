@@ -11,7 +11,6 @@ const CategorySchema = new Schema({
     type: String,
     required: true
   },
-  posts: [{ type: ObjectId, ref: 'Post' }],
   tags: [String],
   settings: {
     allowedPosters: { type: [String], required: true }, // string identifiers for permission groups

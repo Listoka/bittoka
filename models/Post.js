@@ -7,7 +7,11 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
-  body: {
+  body: { // should have a length limit
+    type: String,
+    required: true
+  },
+  teaser: { // should have a length limit and a minimum?
     type: String,
     required: true
   },
