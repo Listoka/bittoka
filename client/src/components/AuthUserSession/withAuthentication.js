@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'
 
 import AuthUserContext from './AuthUserContext';
 import { firebase } from '../../firebase';
@@ -10,19 +11,38 @@ const withAuthentication = (Component) =>
 
       this.state = {
         authUser: null,
+        dbUser: null
       };
     }
 
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
-        authUser
-          ? this.setState(() => ({ authUser }))
-          : this.setState(() => ({ authUser: null }));
-      });
+        if (authUser) {
+          axios({
+            method: 'get',
+            url: '/api/users/uid/' + authUser.uid
+          }).then(dbUser => {
+            this.setState({
+              authUser: authUser,
+              dbUser: dbUser.data
+            })
+          }).catch(err => console.log('withAuthentication ERROR: ', err))
+        } else {
+          this.setState({
+            authUser: null,
+            dbUser: null
+          })
+        }
+      })
     }
 
+
     render() {
-      const { authUser } = this.state;
+      const { authUser, dbUser } = this.state;
+
+      if (authUser) {
+        authUser.dbUser = dbUser
+      }
 
       return (
         <AuthUserContext.Provider value={authUser}>
