@@ -25,9 +25,23 @@ if (process.env.NODE_ENV === "production") {
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
 
+app.get('/api/users/uid/:uid', (req, res) => {
+  db.User.findOne({uid: req.params.uid}).then(dbUser => {
+    res.json(dbUser)
+  })
+})
+
 app.post('/api/users', (req, res) => {
-  console.log(req.body)
-  res.send('posted to /api/users')
+  const { username, email, uid } = req.body
+  const userData = {
+    username: username,
+    email: email,
+    uid: uid,
+    permissions: ['user']
+  }
+  db.User.create(userData).then(result => {
+    res.json(result)
+  })
 })
 
 app.get('*', (req, res) => {
@@ -35,6 +49,6 @@ app.get('*', (req, res) => {
 })
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });

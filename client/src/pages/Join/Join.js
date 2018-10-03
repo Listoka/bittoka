@@ -85,7 +85,7 @@ class Join extends React.Component {
           placeholder='Confirm Password'
         />
         <button disabled={isInvalid} type='submit'>Sign Up</button>
-        { error ? <p>Error: {error}</p> : null }
+        { error ? <p>Error: {error.message}</p> : null }
       </form>
     )
   }
