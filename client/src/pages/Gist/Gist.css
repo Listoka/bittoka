@@ -1,0 +1,15 @@
+.gistDescriptionBox {
+    left:0;right:0;
+    box-shadow:0 0 25px 3px #333;
+    border-radius: 2px;
+    z-index:-1;
+    background-image: url("../../assets/images/brushedalu.png");
+    margin-top: 6px;
+    padding: 12px;
+}
+.centering {
+    text-align: center;
+}
+.underline {
+    text-decoration: underline;
+}
