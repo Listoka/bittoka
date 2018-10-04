@@ -1,6 +1,8 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { auth } from '../../firebase'
 import axios from 'axios'
+import * as routes from '../../constants/routes'
 import './Join.css'
 
 class Join extends React.Component {
@@ -43,6 +45,7 @@ class Join extends React.Component {
 
       })
       .then(response => console.log(response))
+      .then(() => this.props.history.push(routes.ACCOUNT))
       .catch(error => {
         this.setState({ error })
       })
@@ -50,7 +53,7 @@ class Join extends React.Component {
 
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state
-    const isInvalid = 
+    const isInvalid =
       passwordOne !== passwordTwo || passwordOne === '' ||
       username === '' || email === ''
 
@@ -85,10 +88,10 @@ class Join extends React.Component {
           placeholder='Confirm Password'
         />
         <button disabled={isInvalid} type='submit'>Sign Up</button>
-        { error ? <p>Error: {error.message}</p> : null }
+        {error ? <p>Error: {error.message}</p> : null}
       </form>
     )
   }
 }
 
-export default Join;
+export default withRouter(Join)

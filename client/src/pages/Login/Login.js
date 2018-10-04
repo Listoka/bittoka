@@ -26,7 +26,7 @@ class Login extends React.Component {
 
     auth
       .doSignInWithEmailAndPassword(email, password)
-      .then(this.props.history.push(routes.ACCOUNT))
+      .then(() => this.props.history.push(routes.ACCOUNT))
       .catch(error => {
         console.log(error)
         this.setState({ error })

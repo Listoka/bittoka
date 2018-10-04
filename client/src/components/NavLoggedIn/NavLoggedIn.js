@@ -9,7 +9,7 @@ const NavLoggedIn = (props) => {
               <div className="nav-link hvr-glow"><Link to="/gist">Gist</Link><span className="sr-only">Gist</span></div>
             </li>
             <li className='nav-item'>
-              <div onClick={props.logOutHandler} className="nav-link hvr-glow"><Link to="/SignOut">Sign Out</Link><span className="sr-only">Sign Out</span></div>
+              <div onClick={(event) => props.logOutHandler(event)} className="nav-link hvr-glow"><Link to="/">Sign Out</Link><span className="sr-only">Sign Out</span></div>
             </li>
             <li className="nav-item">
               <div className="nav-link hvr-glow"><Link to="/account">Account</Link><span className="sr-only">Account</span></div>
