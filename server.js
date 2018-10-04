@@ -46,6 +46,22 @@ app.post('/api/secret', (req, res) => {
     })
 })
 
+app.get('/api/posts', (req, res) => {
+  db.Post.find().then(dbPost => {
+    res.json(dbPost)
+  })
+})
+
+app.get('/api/posts/:id', (req, res) => {
+  db.Post.findById(req.params.id).then(dbPost => {
+    res.json(dbPost)
+  })
+})
+
+app.post('/api/posts', (req, res) => {
+  db.Post.create(req.body).then(dbPost => res.json(dbPost))
+})
+
 app.get('/api/users/uid/:uid', (req, res) => {
   db.User.findOne({uid: req.params.uid}).then(dbUser => {
     res.json(dbUser)
