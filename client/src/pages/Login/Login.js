@@ -34,7 +34,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, password } = this.state
+    const { email, password, error } = this.state
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -53,6 +53,11 @@ class Login extends React.Component {
           type='password'
         />
         <button type='submit'>Submit</button>
+        {
+          error
+            ? <p>{error.message}</p>
+            : null
+        }
       </form>
     )
   }
