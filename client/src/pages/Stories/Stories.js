@@ -12,20 +12,11 @@ class Stories extends Component {
       title: "",
       text: ""};
   }
-  
-  //Logic
 
   // componentDidMount() {
   //   this.loadStories();
   // }
   
-  // loadStories = () => {
-  //   app.getStories()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -73,3 +64,42 @@ class Stories extends Component {
 };
 
 export default Stories;
+
+// class Stories extends Component {
+  
+//   constructor(props) {
+//     super(props);
+//     // this.state = {
+
+//     // };
+//   }
+
+//   render() {
+//     return (
+//       <div className="row">
+//         <div className="col-xl-2">
+//           {/* Tags/Subcategories would go here */}
+//         </div>
+
+//           <div className="col-xl-8">
+//             <CategoryDetail>
+//               <CategoryDescription />
+              
+//               <PostList>
+//                 <PostListItem>
+
+//                 </PostListItem>
+//               </PostList>
+          
+//             </CategoryDetail>
+
+//           </div>
+
+//         <div className="col-xl-2">
+//           {/* Advertisements would go here */}
+//         </div>
+//       </div>
+//     );
+//   };
+
+// };

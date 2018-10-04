@@ -1,16 +1,12 @@
-import React from "react";
+import React from 'react';
+import './categoryDetail.css';
 
-const CategoryDetail = () => {
-
+const CategoryDetail = ({children}) => {
     return (
-        
-        <div>
-        {/* Will include the CategoryDescription Component here */}
-        {/* Will include the PostList Component here and the PostListItem as its child */}
+        <div className='container-fluid categoryDetail'>
+            {children}
         </div>
-
-    )
-
-}
+    );
+};
 
 export default CategoryDetail;

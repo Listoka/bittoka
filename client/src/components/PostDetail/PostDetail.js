@@ -10,8 +10,6 @@ const PostDetail = (id) => {
             
         </div>
     )
-
-
 }
 
 export default PostDetail;

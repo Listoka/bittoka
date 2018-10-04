@@ -1,20 +1,20 @@
 //React
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //JSON file and navigation
-import Nav from "./components/Nav";
-import categories from "./categories.json";
-import SubNav from "./components/subNav";
-import FlexContainer from "./components/flexContainer";
-import draftTest from "./components/draftTest";
+import Nav from './components/Nav';
+import categories from './categories.json';
+import SubNav from './components/subNav';
+import FlexContainer from './components/flexContainer';
+import draftTest from './components/draftTest';
 //Routes
-import Home from "./pages/Home";
-import BitcoinStories from "./pages/BitcoinStories";
-import Stories from "./pages/Stories";
-import Gist from "./pages/Gist";
-import Join from "./pages/Join";
-import Login from "./pages/Login";
-import NoMatch from "./pages/NoMatch";
+import Home from './pages/Home';
+import BitcoinStories from './pages/BitcoinStories';
+import Stories from './pages/Stories';
+import Gist from './pages/Gist';
+import Join from './pages/Join';
+import Login from './pages/Login';
+import NoMatch from './pages/NoMatch';
 import * as routes from './constants/routes'
 import AccountPage from './pages/Account'
 
@@ -28,7 +28,7 @@ class App extends Component {
   }
   
   render(){
-    console.log("state: ", this.state)
+    console.log('state: ', this.state)
     return(
       <Router>
         <div>
@@ -53,7 +53,7 @@ class App extends Component {
             <Route exact path={routes.GIST} component={Gist} />
             {/* Need user account page to test auth */}
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
-            <Route exact path="/drafttest" component={draftTest} />
+            <Route exact path='/drafttest' component={draftTest} />
             <Route component={NoMatch} />
           </Switch>
         </div>

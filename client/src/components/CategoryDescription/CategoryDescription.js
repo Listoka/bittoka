@@ -1,15 +1,12 @@
-import React from "react";
+import React from 'react';
+import './categoryDescription.css';
 
 const CategoryDescription = () => {
-
     return (
-        
-        <div>
-        {/* This comoponent will include a description for each category when you enter the page */}
+        <div className='container categoryDescription'>
+            <p>Placeholder for the description of each category</p>
         </div>
-
-    )
-
-}
+    );
+};
 
 export default CategoryDescription;
