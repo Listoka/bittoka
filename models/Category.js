@@ -7,6 +7,10 @@ const CategorySchema = new Schema({
     type: String,
     required: true
   },
+  displayName: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: true
