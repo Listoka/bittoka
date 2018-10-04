@@ -26,7 +26,9 @@ const withAuthentication = (Component) =>
               authUser: authUser,
               dbUser: dbUser.data
             })
-          }).catch(err => console.log('withAuthentication ERROR: ', err))
+          })
+          .then(() => this.serverVerifyToken())
+          .catch(err => console.log('withAuthentication ERROR: ', err))
         } else {
           this.setState({
             authUser: null,
@@ -34,6 +36,19 @@ const withAuthentication = (Component) =>
           })
         }
       })
+    }
+
+    serverVerifyToken() {
+      firebase.auth.currentUser.getIdToken(/* force refresh */ true)
+        .then(idToken => {
+          axios({
+            method: 'post',
+            url: '/api/secret',
+            data: { idToken }
+          }).then(result => {
+            console.log('verify result: ', result)
+          })
+        })
     }
 
 
