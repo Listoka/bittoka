@@ -2,16 +2,19 @@
     {
         "id": 1,
         "name": "Listoka",
-        "href": "home"
+        "href": "home",
+        "description": "Listoka Introduction"
     },
     {
         "id": 2,
         "name": "Your Bitcoin Story",
-        "href": "yourbitcoinstory"
+        "href": "yourbitcoinstory",
+        "description": "Your Bitcoin Story Introduction"
     },
     {
         "id": 3,
         "name": "Stories",
-        "href": "stories"
+        "href": "stories",
+        "description": "Stories Description"
     }
 ]

@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
+import './postListItem.css'
 
-const PostListItem = () => {
-
+const PostListItem = props => {
     return (
-        <div>
-            {/* This will be mapped over within PostList*/}
+        <div className='panel panel-success'>
+            <div className='panel-heading'>props.title will be here</div>
+            <div className='panel-body'>props.username and other stats such as total tipped would be here</div>
         </div>
-    )
-
-}
+    );
+};
 
 export default PostListItem;

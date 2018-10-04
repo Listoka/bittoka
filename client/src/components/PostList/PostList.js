@@ -1,16 +1,13 @@
-import React from "react";
+import React from 'react';
+import './postList.css'
 
-const PostList = () => {
-
+const PostList = ({children}) => {
     return (
-        
-        <div>
-            {/*  Will include subchildren called PostListItem 
-            Perhaps 20-30 displayed per page with 5-10 visible on a normal screen*/}
+        <div className='container postList'>
+            {children}
+            {/*Perhaps 20-30 displayed per page with 5-10 visible on a normal screen */}
         </div>
-    )
-
-
-}
+    );
+};
 
 export default PostList;

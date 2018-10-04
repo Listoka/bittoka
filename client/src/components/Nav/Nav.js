@@ -7,7 +7,6 @@ import SignOut from "../SignOut";
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
 
-
 //Will need to update a logged in / logged out state
 class Nav extends Component {
   constructor(props) {
@@ -37,6 +36,9 @@ class Nav extends Component {
             ) : (
               <NavNotLoggedIn />
             )}
+            </AuthUserContext.Consumer>
+            <AuthUserContext.Consumer>
+          {authUser => console.log("authuser: ", authUser)}
             </AuthUserContext.Consumer>
         </div>
       </nav>

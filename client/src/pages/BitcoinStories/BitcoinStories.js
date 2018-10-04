@@ -30,20 +30,6 @@ class BitcoinStories extends Component {
     });
   };
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.title && this.state.username && this.state.text) {
-  //     app.saveBook({
-  //       title: this.state.title,
-  //       author: this.state.author,
-  //       text: this.state.synopsis
-  //     })
-  //       .then(res => this.loadBooks())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
-
-  //Rendering
   render() {
     return(
       <div>
@@ -85,3 +71,41 @@ class BitcoinStories extends Component {
 };
 
 export default BitcoinStories;
+// class BitcoinStories extends Component {
+  
+//   constructor(props) {
+//     super(props);
+//     // this.state = {
+
+//     // };
+//   }
+
+//   render() {
+//     return (
+//       <div className="row">
+//         <div className="col-xl-2">
+//           {/* Tags/Subcategories would go here */}
+//         </div>
+
+//           <div className="col-xl-8">
+//             <CategoryDetail>
+//               <CategoryDescription />
+              
+//               <PostList>
+//                 <PostListItem>
+
+//                 </PostListItem>
+//               </PostList>
+          
+//             </CategoryDetail>
+
+//           </div>
+
+//         <div className="col-xl-2">
+//           {/* Advertisements would go here */}
+//         </div>
+//       </div>
+//     );
+//   };
+
+// };
