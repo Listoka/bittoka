@@ -1,15 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const path = require('path')
-// const routes = require('./routes');
+const routes = require('./routes');
 const app = express();
 const admin = require('firebase-admin');
 const serviceAccount = require('./secret/firebase-secret.json');
 
 const PORT = process.env.PORT || 3001;
-
-let indexPath = './client/public/index.html'
 
 const db = require('./models')
 
@@ -17,6 +14,9 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://react-auth-demo-24abd.firebaseio.com'
 });
+
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,13 +26,9 @@ app.use(express.static('public'));
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-  indexPath = './client/build/index.html'
 }
-// Add routes, both API and view
-// app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
+// Add routes
 
 app.post('/api/secret', (req, res) => {
   admin.auth().verifyIdToken(req.body.idToken)
@@ -44,22 +40,6 @@ app.post('/api/secret', (req, res) => {
       console.log(err)
       res.json(err)
     })
-})
-
-app.get('/api/posts', (req, res) => {
-  db.Post.find().then(dbPost => {
-    res.json(dbPost)
-  })
-})
-
-app.get('/api/posts/:id', (req, res) => {
-  db.Post.findById(req.params.id).then(dbPost => {
-    res.json(dbPost)
-  })
-})
-
-app.post('/api/posts', (req, res) => {
-  db.Post.create(req.body).then(dbPost => res.json(dbPost))
 })
 
 app.get('/api/users/uid/:uid', (req, res) => {
@@ -81,9 +61,7 @@ app.post('/api/users', (req, res) => {
   })
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, indexPath))
-})
+app.use(routes);
 
 // Start the API server
 app.listen(PORT, function () {
