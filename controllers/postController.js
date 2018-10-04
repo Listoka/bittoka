@@ -16,6 +16,16 @@ module.exports = {
       .catch(err => res.status(418).json(err))
   },
 
+  findAllInCategory: (req, res) => {
+    db.Category.find({name: req.params.categoryName})
+      .then(dbCategory => {
+        return db.Post.find({category: dbCategory._id})
+      })
+      .then(dbPost => {
+        res.json(dbPost)
+      })
+  },
+
   create: (req, res) => {
     db.Post
       .create(req.body)
