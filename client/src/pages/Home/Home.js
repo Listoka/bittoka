@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import CategoryDetail from '../../components/CategoryDetail';
-import CategoryDescription from '../../components/CategoryDescription';
-import PostList from '../../components/PostList';
-import PostListItem from '../../components/PostListItem';
+// import CategoryDetail from '../../components/CategoryDetail';
+// import CategoryDescription from '../../components/CategoryDescription';
+// import PostList from '../../components/PostList';
+// import PostListItem from '../../components/PostListItem';
+// import CreatePostButton from '../../components/CreatePostButton';
 import './Home.css';
 
 class Home extends Component {
   
   constructor(props) {
     super(props);
-    // this.state = {
-
-    // };
+    this.state = {
+      posts: []
+    };
   }
 
   render() {
+
     return (
       <div className='row'>
         <div className='col-xl-2'>
@@ -22,6 +24,9 @@ class Home extends Component {
         </div>
 
           <div className='col-xl-8'>
+          {/* <CreatePostButton 
+
+          />
             <CategoryDetail>
               <CategoryDescription />
               <PostList>
@@ -32,7 +37,7 @@ class Home extends Component {
 
               </PostList>
           
-            </CategoryDetail>
+            </CategoryDetail> */}
 
           </div>
 

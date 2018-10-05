@@ -1,69 +1,72 @@
 import React, { Component } from "react";
 import './BitcoinStories.css';
-import { Input, TextArea, FormBtn } from "../../components/StoriesForm";
+import API from '../../utils/API';
+import CategoryDetail from '../../components/CategoryDetail';
+import CategoryDescription from '../../components/CategoryDescription';
+import PostList from '../../components/PostList';
+import PostListItem from '../../components/PostListItem';
+import CreatePostButton from '../../components/CreatePostButton';
 
 class BitcoinStories extends Component {
-  state = {
-    stories: [],
-    username: "",
-    title: "",
-    text: ""
-  };
-  //////Logic/////
+  constructor(props) {
+    super(props);
+    this.state = {
+      stories: []
+    };
+  }
 
-  // componentDidMount() {
-  //   this.loadStories();
-  // }
+  componentDidMount() {
+    this.getPosts()
+  }
   
-  // loadStories = () => {
-  //   app.getStories()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
+  getPosts = () => {
+    API.getBitcoinStoryPosts().then(results => {
+      console.log(results.data);
+      this.setState({stories: results.data})
     });
   };
 
   render() {
-    return(
+    return (
       <div>
-        <div className="col-md-4">
-        <form>
-          <Input 
-            value={this.state.title}
-            onChange={this.handleInputChange}
-            name="title"
-            placeholder="Title of your Bitcoin Story"
+        <div className="row">
+          <div className="col-xl-2">
+            {/* Tags/Subcategories would go here */}
+          </div>
+
+          <div className="col-xl-8">
+          <CreatePostButton 
+
           />
-          <Input 
-            value={this.state.username}
-            onChange={this.handleInputChange}
-            name="username"
-            placeholder="Username"
-          />
-          <TextArea
-            value={this.state.text}
-            onChange={this.handleInputChange}
-            name="text"
-            placeholder="Enter Story Here"
-          />
-          <FormBtn
-            disabled={!(this.state.username && this.state.title && this.state.text)}
-            // onClick={this.handleFormSubmit}
-          >
-            Submit Story
-          </FormBtn>
-        </form>
-        </div>
-        <div className="col-md-2"></div>
-        <div className="col-md-6">
-        
+            <CategoryDetail>
+              <CategoryDescription />
+
+              <PostList>
+                {this.state.stories.map(bitcoinStory => (
+                  <PostListItem
+                    key={bitcoinStory._id}
+                    authorName={bitcoinStory.authorName}
+                    body={bitcoinStory.body}
+                    categoryName={bitcoinStory.categoryName}
+                    comments={bitcoinStory.comments}
+                    purchasers={bitcoinStory.purchasers}
+                    tags={bitcoinStory.tags}
+                    teaser={bitcoinStory.teaser}
+                    title={bitcoinStory.title}
+                    _id={bitcoinStory._id}
+                    author={bitcoinStory.author}//This is the numbers one. May not need
+                    // 
+                  />
+                ))}
+              </PostList>
+
+            </CategoryDetail>
+
+          </div>
+
+          <div className="col-xl-2">
+            {/* Advertisements would go here */}
+          </div>
         </div>
       </div>
     )
@@ -71,41 +74,3 @@ class BitcoinStories extends Component {
 };
 
 export default BitcoinStories;
-// class BitcoinStories extends Component {
-  
-//   constructor(props) {
-//     super(props);
-//     // this.state = {
-
-//     // };
-//   }
-
-//   render() {
-//     return (
-//       <div className="row">
-//         <div className="col-xl-2">
-//           {/* Tags/Subcategories would go here */}
-//         </div>
-
-//           <div className="col-xl-8">
-//             <CategoryDetail>
-//               <CategoryDescription />
-              
-//               <PostList>
-//                 <PostListItem>
-
-//                 </PostListItem>
-//               </PostList>
-          
-//             </CategoryDetail>
-
-//           </div>
-
-//         <div className="col-xl-2">
-//           {/* Advertisements would go here */}
-//         </div>
-//       </div>
-//     );
-//   };
-
-// };
