@@ -1,15 +1,20 @@
 .gistDescriptionBox {
     left:0;right:0;
     box-shadow:0 0 25px 3px #333;
-    border-radius: 2px;
+    /* border-radius: 2px; */
     z-index:-1;
     background-image: url("../../assets/images/brushedalu.png");
     margin-top: 6px;
-    padding: 12px;
-}
-.centering {
+    /* padding: 12px; */
     text-align: center;
 }
-.underline {
-    text-decoration: underline;
+h2 {
+    font-family: 'Dekko', cursive;
+}
+.container {
+    margin-top: 50px;
+}
+p {
+    font-family: 'Karma', serif;
+    font-size: 18px;
 }
