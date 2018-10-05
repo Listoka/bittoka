@@ -25,14 +25,17 @@ router.route('/comments/:id')
   .delete(commentController.remove)
 
 // category routes
-router.route('/categorys')
+router.route('/categories')
   .get(categoryController.findAll)
   .post(categoryController.create)
 
-router.route('/categorys/:id')
+router.route('/categories/:id')
   .get(categoryController.findById)
   .put(categoryController.update)
   .delete(categoryController.remove)
+
+router.route('/category/:categoryName/posts')
+  .get(postController.findAllInCategory)
 
 // transaction routes
 router.route('/transactions')
