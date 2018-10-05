@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import NavLoggedIn from "../NavLoggedIn";
 import NavNotLoggedIn from "../NavNotLoggedIn";
 import './Nav.css';
-import SignOut from "../SignOut";
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
 
@@ -21,28 +20,23 @@ class Nav extends Component {
   render() {
     return (
       <div className="container-fluid descriptionBox">
-      <nav className="navbar navbar-expand-lg navbar-light">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <span id="logoImage"><Link to='/'>Listoka</Link></span>
-        <div className="navbar-collapse collapse justify-content-end" id="navbarTogglerDemo03">
-            {/* This is the logic that determines if the user is logged in. Needs to be adjusted. */}
+        <nav className="navbar navbar-expand-lg navbar-light">
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <span id="logoImage"><Link to='/'>Listoka</Link></span>
+          <div className="navbar-collapse collapse justify-content-end" id="navbarTogglerDemo03">
             <AuthUserContext.Consumer>
-            {authUser => authUser ? (
-              <NavLoggedIn 
-                logOutHandler={this.logOutHandler}
-              />
-            ) : (
-              <NavNotLoggedIn />
-            )}
+              {
+                authUser =>
+                  authUser
+                    ? <NavLoggedIn logOutHandler={this.logOutHandler} />
+                    : <NavNotLoggedIn />
+              }
             </AuthUserContext.Consumer>
-            <AuthUserContext.Consumer>
-          {authUser => console.log("authuser: ", authUser)}
-            </AuthUserContext.Consumer>
-        </div>
-      </nav>
-    </div>
+          </div>
+        </nav>
+      </div>
     )
   }
 }
