@@ -9,6 +9,7 @@ import FlexContainer from './components/flexContainer';
 import draftTest from './components/draftTest';
 //Routes
 import Home from './pages/Home';
+import CreatePost from './pages/CreatePost';
 import BitcoinStories from './pages/BitcoinStories';
 import Stories from './pages/Stories';
 import Gist from './pages/Gist';
@@ -51,6 +52,7 @@ class App extends Component {
             <Route exact path={routes.LOGIN} component={Login} />
             <Route exact path={routes.JOIN} component={Join} />
             <Route exact path={routes.GIST} component={Gist} />
+            <Route exact path={routes.CREATEPOST} component={CreatePost} />
             {/* Need user account page to test auth */}
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
             <Route exact path='/drafttest' component={draftTest} />

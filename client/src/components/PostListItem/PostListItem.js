@@ -1,11 +1,13 @@
 import React from 'react';
-import './postListItem.css'
+import './postListItem.css';
 
 const PostListItem = props => {
     return (
-        <div className='panel panel-success'>
-            <div className='panel-heading'>props.title will be here</div>
-            <div className='panel-body'>props.username and other stats such as total tipped would be here</div>
+        <div className='panel panel-success border' id={props._id}>
+            <div className='panel-heading'><h4>{props.title}</h4></div>
+            <div className='panel-body'><h6>Posted by: {props.authorName}</h6>
+            <p>{props.body}</p>
+            </div>
         </div>
     );
 };
