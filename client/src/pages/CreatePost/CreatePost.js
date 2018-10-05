@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 import './createPost.css';
 import { Input, TextArea, FormBtn } from "../../components/StoriesForm";
 import API from '../../utils/API';
@@ -7,7 +8,7 @@ class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authorName: "",
+      authorName: props.authUser.dbUser.username,
       body: "",
       // categoryName: "",
       // comments: "",
@@ -15,7 +16,7 @@ class CreatePost extends Component {
       tags: "",
       teaser: "",
       title: "",
-      author: ""
+      author: props.authUser.dbUser._id
     };
   }
 
@@ -35,7 +36,8 @@ class CreatePost extends Component {
         title: this.state.title,
         teaser: this.state.teaser,
         body: this.state.body,
-        author: "NotSureHowToCapture"
+        author: this.state.author,
+        authorName: this.state.authorName
       })
       .then(res => console.log("Create Story response/result: " + res))
       .catch(err => console.log(err))
@@ -80,4 +82,6 @@ class CreatePost extends Component {
   };
 };
 
-export default CreatePost;
+const authCondition = (authUser) => !!authUser
+
+export default withAuthorization(authCondition)(CreatePost);
