@@ -5,6 +5,8 @@ import NavNotLoggedIn from "../NavNotLoggedIn";
 import './Nav.css';
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
+import Typist from 'react-typist';
+import Typwriter from '../Typwriter';
 
 //Will need to update a logged in / logged out state
 class Nav extends Component {
@@ -25,6 +27,15 @@ class Nav extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <span id="logoImage"><Link style={{ color:'ghostwhite' }} to='/'>Listoka</Link></span>
+            <Typwriter
+                cursor={{ 
+                show: true,
+                blink: true,
+                element: '|',
+                hideWhenDone: false,
+                hideWhenDoneDelay: 500,
+              }}
+            ></Typwriter>
           <div className="navbar-collapse collapse justify-content-end" id="navbarTogglerDemo03">
             <AuthUserContext.Consumer>
               {
