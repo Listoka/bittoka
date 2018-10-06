@@ -17,9 +17,12 @@ module.exports = {
   },
 
   findAllInCategory: (req, res) => {
+    
     db.Category.find({name: req.params.categoryName})
-      .then(dbCategory => {
-        return db.Post.find({category: dbCategory._id})
+      .then(dbCategories => {
+        console.log(dbCategories)
+        if(!dbCategories || dbCategories.length <1 ) return [];
+        return db.Post.find({categoryName: dbCategories[0].name})
       })
       .then(dbPost => {
         res.json(dbPost)
@@ -29,7 +32,9 @@ module.exports = {
   create: (req, res) => {
     db.Post
       .create(req.body)
-      .then(result => res.json(result))
+      .then(result => {
+        res.json(result)
+      })
       .catch(err => res.status(418).json(err))
   },
 

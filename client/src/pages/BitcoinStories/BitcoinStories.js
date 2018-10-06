@@ -11,18 +11,20 @@ class BitcoinStories extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stories: []
+      bitcoinStories: [],
+      categoryName: "bitcoin-story"
     };
   }
 
   componentDidMount() {
-    this.getPosts()
+    this.getPosts(this.state.categoryName)
   }
   
-  getPosts = () => {
-    API.getBitcoinStoryPosts().then(results => {
+  getPosts = (categoryName) => {
+    console.log(categoryName)
+    API.getPostings(categoryName).then(results => {
       console.log(results.data);
-      this.setState({stories: results.data})
+      this.setState({bitcoinStories: results.data})
     });
   };
 
@@ -36,13 +38,13 @@ class BitcoinStories extends Component {
 
           <div className="col-xl-8">
           <CreatePostButton 
-
+            categoryName={this.state.categoryName}
           />
             <CategoryDetail>
               <CategoryDescription />
 
               <PostList>
-                {this.state.stories.map(bitcoinStory => (
+                {this.state.bitcoinStories.map(bitcoinStory => (
                   <PostListItem
                     key={bitcoinStory._id}
                     authorName={bitcoinStory.authorName}
