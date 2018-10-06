@@ -1,17 +1,14 @@
 import axios from "axios";
 
 export default {
-    getBitcoinStoryPosts: () => {
-        return axios.get('/api/posts');
-    },
     createBitcoinStoryPost: (storyData) => {
         console.log(storyData)
         return axios.post('/api/posts', {
             title: storyData.title,
             teaser: storyData.teaser,
             body: storyData.body,
-            // authorName: storyData.authorName,
-            // categoryName: storyData.categoryName,
+            authorName: storyData.authorName,
+            categoryName: storyData.categoryName,
             // comments: storyData.comments,
             // purchasers: storyData.purchasers,
             // voters: storyData.voters,
@@ -20,6 +17,7 @@ export default {
         })
         .then(response => {
             console.log(response);
+            return response;
         })
         .catch(error => {
             console.log(error);
@@ -28,6 +26,10 @@ export default {
     getPost: (id) => {
         console.log(id)
         return axios.get('/api/posts/' + id)
+    },
+    getPostings: (categoryName) => {
+        console.log(categoryName)
+        return axios.get(`/api/category/${categoryName}/posts`);
     }
 
 };
