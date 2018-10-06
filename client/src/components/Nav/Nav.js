@@ -32,7 +32,7 @@ class Nav extends Component {
                 show: true,
                 blink: true,
                 element: '|',
-                hideWhenDone: false,
+                hideWhenDone: true,
                 hideWhenDoneDelay: 500,
               }}
             ></Typwriter>

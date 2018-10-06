@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const NavNotLoggedIn = () => {
 
     return (
-        <ul className="navbar-nav">
+        <ul className="navbar-nav ">
             <li className="nav-item">
               <div className="nav-link hvr-glow"><Link style={{ color:'ghostwhite' }} to="/gist">Gist</Link><span className="sr-only">Gist</span></div>
             </li>
