@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 import './createPost.css';
 import { Input, TextArea, FormBtn } from "../../components/StoriesForm";
@@ -10,17 +11,18 @@ class CreatePost extends Component {
     this.state = {
       authorName: props.authUser.dbUser.username,
       body: "",
-      // categoryName: "",
+      categoryName: props.location.state.categoryName,
       // comments: "",
       // purchasers: "",
       tags: "",
       teaser: "",
       title: "",
-      author: props.authUser.dbUser._id
+      author: props.authUser.dbUser._id,
+      redirectToNewPage: false,
+      redirectPathId: "",
     };
   }
-
-
+  
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -29,7 +31,7 @@ class CreatePost extends Component {
   };
   
   handleFormSubmit = (event) => {
-    console.log(event);
+    console.log(this.state);
     event.preventDefault();
     if (this.state.title && this.state.teaser && this.state.body) {
       API.createBitcoinStoryPost({
@@ -37,16 +39,23 @@ class CreatePost extends Component {
         teaser: this.state.teaser,
         body: this.state.body,
         author: this.state.author,
-        authorName: this.state.authorName
+        authorName: this.state.authorName,
+        categoryName: this.state.categoryName
       })
-      //We would want a redirect to their post here
-      .then(res =>this.setState({title:'', teaser:'', body:''}))
-      //Insert function to redirect to the post based on the ID - I think
+      //This redirects to the user's post
+      .then(res => {this.setState({redirectToNewPage: true, redirectPathId: res.data._id})})
       .catch(err => console.log(err))
     }
   }
 
   render() {
+
+    if (this.state.redirectToNewPage) {
+      return (
+        <Redirect to={{pathname:'/api/posts/'+ this.state.redirectPathId}}/>
+      )
+    }
+
     return (
       <div>
         <div className="col-md-4">
