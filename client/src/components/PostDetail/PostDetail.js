@@ -1,13 +1,14 @@
 import React from "react";
-import axios from "axios";
 
-const PostDetail = (id) => {
+const PostDetail = (props) => {
 
     return (
+        //Andrew do your thing.
         <div>
-            {/*  Will include the post content*/}
-            {/* Will also include comment container component */}
-            
+            <br/>
+            <p>{props.title}</p>
+            <p>By: {props.authorName}</p>
+            <p>{props.body}</p>
         </div>
     )
 }

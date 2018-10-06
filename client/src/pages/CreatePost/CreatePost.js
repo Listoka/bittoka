@@ -27,7 +27,7 @@ class CreatePost extends Component {
       [name]: value
     });
   };
-  //We will likely need to pass in user information (such as author) into this function
+  
   handleFormSubmit = (event) => {
     console.log(event);
     event.preventDefault();
@@ -39,7 +39,9 @@ class CreatePost extends Component {
         author: this.state.author,
         authorName: this.state.authorName
       })
-      .then(res => console.log("Create Story response/result: " + res))
+      //We would want a redirect to their post here
+      .then(res =>this.setState({title:'', teaser:'', body:''}))
+      //Insert function to redirect to the post based on the ID - I think
       .catch(err => console.log(err))
     }
   }

@@ -24,6 +24,10 @@ export default {
         .catch(error => {
             console.log(error);
         });
+    },
+    getPost: (id) => {
+        console.log(id)
+        return axios.get('/api/posts/' + id)
     }
 
 };
