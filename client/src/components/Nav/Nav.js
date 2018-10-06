@@ -24,7 +24,7 @@ class Nav extends Component {
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <span id="logoImage"><Link to='/'>Listoka</Link></span>
+          <span id="logoImage"><Link style={{ color:'ghostwhite' }} to='/'>Listoka</Link></span>
           <div className="navbar-collapse collapse justify-content-end" id="navbarTogglerDemo03">
             <AuthUserContext.Consumer>
               {
