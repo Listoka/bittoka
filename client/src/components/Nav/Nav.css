@@ -1,12 +1,7 @@
-.navContainer {
-    z-index: -1;
-}
-
 .navbar {
     border-radius: 2px;
     box-shadow: 0 6px 10px 0px #333; 
     background-color: #009688 /*rgb(0, 168, 107);*/;
-    height: 70px;
     width: 100%;
 }
 
@@ -26,7 +21,7 @@
 
 @media screen and (max-width: 991px) {
     #logoImage { display: none; }   /* hide it elsewhere */
-    .typewriter { display: none; }
+    .Typist { display: none; }
 }
 
 ul.navbar-nav {
