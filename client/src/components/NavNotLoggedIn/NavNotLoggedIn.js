@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 const NavNotLoggedIn = () => {
 
     return (
-        <ul className="navbar-nav">
-            <li className="nav-item">
-              <div className="nav-link"><Link style={{ color:'ghostwhite' }} to="/gist">Gist</Link><span className="sr-only">Gist</span></div>
+        <ul className="nav navbar-nav navbar-right">
+            <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+              <div className="nav-link"><Link style={{ color:'snow' }} to="/gist">Gist</Link><span className="sr-only">Gist</span></div>
             </li>
-            <li className="nav-item">
-              <div className="nav-link"><Link style={{ color:'ghostwhite' }} to="/join">Join</Link><span className="sr-only">Join</span></div>
+            <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+              <div className="nav-link"><Link style={{ color:'snow' }} to="/join">Join</Link><span className="sr-only">Join</span></div>
             </li>
-            <li className="nav-item">
-              <div className="nav-link"><Link style={{ color:'ghostwhite' }} to="/login">Login</Link><span className="sr-only">Login</span></div>
+            <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+              <div className="nav-link"><Link style={{ color:'snow' }} to="/login">Login</Link><span className="sr-only">Login</span></div>
             </li>
         </ul>
     )

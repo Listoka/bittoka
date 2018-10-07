@@ -5,7 +5,6 @@ import NavNotLoggedIn from "../NavNotLoggedIn";
 import './Nav.css';
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
-import Typist from 'react-typist';
 import Typwriter from '../Typwriter';
 
 //Will need to update a logged in / logged out state
@@ -21,9 +20,37 @@ class Nav extends Component {
 
   render() {
     return (
-      <div className="navContainer">
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span> </span>
+          <span> </span>
+          <span> </span>
+        </button>
+        <span id="logoImage"><Link style={{ color: 'snow', textDecoration: 'none' }} to='/'>Listoka</Link></span>
+        <Typwriter
+          cursor={{
+            show: true,
+            blink: true,
+            element: '|',
+            hideWhenDone: true,
+            hideWhenDoneDelay: 500,
+          }}
+        ></Typwriter>
+        <div className="collapse navbar-collapse justify-content-end" id="collapsingNavbar">
+          <AuthUserContext.Consumer>
+            {
+              authUser =>
+                authUser
+                  ? <NavLoggedIn logOutHandler={this.logOutHandler} />
+                  : <NavNotLoggedIn />
+            }
+          </AuthUserContext.Consumer>
+        </div>
+      </nav>
+
+      /* Original Static menu
         <nav className="navbar navbar-expand-lg navbar-light">
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <span id="logoImage"><Link style={{ color:'snow', textDecoration: 'none'}} to='/'>Listoka</Link></span>
@@ -36,7 +63,7 @@ class Nav extends Component {
                 hideWhenDoneDelay: 500,
               }}
             ></Typwriter>
-          <div className="navbar-collapse collapse justify-content-end" id="navbarTogglerDemo03">
+          <div className="navbar-collapse collapse justify-content-end" id="navbarToggler">
             <AuthUserContext.Consumer>
               {
                 authUser =>
@@ -47,7 +74,7 @@ class Nav extends Component {
             </AuthUserContext.Consumer>
           </div>
         </nav>
-      </div>
+            */
     )
   }
 }

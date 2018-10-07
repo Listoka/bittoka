@@ -1,12 +1,7 @@
-.navContainer {
-    z-index: -1;
-}
-
 .navbar {
     border-radius: 2px;
     box-shadow: 0 6px 10px 0px #333; 
     background-color: #009688 /*rgb(0, 168, 107);*/;
-    height: 70px;
     width: 100%;
 }
 
@@ -26,7 +21,7 @@
 
 @media screen and (max-width: 991px) {
     #logoImage { display: none; }   /* hide it elsewhere */
-    .typewriter { display: none; }
+    .Typist { display: none; }
 }
 
 ul.navbar-nav {
@@ -38,7 +33,6 @@ ul.navbar-nav {
 }
 
 ul.navbar-nav.a:hover, a:focus, a:active {
-    
     text-decoration: none;
 }
 
@@ -77,8 +71,74 @@ ul.navbar-nav a:hover::before, a:focus::before {
     text-decoration: none;
 }
 
-a {
-    
+/* First animated toggler */
+.navbar-light .navbar-toggler{
+    border-color: transparent;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+.navbar-toggler span {
+   display: block;
+   background-color: snow;
+   height: 3px;
+   width: 25px;
+   margin-top: 4px;
+   margin-bottom: 4px;
+   -webkit-transform: rotate(0deg);
+   -moz-transform: rotate(0deg);
+   -o-transform: rotate(0deg);
+   transform: rotate(0deg);
+   position: relative;
+   left: 0;
+   opacity: 1;
+}
+
+.navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+   -webkit-transition: transform .35s ease-in-out;
+   -moz-transition: transform .35s ease-in-out;
+   -o-transition: transform .35s ease-in-out;
+   transition: transform .35s ease-in-out;
+}
+
+.navbar-toggler span:nth-child(2) {
+   -webkit-transition: all .35s;
+   -moz-transition: all .35s;
+   -o-transition: all .35s;
+   transition: all .35s;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+    position: absolute;
+    left: 29px;
+    top: 21px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    opacity: 0.9;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+    height: 12px;
+    visibility: hidden;
+    background-color: transparent;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+    position: absolute;
+    left: 29px;
+    top: 21px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    opacity: 0.9;
+    ;
 }
 
 /*** This section is used for glow boxes in the Navbar  ***/
