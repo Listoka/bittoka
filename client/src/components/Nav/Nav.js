@@ -20,6 +20,35 @@ class Nav extends Component {
 
   render() {
     return (
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span> </span>
+          <span> </span>
+          <span> </span>
+        </button>
+        <span id="logoImage"><Link style={{ color: 'snow', textDecoration: 'none' }} to='/'>Listoka</Link></span>
+        <Typwriter
+          cursor={{
+            show: true,
+            blink: true,
+            element: '|',
+            hideWhenDone: true,
+            hideWhenDoneDelay: 500,
+          }}
+        ></Typwriter>
+        <div className="collapse navbar-collapse justify-content-end" id="collapsingNavbar">
+          <AuthUserContext.Consumer>
+            {
+              authUser =>
+                authUser
+                  ? <NavLoggedIn logOutHandler={this.logOutHandler} />
+                  : <NavNotLoggedIn />
+            }
+          </AuthUserContext.Consumer>
+        </div>
+      </nav>
+
+      /* Original Static menu
         <nav className="navbar navbar-expand-lg navbar-light">
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -45,6 +74,7 @@ class Nav extends Component {
             </AuthUserContext.Consumer>
           </div>
         </nav>
+            */
     )
   }
 }
