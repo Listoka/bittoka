@@ -1,27 +1,97 @@
-.descriptionBox {
-    top: -10;
-    box-shadow: 0 6px 10px 0px #333; /*0 0 25px -25px #333;*/
-    border-radius: 2px;
+.navContainer {
     z-index: -1;
-    /*background-image: url("../../assets/images/sandbag.png");*/
-    background-color: rgb(0, 168, 107);
+}
+
+.navbar {
+    border-radius: 2px;
+    box-shadow: 0 6px 10px 0px #333; 
+    background-color: #009688 /*rgb(0, 168, 107);*/;
     height: 70px;
     width: 100%;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Varela Round', sans-serif;
+    color: snow;
+    font-size: 24px;
+    font-weight: 100;
+}
+
+#logoImage {
+    font-size: 26px;
+    font-family: 'Merienda', cursive;
+    margin-right: 4px;
+    color: #333333;
+}
+
+@media screen and (max-width: 991px) {
+    #logoImage { display: none; }   /* hide it elsewhere */
+    .typewriter { display: none; }
+}
+
+ul.navbar-nav {
+    list-style-type: none;
+}
+
+.nav-link{
+    text-decoration: none;
+}
+
+ul.navbar-nav.a:hover, a:focus, a:active {
+    
+    text-decoration: none;
+}
+
+ul.navbar-nav a {
+    text-decoration: none;
+    transition: color 0.1s, background-color 0.1s;
+}
+
+ul.navbar-nav a {
+    position: relative;
+    padding: 16px 0;
+    margin: 0 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.1s,background-color 0.1s,padding 0.2s ease-in;
+    color: snow;
+}
+ul.navbar-nav a::before {
+    content: '';  
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: snow;
+    transform-origin: right top;
+    transform: scale(0, 1);
+    transition: color 0.1s,transform 0.2s ease-out;
+}
+ul.navbar-nav a:active::before {
+    background-color: #000;
+}
+ul.navbar-nav a:hover::before, a:focus::before {
+    transform-origin: left top;
+    transform: scale(1, 1);
+    text-decoration: none;
+}
+
+a {
+    
+}
+
+/*** This section is used for glow boxes in the Navbar  ***/
+/*
+a {
+    color: #333333;
 }
 
 a:hover{
     text-decoration: none;
     color: #333333;
 }
-a {
-    color: #333333;
-}
-.navbar-light .navbar-nav .nav-link {
-    font-family: 'Varela Round', sans-serif;
-    color: #333333;
-    font-size: 16px;
-    font-weight: 100;
-}
+
 .hvr-glow {
     display: inline-block;
     vertical-align: middle;
@@ -37,27 +107,19 @@ a {
     transition-property: box-shadow;
     border-radius: 3px;
   }
-  .hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
+
+.hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   }
   
+
 li {
     list-style: none;
-}
+}*/
 
-#logoImage {
-    font-size: 26px;
-    font-family: 'Merienda', cursive;
-    margin-right: 4px;
-    color: #333333;
-}
 
-@media screen and (max-width: 991px) {
-    #logoImage { display: none; }   /* hide it elsewhere */
-    .typewriter { display: none; }
-}
 
-/* Highlighted background */
+/* Highlighted background
 ::selection {
     background:#333333;
     color:#2dbe60;
@@ -73,4 +135,4 @@ li {
     color:#2dbe60;
 }
 
-
+ */

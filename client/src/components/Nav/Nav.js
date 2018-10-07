@@ -21,12 +21,12 @@ class Nav extends Component {
 
   render() {
     return (
-      <div className="container-fluid descriptionBox">
+      <div className="navContainer">
         <nav className="navbar navbar-expand-lg navbar-light">
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <span id="logoImage"><Link style={{ color:'ghostwhite' }} to='/'>Listoka</Link></span>
+          <span id="logoImage"><Link style={{ color:'snow', textDecoration: 'none'}} to='/'>Listoka</Link></span>
             <Typwriter
                 cursor={{ 
                 show: true,

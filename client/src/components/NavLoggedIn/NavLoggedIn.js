@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 const NavLoggedIn = (props) => {
 
     return (
-        <ul className="navbar-nav ">
+        <ul className="navbar-nav">
             <li className="nav-item">
-              <div className="nav-link hvr-glow"><Link style={{ color:'ghostwhite' }} to="/gist">Gist</Link><span className="sr-only">Gist</span></div>
+              <div className="nav-link"><Link style={{ color:'snow' }} to="/gist">Gist</Link><span className="sr-only">Gist</span></div>
             </li>
             <li className='nav-item'>
-              <div onClick={(event) => props.logOutHandler(event)} className="nav-link hvr-glow"><Link style={{ color:'ghostwhite' }} to="/">Sign Out</Link><span className="sr-only">Sign Out</span></div>
+              <div onClick={(event) => props.logOutHandler(event)} className="nav-link"><Link style={{ color:'snow' }} to="/">Sign Out</Link><span className="sr-only">Sign Out</span></div>
             </li>
             <li className="nav-item">
-              <div className="nav-link hvr-glow"><Link style={{ color:'ghostwhite' }} to="/account">Account</Link><span className="sr-only">Account</span></div>
+              <div className="nav-link"><Link style={{ color:'snow' }} to="/account">Account</Link><span className="sr-only">Account</span></div>
             </li>
         </ul>
     )
