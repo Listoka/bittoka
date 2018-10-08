@@ -19,6 +19,9 @@ const UserSchema = new Schema({
     unique: true
   },
   permissions: [String], // array of string identifiers for permission groups
+},
+{
+  timestamps: true
 })
 
 const User = mongoose.model('User', UserSchema)

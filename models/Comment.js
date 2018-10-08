@@ -17,6 +17,9 @@ const CommentSchema = new Schema({
     type: String,
     required: true
   }
+},
+{
+  timestamps: true
 })
 
 CommentSchema.virtual('votes').get(() => this.voters.length)
