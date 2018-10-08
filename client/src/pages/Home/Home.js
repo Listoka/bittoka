@@ -12,19 +12,34 @@ class Home extends Component {
     super(props);
     this.state = {
       listokaPosts: [],
-      categoryName: "listoka"
+      categoryName: "listoka",
+      displayName: "",
+      description: "",
+      tags: []
     };
   }
 
   componentDidMount() {
-    this.getPosts(this.state.categoryName)
+    this.getPosts(this.state.categoryName);
+    this.getCategory(this.state.categoryName);
   }
 
   getPosts = (categoryName) => {
-    console.log(categoryName)
+    //console.log(categoryName)
     API.getPostings(categoryName).then(results => {
       console.log(results.data);
       this.setState({ listokaPosts: results.data })
+    });
+  };
+
+  getCategory = (categoryName) => {
+    API.getCategoryInfo(categoryName).then(results => {
+      this.setState({ 
+        displayName: results.data.displayName,
+        description: results.data.description,
+        tags: results.data.tags
+      })
+      //console.log(this.state);
     });
   };
 
@@ -39,8 +54,11 @@ class Home extends Component {
           <CreatePostButton 
             categoryName={this.state.categoryName}
           />
-            <CategoryDetail>
-              <CategoryDescription />
+          <CategoryDetail>
+            <CategoryDescription 
+              displayName={this.state.displayName}
+              description={this.state.description}
+            />
               <PostList>
                 {this.state.listokaPosts.map(listokaPost => (
                   <PostListItem
@@ -59,7 +77,7 @@ class Home extends Component {
                   />
                 ))}
               </PostList>
-            </CategoryDetail> 
+            </CategoryDetail>
           </div>
         <div className='col-xl-2'>
           {/* Advertisements would go here */}

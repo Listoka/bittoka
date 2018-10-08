@@ -34,6 +34,9 @@ router.route('/categories/:id')
   .put(categoryController.update)
   .delete(categoryController.remove)
 
+router.route('/category/info/:name')
+  .get(categoryController.findOne)
+
 router.route('/category/:categoryName/posts')
   .get(postController.findAllInCategory)
 
