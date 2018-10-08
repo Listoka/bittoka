@@ -33,6 +33,22 @@ export default {
     getPostings: (categoryName) => {
         console.log(categoryName)
         return axios.get(`/api/category/${categoryName}/posts`);
+    },
+    createComment: (commentData) => {
+        console.log(commentData)
+        return axios.post('/api/comments', {
+            author: commentData.author,
+            body: commentData.body,
+            // authorName: commentData.authorName,
+            commentPath: commentData.commentPath
+        })
+        .then(response => {
+            console.log(response);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
 };

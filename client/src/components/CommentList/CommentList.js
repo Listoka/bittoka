@@ -1,17 +1,13 @@
 import React from "react";
-import axios from "axios";
 
-const CommentList = (id) => {
+//This is the container that holds the mapped-out comments
+const CommentList = (props) => {
 
     return (
         <div>
-        {/* Will ask for all the comments related to the ID and go get them. Then map through the results */}
-        {/* Where the comments component goes */}
+        {props.children}
         </div>
-
     )
-
-
-}
+};
 
 export default CommentList;

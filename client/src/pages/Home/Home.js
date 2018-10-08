@@ -52,8 +52,7 @@ class Home extends Component {
                     teaser={homePosts.teaser}
                     title={homePosts.title}
                     _id={homePosts._id}
-                    author={homePosts.author}//This is the numbers one. May not need
-                    // 
+                    author={homePosts.author}
                   />
                 ))}
               </PostList>
