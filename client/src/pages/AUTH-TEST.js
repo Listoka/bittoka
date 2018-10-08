@@ -1,7 +1,5 @@
 import React from 'react'
-// import axios from 'axios'
 import withAuthorization from '../components/AuthUserSession/withAuthorization'
-// import { firebase } from '../firebase'
 
 class AuthTest extends React.Component {
   constructor(props) {
