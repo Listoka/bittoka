@@ -3,7 +3,7 @@ const db = require("../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
 
-const BitcoinStorySeed = [
+const postData = [
     {
         title: "The Cyprus Beginning",
         author: "kels0la",
@@ -27,7 +27,44 @@ const BitcoinStorySeed = [
         teaser: "teaser",
         body:
             "A classmate asked me to join the group to build the platform",
-    }
+    },
+    {
+        title: "3 Main Apsects of Life",
+        categoryName: "listoka",
+        teaser: "teaser",
+        body: "Stay healthy forever. Be financially comfortable. Enjoy life. To me, these are the three overall aspects to life. They're listed in no particular order, but if you were to order them, how would you do it and why?",
+    },
+    {
+        title: "Best Advice",
+        categoryName: "listoka",
+        teaser: "teaser",
+        body: "Great advice can be tough to come by. What's the best advice you've ever received and who was it from? Go."
+    },
+    {
+        title: "Admiration",
+        categoryName: "listoka",
+        teaser: "teaser",
+        body: "We all have people we look up to. People we admire for one reason or another. Share with us the person you most admire and why you admire them."
+    },
+    {
+        title: "The Haunted Mansion",
+        categoryName: "stories",
+        teaser: "teaser",
+        body: "Insert a story about a haunted mansion here."
+    },
+    {
+        title: "A Super Funny Story",
+        categoryName: "stories",
+        teaser: "teaser",
+        body: "Insert a comical story here"
+    },
+    {
+        title: "How I Overcame the Odds",
+        categoryName: "stories",
+        teaser: "teaser",
+        body: "Insert Inspirational Story Here"
+    },
+
 ];
 
 db.Post.deleteMany({categoryName: 'bitcoin-stories'})
@@ -35,7 +72,7 @@ db.Post.deleteMany({categoryName: 'bitcoin-stories'})
         return db.User.find()
     })
     .then(dbUser => {
-        let data = BitcoinStorySeed.map(x => {
+        let data = postData.map(x => {
             let idx = Math.floor(dbUser.length * Math.random())
             console.log('>>>>>>>>>>> idx: ', idx)
             let author = dbUser[idx]
