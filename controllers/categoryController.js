@@ -16,6 +16,13 @@ module.exports = {
       .catch(err => res.status(418).json(err))
   },
 
+  findOne: (req, res) => {
+    db.Category
+      .findOne({name: req.params.name})
+      .then(result => res.json(result))
+      .catch(err => res.status(418).json(err))
+  },
+
   create: (req, res) => {
     db.Category
       .create(req.body)

@@ -5,6 +5,8 @@ import CategoryDescription from '../../components/CategoryDescription';
 import PostList from '../../components/PostList';
 import PostListItem from '../../components/PostListItem';
 import CreatePostButton from '../../components/CreatePostButton';
+import TagWrapper from '../../components/TagWrapper';
+import Tags from '../../components/Tags';
 import './Listoka.css';
 
 class Listoka extends Component {
@@ -12,7 +14,11 @@ class Listoka extends Component {
     super(props);
     this.state = {
       listokaPosts: [],
-      categoryName: "listoka"
+      categoryName: "listoka",
+      displayName: "",
+      description: "",
+      tags: [],
+      homePosts: [],
     };
   }
 
@@ -24,23 +30,51 @@ class Listoka extends Component {
     console.log(categoryName)
     API.getPostings(categoryName).then(results => {
       console.log(results.data);
+      this.getCategory(this.state.categoryName);
       this.setState({ listokaPosts: results.data })
+    });
+  };
+
+  getCategory = (categoryName) => {
+    API.getCategoryInfo(categoryName).then(results => {
+      this.setState({
+        displayName: results.data.displayName,
+        description: results.data.description,
+        tags: results.data.tags
+      });
     });
   };
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-xl-2'>
-          {/* Tags/Subcategories would go here */}
+      <div className='pagebody'>
+        <div className='row'>
+          <div className='col-lg-2'></div>
+          <div className='col-lg-8'>
+            <CreatePostButton
+              categoryName={this.state.categoryName}
+            />
+          </div>
+          <div className='col-lg-2'></div>
         </div>
 
-          <div className='col-xl-8'>
-          <CreatePostButton 
-            categoryName={this.state.categoryName}
-          />
+        <div className='row'>
+          <div className='col-lg-2'>
+            <TagWrapper>
+              {this.state.tags.map(tags => (
+                <Tags
+                  tag={tags}
+                />
+              ))}
+            </TagWrapper>
+          </div>
+
+          <div className='col-sm-8'>
             <CategoryDetail>
-              <CategoryDescription />
+              <CategoryDescription
+                displayName={this.state.displayName}
+                description={this.state.description}
+              />
               <PostList>
                 {this.state.listokaPosts.map(listokaPost => (
                   <PostListItem
@@ -55,14 +89,15 @@ class Listoka extends Component {
                     title={listokaPost.title}
                     _id={listokaPost._id}
                     author={listokaPost.author}//This is the numbers one. May not need
-                    // 
+                  // 
                   />
                 ))}
               </PostList>
-            </CategoryDetail> 
+            </CategoryDetail>
           </div>
-        <div className='col-xl-2'>
-          {/* Advertisements would go here */}
+          <div className='col-xl-2'>
+            {/* Advertisements would go here */}
+          </div>
         </div>
       </div>
     );

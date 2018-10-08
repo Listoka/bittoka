@@ -14,7 +14,8 @@ const categoryData = [
     posterSetsContentPrice: true,
     costToComment: 0,
     costToPost: 0
-  }
+  },
+  tags: ["Success", "Getting Started"]
 },
 {
   name: 'stories',
@@ -26,7 +27,8 @@ const categoryData = [
     posterSetsContentPrice: true,
     costToComment: 0,
     costToPost: 0
-  }
+  },
+  tags: ["Drama", "Humor","Fantasy", "Paranormal Romance", "Thriller"]
 },
 {
   name: 'listoka',
@@ -38,7 +40,8 @@ const categoryData = [
     posterSetsContentPrice: true,
     costToComment: 0,
     costToPost: 0
-  }
+  },
+  tags: ["Updates", "Maintenance"]
 }
 ]
 

@@ -6,42 +6,75 @@ import CategoryDescription from '../../components/CategoryDescription';
 import PostList from '../../components/PostList';
 import PostListItem from '../../components/PostListItem';
 import CreatePostButton from '../../components/CreatePostButton';
+import TagWrapper from '../../components/TagWrapper';
+import Tags from '../../components/Tags';
 
 class Stories extends Component {
   constructor(props) {
     super(props);
     this.state = {
       stories: [],
-      categoryName: "stories"
+      categoryName: "stories",
+      displayName: "",
+      description: "",
+      tags: []
     };
   }
 
   componentDidMount() {
-    this.getPosts(this.state.categoryName)
+    this.getPosts(this.state.categoryName);
+    this.getCategory(this.state.categoryName);
   }
 
   getPosts = (categoryName) => {
     console.log(categoryName)
     API.getPostings(categoryName).then(results => {
       console.log(results.data);
-      this.setState({ stories: results.data })
+      this.setState({ stories: results.data });
+    });
+  };
+
+  getCategory = (categoryName) => {
+    API.getCategoryInfo(categoryName).then(results => {
+      this.setState({
+        displayName: results.data.displayName,
+        description: results.data.description,
+        tags: results.data.tags
+      })
+      //console.log(this.state);
     });
   };
 
   render() {
     return (
-        <div className="row">
-          <div className="col-xl-2">
-            {/* Tags/Subcategories would go here */}
-          </div>
-
-          <div className="col-xl-8">
+      <div className='pagebody'>
+        <div className='row'>
+          <div className='col-lg-2'></div>
+          <div className='col-lg-8'>
             <CreatePostButton
               categoryName={this.state.categoryName}
             />
-            <CategoryDetail>
-              <CategoryDescription />
+          </div>
+          <div className='col-lg-2'></div>
+        </div>
 
+        <div className='row'>
+          <div className='col-lg-2'>
+            <TagWrapper>
+              {this.state.tags.map(tags => (
+                <Tags
+                  tag={tags}
+                />
+              ))}
+            </TagWrapper>
+          </div>
+
+          <div className='col-lg-8'>
+            <CategoryDetail>
+              <CategoryDescription
+                displayName={this.state.displayName}
+                description={this.state.description}
+              />
               <PostList>
                 {this.state.stories.map(story => (
                   <PostListItem
@@ -62,8 +95,9 @@ class Stories extends Component {
               </PostList>
             </CategoryDetail>
           </div>
-        <div className="col-xl-2">
-          {/* Advertisements would go here */}
+          <div className="col-lg-2">
+            {/* Advertisements would go here */}
+          </div>
         </div>
       </div>
     )
