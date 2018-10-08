@@ -11,7 +11,8 @@ const withAuthentication = (Component) =>
 
       this.state = {
         authUser: null,
-        dbUser: null
+        dbUser: null,
+        authToken: null
       };
     }
 
@@ -21,14 +22,17 @@ const withAuthentication = (Component) =>
           axios({
             method: 'get',
             url: '/api/users/uid/' + authUser.uid
-          }).then(dbUser => {
-            this.setState({
-              authUser: authUser,
-              dbUser: dbUser.data
-            })
           })
-          .then(() => this.serverVerifyToken())
-          .catch(err => console.log('withAuthentication ERROR: ', err))
+            .then(dbUser => {
+              this.setState({
+                authUser: authUser,
+                dbUser: dbUser.data
+              })
+            })
+            .then(() => firebase.auth.currentUser.getIdToken())
+            .then(authToken => this.setState({ authToken }))
+            // .then(() => this.serverVerifyToken())
+            .catch(err => console.log('withAuthentication ERROR: ', err))
         } else {
           this.setState({
             authUser: null,
@@ -36,6 +40,26 @@ const withAuthentication = (Component) =>
           })
         }
       })
+    }
+
+    requestWithAuth = (method, url, data) => {
+      const { authToken } = this.state
+      return axios({
+        method: method,
+        url: url,
+        data: data,
+        headers: {
+          'Authorization': 'Bearer ' + authToken
+        }
+      })
+    }
+
+    getWithAuth = (url) => {
+      return this.requestWithAuth('get', url, null)
+    }
+
+    postWithAuth = (url, data) => {
+      return this.requestWithAuth('post', url, data)
     }
 
     serverVerifyToken() {
@@ -57,6 +81,7 @@ const withAuthentication = (Component) =>
 
       if (authUser) {
         authUser.dbUser = dbUser
+        authUser.requestWithAuth = this.requestWithAuth
       }
 
       return (

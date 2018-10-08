@@ -21,6 +21,8 @@ import NoMatch from './pages/NoMatch';
 import * as routes from './constants/routes'
 import AccountPage from './pages/Account'
 
+import authTest from './pages/AUTH-TEST'
+
 // Auth Helper
 import withAuthentication from './components/AuthUserSession/withAuthentication'
 
@@ -60,6 +62,7 @@ class App extends Component {
             {/* Need user account page to test auth */}
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
             <Route exact path='/drafttest' component={draftTest} />
+            <Route exact path='/authtest' component={authTest} />
             <Route component={NoMatch} />
           </Switch>
         </div>

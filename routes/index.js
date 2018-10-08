@@ -1,8 +1,10 @@
 const path = require('path');
 const router = require('express').Router();
 const apiRoutes = require('./api');
+const authMiddleware = require('../middleware/firebaseAuthMiddleware')
 
 // API Routes
+router.use('/api', authMiddleware)
 router.use('/api', apiRoutes);
 
 let indexPath = '../client/public/index.html'
