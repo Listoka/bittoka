@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
-import withAuthorization from '../../components/AuthUserSession/withAuthorization'
+import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import './createPost.css';
 import { Input, TextArea, FormBtn } from "../../components/PostForm";
 import API from '../../utils/API';
@@ -11,7 +11,7 @@ class CreatePost extends Component {
     this.state = {
       authorName: props.authUser.dbUser.username,
       body: "",
-      categoryName: props.location.state.categoryName,//This comes from the CreatePostButton component
+      categoryName: props.location.state.categoryName, //This comes from the CreatePostButton component
       // comments: "",
       // purchasers: "",
       tags: "",
@@ -34,7 +34,7 @@ class CreatePost extends Component {
     console.log(this.state);
     event.preventDefault();
     if (this.state.title && this.state.teaser && this.state.body) {
-      API.createBitcoinStoryPost({
+      API.createPost({
         title: this.state.title,
         teaser: this.state.teaser,
         body: this.state.body,
@@ -54,7 +54,7 @@ class CreatePost extends Component {
       return (
         <Redirect to={{pathname:'/api/posts/'+ this.state.redirectPathId}}/>
       )
-    }
+    };
 
     return (
       <div>
@@ -83,7 +83,7 @@ class CreatePost extends Component {
               onClick={this.handleFormSubmit}
             >
               Submit Story
-          </FormBtn>
+            </FormBtn>
           </form>
         </div>
         <div className="col-md-2"></div>
