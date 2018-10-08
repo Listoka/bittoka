@@ -12,7 +12,10 @@ class Stories extends Component {
     super(props);
     this.state = {
       stories: [],
-      categoryName: "stories"
+      categoryName: "stories",
+      displayName: "",
+      description: "",
+      tags: []
     };
   }
 
@@ -24,7 +27,19 @@ class Stories extends Component {
     console.log(categoryName)
     API.getPostings(categoryName).then(results => {
       console.log(results.data);
-      this.setState({ stories: results.data })
+      this.setState({ stories: results.data });
+      this.getCategory(this.state.categoryName);
+    });
+  };
+
+  getCategory = (categoryName) => {
+    API.getCategoryInfo(categoryName).then(results => {
+      this.setState({ 
+        displayName: results.data.displayName,
+        description: results.data.description,
+        tags: results.data.tags
+      })
+      //console.log(this.state);
     });
   };
 
@@ -40,8 +55,10 @@ class Stories extends Component {
               categoryName={this.state.categoryName}
             />
             <CategoryDetail>
-              <CategoryDescription />
-
+              <CategoryDescription 
+              displayName={this.state.displayName}
+              description={this.state.description}
+              />
               <PostList>
                 {this.state.stories.map(story => (
                   <PostListItem

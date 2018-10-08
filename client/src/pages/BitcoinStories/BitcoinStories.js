@@ -12,7 +12,10 @@ class BitcoinStories extends Component {
     super(props);
     this.state = {
       bitcoinStories: [],
-      categoryName: "bitcoin-story"
+      categoryName: "bitcoin-story",
+      displayName: "",
+      description: "",
+      tags: []
     };
   }
 
@@ -24,7 +27,19 @@ class BitcoinStories extends Component {
     console.log(categoryName)
     API.getPostings(categoryName).then(results => {
       console.log(results.data);
-      this.setState({bitcoinStories: results.data})
+      this.setState({bitcoinStories: results.data});
+      this.getCategory(this.state.categoryName);
+    });
+  };
+
+  getCategory = (categoryName) => {
+    API.getCategoryInfo(categoryName).then(results => {
+      this.setState({ 
+        displayName: results.data.displayName,
+        description: results.data.description,
+        tags: results.data.tags
+      })
+      //console.log(this.state);
     });
   };
 
@@ -41,8 +56,10 @@ class BitcoinStories extends Component {
             categoryName={this.state.categoryName}
           />
             <CategoryDetail>
-              <CategoryDescription />
-
+            <CategoryDescription 
+              displayName={this.state.displayName}
+              description={this.state.description}
+            />
               <PostList>
                 {this.state.bitcoinStories.map(bitcoinStory => (
                   <PostListItem

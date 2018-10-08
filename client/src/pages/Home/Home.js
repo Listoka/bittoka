@@ -21,14 +21,14 @@ class Home extends Component {
 
   componentDidMount() {
     this.getPosts(this.state.categoryName);
-    this.getCategory(this.state.categoryName);
   }
 
   getPosts = (categoryName) => {
     //console.log(categoryName)
     API.getPostings(categoryName).then(results => {
       console.log(results.data);
-      this.setState({ listokaPosts: results.data })
+      this.getCategory(this.state.categoryName);
+      this.setState({ listokaPosts: results.data });
     });
   };
 

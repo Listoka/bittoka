@@ -6,7 +6,6 @@ const CategoryDescription = props => {
         <div className='container categoryDescription'>
         <h2>{props.displayName}</h2>
             <p>{props.description}</p>
-            <hr></hr>
         </div>
     );
 };
