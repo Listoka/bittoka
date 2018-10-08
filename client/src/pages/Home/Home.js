@@ -5,6 +5,8 @@ import CategoryDescription from '../../components/CategoryDescription';
 import PostList from '../../components/PostList';
 import PostListItem from '../../components/PostListItem';
 import CreatePostButton from '../../components/CreatePostButton';
+import TagWrapper from '../../components/TagWrapper';
+import Tags from '../../components/Tags';
 import './Home.css';
 
 class Home extends Component {
@@ -34,7 +36,7 @@ class Home extends Component {
 
   getCategory = (categoryName) => {
     API.getCategoryInfo(categoryName).then(results => {
-      this.setState({ 
+      this.setState({
         displayName: results.data.displayName,
         description: results.data.description,
         tags: results.data.tags
@@ -45,20 +47,34 @@ class Home extends Component {
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-xl-2'>
-          {/* Tags/Subcategories would go here */}
+      <div className='pagebody'>
+        <div className='row'>
+          <div className='col-xl-2'></div>
+          <div className='col-xl-8'>
+            <CreatePostButton
+              categoryName={this.state.categoryName}
+            />
+          </div>
+          <div className='col-xl-2'></div>
         </div>
 
+        <div className='row'>
+          <div className='col-xl-2'>
+            <TagWrapper>
+              {this.state.tags.map(tags => (
+                <Tags
+                  tag={tags}
+                />
+              ))}
+            </TagWrapper>
+          </div>
+
           <div className='col-xl-8'>
-          <CreatePostButton 
-            categoryName={this.state.categoryName}
-          />
-          <CategoryDetail>
-            <CategoryDescription 
-              displayName={this.state.displayName}
-              description={this.state.description}
-            />
+            <CategoryDetail>
+              <CategoryDescription
+                displayName={this.state.displayName}
+                description={this.state.description}
+              />
               <PostList>
                 {this.state.listokaPosts.map(listokaPost => (
                   <PostListItem
@@ -73,18 +89,19 @@ class Home extends Component {
                     title={listokaPost.title}
                     _id={listokaPost._id}
                     author={listokaPost.author}//This is the numbers one. May not need
-                    // 
+                  // 
                   />
                 ))}
               </PostList>
             </CategoryDetail>
           </div>
-        <div className='col-xl-2'>
-          {/* Advertisements would go here */}
+          <div className='col-xl-2'>
+            {/* Advertisements would go here */}
+          </div>
         </div>
       </div>
     );
   };
-
 };
+
 export default Home;

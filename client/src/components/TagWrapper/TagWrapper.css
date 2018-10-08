@@ -1,0 +1,17 @@
+.tagWrapper {
+    margin: 10px 0px 10px 10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.headWrapper {
+    background-color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+#tagUl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
