@@ -74,7 +74,6 @@ db.Post.deleteMany()
     .then(dbUser => {
         let data = postData.map(x => {
             let idx = Math.floor(dbUser.length * Math.random())
-            console.log('>>>>>>>>>>> idx: ', idx)
             let author = dbUser[idx]
             x.author = author._id
             x.authorName = author.username
@@ -83,7 +82,7 @@ db.Post.deleteMany()
         return db.Post.insertMany(data)
     })
     .then(dbPost => {
-        console.log('>>>>> Added Posts:', dbPost)
+        console.log('\n>>>>> Added Posts:\n', dbPost)
         process.exit(0)
     })
     .catch(err => {
