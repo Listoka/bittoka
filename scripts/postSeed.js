@@ -7,7 +7,7 @@ const postData = [
     {
         title: "The Cyprus Beginning",
         author: "kels0la",
-        categoryName: 'bitcoin-stories',
+        categoryName: 'bitcoin-story',
         teaser: "teaser",
         body:
             "Bitcoin has the potential to become the best and fairest form of money to ever exist. It essentially rolls gold, cash, and our credit card system into one. It takes the strengths of each and leaves the weaknesses behind. It has the limited supply quality of gold, but can be used to purchase everyday items. It has the speed of a credit card, but respects and protects your privacy. Transactions are settled instantly like cash, but are recorded on a public ledger.",
@@ -15,7 +15,7 @@ const postData = [
     {
         title: "My Bitcoin Story",
         author: "Chris Christian",
-        categoryName: 'bitcoin-stories',
+        categoryName: 'bitcoin-story',
         teaser: "teaser",
         body:
             "Some guy named from class won't shut up about it. He told me he'd give me $.25 to sign up on his platform so I thought, why not?",
@@ -23,7 +23,7 @@ const postData = [
     {
         title: "How I got involved with Bitcoin",
         author: "Nicrob Andrewtim",
-        categoryName: 'bitcoin-stories',
+        categoryName: 'bitcoin-story',
         teaser: "teaser",
         body:
             "A classmate asked me to join the group to build the platform",
@@ -67,7 +67,7 @@ const postData = [
 
 ];
 
-db.Post.deleteMany({categoryName: 'bitcoin-stories'})
+db.Post.deleteMany()
     .then(() => {
         return db.User.find()
     })
