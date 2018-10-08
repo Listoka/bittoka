@@ -49,6 +49,9 @@ export default {
         .catch(error => {
             console.log(error);
         });
+    },
+    getComments: () => {
+        return axios.get('/api/comments');
     }
 
 };

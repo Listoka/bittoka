@@ -3,10 +3,10 @@ import React from "react";
 const Comments = (props) => {
     return (
         <div>
-            {/* Each comment component has another child component to request its children (comments within the comments) */}
-            
+           <p>Author: {props.author}</p>
+           <p>Body: {props.body}</p>
         </div>
-    )
-}
+    );
+};
 
 export default Comments;

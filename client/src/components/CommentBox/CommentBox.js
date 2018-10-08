@@ -3,7 +3,6 @@ import { TextArea, FormBtn } from "../../components/PostForm";
 import API from '../../utils/API';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 
-
 class CommentBox extends Component {
   constructor(props) {
     super(props);

@@ -1,22 +1,36 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
 import PostDetail from '../../components/PostDetail';
+import CommentList from '../../components/CommentList';
+import Comments from '../../components/Comments';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 
 class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        post: {}
+        post: {},
+        comments: []
     };
   };
 
   componentDidMount() {
+    this.getPost();
+    this.displayComments();
+  };
+
+  getPost = () => {
     API.getPost(this.props.match.params.id)
     .then(res => this.setState({ post: res.data }))
     .then(res => console.log(this.state.post))
     .catch(err => console.log(err));
-  };
+  }
+
+  displayComments = () => {
+    API.getComments()
+    .then(res => this.setState({ comments: res.data }))
+    .catch(err => console.log(err));
+  }
 
     render() {
       return (
@@ -38,6 +52,19 @@ class Content extends Component {
                   _id={this.state.post._id}
                   author={this.state.post.author}
                 />
+                <hr/>
+                <CommentList>
+                {console.log(this.state.comments[0])}
+                  {this.state.comments.map(comments => (
+                      <Comments 
+                      key={comments._id}
+                      author={comments.author}
+                      body={comments.body} 
+                      // voters={comments.voters} 
+                      comments={comments.comments} 
+                      />
+                  ))}
+                </CommentList>
               </div>
              <div className="col-xl-2"></div>
             </div>
