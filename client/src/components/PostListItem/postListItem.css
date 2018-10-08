@@ -1,8 +1,13 @@
 .listItem {
     animation-name: slide-in-bck-bottom;
     animation-duration: 1s;
-    padding: 10px;
+    
     margin: 10px;
+}
+
+.card-subtitle{
+    color: grey;
+    margin-bottom: 10px;
 }
 
 /* ----------------------------------------------
