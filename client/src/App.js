@@ -9,6 +9,7 @@ import FlexContainer from './components/flexContainer';
 import draftTest from './components/draftTest';
 //Routes
 import Home from './pages/Home';
+import Listoka from './pages/Listoka';
 import CreatePost from './pages/CreatePost';
 import Content from './pages/Content';
 import BitcoinStories from './pages/BitcoinStories';
@@ -48,6 +49,7 @@ class App extends Component {
           <Switch>
             <Route exact path={routes.LANDING} component={Home} />
             <Route exact path={routes.HOME} component={Home} />
+            <Route exact path={routes.LISTOKA} component={Listoka} />
             <Route exact path={routes.STORIES} component={Stories} />
             <Route exact path={routes.BITCOIN_STORY} component={BitcoinStories} />
             <Route exact path={routes.LOGIN} component={Login} />
