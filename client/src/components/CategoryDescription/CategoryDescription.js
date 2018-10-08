@@ -1,10 +1,11 @@
 import React from 'react';
 import './categoryDescription.css';
 
-const CategoryDescription = () => {
+const CategoryDescription = props => {
     return (
         <div className='container categoryDescription'>
-            <p>Placeholder for the description of each category</p>
+        <h2>{props.displayName}</h2>
+            <p>{props.description}</p>
         </div>
     );
 };

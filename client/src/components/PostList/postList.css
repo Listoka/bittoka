@@ -1,3 +1,5 @@
 .postList {
-    border: black 1px solid;
+
+    background-color: white;
+    overflow: hidden;
 }

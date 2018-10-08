@@ -1,3 +1,6 @@
 .categoryDetail {
-    border: black solid 1px;
+    background-color: white;
+    margin: 10px;
+    padding: 20px 0px 20px 0px;
+    
 }

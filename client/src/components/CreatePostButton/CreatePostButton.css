@@ -1,0 +1,14 @@
+.postBtn {
+    background-color: #009688;
+    color: snow;
+    font-family: 'Varela Round', sans-serif;
+    border: none;
+    margin-left: 10px;
+}
+
+.postBtn:hover {
+    background-color: #4aaaa5;
+    color: snow;
+    font-family: 'Varela Round', sans-serif;
+}
+
