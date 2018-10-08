@@ -11,12 +11,15 @@ import Typwriter from '../Typwriter';
 class Nav extends Component {
   constructor(props) {
     super(props);
-  }
+    this.state = {
+
+    };
+  };
 
   logOutHandler = (event) => {
-    event.preventDefault()
-    auth.doSignOut()
-  }
+    event.preventDefault();
+    auth.doSignOut();
+  };
 
   render() {
     return (

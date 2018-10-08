@@ -7,9 +7,9 @@ import PostListItem from '../../components/PostListItem';
 import CreatePostButton from '../../components/CreatePostButton';
 import TagWrapper from '../../components/TagWrapper';
 import Tags from '../../components/Tags';
-import './Home.css';
+import './Listoka.css';
 
-class Home extends Component {
+class Listoka extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,15 +23,15 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.getPosts();
+    this.getPosts(this.state.categoryName)
   }
 
   getPosts = (categoryName) => {
-    //console.log(categoryName)
+    console.log(categoryName)
     API.getPostings(categoryName).then(results => {
       console.log(results.data);
       this.getCategory(this.state.categoryName);
-      this.setState({ homePosts: results.data });
+      this.setState({ listokaPosts: results.data })
     });
   };
 
@@ -42,8 +42,8 @@ class Home extends Component {
         description: results.data.description,
         tags: results.data.tags
       });
-  });
-};
+    });
+  };
 
   render() {
     return (
@@ -76,31 +76,32 @@ class Home extends Component {
                 description={this.state.description}
               />
               <PostList>
-                {this.state.homePosts.map(homePosts => (
+                {this.state.listokaPosts.map(listokaPost => (
                   <PostListItem
-                  key={homePosts._id}
-                  authorName={homePosts.authorName}
-                  body={homePosts.body}
-                  categoryName={homePosts.categoryName}
-                  comments={homePosts.comments}
-                  purchasers={homePosts.purchasers}
-                  tags={homePosts.tags}
-                  teaser={homePosts.teaser}
-                  title={homePosts.title}
-                  _id={homePosts._id}
-                  author={homePosts.author}
+                    key={listokaPost._id}
+                    authorName={listokaPost.authorName}
+                    body={listokaPost.body}
+                    categoryName={listokaPost.categoryName}
+                    comments={listokaPost.comments}
+                    purchasers={listokaPost.purchasers}
+                    tags={listokaPost.tags}
+                    teaser={listokaPost.teaser}
+                    title={listokaPost.title}
+                    _id={listokaPost._id}
+                    author={listokaPost.author}//This is the numbers one. May not need
+                  // 
                   />
                 ))}
               </PostList>
             </CategoryDetail>
           </div>
-          <div className='col-sm-2'>
+          <div className='col-xl-2'>
             {/* Advertisements would go here */}
           </div>
         </div>
       </div>
     );
   };
-};
 
-export default Home;
+};
+export default Listoka;

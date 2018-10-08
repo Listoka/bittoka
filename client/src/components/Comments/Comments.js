@@ -1,14 +1,12 @@
 import React from "react";
-import axios from "axios";
 
-const Comments = (id) => {
-
+const Comments = (props) => {
     return (
         <div>
-            {/* Each comment component has another child component to request its children (comments within the comments) */}
+           <p>Author: {props.author}</p>
+           <p>Body: {props.body}</p>
         </div>
-    )
-
-}
+    );
+};
 
 export default Comments;
