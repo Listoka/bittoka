@@ -17,16 +17,27 @@ module.exports = {
   },
 
   findAllInCategory: (req, res) => {
-    
-    db.Category.find({name: req.params.categoryName})
+
+    db.Category.find({ name: req.params.categoryName })
       .then(dbCategories => {
-        console.log(dbCategories)
-        if(!dbCategories || dbCategories.length <1 ) return [];
-        return db.Post.find({categoryName: dbCategories[0].name})
+        if (!dbCategories || dbCategories.length < 1) return [];
+        return db.Post.find({ categoryName: dbCategories[0].name })
       })
       .then(dbPost => {
         res.json(dbPost)
       })
+  },
+
+  findByAuthorId: (req, res) => {
+    db.Post.find({ author: req.params.id })
+      .then(dbPost => {
+        if (!dbPost || dbPost.length < 1) {
+          res.json([])
+        } else {
+          res.json(dbPost)
+        }
+      })
+      .catch(err => res.status(418).json(err))
   },
 
   create: (req, res) => {
@@ -40,7 +51,7 @@ module.exports = {
 
   update: (req, res) => {
     db.Post
-      .findOneAndUpdate({_id: req.params.id}, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(result => res.json(result))
       .catch(err => res.status(418).json(err))
   },

@@ -50,4 +50,7 @@ router.route('/transactions/:id')
   .put(transactionController.update)
   .delete(transactionController.remove)
 
+router.route('/users/:id/posts')
+  .get(postController.findByAuthorId)
+
 module.exports = router;
