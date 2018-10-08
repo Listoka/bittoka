@@ -48,7 +48,7 @@ const categoryData = [
 db.Category.deleteMany()
   .then(() => db.Category.create(categoryData))
   .then(dbCategory => {
-    console.log('>>>> Category: ', dbCategory)
+    console.log('\n>>>>> Category:\n', dbCategory)
     process.exit(0)
   })
   .catch(err => {

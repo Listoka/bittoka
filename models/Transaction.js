@@ -44,6 +44,9 @@ const TransactionSchema = new Schema({
         this.txType === 'purchase'
     }
   }
+},
+{
+  timestamps: true
 })
 
 const Transaction = mongoose.model('Transaction', TransactionSchema)

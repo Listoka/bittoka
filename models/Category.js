@@ -23,6 +23,9 @@ const CategorySchema = new Schema({
     costToComment: { type: Number, required: true },
     costToPost: { type: Number, required: true }
   }
+},
+{
+  timestamps: true
 })
 
 const Category = mongoose.model('Category', CategorySchema)

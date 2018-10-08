@@ -31,7 +31,7 @@ db.User.deleteMany()
     return db.User.insertMany(userData)
   })
   .then(dbUser => {
-    console.log('>>>>> Users: ', dbUser)
+    console.log('\n>>>>> Users:\n', dbUser)
     process.exit(0)
   })
   .catch(err => {
