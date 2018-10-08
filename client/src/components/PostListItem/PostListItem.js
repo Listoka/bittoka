@@ -4,12 +4,11 @@ import './postListItem.css';
 
 const PostListItem = props => {
     return (
-        <div className='panel panel-success border' id={props._id}>
-            <div className='panel-heading'><Link to={'/api/posts/' + props._id}><h4>{props.title}</h4></Link></div>
-            <div className='panel-body'><h6>Posted by: {props.authorName}</h6>
-            <p>{props.body}</p>
+        <div className='card listItem' id={props._id}>
+            <div className='card-title'><Link to={'/api/posts/' + props._id}><h4>{props.title}</h4></Link></div>
+            <h6 className='card-subtitle'>Posted by: {props.authorName}</h6>
+            <p className='card-text'>{props.body}</p>
             </div>
-        </div>
     );
 };
 

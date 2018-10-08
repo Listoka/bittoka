@@ -49,17 +49,17 @@ class Home extends Component {
     return (
       <div className='pagebody'>
         <div className='row'>
-          <div className='col-xl-2'></div>
-          <div className='col-xl-8'>
+          <div className='col-lg-2'></div>
+          <div className='col-lg-8'>
             <CreatePostButton
               categoryName={this.state.categoryName}
             />
           </div>
-          <div className='col-xl-2'></div>
+          <div className='col-lg-2'></div>
         </div>
 
         <div className='row'>
-          <div className='col-xl-2'>
+          <div className='col-lg-2'>
             <TagWrapper>
               {this.state.tags.map(tags => (
                 <Tags
@@ -69,7 +69,7 @@ class Home extends Component {
             </TagWrapper>
           </div>
 
-          <div className='col-xl-8'>
+          <div className='col-sm-8'>
             <CategoryDetail>
               <CategoryDescription
                 displayName={this.state.displayName}
@@ -95,7 +95,7 @@ class Home extends Component {
               </PostList>
             </CategoryDetail>
           </div>
-          <div className='col-xl-2'>
+          <div className='col-sm-2'>
             {/* Advertisements would go here */}
           </div>
         </div>

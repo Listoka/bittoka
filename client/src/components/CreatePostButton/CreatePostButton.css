@@ -3,6 +3,7 @@
     color: snow;
     font-family: 'Varela Round', sans-serif;
     border: none;
+    margin-left: 10px;
 }
 
 .postBtn:hover {
