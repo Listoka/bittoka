@@ -5,24 +5,26 @@ import CategoryDescription from '../../components/CategoryDescription';
 import PostList from '../../components/PostList';
 import PostListItem from '../../components/PostListItem';
 import CreatePostButton from '../../components/CreatePostButton';
-import './Home.css';
+import './Listoka.css';
 
-class Home extends Component {
+class Listoka extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      homePosts: [],
+      listokaPosts: [],
+      categoryName: "listoka"
     };
   }
 
   componentDidMount() {
-    this.getPosts()
+    this.getPosts(this.state.categoryName)
   }
 
-  getPosts = () => {
-    API.getAllPosts().then(results => {
+  getPosts = (categoryName) => {
+    console.log(categoryName)
+    API.getPostings(categoryName).then(results => {
       console.log(results.data);
-      this.setState({ homePosts: results.data })
+      this.setState({ listokaPosts: results.data })
     });
   };
 
@@ -40,19 +42,19 @@ class Home extends Component {
             <CategoryDetail>
               <CategoryDescription />
               <PostList>
-                {this.state.homePosts.map(homePosts => (
+                {this.state.listokaPosts.map(listokaPost => (
                   <PostListItem
-                    key={homePosts._id}
-                    authorName={homePosts.authorName}
-                    body={homePosts.body}
-                    categoryName={homePosts.categoryName}
-                    comments={homePosts.comments}
-                    purchasers={homePosts.purchasers}
-                    tags={homePosts.tags}
-                    teaser={homePosts.teaser}
-                    title={homePosts.title}
-                    _id={homePosts._id}
-                    author={homePosts.author}//This is the numbers one. May not need
+                    key={listokaPost._id}
+                    authorName={listokaPost.authorName}
+                    body={listokaPost.body}
+                    categoryName={listokaPost.categoryName}
+                    comments={listokaPost.comments}
+                    purchasers={listokaPost.purchasers}
+                    tags={listokaPost.tags}
+                    teaser={listokaPost.teaser}
+                    title={listokaPost.title}
+                    _id={listokaPost._id}
+                    author={listokaPost.author}//This is the numbers one. May not need
                     // 
                   />
                 ))}
@@ -67,4 +69,4 @@ class Home extends Component {
   };
 
 };
-export default Home;
+export default Listoka;

@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export default {
+    getAllPosts: () => {
+        return axios.get('/api/posts');
+    },
     createBitcoinStoryPost: (storyData) => {
         console.log(storyData)
         return axios.post('/api/posts', {
