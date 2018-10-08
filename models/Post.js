@@ -23,6 +23,9 @@ const PostSchema = new Schema({
   comments: [{ type: ObjectId, ref: 'Comment'}],
   voters: [{type: ObjectId, ref: 'User'}],
   purchasers: [{type: ObjectId, ref: 'User'}],
+},
+{
+  timestamps: true
 })
 
 PostSchema.virtual('votes').get(() => this.voters.length)
