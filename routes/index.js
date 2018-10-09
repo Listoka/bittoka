@@ -3,8 +3,10 @@ const router = require('express').Router();
 const apiRoutes = require('./api');
 const authMiddleware = require('../middleware/firebaseAuthMiddleware')
 
+// AUTHENTICATION --- comment out to disable 
+// router.use('/api', authMiddleware)
+
 // API Routes
-router.use('/api', authMiddleware)
 router.use('/api', apiRoutes);
 
 let indexPath = '../client/public/index.html'
