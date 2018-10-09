@@ -28,7 +28,7 @@ class BitcoinStories extends Component {
     Promise.all(promises)
       .then(results => {
         this.setState({
-          bitcoinStories: results[0],
+          bitcoinStories: results[0].posts,
           displayName: results[1].displayName,
           description: results[1].description,
           tags: results[1].tags
