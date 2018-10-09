@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
+import PostList from '../../components/PostList';
+import PostListItem from '../../components/PostListItem';
 import API from '../../utils/API';
 import './account.css';
 
@@ -9,19 +10,38 @@ class Account extends Component {
     super(props);
     this.state = {
         userPosts: [],
-        userName: props.authUser.dbUser.username
+        userName: props.authUser.dbUser.username, 
+        id: props.authUser.dbUser._id
     };
-  }
+  };
+
   componentDidMount() {
-    // this.getPosts();
+    let promises = [this.getPosts(this.state.id)]
+    Promise.all(promises)
+      .then(results => {
+          console.log(results)
+        this.setState({
+          userPosts: results[0]
+        });
+      });
+  };
+
+  getPosts = (id) => {
+    return API.getUserPosts(id).then(results => results.data);
+  };
+
+  handleDeleteButton = (event, id) => {
+    event.preventDefault();
+    API.deletePost(id)
+    .then(res => {
+      this.updateAfterDelete(id)
+    })
+    .catch(err => console.log(err));
   }
 
-  getPosts = () => {
-    API.getUserPosts().then(results => {
-      console.log(results.data);
-      this.setState({ userPosts: results.data })
-    });
-  };
+  updateAfterDelete = (id) => {
+    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
+  }
 
   render() {
       return (
@@ -31,10 +51,25 @@ class Account extends Component {
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
               <div className="categoryDetail">
-                {this.state.userName}
-                <AuthUserContext.Consumer>
-                    {authUser => {console.log('authUser: ', authUser)}}
-                </AuthUserContext.Consumer>
+                Hello {this.state.userName}. Here are your posts!
+                <PostList>
+                {this.state.userPosts.map(userPosts => (
+                    <PostListItem
+                    key={userPosts._id}
+                    authorName={userPosts.authorName}
+                    body={userPosts.body}
+                    categoryName={userPosts.categoryName}
+                    comments={userPosts.comments}
+                    purchasers={userPosts.purchasers}
+                    tags={userPosts.tags}
+                    teaser={userPosts.teaser}
+                    title={userPosts.title}
+                    _id={userPosts._id}
+                    author={userPosts.author}//This is the numbers one. May not need
+                    handleDeleteButton={this.handleDeleteButton}
+                    />
+                ))}
+                </PostList>
               </div>
             </div>
             <div className='col-lg-2'></div>

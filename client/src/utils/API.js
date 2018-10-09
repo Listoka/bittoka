@@ -61,8 +61,11 @@ export default {
     getComments: () => {
         return axios.get('/api/comments');
     },
-    getUserPosts: () => {
-        return axios.get('/api/')
+    getUserPosts: (userID) => {
+        return axios.get(`/api/users/${userID}/posts/`);
+    },
+    deletePost: (id) => {
+        return axios.delete("/api/posts/" + id);
     }
-
+    
 };

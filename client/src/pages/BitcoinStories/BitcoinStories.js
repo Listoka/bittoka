@@ -44,6 +44,19 @@ class BitcoinStories extends Component {
     return API.getCategoryInfo(categoryName).then(results => results.data);
   };
 
+  handleDeleteButton = (event, id) => {
+    event.preventDefault();
+    API.deletePost(id)
+    .then(res => {
+      this.updateAfterDelete(id)
+    })
+    .catch(err => console.log(err));
+  }
+
+  updateAfterDelete = (id) => {
+    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
+  }
+
   render() {
     return (
       <div className='pagebody'>
@@ -62,6 +75,7 @@ class BitcoinStories extends Component {
             <TagWrapper>
               {this.state.tags.map(tags => (
                 <Tags
+                  key={tags}
                   tag={tags}
                 />
               ))}
@@ -87,7 +101,8 @@ class BitcoinStories extends Component {
                     teaser={bitcoinStory.teaser}
                     title={bitcoinStory.title}
                     _id={bitcoinStory._id}
-                    author={bitcoinStory.author}//This is the numbers one. May not need
+                    author={bitcoinStory.author}
+                    handleDeleteButton={this.handleDeleteButton}
                   // 
                   />
                 ))}
