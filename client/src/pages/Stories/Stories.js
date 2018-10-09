@@ -22,27 +22,26 @@ class Stories extends Component {
   }
 
   componentDidMount() {
-    this.getPosts(this.state.categoryName);
-    this.getCategory(this.state.categoryName);
+    const categoryName = this.state.categoryName
+
+    let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
+    Promise.all(promises)
+      .then(results => {
+        this.setState({
+          bitcoinStories: results[0],
+          displayName: results[1].displayName,
+          description: results[1].description,
+          tags: results[1].tags
+        })
+      })
   }
 
   getPosts = (categoryName) => {
-    console.log(categoryName)
-    API.getPostings(categoryName).then(results => {
-      console.log(results.data);
-      this.setState({ stories: results.data });
-    });
+    return API.getPostings(categoryName).then(results => results.data);
   };
 
   getCategory = (categoryName) => {
-    API.getCategoryInfo(categoryName).then(results => {
-      this.setState({
-        displayName: results.data.displayName,
-        description: results.data.description,
-        tags: results.data.tags
-      })
-      //console.log(this.state);
-    });
+    return API.getCategoryInfo(categoryName).then(results => results.data);
   };
 
   render() {

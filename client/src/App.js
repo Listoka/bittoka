@@ -18,8 +18,8 @@ import Gist from './pages/Gist';
 import Join from './pages/Join';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
-import * as routes from './constants/routes'
-import AccountPage from './pages/Account'
+import * as routes from './constants/routes';
+import AccountPage from './pages/Account';
 
 import authTest from './pages/AUTH-TEST'
 

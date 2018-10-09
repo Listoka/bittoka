@@ -4,7 +4,7 @@ export default {
     getAllPosts: () => {
         return axios.get('/api/posts');
     },
-    createBitcoinStoryPost: (storyData) => {
+    createPost: (storyData) => {
         console.log(storyData)
         return axios.post('/api/posts', {
             title: storyData.title,
@@ -60,6 +60,9 @@ export default {
     },
     getComments: () => {
         return axios.get('/api/comments');
+    },
+    getUserPosts: () => {
+        return axios.get('/api/')
     }
 
 };
