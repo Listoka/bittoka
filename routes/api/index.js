@@ -3,6 +3,23 @@ const postController = require('../../controllers/postController')
 const commentController = require('../../controllers/commentController')
 const categoryController = require('../../controllers/categoryController')
 const transactionController = require('../../controllers/transactionController')
+const db = require('../../models')
+
+router.param('categoryName', function (req, res, next, categoryName) {
+  db.Category.findOne({ name: categoryName })
+    .then(dbCategory => {
+      if (!dbCategory || dbCategory.length < 1) {
+        res.json(404, { message: 'Unknown Category' })
+      } else {
+        res.locals.dbCategory = dbCategory
+        next()
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.json(400, { message: 'router.param error for :categoryName' })
+    })
+})
 
 // post routes
 router.route('/posts')
@@ -34,11 +51,21 @@ router.route('/categories/:id')
   .put(categoryController.update)
   .delete(categoryController.remove)
 
-router.route('/category/info/:name')
+router.route('/categories/info/:name')
   .get(categoryController.findOne)
 
-router.route('/category/:categoryName/posts')
-  .get(postController.findAllInCategory)
+router.route('/categories/:categoryName/posts')
+  .get((req, res) => {
+    console.log('locals ', res.locals.dbCategory)
+    db.Post.find({ categoryName: res.locals.dbCategory.name })
+      .then(dbPost => {
+        res.json({
+          category: res.locals.dbCategory,
+          posts: dbPost
+        })
+      })
+  })
+  // .get(postController.findAllInCategory)
 
 // transaction routes
 router.route('/transactions')
