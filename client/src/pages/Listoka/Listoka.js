@@ -29,13 +29,13 @@ class Listoka extends Component {
     Promise.all(promises)
       .then(results => {
         this.setState({
-          bitcoinStories: results[0],
+          listokaPosts: results[0],
           displayName: results[1].displayName,
           description: results[1].description,
           tags: results[1].tags
         })
       })
-  }
+  };
 
   getPosts = (categoryName) => {
     return API.getPostings(categoryName).then(results => results.data);
@@ -44,6 +44,19 @@ class Listoka extends Component {
   getCategory = (categoryName) => {
     return API.getCategoryInfo(categoryName).then(results => results.data);
   };
+
+  handleDeleteButton = (event, id) => {
+    event.preventDefault();
+    API.deletePost(id)
+    .then(res => {
+      this.updateAfterDelete(id)
+    })
+    .catch(err => console.log(err));
+  }
+
+  updateAfterDelete = (id) => {
+    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
+  }
   
   render() {
     return (
@@ -63,6 +76,7 @@ class Listoka extends Component {
             <TagWrapper>
               {this.state.tags.map(tags => (
                 <Tags
+                  key={tags}
                   tag={tags}
                 />
               ))}
@@ -88,8 +102,8 @@ class Listoka extends Component {
                     teaser={listokaPost.teaser}
                     title={listokaPost.title}
                     _id={listokaPost._id}
-                    author={listokaPost.author}//This is the numbers one. May not need
-                  // 
+                    author={listokaPost.author}
+                    handleDeleteButton={this.handleDeleteButton}
                   />
                 ))}
               </PostList>

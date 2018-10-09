@@ -4,6 +4,13 @@
     
     margin: 10px;
 }
+.delete-btn {
+  float: right;
+  color: #e74944;
+  background-color: rgb(223, 223, 223);
+  border: black 1px solid;
+  cursor: pointer;
+}
 
 .card-subtitle{
     color: grey;

@@ -19,7 +19,7 @@ class Stories extends Component {
       description: "",
       tags: []
     };
-  }
+  };
 
   componentDidMount() {
     const categoryName = this.state.categoryName
@@ -28,13 +28,13 @@ class Stories extends Component {
     Promise.all(promises)
       .then(results => {
         this.setState({
-          bitcoinStories: results[0],
+          stories: results[0],
           displayName: results[1].displayName,
           description: results[1].description,
           tags: results[1].tags
-        })
-      })
-  }
+        });
+      });
+  };
 
   getPosts = (categoryName) => {
     return API.getPostings(categoryName).then(results => results.data);
@@ -43,6 +43,19 @@ class Stories extends Component {
   getCategory = (categoryName) => {
     return API.getCategoryInfo(categoryName).then(results => results.data);
   };
+
+  handleDeleteButton = (event, id) => {
+    event.preventDefault();
+    API.deletePost(id)
+    .then(res => {
+      this.updateAfterDelete(id)
+    })
+    .catch(err => console.log(err));
+  }
+
+  updateAfterDelete = (id) => {
+    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
+  }
 
   render() {
     return (
@@ -62,6 +75,7 @@ class Stories extends Component {
             <TagWrapper>
               {this.state.tags.map(tags => (
                 <Tags
+                  key={tags}
                   tag={tags}
                 />
               ))}
@@ -87,7 +101,8 @@ class Stories extends Component {
                     teaser={story.teaser}
                     title={story.title}
                     _id={story._id}
-                    author={story.author}//This is the numbers one. May not need
+                    author={story.author}
+                    handleDeleteButton={this.handleDeleteButton}
                   // 
                   />
                 ))}
