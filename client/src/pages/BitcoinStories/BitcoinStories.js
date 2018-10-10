@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import './BitcoinStories.css';
 import API from '../../utils/API';
-import CategoryDetail from '../../components/CategoryDetail';
-import CategoryDescription from '../../components/CategoryDescription';
-import PostList from '../../components/PostList';
-import PostListItem from '../../components/PostListItem';
-import CreatePostButton from '../../components/CreatePostButton';
-import TagWrapper from '../../components/TagWrapper';
-import Tags from '../../components/Tags';
+import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
+import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
+import {CreatePostButton} from '../../components/ButtonComponents/CreatePostButton';
+import {Tags, TagWrapper} from '../../components/TagDisplay';
 
 class BitcoinStories extends Component {
   constructor(props) {

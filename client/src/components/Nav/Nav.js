@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import NavLoggedIn from "../NavLoggedIn";
-import NavNotLoggedIn from "../NavNotLoggedIn";
+import {NavLoggedIn, NavNotLoggedIn} from "../Nav";
+// import NavNotLoggedIn from "../NavNotLoggedIn";
 import './Nav.css';
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
 import Typwriter from '../Typwriter';
 
 //Will need to update a logged in / logged out state
-class Nav extends Component {
+export class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,5 +81,3 @@ class Nav extends Component {
     )
   }
 }
-
-export default Nav;
