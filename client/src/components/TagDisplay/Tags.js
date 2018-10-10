@@ -1,7 +1,7 @@
 import React from 'react';
 import './Tags.css';
 
-const Tags = props => {
+export const Tags = props => {
     return (
         //Andrew do your thing.
         <li className="tagLink">
@@ -9,5 +9,3 @@ const Tags = props => {
         </li>
     )
 }
-
-export default Tags;

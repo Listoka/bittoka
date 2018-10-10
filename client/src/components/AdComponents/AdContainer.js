@@ -1,14 +1,9 @@
 import React from "react";
 
-const AdContainer = () => {
-
+export const AdContainer = (props) => {
     return (
         <div>
-            {/* AdItem component would be added here */}
+            {props.children}
         </div>
     )
-
-
 }
-
-export default AdContainer;

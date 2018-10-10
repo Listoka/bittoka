@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
 import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
-import PostList from '../../components/PostList';
-import PostListItem from '../../components/PostListItem';
+import {PostList, PostListItem} from '../../components/PostListDisplay';
 import CreatePostButton from '../../components/CreatePostButton';
-import TagWrapper from '../../components/TagWrapper';
-import Tags from '../../components/Tags';
+import {Tags, TagWrapper} from '../../components/TagDisplay';
 
 class MainCategoryPage extends Component {
   constructor(props) {
@@ -23,6 +21,7 @@ class MainCategoryPage extends Component {
     // const categoryName = this.state.categoryName;
     // this.promiseCategories(categoryName);
     console.log(this.props)
+
     // let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
     // Promise.all(promises)
     //   .then(results => {
@@ -33,32 +32,6 @@ class MainCategoryPage extends Component {
     //       tags: results[1].tags
     //     })
     //   })
-  };
-
-  handleCategoryChange = category => {
-    this.promiseCategories(category);
-  };
-
-  promiseCategories = (category) => {
-    let promises = [this.getPosts(category), this.getCategory(category)]
-    Promise.all(promises)
-      .then(results => {
-        this.setState({
-          categoryPosts: results[0].posts,
-          displayName: results[1].displayName,
-          description: results[1].description,
-          tags: results[1].tags
-        });
-      });
-  };
-
-
-  getPosts = (categoryName) => {
-    return API.getPostings(categoryName).then(results => results.data);
-  };
-
-  getCategory = (categoryName) => {
-    return API.getCategoryInfo(categoryName).then(results => results.data);
   };
 
   handleDeleteButton = (event, id) => {

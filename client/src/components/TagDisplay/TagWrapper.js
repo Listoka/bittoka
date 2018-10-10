@@ -1,7 +1,7 @@
 import React from 'react';
 import './TagWrapper.css'
 
-const TagWrapper = ({ children }) => {
+export const TagWrapper = ({ children }) => {
     return (
         <div className='tagWrapper rounded'>
             <div className='headWrapper'>
@@ -13,5 +13,3 @@ const TagWrapper = ({ children }) => {
         </div>
     );
 };
-
-export default TagWrapper;

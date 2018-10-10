@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
 import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
-import PostList from '../../components/PostList';
-import PostListItem from '../../components/PostListItem';
+import {PostList, PostListItem} from '../../components/PostListDisplay';
 import CreatePostButton from '../../components/CreatePostButton';
-import TagWrapper from '../../components/TagWrapper';
-import Tags from '../../components/Tags';
+import {Tags, TagWrapper} from '../../components/TagDisplay';
 import './Listoka.css';
 
 class Listoka extends Component {

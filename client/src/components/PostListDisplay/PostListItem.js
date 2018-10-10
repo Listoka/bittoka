@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './postListItem.css';
 
-const PostListItem = props => {
+export const PostListItem = props => {
     return (
         <div className='card listItem' id={props._id}>
             <div className="card-body">
@@ -16,5 +16,3 @@ const PostListItem = props => {
         </div>
     );
 };
-
-export default PostListItem;

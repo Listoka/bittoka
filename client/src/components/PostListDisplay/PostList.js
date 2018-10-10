@@ -1,7 +1,7 @@
 import React from 'react';
 import './postList.css'
 
-const PostList = ({children}) => {
+export const PostList = ({children}) => {
     return (
         <div className='container postList'>
             {children}
@@ -9,5 +9,3 @@ const PostList = ({children}) => {
         </div>
     );
 };
-
-export default PostList;
