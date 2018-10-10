@@ -4,41 +4,34 @@ import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfo
 import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
 import {CreatePostButton} from '../../components/ButtonComponents/CreatePostButton';
 import {Tags, TagWrapper} from '../../components/TagDisplay';
-import './Listoka.css';
 
-class Listoka extends Component {
+class MainCategoryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listokaPosts: [],
-      categoryName: "listoka",
-      displayName: "",
-      description: "",
-      tags: [],
+      // categoryPosts: [],//Update whenever a new category is clicked on
+      // categoryName: "stories",//Will come in with API call
+      // displayName: "",
+      // description: "",
+      // tags: [],
     };
-  }
+  };
 
   componentDidMount() {
-    const categoryName = this.state.categoryName
+    // const categoryName = this.state.categoryName;
+    // this.promiseCategories(categoryName);
+    console.log(this.props)
 
-    let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
-    Promise.all(promises)
-      .then(results => {
-        this.setState({
-          listokaPosts: results[0].posts,
-          displayName: results[1].displayName,
-          description: results[1].description,
-          tags: results[1].tags
-        })
-      })
-  };
-
-  getPosts = (categoryName) => {
-    return API.getPostings(categoryName).then(results => results.data);
-  };
-
-  getCategory = (categoryName) => {
-    return API.getCategoryInfo(categoryName).then(results => results.data);
+    // let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
+    // Promise.all(promises)
+    //   .then(results => {
+    //     this.setState({
+    //       categoryPosts: results[0].posts,
+    //       displayName: results[1].displayName,
+    //       description: results[1].description,
+    //       tags: results[1].tags
+    //     })
+    //   })
   };
 
   handleDeleteButton = (event, id) => {
@@ -61,7 +54,7 @@ class Listoka extends Component {
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
             <CreatePostButton
-              categoryName={this.state.categoryName}
+              categoryName={this.props.categoryName}
             />
           </div>
           <div className='col-lg-2'></div>
@@ -70,7 +63,7 @@ class Listoka extends Component {
         <div className='row'>
           <div className='col-lg-2'>
             <TagWrapper>
-              {this.state.tags.map(tags => (
+              {this.props.tags.map(tags => (
                 <Tags
                   key={tags}
                   tag={tags}
@@ -82,23 +75,23 @@ class Listoka extends Component {
           <div className='col-sm-8'>
             <CategoryDetail>
               <CategoryDescription
-                displayName={this.state.displayName}
-                description={this.state.description}
+                displayName={this.props.displayName}
+                description={this.props.description}
               />
               <PostList>
-                {this.state.listokaPosts.map(listokaPost => (
+                {this.props.categoryPosts.map(categoryPost => (
                   <PostListItem
-                    key={listokaPost._id}
-                    authorName={listokaPost.authorName}
-                    body={listokaPost.body}
-                    categoryName={listokaPost.categoryName}
-                    comments={listokaPost.comments}
-                    purchasers={listokaPost.purchasers}
-                    tags={listokaPost.tags}
-                    teaser={listokaPost.teaser}
-                    title={listokaPost.title}
-                    _id={listokaPost._id}
-                    author={listokaPost.author}
+                    key={categoryPost._id}
+                    authorName={categoryPost.authorName}
+                    body={categoryPost.body}
+                    categoryName={categoryPost.categoryName}
+                    comments={categoryPost.comments}
+                    purchasers={categoryPost.purchasers}
+                    tags={categoryPost.tags}
+                    teaser={categoryPost.teaser}
+                    title={categoryPost.title}
+                    _id={categoryPost._id}
+                    author={categoryPost.author}
                     handleDeleteButton={this.handleDeleteButton}
                   />
                 ))}
@@ -114,4 +107,4 @@ class Listoka extends Component {
   };
 
 };
-export default Listoka;
+export default MainCategoryPage;

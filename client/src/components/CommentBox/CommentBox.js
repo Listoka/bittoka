@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextArea, FormBtn } from "../../components/PostForm";
+import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 

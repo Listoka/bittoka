@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
-import PostDetail from '../../components/PostDetail';
-import CommentList from '../../components/CommentList';
-import Comments from '../../components/Comments';
+import {PostDetail} from '../../components/PostComponents/PostDetail/PostDetail';
+import {Comments, CommentList} from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 
 class Content extends Component {

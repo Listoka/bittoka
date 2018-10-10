@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import CategoryDetail from '../../components/CategoryDetail';
-import CategoryDescription from '../../components/CategoryDescription';
-import PostList from '../../components/PostList';
-import PostListItem from '../../components/PostListItem';
-import CreatePostButton from '../../components/CreatePostButton';
-import TagWrapper from '../../components/TagWrapper';
-import Tags from '../../components/Tags';
+import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
+import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
+import {CreatePostButton} from '../../components/ButtonComponents/CreatePostButton';
+import {Tags, TagWrapper} from '../../components/TagDisplay';
 import './Home.css';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listokaPosts: [],
-      categoryName: "listoka",
+      homePosts: [],
+      categoryName: "",
       displayName: "",
       description: "",
       tags: [],
-      homePosts: [],
     };
   }
 
@@ -26,24 +22,14 @@ class Home extends Component {
     this.getPosts();
   }
 
-  getPosts = (categoryName) => {
+  getPosts = () => {
     //console.log(categoryName)
-    API.getPostings(categoryName).then(results => {
+    API.getAllPosts().then(results => {
       console.log(results.data);
-      this.getCategory(this.state.categoryName);
       this.setState({ homePosts: results.data });
     });
   };
 
-  getCategory = (categoryName) => {
-    API.getCategoryInfo(categoryName).then(results => {
-      this.setState({
-        displayName: results.data.displayName,
-        description: results.data.description,
-        tags: results.data.tags
-      });
-  });
-};
 
   render() {
     return (
