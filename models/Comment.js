@@ -12,6 +12,8 @@ const CommentSchema = new Schema({
     type: String,
     required: true
   },
+  parentPost: { type: ObjectId, ref: 'Post' },
+  parentComment: { type: ObjectId, ref: 'Comment' },
   voters: [{ type: ObjectId, ref: 'User' }],
   comments: [{ type: ObjectId, ref: 'Comment' }],
   commentPath: {

@@ -1,6 +1,6 @@
 const path = require('path');
 const router = require('express').Router();
-const apiRoutes = require('./api');
+const apiRoutes = require('./api/index');
 const authMiddleware = require('../middleware/firebaseAuthMiddleware')
 
 // AUTHENTICATION --- comment out to disable 

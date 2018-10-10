@@ -1,83 +1,27 @@
 const router = require('express').Router();
-const postController = require('../../controllers/postController')
-const commentController = require('../../controllers/commentController')
-const categoryController = require('../../controllers/categoryController')
-const transactionController = require('../../controllers/transactionController')
-const db = require('../../models')
+const authCheck = require('../../middleware/firebaseAuthMiddleware')
 
-router.param('categoryName', function (req, res, next, categoryName) {
-  db.Category.findOne({ name: categoryName })
-    .then(dbCategory => {
-      if (!dbCategory || dbCategory.length < 1) {
-        res.json(404, { message: 'Unknown Category' })
-      } else {
-        res.locals.dbCategory = dbCategory
-        next()
-      }
-    })
-    .catch(err => {
-      console.log(err)
-      res.json(400, { message: 'router.param error for :categoryName' })
-    })
-})
+const categoryRouter = require('./categoryRouter-OPEN')
+const categoryRouter_AUTH = require('./categoryRouter-AUTH')
+const postRouter = require('./postRouter-OPEN')
+const postRouter_AUTH = require('./postRouter-AUTH')
+const commentRouter = require('./commentRouter-OPEN')
+const commentRouter_AUTH = require('./commentRouter-AUTH')
+const transactionRouter = require('./transactionRouter')
+const userRouter = require('./userRouter')
 
-// post routes
-router.route('/posts')
-  .get(postController.findAll)
-  .post(postController.create)
+// require('./paramHelpers')(router) // add param handlers to the router
 
-router.route('/posts/:id')
-  .get(postController.findById)
-  .put(postController.update)
-  .delete(postController.remove)
+router.use(categoryRouter)
+router.use(postRouter)
+router.use(commentRouter)
+router.use(transactionRouter)
+router.use(userRouter)
 
-// comment routes
-router.route('/comments')
-  .get(commentController.findAll)
-  .post(commentController.create)
+router.use(authCheck) // Auth Routes go after Open routes and auth middleware
 
-router.route('/comments/:id')
-  .get(commentController.findById)
-  .put(commentController.update)
-  .delete(commentController.remove)
-
-// category routes
-router.route('/categories')
-  .get(categoryController.findAll)
-  .post(categoryController.create)
-
-router.route('/categories/:id')
-  .get(categoryController.findById)
-  .put(categoryController.update)
-  .delete(categoryController.remove)
-
-router.route('/categories/info/:name')
-  .get(categoryController.findOne)
-
-router.route('/categories/:categoryName/posts')
-  .get((req, res) => {
-    console.log('locals ', res.locals.dbCategory)
-    db.Post.find({ categoryName: res.locals.dbCategory.name })
-      .then(dbPost => {
-        res.json({
-          category: res.locals.dbCategory,
-          posts: dbPost
-        })
-      })
-  })
-  // .get(postController.findAllInCategory)
-
-// transaction routes
-router.route('/transactions')
-  .get(transactionController.findAll)
-  .post(transactionController.create)
-
-router.route('/transactions/:id')
-  .get(transactionController.findById)
-  .put(transactionController.update)
-  .delete(transactionController.remove)
-
-router.route('/users/:id/posts')
-  .get(postController.findByAuthorId)
+router.use(categoryRouter_AUTH)
+router.use(postRouter_AUTH)
+router.use(commentRouter_AUTH)
 
 module.exports = router;

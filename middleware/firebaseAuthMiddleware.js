@@ -1,5 +1,7 @@
 const admin = require('firebase-admin')
 
+const ACTIVATE = true
+
 function firebaseAuthMiddleware(req, res, next) {
   const authorization = req.header('Authorization')
   if (authorization) {
@@ -21,4 +23,8 @@ function firebaseAuthMiddleware(req, res, next) {
   }
 }
 
-module.exports = firebaseAuthMiddleware
+function emptyMiddleware(req, res, next) {
+  next()
+}
+
+module.exports = ACTIVATE ? firebaseAuthMiddleware : emptyMiddleware
