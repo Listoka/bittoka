@@ -11,18 +11,18 @@ class MainCategoryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryPosts: [],//Update whenever a new category is clicked on
-      categoryName: "stories",//Will come in with API call
-      displayName: "",
-      description: "",
-      tags: [],
+      // categoryPosts: [],//Update whenever a new category is clicked on
+      // categoryName: "stories",//Will come in with API call
+      // displayName: "",
+      // description: "",
+      // tags: [],
     };
   };
 
   componentDidMount() {
-    const categoryName = this.state.categoryName;
-    this.promiseCategories(categoryName);
-
+    // const categoryName = this.state.categoryName;
+    // this.promiseCategories(categoryName);
+    console.log(this.props)
     // let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
     // Promise.all(promises)
     //   .then(results => {
@@ -37,7 +37,6 @@ class MainCategoryPage extends Component {
 
   handleCategoryChange = category => {
     this.promiseCategories(category);
-    // this.setState({categoryName: category})
   };
 
   promiseCategories = (category) => {
@@ -82,7 +81,7 @@ class MainCategoryPage extends Component {
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
             <CreatePostButton
-              categoryName={this.state.categoryName}
+              categoryName={this.props.categoryName}
             />
           </div>
           <div className='col-lg-2'></div>
@@ -91,7 +90,7 @@ class MainCategoryPage extends Component {
         <div className='row'>
           <div className='col-lg-2'>
             <TagWrapper>
-              {this.state.tags.map(tags => (
+              {this.props.tags.map(tags => (
                 <Tags
                   key={tags}
                   tag={tags}
@@ -103,11 +102,11 @@ class MainCategoryPage extends Component {
           <div className='col-sm-8'>
             <CategoryDetail>
               <CategoryDescription
-                displayName={this.state.displayName}
-                description={this.state.description}
+                displayName={this.props.displayName}
+                description={this.props.description}
               />
               <PostList>
-                {this.state.categoryPosts.map(categoryPost => (
+                {this.props.categoryPosts.map(categoryPost => (
                   <PostListItem
                     key={categoryPost._id}
                     authorName={categoryPost.authorName}

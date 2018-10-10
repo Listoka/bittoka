@@ -7,6 +7,7 @@ import categories from './categories.json';
 import SubNav from './components/subNav';
 import FlexContainer from './components/flexContainer';
 import draftTest from './components/draftTest';
+import API from './utils/API';
 //Routes
 import Home from './pages/Home';
 import Listoka from './pages/Listoka';
@@ -31,10 +32,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: categories
-      
+      categories: categories,
+      categoryPosts: [],//Update whenever a new category is clicked on
+      categoryName: "listoka",//Will come in with API call
+      displayName: "",
+      description: "",
+      tags: []
     };
-  }
+  };
+
+  handleCategoryChange = category => {
+    this.promiseCategories(category);
+  };
+
+  promiseCategories = (category) => {
+    let promises = [this.getPosts(category), this.getCategory(category)]
+    Promise.all(promises)
+      .then(results => {
+        this.setState({
+          categoryPosts: results[0].posts,
+          displayName: results[1].displayName,
+          description: results[1].description,
+          tags: results[1].tags
+        });
+      });
+  };
+
+  getPosts = (categoryName) => {
+    return API.getPostings(categoryName).then(results => results.data);
+  };
+
+  getCategory = (categoryName) => {
+    return API.getCategoryInfo(categoryName).then(results => results.data);
+  };
   
   render(){
     console.log('state: ', this.state)
@@ -49,12 +79,14 @@ class App extends Component {
             key={category.id}
             href={category.href}
             name={category.name}
+            handleCategoryChange={this.handleCategoryChange}
             />
           ))}
           </FlexContainer>
           <Switch>
             <Route exact path={routes.LANDING} component={Home} />
-            <Route exact path={routes.MAINCATEGORYPAGE} component={MainCategoryPage} />
+            <Route exact path={routes.MAINCATEGORYPAGE} render={(routeProps) => 
+              <MainCategoryPage {...routeProps} categoryName={this.state.categoryName} tags={this.state.tags} description={this.state.description} categoryPosts={this.state.categoryPosts} displayName={this.state.displayName}/>} />
             <Route exact path={routes.HOME} component={Home} />
             <Route exact path={routes.LISTOKA} component={Listoka} />
             <Route exact path={routes.STORIES} component={Stories} />
