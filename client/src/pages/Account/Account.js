@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import {PostList, PostListItem} from '../../components/PostListDisplay';
+import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
 import API from '../../utils/API';
 import './account.css';
 

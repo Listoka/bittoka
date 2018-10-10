@@ -1,7 +1,7 @@
 import React from "react";
-import CommentBox from '../../components/CommentBox';
+import CommentBox from '../../CommentBox';
 
-const PostDetail = (props) => {
+export const PostDetail = (props) => {
     return (
         <div>
             <br/>
@@ -12,5 +12,3 @@ const PostDetail = (props) => {
         </div>
     );
 };
-
-export default PostDetail;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
-import PostDetail from '../../components/PostDetail';
+import {PostDetail} from '../../components/PostComponents/PostDetail/PostDetail';
 import {Comments, CommentList} from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 

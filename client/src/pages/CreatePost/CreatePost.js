@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import './createPost.css';
-import { Input, TextArea, FormBtn } from "../../components/PostForm";
+import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 
-class CreatePost extends Component {
+export class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
