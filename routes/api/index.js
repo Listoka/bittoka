@@ -8,7 +8,8 @@ const postRouter_AUTH = require('./postRouter-AUTH')
 const commentRouter = require('./commentRouter-OPEN')
 const commentRouter_AUTH = require('./commentRouter-AUTH')
 const transactionRouter = require('./transactionRouter')
-const userRouter = require('./userRouter')
+const userRouter = require('./userRouter-OPEN')
+const userRouter_AUTH = require('./userRouter-AUTH')
 
 // require('./paramHelpers')(router) // add param handlers to the router
 
