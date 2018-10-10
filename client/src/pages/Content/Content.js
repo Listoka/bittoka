@@ -3,6 +3,7 @@ import API from '../../utils/API';
 import {PostDetail} from '../../components/PostComponents/PostDetail/PostDetail';
 import {Comments, CommentList} from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
+import TipButton from '../../components/TipButton'
 
 class Content extends Component {
   constructor(props) {
@@ -31,6 +32,10 @@ class Content extends Component {
     .catch(err => console.log(err));
   }
 
+  afterPayment = () => {
+    alert('Payment successful!')
+  }
+
     render() {
       return (
         <div>
@@ -50,6 +55,13 @@ class Content extends Component {
                   title={this.state.post.title}
                   _id={this.state.post._id}
                   author={this.state.post.author}
+                />
+                <hr/>
+                <TipButton
+                  payeeId='783'
+                  paymentAmt='.03'
+                  label='Submit Comment'
+                  paymentSuccessCbk={this.afterPayment} 
                 />
                 <hr/>
                 <CommentList>
