@@ -1,7 +1,7 @@
 import React from "react";
 
 //This is the container that holds the mapped-out comments
-const CommentList = (props) => {
+export const CommentList = (props) => {
 
     return (
         <div>
@@ -10,4 +10,4 @@ const CommentList = (props) => {
     )
 };
 
-export default CommentList;
+// export default CommentList;

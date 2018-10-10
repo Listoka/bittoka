@@ -1,7 +1,7 @@
 import React from 'react';
 import './categoryDetail.css';
 
-const CategoryDetail = ({children}) => {
+export const CategoryDetail = ({children}) => {
     return (
         <div className='container-fluid categoryDetail rounded'>
             {children}
@@ -9,4 +9,4 @@ const CategoryDetail = ({children}) => {
     );
 };
 
-export default CategoryDetail;
+// export default CategoryDetail;

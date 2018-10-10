@@ -6,34 +6,53 @@ import PostListItem from '../../components/PostListItem';
 import CreatePostButton from '../../components/CreatePostButton';
 import TagWrapper from '../../components/TagWrapper';
 import Tags from '../../components/Tags';
-import './Listoka.css';
 
-class Listoka extends Component {
+class MainCategoryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listokaPosts: [],
-      categoryName: "listoka",
+      categoryPosts: [],//Update whenever a new category is clicked on
+      categoryName: "stories",//Will come in with API call
       displayName: "",
       description: "",
       tags: [],
     };
-  }
+  };
 
   componentDidMount() {
-    const categoryName = this.state.categoryName
+    const categoryName = this.state.categoryName;
+    this.promiseCategories(categoryName);
 
-    let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
+    // let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
+    // Promise.all(promises)
+    //   .then(results => {
+    //     this.setState({
+    //       categoryPosts: results[0].posts,
+    //       displayName: results[1].displayName,
+    //       description: results[1].description,
+    //       tags: results[1].tags
+    //     })
+    //   })
+  };
+
+  handleCategoryChange = category => {
+    this.promiseCategories(category);
+    // this.setState({categoryName: category})
+  };
+
+  promiseCategories = (category) => {
+    let promises = [this.getPosts(category), this.getCategory(category)]
     Promise.all(promises)
       .then(results => {
         this.setState({
-          listokaPosts: results[0].posts,
+          categoryPosts: results[0].posts,
           displayName: results[1].displayName,
           description: results[1].description,
           tags: results[1].tags
-        })
-      })
+        });
+      });
   };
+
 
   getPosts = (categoryName) => {
     return API.getPostings(categoryName).then(results => results.data);
@@ -88,19 +107,19 @@ class Listoka extends Component {
                 description={this.state.description}
               />
               <PostList>
-                {this.state.listokaPosts.map(listokaPost => (
+                {this.state.categoryPosts.map(categoryPost => (
                   <PostListItem
-                    key={listokaPost._id}
-                    authorName={listokaPost.authorName}
-                    body={listokaPost.body}
-                    categoryName={listokaPost.categoryName}
-                    comments={listokaPost.comments}
-                    purchasers={listokaPost.purchasers}
-                    tags={listokaPost.tags}
-                    teaser={listokaPost.teaser}
-                    title={listokaPost.title}
-                    _id={listokaPost._id}
-                    author={listokaPost.author}
+                    key={categoryPost._id}
+                    authorName={categoryPost.authorName}
+                    body={categoryPost.body}
+                    categoryName={categoryPost.categoryName}
+                    comments={categoryPost.comments}
+                    purchasers={categoryPost.purchasers}
+                    tags={categoryPost.tags}
+                    teaser={categoryPost.teaser}
+                    title={categoryPost.title}
+                    _id={categoryPost._id}
+                    author={categoryPost.author}
                     handleDeleteButton={this.handleDeleteButton}
                   />
                 ))}
@@ -116,4 +135,4 @@ class Listoka extends Component {
   };
 
 };
-export default Listoka;
+export default MainCategoryPage;

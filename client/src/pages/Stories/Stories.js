@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
 import './Stories.css';
-import CategoryDetail from '../../components/CategoryDetail';
-import CategoryDescription from '../../components/CategoryDescription';
+import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
 import PostList from '../../components/PostList';
 import PostListItem from '../../components/PostListItem';
 import CreatePostButton from '../../components/CreatePostButton';

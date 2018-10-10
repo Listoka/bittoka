@@ -1,7 +1,7 @@
 import React from 'react';
 import './categoryDescription.css';
 
-const CategoryDescription = props => {
+export const CategoryDescription = props => {
     return (
         <div className='container categoryDescription'>
         <h2>{props.displayName}</h2>
@@ -10,4 +10,4 @@ const CategoryDescription = props => {
     );
 };
 
-export default CategoryDescription;
+// export default CategoryDescription;

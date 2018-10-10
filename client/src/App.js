@@ -20,6 +20,7 @@ import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
+import MainCategoryPage from './pages/MainCategoryPage';
 
 import authTest from './pages/AUTH-TEST'
 
@@ -29,7 +30,10 @@ import withAuthentication from './components/AuthUserSession/withAuthentication'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {categories: categories};
+    this.state = {
+      categories: categories
+      
+    };
   }
   
   render(){
@@ -50,6 +54,7 @@ class App extends Component {
           </FlexContainer>
           <Switch>
             <Route exact path={routes.LANDING} component={Home} />
+            <Route exact path={routes.MAINCATEGORYPAGE} component={MainCategoryPage} />
             <Route exact path={routes.HOME} component={Home} />
             <Route exact path={routes.LISTOKA} component={Listoka} />
             <Route exact path={routes.STORIES} component={Stories} />
