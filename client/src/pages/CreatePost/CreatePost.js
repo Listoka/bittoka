@@ -4,6 +4,7 @@ import withAuthorization from '../../components/AuthUserSession/withAuthorizatio
 import './createPost.css';
 import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
+import authAxios from '../../utils/authAxios'
 
 export class CreatePost extends Component {
   constructor(props) {
@@ -24,30 +25,18 @@ export class CreatePost extends Component {
 
     this.requestWithAuth = props.authUser.requestWithAuth
   }
-  
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
-  
+
   handleFormSubmit = (event) => {
     console.log(this.state);
     event.preventDefault();
-    // if (this.state.title && this.state.teaser && this.state.body) {
-    //   API.createPost({
-    //     title: this.state.title,
-    //     teaser: this.state.teaser,
-    //     body: this.state.body,
-    //     author: this.state.author,
-    //     authorName: this.state.authorName,
-    //     categoryName: this.state.categoryName
-    //   })
-    //   //This redirects to the user's post
-    //   .then(res => {this.setState({redirectToNewPage: true, redirectPathId: res.data._id})})
-    //   .catch(err => console.log(err))
-    // }
+
     const { title, teaser, body } = this.state
     if (title && teaser && body) {
       const data = {
@@ -59,11 +48,14 @@ export class CreatePost extends Component {
         categoryName: this.state.categoryName
       }
 
-      this.requestWithAuth('post', '/api/posts', data)
-        .then(result => {
-          this.setState({redirectToNewPage: true, redirectPathId: result.data._id})
-        })
-        .catch(err => console.log(err))
+      authAxios({
+        method: 'post',
+        url: '/api/posts',
+        data: data
+      }).then(result => {
+        console.log('authAxios result: ', result)
+        this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
+      }).catch(err => console.log(err))
     }
   }
 
@@ -71,7 +63,7 @@ export class CreatePost extends Component {
 
     if (this.state.redirectToNewPage) {
       return (
-        <Redirect to={{pathname:'/api/posts/'+ this.state.redirectPathId}}/>
+        <Redirect to={{ pathname: '/api/posts/' + this.state.redirectPathId }} />
       )
     };
 

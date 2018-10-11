@@ -25,9 +25,7 @@ const withAuthentication = (Component) =>
               let request = axios({
                 method: 'get',
                 url: '/api/users/uid/' + authUser.uid,
-                headers: {
-                  'Authorization': 'Bearer ' + authIdToken
-                }
+                headers: { 'Authorization': 'Bearer ' + authIdToken }
               })
               return Promise.all([authIdToken, request])
             })
@@ -48,6 +46,7 @@ const withAuthentication = (Component) =>
       })
     }
 
+    // TODO: Catch and try again if we get a 401 unauthorized.. probably means token expired.
     requestWithAuth = (method, url, data) => {
       const { authToken } = this.state
       return axios({
