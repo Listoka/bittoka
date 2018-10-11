@@ -21,6 +21,8 @@ export class CreatePost extends Component {
       redirectToNewPage: false,
       redirectPathId: "",
     };
+
+    this.requestWithAuth = props.authUser.requestWithAuth
   }
   
   handleInputChange = event => {
@@ -33,18 +35,35 @@ export class CreatePost extends Component {
   handleFormSubmit = (event) => {
     console.log(this.state);
     event.preventDefault();
-    if (this.state.title && this.state.teaser && this.state.body) {
-      API.createPost({
-        title: this.state.title,
-        teaser: this.state.teaser,
-        body: this.state.body,
+    // if (this.state.title && this.state.teaser && this.state.body) {
+    //   API.createPost({
+    //     title: this.state.title,
+    //     teaser: this.state.teaser,
+    //     body: this.state.body,
+    //     author: this.state.author,
+    //     authorName: this.state.authorName,
+    //     categoryName: this.state.categoryName
+    //   })
+    //   //This redirects to the user's post
+    //   .then(res => {this.setState({redirectToNewPage: true, redirectPathId: res.data._id})})
+    //   .catch(err => console.log(err))
+    // }
+    const { title, teaser, body } = this.state
+    if (title && teaser && body) {
+      const data = {
+        title: title,
+        teaser: teaser,
+        body: body,
         author: this.state.author,
         authorName: this.state.authorName,
         categoryName: this.state.categoryName
-      })
-      //This redirects to the user's post
-      .then(res => {this.setState({redirectToNewPage: true, redirectPathId: res.data._id})})
-      .catch(err => console.log(err))
+      }
+
+      this.requestWithAuth('post', '/api/posts', data)
+        .then(result => {
+          this.setState({redirectToNewPage: true, redirectPathId: result.data._id})
+        })
+        .catch(err => console.log(err))
     }
   }
 
