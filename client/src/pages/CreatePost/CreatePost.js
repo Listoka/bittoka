@@ -65,7 +65,9 @@ export class CreatePost extends Component {
 
     return (
       <div>
-        <div className="col-md-4">
+        <div className="row">
+        <div className="col-md-2"></div>
+        <div className="col-md-8">
           <form>
             <Input
               value={this.state.title}
@@ -94,7 +96,7 @@ export class CreatePost extends Component {
           </form>
         </div>
         <div className="col-md-2"></div>
-        <div className="col-md-6"></div>
+        </div>
       </div>
     );
   };

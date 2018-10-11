@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import './CreatePostButton.css'
+import './CreatePostButton.css';
 
 export const CreatePostButton = props => {
     return (

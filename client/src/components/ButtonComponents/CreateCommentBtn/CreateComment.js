@@ -6,6 +6,6 @@ export const CreatePostButton = props => {
     //But we may not need to do that here. We might be able to do that when actual submission is made.
     //We may just need the specific category to be propped here
     return (
-        <button className="btn btn-success"><Link to={{pathname:'/createpost', state:{categoryName: props.categoryName}}}>Create Post</Link></button>
+        <button className="btn btn-success"><Link to={{pathname:'/createpost', state:{categoryName: props.categoryName}}}>Submit</Link></button>
     );
 };
