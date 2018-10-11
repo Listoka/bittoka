@@ -57,13 +57,6 @@ class Content extends Component {
                   author={this.state.post.author}
                 />
                 <hr/>
-                <TipButton
-                  payeeId='783'
-                  paymentAmt='.03'
-                  label='Submit Comment'
-                  paymentSuccessCbk={this.afterPayment} 
-                />
-                <hr/>
                 <CommentList>
                 {console.log(this.state.comments[0])}
                   {this.state.comments.map(comments => (
