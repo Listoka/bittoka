@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import './createPost.css';
 import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
-import API from '../../utils/API';
 import authAxios from '../../utils/authAxios'
 
 export class CreatePost extends Component {
@@ -69,7 +68,9 @@ export class CreatePost extends Component {
 
     return (
       <div>
-        <div className="col-md-4">
+        <div className="row">
+        <div className="col-md-2"></div>
+        <div className="col-md-8">
           <form>
             <Input
               value={this.state.title}
@@ -98,7 +99,7 @@ export class CreatePost extends Component {
           </form>
         </div>
         <div className="col-md-2"></div>
-        <div className="col-md-6"></div>
+        </div>
       </div>
     );
   };
