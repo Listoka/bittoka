@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const group = require('../constants/permissionGroups')
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
 
@@ -10,20 +11,20 @@ const userData = [
     username: 'sally',
     uid: 'XQayyvz0zkXKR1Fc1BeOXcFj7d02',
     email: 'sally@thing.com',
-    permissions: ['user'],
+    permissions: [group.USER],
     moneyBtnId: '783'
   },
   {
     username: 'Joe Schmoe',
     uid: '76uRmVJAuDUqqeLRhzEyyd2uc863',
     email: 'joe@thing.com',
-    permissions: ['user']
+    permissions: [group.USER]
   },
   {
     username: 'Bertrand',
     uid: '1aaIqR9kX5bAFXqR78T381MHLtf1',
     email: 'berty@thing.com',
-    permissions: ['user']
+    permissions: [group.USER]
   }
 ]
 

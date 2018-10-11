@@ -11,7 +11,8 @@ const transactionRouter = require('./transactionRouter')
 const userRouter = require('./userRouter-OPEN')
 const userRouter_AUTH = require('./userRouter-AUTH')
 
-// require('./paramHelpers')(router) // add param handlers to the router
+// add param handlers to the router... doesn't seem to work here
+// require('./paramHelpers')(router)
 
 router.use(categoryRouter)
 router.use(postRouter)
