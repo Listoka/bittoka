@@ -3,15 +3,9 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const CommentSchema = new Schema({
-  author: {
-    type: String,
-    required: true
-  },
+  author: { type: ObjectId, ref: 'User' },
   authorName: { type: String },
-  body: {
-    type: String,
-    required: true
-  },
+  body: { type: String, required: true },
   parentPost: { type: ObjectId, ref: 'Post' },
   parentComment: { type: ObjectId, ref: 'Comment' },
   voters: [{ type: ObjectId, ref: 'User' }],
