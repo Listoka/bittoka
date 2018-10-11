@@ -16,13 +16,21 @@ const withAuthentication = (Component) =>
       };
     }
 
+    // TODO: clean up this mess...
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
+        console.log('withAuthentication authUser: ', authUser)
         if (authUser) {
-          axios({
-            method: 'get',
-            url: '/api/users/uid/' + authUser.uid
-          })
+          firebase.auth.currentUser.getIdToken(true)
+            .then(authIdToken => {
+              return axios({
+                method: 'get',
+                url: '/api/users/uid/' + authUser.uid,
+                headers: {
+                  'Authorization': 'Bearer ' + authIdToken
+                }
+              })
+            })
             .then(dbUser => {
               this.setState({
                 authUser: authUser,
@@ -31,7 +39,6 @@ const withAuthentication = (Component) =>
             })
             .then(() => firebase.auth.currentUser.getIdToken())
             .then(authToken => this.setState({ authToken }))
-            // .then(() => this.serverVerifyToken())
             .catch(err => console.log('withAuthentication ERROR: ', err))
         } else {
           this.setState({
@@ -61,20 +68,6 @@ const withAuthentication = (Component) =>
     postWithAuth = (url, data) => {
       return this.requestWithAuth('post', url, data)
     }
-
-    serverVerifyToken() {
-      firebase.auth.currentUser.getIdToken(/* force refresh */ true)
-        .then(idToken => {
-          axios({
-            method: 'post',
-            url: '/api/secret',
-            data: { idToken }
-          }).then(result => {
-            console.log('verify result: ', result)
-          })
-        })
-    }
-
 
     render() {
       const { authUser, dbUser } = this.state;
