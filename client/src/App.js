@@ -41,29 +41,17 @@ class App extends Component {
     };
   };
 
-  handleCategoryChange = category => {
-    this.promiseCategories(category);
-  };
-
-  promiseCategories = (category) => {
-    let promises = [this.getPosts(category), this.getCategory(category)]
-    Promise.all(promises)
+  handleCategoryChange = categoryName => {
+    API.getPostings(categoryName)
       .then(results => {
+        const { category, posts } = results.data
         this.setState({
-          categoryPosts: results[0].posts,
-          displayName: results[1].displayName,
-          description: results[1].description,
-          tags: results[1].tags
-        });
-      });
-  };
-
-  getPosts = (categoryName) => {
-    return API.getPostings(categoryName).then(results => results.data);
-  };
-
-  getCategory = (categoryName) => {
-    return API.getCategoryInfo(categoryName).then(results => results.data);
+          categoryPosts: posts,
+          displayName: category.displayName,
+          description: category.description,
+          tags: category.tags
+        })
+      })
   };
   
   render(){

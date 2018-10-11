@@ -1,6 +1,7 @@
 const admin = require('firebase-admin')
 
-const ACTIVATE = true
+// const ACTIVATE = true
+const ACTIVATE = false
 
 function firebaseAuthMiddleware(req, res, next) {
   const authorization = req.header('Authorization')
