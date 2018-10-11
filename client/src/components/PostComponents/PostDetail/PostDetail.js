@@ -3,10 +3,15 @@ import CommentBox from '../../CommentBox';
 import TipButton from '../../../components/TipButton'
 
 export class PostDetail extends Component {
+    constructor(props) {
+        super(props)
+
+    }
 
     afterPayment = () => {
-        
+        alert("Payment Successful!")
     }
+
     render() {
         return (
             <div>
@@ -15,7 +20,7 @@ export class PostDetail extends Component {
             <p>By: {this.props.authorName}</p>
             <p>{this.props.body}</p>
             <TipButton
-                payeeId='783'
+                payeeId={this.props.author}
                 paymentAmt='.03'
                 label='Tip to Upvote'
                 paymentSuccessCbk={this.afterPayment}
@@ -26,23 +31,3 @@ export class PostDetail extends Component {
         )
     }
 }
-/*
-export const PostDetail = (props) => {
-    return (
-        <div>
-            <br />
-            <p>{props.title}</p>
-            <p>By: {props.authorName}</p>
-            <p>{props.body}</p>
-            <TipButton
-                payeeId='783'
-                paymentAmt='.03'
-                label='Tip to Upvote'
-                paymentSuccessCbk={this.afterPayment}
-            />
-            <hr />
-            <CommentBox />
-        </div>
-    );
-};
-*/
