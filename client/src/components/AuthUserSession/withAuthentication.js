@@ -16,29 +16,26 @@ const withAuthentication = (Component) =>
       };
     }
 
-    // TODO: clean up this mess...
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
         console.log('withAuthentication authUser: ', authUser)
         if (authUser) {
           firebase.auth.currentUser.getIdToken(true)
             .then(authIdToken => {
-              return axios({
+              let request = axios({
                 method: 'get',
                 url: '/api/users/uid/' + authUser.uid,
-                headers: {
-                  'Authorization': 'Bearer ' + authIdToken
-                }
+                headers: { 'Authorization': 'Bearer ' + authIdToken }
               })
+              return Promise.all([authIdToken, request])
             })
-            .then(dbUser => {
+            .then(([token, request]) => {
               this.setState({
                 authUser: authUser,
-                dbUser: dbUser.data
+                dbUser: request.data,
+                authToken: token
               })
             })
-            .then(() => firebase.auth.currentUser.getIdToken())
-            .then(authToken => this.setState({ authToken }))
             .catch(err => console.log('withAuthentication ERROR: ', err))
         } else {
           this.setState({
@@ -49,6 +46,7 @@ const withAuthentication = (Component) =>
       })
     }
 
+    // TODO: Catch and try again if we get a 401 unauthorized.. probably means token expired.
     requestWithAuth = (method, url, data) => {
       const { authToken } = this.state
       return axios({

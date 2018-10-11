@@ -3,6 +3,7 @@ import API from '../../utils/API';
 import {PostDetail} from '../../components/PostComponents/PostDetail/PostDetail';
 import {Comments, CommentList} from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
+import TipButton from '../../components/TipButton'
 
 class Content extends Component {
   constructor(props) {
@@ -33,6 +34,10 @@ class Content extends Component {
   //Need to add the function to update here and pass it through into the PostDetail component.
   //I'll need to redirect to the new page where the state is set with the current information, but then it is editable.
   //So The edit button links to a new page. Yours has it setup like that.
+
+  afterPayment = () => {
+    alert('Payment successful!')
+  }
 
     render() {
       return (

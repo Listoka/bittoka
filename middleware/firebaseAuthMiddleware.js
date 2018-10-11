@@ -1,17 +1,24 @@
 const admin = require('firebase-admin')
+const db = require('../models/')
 
-// const ACTIVATE = true
-const ACTIVATE = false
+const ACTIVATE = true
+// const ACTIVATE = false
 
+// TODO: Refactor so that we can get the dbUser and check permissions
 function firebaseAuthMiddleware(req, res, next) {
   const authorization = req.header('Authorization')
   if (authorization) {
-    console.log('AUTHORIZATION HEADER:\n', authorization)
+    console.log('>>>>> AUTH Middleware - AUTHORIZATION HEADER:\n', authorization)
     const token = authorization.split(' ')[1]
     admin.auth().verifyIdToken(token)
       .then(decodedToken => {
-        console.log(decodedToken)
-        res.locals.user = decodedToken
+        console.log('>>>>> AUTH Middleware - decodedToken\n', decodedToken)
+        // res.locals.user = decodedToken
+        return Promise.all([decodedToken, db.User.find({ uid: decodedToken.uid })])
+        // next()
+      })
+      .then(([token, dbUser]) => {
+        res.locals.user = { token, dbUser }
         next()
       })
       .catch(err => {
@@ -19,7 +26,7 @@ function firebaseAuthMiddleware(req, res, next) {
         res.sendStatus(401)
       })
   } else {
-    console.log('Authorization header not found')
+    console.log('>>>>> AUTH Middleware - Authorization header not found')
     res.sendStatus(401)
   }
 }

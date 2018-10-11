@@ -25,7 +25,7 @@ function addParamHandlers(router) {
   console.log('>>>>> assigning router param handlers')
   for (let config of configs) {
     router.param(config.param, (req, res, next, value, name) => {
-      console.log('>>>>> inside router.use for ' + config.param)
+      console.log('>>>>> inside router.param for ' + config.param)
       console.log('originalUrl: ', req.originalUrl)
       console.log('url: ', req.url)
       console.log('value: ', value)

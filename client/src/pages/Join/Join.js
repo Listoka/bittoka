@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { auth } from '../../firebase'
+import { firebase, auth } from '../../firebase'
 import axios from 'axios'
 import * as routes from '../../constants/routes'
 import './Join.css'
@@ -29,9 +29,10 @@ class Join extends React.Component {
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        // *****
-        // this is where we also send the new user data to mongo
-        // *****
+        let token = firebase.auth.currentUser.getIdToken()
+        return Promise.all([authUser, token])
+      })
+      .then(([authUser, authToken]) => {
         console.log(authUser)
         return axios({
           url: '/api/users',
@@ -40,9 +41,11 @@ class Join extends React.Component {
             username: username,
             uid: authUser.user.uid,
             email: email,
+          },
+          headers: {
+            'Authorization': 'Bearer ' + authToken
           }
         })
-
       })
       .then(response => console.log(response))
       .then(() => this.props.history.push(routes.ACCOUNT))
