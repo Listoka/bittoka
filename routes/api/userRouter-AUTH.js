@@ -1,6 +1,5 @@
 const userController = require('../../controllers/userController')
 const router = require('express').Router();
-// const authCheck = require('../../middleware/firebaseAuthMiddleware')
 const db = require('../../models')
 
 router.get('/users/id/:id', userController.findById)

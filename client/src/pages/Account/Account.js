@@ -10,7 +10,8 @@ class Account extends Component {
     this.state = {
         userPosts: [],
         userName: props.authUser.dbUser.username, 
-        id: props.authUser.dbUser._id
+        id: props.authUser.dbUser._id,
+        requestWithAuth: props.authUser.requestWithAuth
     };
   };
 
@@ -26,7 +27,8 @@ class Account extends Component {
   };
 
   getPosts = (id) => {
-    return API.getUserPosts(id).then(results => results.data);
+    // return API.getUserPosts(id).then(results => results.data);
+    return this.state.requestWithAuth('get', `/api/users/${id}/posts`).then(result => result.data)
   };
 
   handleDeleteButton = (event, id) => {

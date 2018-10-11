@@ -24,5 +24,6 @@ router.use(authCheck) // Auth Routes go after Open routes and auth middleware
 router.use(categoryRouter_AUTH)
 router.use(postRouter_AUTH)
 router.use(commentRouter_AUTH)
+router.use(userRouter_AUTH)
 
 module.exports = router;

@@ -1,10 +1,8 @@
 const transactionController = require('../../controllers/transactionController')
 const router = require('express').Router();
-const authCheck = require('../../middleware/firebaseAuthMiddleware')
 const db = require('../../models')
 
-// require auth for all routes
-router.use(authCheck)
+require('./paramHelpers')(router)
 
 // transaction routes
 router.route('/transactions')

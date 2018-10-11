@@ -2,6 +2,8 @@ const commentController = require('../../controllers/commentController')
 const router = require('express').Router();
 const db = require('../../models')
 
+require('./paramHelpers')(router)
+
 // comment routes
 router.route('/comments')
   .post(commentController.create)

@@ -1,6 +1,5 @@
 const categoryController = require('../../controllers/categoryController')
 const categoryRouter = require('express').Router();
-// const authCheck = require('../../middleware/firebaseAuthMiddleware')
 const db = require('../../models')
 
 require('./paramHelpers')(categoryRouter)
