@@ -3,6 +3,7 @@ import API from '../../utils/API';
 import {PostDetail} from '../../components/PostComponents/PostDetail/PostDetail';
 import {Comments, CommentList} from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
+import TipButton from '../../components/TipButton'
 
 class Content extends Component {
   constructor(props) {
@@ -29,6 +30,10 @@ class Content extends Component {
     API.getComments()
     .then(res => this.setState({ comments: res.data }))
     .catch(err => console.log(err));
+  }
+
+  afterPayment = () => {
+    alert('Payment successful!')
   }
 
     render() {
