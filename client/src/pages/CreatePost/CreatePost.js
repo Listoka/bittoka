@@ -3,12 +3,13 @@ import { Redirect } from 'react-router-dom';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import './createPost.css';
 import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
-import authAxios from '../../utils/authAxios'
+import API from '../../utils/API';
 
 export class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      author: props.authUser.dbUser._id,
       authorName: props.authUser.dbUser.username,
       body: "",
       categoryName: props.location.state.categoryName, //This comes from the CreatePostButton component
@@ -17,12 +18,9 @@ export class CreatePost extends Component {
       tags: "",
       teaser: "",
       title: "",
-      author: props.authUser.dbUser._id,
       redirectToNewPage: false,
       redirectPathId: "",
     };
-
-    this.requestWithAuth = props.authUser.requestWithAuth
   }
 
   handleInputChange = event => {
@@ -36,25 +34,24 @@ export class CreatePost extends Component {
     console.log(this.state);
     event.preventDefault();
 
-    const { title, teaser, body } = this.state
+    const { title, teaser, body, tags } = this.state
     if (title && teaser && body) {
       const data = {
         title: title,
         teaser: teaser,
         body: body,
+        tags: tags,
         author: this.state.author,
         authorName: this.state.authorName,
         categoryName: this.state.categoryName
       }
 
-      authAxios({
-        method: 'post',
-        url: '/api/posts',
-        data: data
-      }).then(result => {
-        console.log('authAxios result: ', result)
-        this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
-      }).catch(err => console.log(err))
+      API.createPost(data)
+        .then(result => {
+          console.log('authAxios result: ', result)
+          this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
+        }).catch(err => console.log(err))
+
     }
   }
 

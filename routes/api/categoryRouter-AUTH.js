@@ -1,15 +1,14 @@
 const categoryController = require('../../controllers/categoryController')
 const router = require('express').Router();
+const isAdmin = require('../../middleware/permissionMiddleware').isAdmin
 // const db = require('../../models')
 
-// TODO: Make these routes admin-only
-
 router.route('/categories')
-  .post(categoryController.create)
+  .post(isAdmin, categoryController.create)
 
 router.route('/categories/id/:id')
-  .put(categoryController.update)
-  .delete(categoryController.remove)
+  .put(isAdmin, categoryController.update)
+  .delete(isAdmin, categoryController.remove)
 
 
 module.exports = router
