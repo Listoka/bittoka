@@ -10,7 +10,8 @@ const userData = [
     username: 'sally',
     uid: 'XQayyvz0zkXKR1Fc1BeOXcFj7d02',
     email: 'sally@thing.com',
-    permissions: ['user']
+    permissions: ['user'],
+    moneyBtnId: '783'
   },
   {
     username: 'Joe Schmoe',
