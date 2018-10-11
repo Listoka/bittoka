@@ -30,6 +30,9 @@ class Content extends Component {
     .then(res => this.setState({ comments: res.data }))
     .catch(err => console.log(err));
   }
+  //Need to add the function to update here and pass it through into the PostDetail component.
+  //I'll need to redirect to the new page where the state is set with the current information, but then it is editable.
+  //So The edit button links to a new page. Yours has it setup like that.
 
     render() {
       return (
@@ -52,8 +55,8 @@ class Content extends Component {
                   author={this.state.post.author}
                 />
                 <hr/>
+                {/* Need to pull for each particular post. Currently pulls just ALL comments for everything */}
                 <CommentList>
-                {console.log(this.state.comments[0])}
                   {this.state.comments.map(comments => (
                       <Comments 
                       key={comments._id}
@@ -75,5 +78,4 @@ class Content extends Component {
 
 const authCondition = (authUser) => !!authUser
 
-// export default Content;
 export default withAuthorization(authCondition)(Content);

@@ -65,7 +65,17 @@ export default {
         return axios.get(`/api/users/${userID}/posts/`);
     },
     deletePost: (id) => {
-        return axios.delete("/api/posts/" + id);
+        return axios.delete('/api/posts/' + id);
+    },
+    updatePost: (id, updatedData) => {
+        return axios.put('/api/posts/' + id, updatedData)
+        .then(response => {
+            console.log(response);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
     
 };
