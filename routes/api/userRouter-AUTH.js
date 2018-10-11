@@ -11,6 +11,7 @@ router.get('/users/uid/:uid', (req, res) => {
   })
 })
 
+// TODO: this should check if the username is unique before creating the user
 router.post('/users', (req, res) => {
   console.log('>>> POST -- req.originalUrl: ', req.originalUrl)
   console.log('>>> POST -- req.body: ', req.body)

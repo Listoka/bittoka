@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const group = require('../constants/permissionGroups')
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
 
@@ -9,7 +10,7 @@ const categoryData = [
   displayName: 'Bitcoin Story',
   description: `It's all about stories and bitcoins and stories about bitcoins.`,
   settings: {
-    allowedPosters: ['user', 'admin'],
+    allowedPosters: [group.USER, group.ADMIN],
     defaultContentPrice: 0,
     posterSetsContentPrice: true,
     costToComment: 0,
@@ -22,7 +23,7 @@ const categoryData = [
   displayName: 'Story',
   description: `It's all about the stories.`,
   settings: {
-    allowedPosters: ['user', 'admin'],
+    allowedPosters: [group.USER, group.ADMIN],
     defaultContentPrice: 0,
     posterSetsContentPrice: true,
     costToComment: 0,
@@ -35,7 +36,7 @@ const categoryData = [
   displayName: 'Listoka',
   description: `It's all about listoka.`,
   settings: {
-    allowedPosters: ['user', 'admin'],
+    allowedPosters: [group.USER, group.ADMIN],
     defaultContentPrice: 0,
     posterSetsContentPrice: true,
     costToComment: 0,

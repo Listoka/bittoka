@@ -9,6 +9,7 @@ router.route('/comments')
   .post(commentController.create)
 
 // TODO: These should only be possible for the author
+// TODO: These actually be possible for both the author and an Admin
 router.route('/comments/:id')
   .put(commentController.update)
   .delete(commentController.remove)
