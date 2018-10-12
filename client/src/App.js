@@ -34,8 +34,8 @@ class App extends Component {
     super(props);
     this.state = {
       categories: categories,
-      categoryPosts: [],//Update whenever a new category is clicked on
-      categoryName: "listoka",//Will come in with API call
+      categoryPosts: [],
+      categoryName: "listoka",
       displayName: "",
       description: "",
       tags: []
