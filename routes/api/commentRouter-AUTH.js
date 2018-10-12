@@ -59,7 +59,11 @@ router.route('/comments/:commentId/comments')
 
     db.Comment
       .create(commentData)
-      .then(dbComment => res.json(dbComment))
+      .then(dbComment => {
+        let parentComment = db.Comment.findByIdAndUpdate(res.locals.comment._id, { $push: { comments: dbComment._id } })
+        return Promise.all([dbComment, parentComment])
+      })
+      .then(([dbComment, parentComment]) => res.json(dbComment))
       .catch(err => res.status(500).json(err))
   })
 
