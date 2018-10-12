@@ -3,7 +3,8 @@ import API from '../../utils/API';
 import {PostDetail} from '../../components/PostComponents/PostDetail/PostDetail';
 import {Comments, CommentList} from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
-import TipButton from '../../components/TipButton'
+import TipButton from '../../components/TipButton';
+import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 
 class Content extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Content extends Component {
     this.state = {
         post: {},
         comments: [],
-        postID: props.match.params.id
+        postID: props.match.params.id,
+        body: "",
     };
   };
 
@@ -21,8 +23,30 @@ class Content extends Component {
 
   getPostWithComments = () => {
     API.getPostWithComments(this.props.match.params.id)
-    .then(res => this.setState({ post: res.data, comments: res.data.comments }))
+    .then(res => this.setState({ post: res.data, comments: res.data.comments, body: "" }))
     .catch(err => console.log(err));
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = (event) => {
+    console.log(this.state);
+    event.preventDefault();
+    const data = {
+        body: this.state.body,
+        commentPath: "commentPath"
+    }
+    if (this.state.body.length > 4) {
+        API.createComment(this.state.postID, data)
+        // .then( res => this.setState({ redirectToNewPage: true }))
+        .then (res => this.getPostWithComments())
+        .catch(err => console.log(err))
+    }
   }
 
   afterPayment = () => {
@@ -50,7 +74,19 @@ class Content extends Component {
                   author={this.state.post.author}
                 />
                 <hr/>
-                
+                <TextArea 
+                    value={this.state.body}
+                    onChange={this.handleInputChange}
+                    name="body"
+                    placeholder="Share your comment here"
+                />
+                <FormBtn
+                  disabled={!(this.state.body.length >4)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit Comment
+                </FormBtn>
+                <hr/>
                 <CommentList>
                   {this.state.comments.map(comments => (
                       <Comments 

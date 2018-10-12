@@ -54,7 +54,7 @@ export default {
         });
     },
     createComment: (id, commentData) => {
-        console.log(commentData)
+        console.log(commentData.body)
         console.log(id)
         return axios.post(`/api/posts/${id}/comments`, {
             body: commentData.body,

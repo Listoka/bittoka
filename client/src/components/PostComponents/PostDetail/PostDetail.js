@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import CommentBox from '../../CommentBox';
-import TipButton from '../../../components/TipButton'
-
+import TipButton from '../../../components/TipButton';
 import { Link } from 'react-router-dom';
 
 export class PostDetail extends Component {
@@ -18,12 +16,9 @@ export class PostDetail extends Component {
             _id: props._id,
             title: props.title,
             teaser: props.teaser, 
-            authorName: props.authUser.dbUser.username, 
+            authorName: props.authorName, 
             categoryName: props.categoryName,
-            author: props.authUser.dbUser._id,
-            commentPath: "something",
-            postID: props.match.params.id,
-            redirectToNewPage: false,
+            author: props.author,
         };
     }
 
@@ -31,14 +26,14 @@ export class PostDetail extends Component {
         alert("Payment Successful!")
     };
 
-
     render() {
         return (
             <React.Fragment>
                 <br />
                 <Link to={{pathname:'/editpage', state:{
                     categoryName: this.state.categoryName, 
-                    body: this.state.body, _id: this.state._id,
+                    body: this.state.body, 
+                    _id: this.state._id,
                     title: this.state.title,
                     teaser: this.state.teaser,
                     authorName: this.state.authorName,}}}>
@@ -54,9 +49,7 @@ export class PostDetail extends Component {
                     label='Upvote'
                     payeeId={this.props.author}
                 />
-                <hr />
-                <CommentBox />
             </React.Fragment>
-        )
-    }
-}
+        );
+    };
+};
