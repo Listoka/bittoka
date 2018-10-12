@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
@@ -10,7 +11,9 @@ class CommentBox extends Component {
         authorName: props.authUser.dbUser.username,
         body: "",
         author: props.authUser.dbUser._id,
-        commentPath: "something"
+        commentPath: "something",
+        postID: props.match.params.id,
+        redirectToNewPage: false,
     };
   };
 
@@ -23,21 +26,28 @@ class CommentBox extends Component {
   handleFormSubmit = (event) => {
     console.log(this.state);
     event.preventDefault();
+    const data = {
+      body: this.state.body,
+      commentPath: "commentPath"
+    }
     if (this.state.body.length > 4) {
-      API.createComment({
-        body: this.state.body,
-        author: this.state.author,
-        authorName: this.state.authorName, //May not need this one
-        commentPath: this.state.commentPath
-      })
-      .then(res=> this.setState({body: ""}))
+      console.log(this.state.postID)
+      API.createComment(this.state.postID, data)
+      .then( res => this.setState({ redirectToNewPage: true }))
+      .then (res => console.log(res.data._id))
       .catch(err => console.log(err))
     }
   }
 
     render() {
+
+        if (this.state.redirectToNewPage) {
+          return (
+            <Redirect to={{ pathname: `/api/posts/${this.state.postID}`}} />
+          )
+        };
         return(
-            <div>
+          <React.Fragment>
             <TextArea 
               value={this.state.body}
               onChange={this.handleInputChange}
@@ -50,7 +60,7 @@ class CommentBox extends Component {
             >
             Submit Comment
             </FormBtn>
-            </div>
+          </React.Fragment>
         );
     };
 };

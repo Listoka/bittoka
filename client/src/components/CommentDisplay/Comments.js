@@ -2,9 +2,10 @@ import React from "react";
 
 export const Comments = (props) => {
     return (
-        <div>
-           <p>Author: {props.author}</p>
+        <React.Fragment>
+           <hr/>
+           <p>Author: {props.authorName}</p>
            <p>Body: {props.body}</p>
-        </div>
+        </React.Fragment>
     );
 };

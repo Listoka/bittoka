@@ -10,30 +10,20 @@ class Content extends Component {
     super(props);
     this.state = {
         post: {},
-        comments: []
+        comments: [],
+        postID: props.match.params.id
     };
   };
 
   componentDidMount() {
-    this.getPost();
-    this.displayComments();
+    this.getPostWithComments();
   };
 
-  getPost = () => {
-    API.getPost(this.props.match.params.id)
-    .then(res => this.setState({ post: res.data }))
-    .then(res => console.log(this.state.post))
+  getPostWithComments = () => {
+    API.getPostWithComments(this.props.match.params.id)
+    .then(res => this.setState({ post: res.data, comments: res.data.comments }))
     .catch(err => console.log(err));
   }
-
-  displayComments = () => {
-    API.getComments()
-    .then(res => this.setState({ comments: res.data }))
-    .catch(err => console.log(err));
-  }
-  //Need to add the function to update here and pass it through into the PostDetail component.
-  //I'll need to redirect to the new page where the state is set with the current information, but then it is editable.
-  //So The edit button links to a new page. Yours has it setup like that.
 
   afterPayment = () => {
     alert('Payment successful!')
@@ -41,7 +31,7 @@ class Content extends Component {
 
     render() {
       return (
-        <div>
+        <React.Fragment>
           <div className="container-fluid">
             <div className="row">
              <div className="col-xl-2"></div>
@@ -60,12 +50,13 @@ class Content extends Component {
                   author={this.state.post.author}
                 />
                 <hr/>
-                {/* Need to pull for each particular post. Currently pulls just ALL comments for everything */}
+                
                 <CommentList>
                   {this.state.comments.map(comments => (
                       <Comments 
                       key={comments._id}
                       author={comments.author}
+                      authorName={comments.authorName}
                       body={comments.body} 
                       // voters={comments.voters} 
                       comments={comments.comments} 
@@ -76,7 +67,7 @@ class Content extends Component {
              <div className="col-xl-2"></div>
             </div>
           </div>
-        </div>
+        </React.Fragment>
       );
     };
 };

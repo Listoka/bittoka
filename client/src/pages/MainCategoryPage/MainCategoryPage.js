@@ -9,11 +9,12 @@ class MainCategoryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // categoryPosts: [],//Update whenever a new category is clicked on
-      // categoryName: "stories",//Will come in with API call
+      categoryPosts: [],//Update whenever a new category is clicked on
+      // categoryName: "listoka",
       // displayName: "",
       // description: "",
       // tags: [],
+      userPosts: ""
     };
   };
 
@@ -44,7 +45,7 @@ class MainCategoryPage extends Component {
   }
 
   updateAfterDelete = (id) => {
-    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
+    return API.getUserPosts(id).then(res => this.setState({categoryPosts: res.data}))
   }
   
   render() {
