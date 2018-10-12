@@ -15,7 +15,10 @@ class AuthTest extends React.Component {
 
   doRequest = (event) => {
     event.preventDefault()
-    let data = JSON.parse(this.state.data)
+    let data
+    if (this.state.data) {
+      data = JSON.parse(this.state.data)
+    }
     console.log(data)
     axios({
       method: this.state.method,
