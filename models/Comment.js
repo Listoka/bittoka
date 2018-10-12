@@ -10,10 +10,7 @@ const CommentSchema = new Schema({
   parentComment: { type: ObjectId, ref: 'Comment' },
   voters: [{ type: ObjectId, ref: 'User' }],
   comments: [{ type: ObjectId, ref: 'Comment' }],
-  commentPath: {
-    type: String,
-    required: true
-  }
+  commentPath: { type: String, default: '/' }
 },
   {
     timestamps: true

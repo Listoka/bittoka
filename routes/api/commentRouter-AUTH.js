@@ -29,30 +29,35 @@ router.route('/posts/:postId/comments')
     const commentData = {
       body: body,
       parentPost: res.locals.post._id,
-      commentPath: '',
       author: dbUser._id,
       authorName: dbUser.username
     }
 
-    db.Comments
+    db.Comment
       .create(commentData)
-      .then(dbComment => res.json(dbComment))
+      .then(dbComment => {
+        let dbPost = db.Post.findByIdAndUpdate(res.locals.post._id, { $push: { comments: dbComment._id } })
+        return Promise.all([dbComment, dbPost])
+      })
+      .then((results) => {
+        res.json(results[0])
+      })
       .catch(err => res.status(500).json(err))
   })
 
-router.route('/posts/:postId/comments/:commentId/comments')
+router.route('/comments/:commentId/comments')
   .post((req, res) => {
     const dbUser = res.locals.user.dbUser
     const { body } = req.body
     const commentData = {
       body: body,
-      parentPost: res.locals.post._id,
-      commentPath: res.locals.comment.commentPath + res.locals.comment._id,
+      parentPost: res.locals.comment.parentPost,
+      commentPath: res.locals.comment.commentPath + res.locals.comment._id + '/',
       author: dbUser._id,
       authorName: dbUser.username
     }
 
-    db.Comments
+    db.Comment
       .create(commentData)
       .then(dbComment => res.json(dbComment))
       .catch(err => res.status(500).json(err))
