@@ -11,7 +11,7 @@ router.route('/comments') // TODO: this should probably be admin-only
 router.route('/comments/:id') 
   .get(commentController.findById)
 
-router.route('/posts/:postId/comments/:commentId/comments')
+router.route('/posts/:postId/comments/:commentId')
   .get((req, res) => {
     db.Comment
       .find({ parentComment: res.locals.comment._id })

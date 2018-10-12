@@ -9,7 +9,7 @@ class AuthTest extends React.Component {
       response: null,
       url: '',
       method: 'get',
-      data: ''
+      data: '{ "body":"you can use json here" }'
     }
   }
 
@@ -19,7 +19,6 @@ class AuthTest extends React.Component {
     if (this.state.data) {
       data = JSON.parse(this.state.data)
     }
-    console.log(data)
     axios({
       method: this.state.method,
       url: this.state.url,
@@ -36,18 +35,30 @@ class AuthTest extends React.Component {
   }
 
   render() {
+    const  formStyle = {
+      width: '80%',
+      margin: '0 auto'
+    }
     return (
-      <form>
-        <select name='method' onChange={this.handleChange}>
-          <option>GET</option>
-          <option>POST</option>
-          <option>PUT</option>
-          <option>DELETE</option>
-        </select>
-        <input type='text' name='url' onChange={this.handleChange} placeholder='url' />
-        <textarea name='data' onChange={this.handleChange} value={this.state.data} />
-        <input type='submit' onClick={this.doRequest} />
-      </form>
+      <div style={{width: '80%', margin: '20px auto'}}>
+        <form style={formStyle}>
+          <div className='form-group'>
+            <select name='method' onChange={this.handleChange}>
+              <option>GET</option>
+              <option>POST</option>
+              <option>PUT</option>
+              <option>DELETE</option>
+            </select>
+          </div>
+          <div className='form-group'>
+            <input style={formStyle} type='text' name='url' onChange={this.handleChange} placeholder='url' />
+          </div>
+          <div className='form-group'>
+            <textarea style={formStyle} name='data' onChange={this.handleChange} value={this.state.data} />
+          </div>
+          <input type='submit' onClick={this.doRequest} />
+        </form>
+      </div>
     )
   }
 

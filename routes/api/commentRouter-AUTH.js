@@ -36,12 +36,12 @@ router.route('/posts/:postId/comments')
     db.Comment
       .create(commentData)
       .then(dbComment => {
-        let dbPost = db.Post.findByIdAndUpdate(res.locals.post._id, { $push: { comments: dbComment._id } })
-        return Promise.all([dbComment, dbPost])
+        return Promise.all([
+          dbComment,
+          db.Post.findByIdAndUpdate(res.locals.post._id, { $push: { comments: dbComment._id } })
+        ])
       })
-      .then((results) => {
-        res.json(results[0])
-      })
+      .then(([dbComment, dbPost]) => res.json(dbComment))
       .catch(err => res.status(500).json(err))
   })
 
@@ -60,8 +60,10 @@ router.route('/comments/:commentId/comments')
     db.Comment
       .create(commentData)
       .then(dbComment => {
-        let parentComment = db.Comment.findByIdAndUpdate(res.locals.comment._id, { $push: { comments: dbComment._id } })
-        return Promise.all([dbComment, parentComment])
+        return Promise.all([
+          dbComment,
+          db.Comment.findByIdAndUpdate(res.locals.comment._id, { $push: { comments: dbComment._id } })
+        ])
       })
       .then(([dbComment, parentComment]) => res.json(dbComment))
       .catch(err => res.status(500).json(err))
