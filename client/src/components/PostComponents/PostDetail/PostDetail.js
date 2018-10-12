@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import CommentBox from '../../CommentBox';
-import TipButton from '../../../components/TipButton';
-import  { Input, FormBtn } from '../PostForm';
-import { Link } from 'react-router-dom';
+import TipButton from '../../../components/TipButton'
 
-const minTipAmt = .05
+import { Link } from 'react-router-dom';
 
 export class PostDetail extends Component {
 
@@ -27,14 +25,6 @@ export class PostDetail extends Component {
         alert("Payment Successful!")
     }
 
-    handleTipChange = (evt) => {
-        this.setState( { tipState: evt.target.value })
-    }
-
-    handleTipSubmit = (evt) => {
-        evt.preventDefault()
-        this.setState( { tipAmt: this.state.tipState })
-    }
 
     render() {
         return (
@@ -44,27 +34,13 @@ export class PostDetail extends Component {
                 <p>{this.props.title}</p>
                 <p>By: {this.props.authorName}</p>
                 <p>{this.props.body}</p>
-                {(this.state.tipAmt >= minTipAmt ?
-                    <TipButton
-                        payeeId={this.props.author}
-                        paymentAmt={this.state.tipAmt}
-                        label='Tip to Upvote'
-                        paymentSuccessCbk={this.afterPayment}
-                    />
-                    :
-                    <div>
-                    <p>To upvote, enter tip amount (minimum {minTipAmt}): </p>
-                    <Input
-                        onChange={this.handleTipChange} 
-                        className='form-control'
-                        />
-                    <FormBtn
-                        onClick={this.handleTipSubmit}
-                    >
-                    Submit Tip Amount
-                    </FormBtn>
-                    </div>
-                )}
+                <TipButton
+                    minTipAmt='.03'
+                    tipMessage='To upvote, enter tip amount'
+                    paymentSuccessCbk={this.afterPayment}
+                    label='Upvote'
+                    payeeId={this.props.author}
+                />
                 <hr />
                 <CommentBox />
             </div>
