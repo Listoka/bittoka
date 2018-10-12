@@ -9,7 +9,7 @@ class AuthTest extends React.Component {
       response: null,
       url: '',
       method: 'get',
-      data: null
+      data: ''
     }
   }
 
@@ -42,7 +42,7 @@ class AuthTest extends React.Component {
           <option>DELETE</option>
         </select>
         <input type='text' name='url' onChange={this.handleChange} placeholder='url' />
-        <textarea name='data' value={this.state.data} />
+        <textarea name='data' onChange={this.handleChange} value={this.state.data} />
         <input type='submit' onClick={this.doRequest} />
       </form>
     )
