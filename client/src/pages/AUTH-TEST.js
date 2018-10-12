@@ -25,7 +25,7 @@ class AuthTest extends React.Component {
       url: this.state.url,
       data: data
     }).then(response => {
-      this.setState({ response })
+      this.setState({ response, error: null })
       console.log(response)
     }).catch(error => {
       this.setState({ error })
