@@ -9,7 +9,8 @@ class AuthTest extends React.Component {
       response: null,
       url: '',
       method: 'get',
-      data: '{ "body":"you can use json here" }'
+      data: '{ "body":"you can use json here" }',
+      error: null,
     }
   }
 
@@ -26,6 +27,9 @@ class AuthTest extends React.Component {
     }).then(response => {
       this.setState({ response })
       console.log(response)
+    }).catch(error => {
+      this.setState({ error })
+      console.log(error)
     })
   }
 
@@ -35,12 +39,12 @@ class AuthTest extends React.Component {
   }
 
   render() {
-    const  formStyle = {
+    const formStyle = {
       width: '80%',
       margin: '0 auto'
     }
     return (
-      <div style={{width: '80%', margin: '20px auto'}}>
+      <div style={{ width: '80%', margin: '20px auto' }}>
         <form style={formStyle}>
           <div className='form-group'>
             <select name='method' onChange={this.handleChange}>
@@ -57,6 +61,11 @@ class AuthTest extends React.Component {
             <textarea style={formStyle} name='data' onChange={this.handleChange} value={this.state.data} />
           </div>
           <input type='submit' onClick={this.doRequest} />
+          {
+            this.state.error
+              ? <p>{JSON.stringify(this.state.error.message)}</p>
+              : null
+          }
         </form>
       </div>
     )

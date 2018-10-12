@@ -17,16 +17,17 @@ const PostSchema = new Schema({
   },
   tags: [String],
   author: { type: ObjectId, ref: 'User', required: true },
-  authorName: { type: String},
-  category: { type: ObjectId, ref: 'Category'},
+  authorName: { type: String },
+  category: { type: ObjectId, ref: 'Category' },
   categoryName: { type: String },
-  comments: [{ type: ObjectId, ref: 'Comment'}],
-  voters: [{type: ObjectId, ref: 'User'}],
-  purchasers: [{type: ObjectId, ref: 'User'}],
+  comments: [{ type: ObjectId, ref: 'Comment' }],
+  voters: [{ type: ObjectId, ref: 'User' }],
+  purchasers: [{ type: ObjectId, ref: 'User' }],
+  isDraft: { type: Boolean, default: false }
 },
-{
-  timestamps: true
-})
+  {
+    timestamps: true
+  })
 
 PostSchema.virtual('votes').get(() => this.voters.length)
 

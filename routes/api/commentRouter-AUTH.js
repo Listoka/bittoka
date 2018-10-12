@@ -8,11 +8,31 @@ require('./paramHelpers')(router)
 router.route('/comments')
   .post(commentController.create)
 
-// TODO: These should only be possible for the author
 // TODO: These actually be possible for both the author and an Admin
-router.route('/comments/:id')
-  .put(commentController.update)
-  .delete(commentController.remove)
+router.route('/comments/:commentId')
+  .put((req, res) => {
+    const dbUser = res.locals.user.dbUser
+    const comment = res.locals.comment
+    if (comment.author.equals(dbUser._id)) {
+      const { body } = req.body
+      db.Comment.findByIdAndUpdate(req.params.commentId, { body })
+        .then(result => res.json(result))
+        .catch(err => res.status(500).json(err))
+    } else {
+      res.sendStatus(403)
+    }
+  })
+  .delete((req, res) => {
+    const dbUser = res.locals.user.dbUser
+    const comment = res.locals.comment
+    if (comment.author.equals(dbUser._id)) {
+      db.Comment.findByIdAndUpdate(req.params.commentId, { body: '[deleted]', authorName: '[deleted]' })
+        .then(result => res.json(result))
+        .catch(err => res.status(500).json(err))
+    } else {
+      res.sendStatus(403)
+    }
+  })
 
 router.route('/comments/:id/vote')
   .get((req, res) => {
@@ -24,6 +44,9 @@ router.route('/comments/:id/vote')
 
 router.route('/posts/:postId/comments')
   .post((req, res) => {
+    if (res.locals.post.isDraft) {
+      return res.status(403).json({message: 'Cannot add comments to draft posts.'})
+    }
     const dbUser = res.locals.user.dbUser
     const { body } = req.body
     const commentData = {
