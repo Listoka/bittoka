@@ -14,7 +14,7 @@ function firebaseAuthMiddleware(req, res, next) {
       .then(decodedToken => {
         console.log('>>>>> AUTH Middleware - decodedToken\n', decodedToken)
         // res.locals.user = decodedToken
-        return Promise.all([decodedToken, db.User.find({ uid: decodedToken.uid })])
+        return Promise.all([decodedToken, db.User.findOne({ uid: decodedToken.uid })])
         // next()
       })
       .then(([token, dbUser]) => {

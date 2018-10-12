@@ -3,11 +3,14 @@
 const group = require('../constants/permissionGroups')
 
 const isAdmin = (req, res, next) => {
+  console.log('>>>>> Inside isAdmin Middleware')
+  console.log('res.locals ', res.locals)
+  console.log('res.locals.user.dbUser ', res.locals.user.dbUser)
   const dbUser = res.locals.user.dbUser
   if (dbUser.permissions.includes(group.ADMIN)) {
     next()
   } else {
-    res.status(401).json({ message: 'Admin Only' })
+    res.status(403).json({ message: 'Admin Only' })
   }
 }
 
@@ -18,8 +21,8 @@ const hasPermission = (condition, message) => {
       next()
     } else {
       !message
-        ? res.sendStatus(401)
-        : res.status(401).json({ mesage })
+        ? res.sendStatus(403)
+        : res.status(403).json({ mesage })
     }
   }
 }
