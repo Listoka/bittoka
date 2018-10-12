@@ -34,7 +34,7 @@ categoryRouter.get('/categories/id/:categoryId', function (req, res) {
 
 categoryRouter.get('/categories/:categoryName/posts', function (req, res) {
   console.log('categoryRouter-OPEN res.locals:\n', res.locals)
-  db.Post.find({ categoryName: res.locals.category.name })
+  db.Post.find({ categoryName: res.locals.category.name, isDraft: false })
     .then(dbPost => {
       if (!dbPost || dbPost.length < 1) {
         return []

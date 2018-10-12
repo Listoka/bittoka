@@ -4,7 +4,6 @@ const db = require('../models/')
 const ACTIVATE = true
 // const ACTIVATE = false
 
-// TODO: Refactor so that we can get the dbUser and check permissions
 function firebaseAuthMiddleware(req, res, next) {
   const authorization = req.header('Authorization')
   if (authorization) {
@@ -13,9 +12,7 @@ function firebaseAuthMiddleware(req, res, next) {
     admin.auth().verifyIdToken(token)
       .then(decodedToken => {
         console.log('>>>>> AUTH Middleware - decodedToken\n', decodedToken)
-        // res.locals.user = decodedToken
         return Promise.all([decodedToken, db.User.findOne({ uid: decodedToken.uid })])
-        // next()
       })
       .then(([token, dbUser]) => {
         res.locals.user = { token, dbUser }

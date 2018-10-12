@@ -64,6 +64,13 @@ const postData = [
         teaser: "teaser",
         body: "Insert Inspirational Story Here"
     },
+    {
+        title: "This is a Work in Progress",
+        categoryName: "stories",
+        teaser: "WIP Teaser",
+        body: "Much work in progress.  Such wow.",
+        isDraft: true
+    }
 
 ];
 
