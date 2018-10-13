@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import axios from '../../utils/authAxios'
-import  { Input, FormBtn } from '../PostComponents/PostForm'
+import { Input, FormBtn } from '../PostComponents/PostForm'
 import MoneyButton from '@moneybutton/react-money-button'
+import './TipButton.css'
 
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
 
 class TipButton extends Component {
     state = {
-        payees: [ { amount: 0 }],
+        payees: [{ amount: 0 }],
         tipState: 0
     }
 
@@ -33,7 +34,7 @@ class TipButton extends Component {
     }
 
     handleTipChange = (evt) => {
-        this.setState( { tipState: evt.target.value })
+        this.setState({ tipState: evt.target.value })
     }
 
     handleTipSubmit = (evt) => {
@@ -51,31 +52,44 @@ class TipButton extends Component {
 
     render() {
         return (
-            <div>
-                {(this.state.payees[0].amount + listokaCut >= this.props.minTipAmt ?
-                    <MoneyButton
-                        outputs={this.state.payees}
-                        type='tip'
-                        label={this.props.label}
-                        onPayment={this.props.paymentSuccessCbk}
-                        onError={this.handleError}
-                    />
-                    :
-                    <div>
-                        <p>{this.props.tipMessage} (minimum {this.props.minTipAmt}): </p>
-                        <Input
-                            onChange={this.handleTipChange}
-                            className='form-control'
-                        />
-                        <FormBtn
-                            onClick={this.handleTipSubmit}
-                        >
-                            Submit Tip Amount
-                        </FormBtn>
+            
+            <div className='card tipBtnCard col-lg-3 col-md-4 col-sm-6 col-xs-6'>
+                <div className='card-body'>
+                    <div className='card-title'>
+                        {this.props.tipMessage}
                     </div>
+                    <div className='card-text'>
+                        {(this.state.payees[0].amount + listokaCut >= this.props.minTipAmt ?
+                            <MoneyButton
+                                outputs={this.state.payees}
+                                type='tip'
+                                label={this.props.label}
+                                onPayment={this.props.paymentSuccessCbk}
+                                onError={this.handleError}
+                            />
+                            :
+                            <div>
+                                <p> (minimum {this.props.minTipAmt}): </p>
 
-                )}
+                                <Input
+                                    onChange={this.handleTipChange}
+                                    className='form-control'
+                                    type='text'
+                                    style={{ width: 80 + 'px' }}
+                                />
+                                <FormBtn
+                                    onClick={this.handleTipSubmit}
+                                >Submit</FormBtn>
+                                    
+                        
+
+                            </div>
+
+                        )}
+                    </div>
+                </div>
             </div>
+            
 
         )
     }
