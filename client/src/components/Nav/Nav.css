@@ -23,7 +23,7 @@
 }
 
 @media screen and (max-width: 991px) {
-    #logoImage { display: none; }   /* hide it elsewhere */
+    /*#logoImage { display: none; }    hide it elsewhere */
     .Typist { display: none; }
 }
 
@@ -96,7 +96,7 @@ ul.navbar-nav a:hover::before, a:focus::before {
    -o-transform: rotate(0deg);
    transform: rotate(0deg);
    position: relative;
-   left: 0;
+   right: 0;
    opacity: 1;
 }
 
@@ -117,7 +117,7 @@ ul.navbar-nav a:hover::before, a:focus::before {
 
 .navbar-toggler:not(.collapsed) span:nth-child(1) {
     position: absolute;
-    left: 29px;
+    right: 29px;
     top: 21px;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
@@ -134,7 +134,7 @@ ul.navbar-nav a:hover::before, a:focus::before {
 
 .navbar-toggler:not(.collapsed) span:nth-child(3) {
     position: absolute;
-    left: 29px;
+    right: 29px;
     top: 21px;
     -webkit-transform: rotate(-135deg);
     -moz-transform: rotate(-135deg);
