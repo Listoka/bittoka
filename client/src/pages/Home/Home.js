@@ -28,6 +28,15 @@ class Home extends Component {
     });
   };
 
+  handleDeleteButton = (event, id) => {
+    event.preventDefault();
+    API.deletePost(id)
+      .then(res => {
+        this.updateAfterDelete(id)
+      })
+      .catch(err => console.log(err));
+  }
+
 
   render() {
     return (
@@ -71,6 +80,7 @@ class Home extends Component {
                   title={homePosts.title}
                   _id={homePosts._id}
                   author={homePosts.author}
+                  handleDeleteButton={this.handleDeleteButton}
                   />
                 ))}
               </PostList>

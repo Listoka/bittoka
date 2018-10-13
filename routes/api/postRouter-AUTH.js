@@ -19,7 +19,7 @@ router.route('/posts')
   })
 
 // TODO: These should only be allowed if user === author
-router.route('/posts/:postId')
+router.route('/posts/:id')
   .put(postController.update)
   .delete(postController.remove)
 

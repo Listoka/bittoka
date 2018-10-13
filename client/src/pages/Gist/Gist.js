@@ -7,7 +7,7 @@ const Gist = () => (
     <div className="col-md-2"></div>
       <div className="col-md-8">
         <div className="gistDescriptionBox card">
-        <p><h2 className=" card-header">Listoka's Gist</h2></p>
+        <h2 className=" card-header">Listoka's Gist</h2>
         <div className="card-body">
         {/* <p><h6 className="underline">The 30 Second Elevator Pitch</h6></p> */}
         <p>Listoka is a writing and entertainment based platform where users will also find and contribute 
