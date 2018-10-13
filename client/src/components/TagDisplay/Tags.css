@@ -1,7 +1,7 @@
 .tagLink {
     list-style-type: none;
-    animation-name: tracking-in-expand;
-    animation-duration: 1s;
+    /*animation-name: tracking-in-expand;
+    animation-duration: 1s;*/
     overflow: hidden;
     color: blue;
 }

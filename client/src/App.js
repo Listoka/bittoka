@@ -24,18 +24,19 @@ import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
 import MainCategoryPage from './pages/MainCategoryPage';
 
-import authTest from './pages/AUTH-TEST'
+import authTest from './pages/AUTH-TEST';
 
 // Auth Helper
-import withAuthentication from './components/AuthUserSession/withAuthentication'
+import withAuthentication from './components/AuthUserSession/withAuthentication';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isOpen: false,
       categories: categories,
-      categoryPosts: [],//Update whenever a new category is clicked on
-      categoryName: "listoka",//Will come in with API call
+      categoryPosts: [],
+      categoryName: "listoka",
       displayName: "",
       description: "",
       tags: []
@@ -43,17 +44,27 @@ class App extends Component {
   };
 
   handleCategoryChange = categoryName => {
+    this.setState({
+      isOpen: false,
+      tags: []
+  });
     API.getPostings(categoryName)
       .then(results => {
         const { category, posts } = results.data
         this.setState({
+          //isOpen: false,
           categoryPosts: posts,
           displayName: category.displayName,
           description: category.description,
           tags: category.tags
         })
       })
+      .then(() => {
+        setTimeout(this.toggle, 30);
+      });
   };
+
+  toggle = () => this.setState({ isOpen: !this.state.isOpen });
   
   render(){
     console.log('state: ', this.state)
@@ -75,7 +86,7 @@ class App extends Component {
           <Switch>
             <Route exact path={routes.LANDING} component={Home} />
             <Route exact path={routes.MAINCATEGORYPAGE} render={(routeProps) => 
-              <MainCategoryPage {...routeProps} categoryName={this.state.categoryName} tags={this.state.tags} description={this.state.description} categoryPosts={this.state.categoryPosts} displayName={this.state.displayName}/>} />
+              <MainCategoryPage {...routeProps} categoryName={this.state.categoryName} tags={this.state.tags} description={this.state.description} categoryPosts={this.state.categoryPosts} displayName={this.state.displayName} isOpen={this.state.isOpen}/>}/>
             <Route exact path={routes.HOME} component={Home} />
             <Route exact path={routes.LISTOKA} component={Listoka} />
             <Route exact path={routes.STORIES} component={Stories} />

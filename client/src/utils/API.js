@@ -30,6 +30,17 @@ export default {
         console.log(id)
         return axios.get('/api/posts/' + id)
     },
+    getPostWithComments: (id) => {
+        console.log(id)
+        return axios.get(`/api/posts/${id}/comments`)
+        .then(response => {
+            console.log(response);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    },
     getPostings: (categoryName) => {
         console.log(categoryName)
         return axios.get(`/api/categories/${categoryName}/posts`);
@@ -42,12 +53,11 @@ export default {
             tags: categoryName.tags
         });
     },
-    createComment: (commentData) => {
-        console.log(commentData)
-        return axios.post('/api/comments', {
-            author: commentData.author,
+    createComment: (id, commentData) => {
+        console.log(commentData.body)
+        console.log(id)
+        return axios.post(`/api/posts/${id}/comments`, {
             body: commentData.body,
-            // authorName: commentData.authorName,
             commentPath: commentData.commentPath
         })
         .then(response => {

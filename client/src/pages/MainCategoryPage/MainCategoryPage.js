@@ -1,53 +1,50 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
-import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
-import {CreatePostButton} from '../../components/ButtonComponents/CreatePostButton';
-import {Tags, TagWrapper} from '../../components/TagDisplay';
+import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
+import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
+import posed, { PoseGroup } from "react-pose";
+
+const Sidebar = posed.ul({
+  open: {
+    x: '0%',
+    delayChildren: 300,
+    staggerChildren: 50
+  },
+  closed: { x: '-100%', delay: 300}
+});
+
+const Item = posed.li({
+  open: { y: 0, opacity: 1 },
+  closed: { y: 20, opacity: 0 }
+});
 
 class MainCategoryPage extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      // categoryPosts: [],//Update whenever a new category is clicked on
-      // categoryName: "stories",//Will come in with API call
-      // displayName: "",
-      // description: "",
-      // tags: [],
+      categoryPosts: [],
+      userPosts: "",
     };
-  };
-
-  componentDidMount() {
-    // const categoryName = this.state.categoryName;
-    // this.promiseCategories(categoryName);
-    console.log(this.props)
-
-    // let promises = [this.getPosts(categoryName), this.getCategory(categoryName)]
-    // Promise.all(promises)
-    //   .then(results => {
-    //     this.setState({
-    //       categoryPosts: results[0].posts,
-    //       displayName: results[1].displayName,
-    //       description: results[1].description,
-    //       tags: results[1].tags
-    //     })
-    //   })
   };
 
   handleDeleteButton = (event, id) => {
     event.preventDefault();
     API.deletePost(id)
-    .then(res => {
-      this.updateAfterDelete(id)
-    })
-    .catch(err => console.log(err));
+      .then(res => {
+        this.updateAfterDelete(id)
+      })
+      .catch(err => console.log(err));
   }
 
   updateAfterDelete = (id) => {
-    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
+    return API.getUserPosts(id).then(res => this.setState({ categoryPosts: res.data }))
   }
-  
+
   render() {
+    const { isOpen } = this.props;
+
     return (
       <div className='pagebody'>
         <div className='row'>
@@ -61,50 +58,55 @@ class MainCategoryPage extends Component {
         </div>
 
         <div className='row'>
-          <div className='col-lg-2'>
-            <TagWrapper>
-              {this.props.tags.map(tags => (
-                <Tags
-                  key={tags}
-                  tag={tags}
-                />
-              ))}
-            </TagWrapper>
-          </div>
-
-          <div className='col-sm-8'>
-            <CategoryDetail>
-              <CategoryDescription
-                displayName={this.props.displayName}
-                description={this.props.description}
-              />
-              <PostList>
-                {this.props.categoryPosts.map(categoryPost => (
-                  <PostListItem
-                    key={categoryPost._id}
-                    authorName={categoryPost.authorName}
-                    body={categoryPost.body}
-                    categoryName={categoryPost.categoryName}
-                    comments={categoryPost.comments}
-                    purchasers={categoryPost.purchasers}
-                    tags={categoryPost.tags}
-                    teaser={categoryPost.teaser}
-                    title={categoryPost.title}
-                    _id={categoryPost._id}
-                    author={categoryPost.author}
-                    handleDeleteButton={this.handleDeleteButton}
-                  />
+          <div className='col-sm-2'>
+            <div className='tagWrapper rounded'>
+            <div className='headWrapper'>
+                <p>Tags</p>
+              </div>
+              <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
+                {this.props.tags.sort().map(tags => (
+                  <Item className='tagLink' >
+                    {tags}
+                  </Item>        
                 ))}
-              </PostList>
-            </CategoryDetail>
-          </div>
-          <div className='col-xl-2'>
-            {/* Advertisements would go here */}
+              </Sidebar>
+            </div>
+            </div>
+
+            <div className='col-md-8'>
+              <CategoryDetail>
+                <CategoryDescription
+                  displayName={this.props.displayName}
+                  description={this.props.description}
+                />
+                
+                <PostList pose={isOpen ? 'open' : 'closed'}>
+                  {this.props.categoryPosts.map(categoryPost => (
+                    <PostListItem
+                      key={categoryPost._id}
+                      authorName={categoryPost.authorName}
+                      body={categoryPost.body}
+                      categoryName={categoryPost.categoryName}
+                      comments={categoryPost.comments}
+                      purchasers={categoryPost.purchasers}
+                      tags={categoryPost.tags}
+                      teaser={categoryPost.teaser}
+                      title={categoryPost.title}
+                      _id={categoryPost._id}
+                      author={categoryPost.author}
+                      handleDeleteButton={this.handleDeleteButton}
+                    />
+                  ))}
+                </PostList>
+              </CategoryDetail>
+            </div>
+            <div className='col-sm-2'>
+              {/* Advertisements would go here */}
+            </div>
           </div>
         </div>
-      </div>
-    );
-  };
-
-};
-export default MainCategoryPage;
+        );
+      };
+    
+    };
+    export default MainCategoryPage;
