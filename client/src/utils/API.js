@@ -57,8 +57,7 @@ export default {
         console.log(commentData.body)
         console.log(id)
         return axios.post(`/api/posts/${id}/comments`, {
-            body: commentData.body,
-            commentPath: commentData.commentPath
+            body: commentData.body
         })
         .then(response => {
             console.log(response);
@@ -68,8 +67,15 @@ export default {
             console.log(error);
         });
     },
-    getComments: () => {
-        return axios.get('/api/comments');
+    createLayeredComment: (id, commentData) => {
+        console.log(commentData.body)
+        console.log(id)
+        return axios.post(`/api/comments/${id}/comments`, {
+            body: commentData.body
+        })
+    },
+    getLayeredComments: (commentID) => {
+        return axios.get(`/api/comments/${commentID}/`)
     },
     getUserPosts: (userID) => {
         return axios.get(`/api/users/${userID}/posts/`);
