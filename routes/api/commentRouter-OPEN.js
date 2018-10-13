@@ -9,7 +9,12 @@ router.route('/comments') // TODO: this should probably be admin-only
   .get(commentController.findAll)
 
 router.route('/comments/:id') 
-  .get(commentController.findById)
+  .get((req, res) => {
+    db.Comment.findById(req.params.id)
+      .populate('comments')
+      .then(result => res.json(result))
+      .catch(err => res.status(500).json(err))
+  })
 
 router.route('/posts/:postId/comments/:commentId')
   .get((req, res) => {
