@@ -45,7 +45,7 @@ export class PostDetail extends Component {
                 <p>{this.props.body}</p>
                 <TipButton
                     minTipAmt='.03'
-                    tipMessage='To upvote, enter tip amount'
+                    tipMessage='UPVOTE'
                     paymentSuccessCbk={this.afterPayment}
                     label='Upvote'
                     payeeId={this.props.author}
