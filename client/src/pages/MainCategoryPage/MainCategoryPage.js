@@ -3,7 +3,7 @@ import API from '../../utils/API';
 import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
 import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
-import posed from 'react-pose';
+import posed, { PoseGroup } from "react-pose";
 
 const Sidebar = posed.ul({
   open: {
@@ -79,7 +79,8 @@ class MainCategoryPage extends Component {
                   displayName={this.props.displayName}
                   description={this.props.description}
                 />
-                <PostList>
+                
+                <PostList pose={isOpen ? 'open' : 'closed'}>
                   {this.props.categoryPosts.map(categoryPost => (
                     <PostListItem
                       key={categoryPost._id}

@@ -24,10 +24,10 @@ import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
 import MainCategoryPage from './pages/MainCategoryPage';
 
-import authTest from './pages/AUTH-TEST'
+import authTest from './pages/AUTH-TEST';
 
 // Auth Helper
-import withAuthentication from './components/AuthUserSession/withAuthentication'
+import withAuthentication from './components/AuthUserSession/withAuthentication';
 
 class App extends Component {
   constructor(props) {
