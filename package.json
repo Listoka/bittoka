@@ -4,12 +4,14 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.4.1",
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "firebase-admin": "^6.0.0",
     "if-env": "^1.0.4",
-    "mongoose": "^5.2.16"
+    "mongoose": "^5.2.16",
+    "react-pose": "^3.3.6"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",

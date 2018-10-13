@@ -3,7 +3,6 @@ import API from '../../utils/API';
 import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
 import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
 import {CreatePostButton} from '../../components/ButtonComponents/CreatePostButton';
-import {Tags, TagWrapper} from '../../components/TagDisplay';
 import './Home.css';
 
 class Home extends Component {
@@ -23,7 +22,6 @@ class Home extends Component {
   }
 
   getPosts = () => {
-    //console.log(categoryName)
     API.getAllPosts().then(results => {
       console.log(results.data);
       this.setState({ homePosts: results.data });
@@ -45,17 +43,15 @@ class Home extends Component {
         </div>
 
         <div className='row'>
-          <div className='col-lg-2'>
-            <TagWrapper>
-              {this.state.tags.map(tags => (
-                <Tags
-                  tag={tags}
-                />
-              ))}
-            </TagWrapper>
+          <div className='col-sm-2'>
+            <div className='tagWrapper rounded'>
+            <div className='headWrapper'>
+                <p>Home</p>
+              </div>
+          </div>
           </div>
 
-          <div className='col-sm-8'>
+          <div className='col-md-8'>
             <CategoryDetail>
               <CategoryDescription
                 displayName={this.state.displayName}
