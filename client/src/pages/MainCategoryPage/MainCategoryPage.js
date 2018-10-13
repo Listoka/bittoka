@@ -64,7 +64,7 @@ class MainCategoryPage extends Component {
                 <p>Tags</p>
               </div>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
-                {this.props.tags.map(tags => (
+                {this.props.tags.sort().map(tags => (
                   <Item className='tagLink' >
                     {tags}
                   </Item>        
