@@ -33,6 +33,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isOpen: false,
       categories: categories,
       categoryPosts: [],
       categoryName: "listoka",
@@ -47,13 +48,19 @@ class App extends Component {
       .then(results => {
         const { category, posts } = results.data
         this.setState({
+          isOpen: false,
           categoryPosts: posts,
           displayName: category.displayName,
           description: category.description,
           tags: category.tags
         })
       })
+      .then(() => {
+        setTimeout(this.toggle, 1000);
+      });
   };
+
+  toggle = () => this.setState({ isOpen: !this.state.isOpen });
   
   render(){
     console.log('state: ', this.state)
@@ -75,7 +82,7 @@ class App extends Component {
           <Switch>
             <Route exact path={routes.LANDING} component={Home} />
             <Route exact path={routes.MAINCATEGORYPAGE} render={(routeProps) => 
-              <MainCategoryPage {...routeProps} categoryName={this.state.categoryName} tags={this.state.tags} description={this.state.description} categoryPosts={this.state.categoryPosts} displayName={this.state.displayName}/>} />
+              <MainCategoryPage {...routeProps} categoryName={this.state.categoryName} tags={this.state.tags} description={this.state.description} categoryPosts={this.state.categoryPosts} displayName={this.state.displayName} isOpen={this.state.isOpen}/>}/>
             <Route exact path={routes.HOME} component={Home} />
             <Route exact path={routes.LISTOKA} component={Listoka} />
             <Route exact path={routes.STORIES} component={Stories} />
