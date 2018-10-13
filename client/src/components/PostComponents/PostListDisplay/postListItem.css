@@ -1,7 +1,25 @@
 .listItem {
-    /*animation-name: slide-in-bck-bottom;
-    animation-duration: 1s;*/
+    font-size: 12px;
     margin: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
+.card {
+    border-color: darkcyan;
+}
+
+.post-body {
+    padding: 10px 10px 0px 15px;
+    width: 100%;
+}
+
+.infoContainers {
+    display: inline;
+}
+
+.smallPostText {
+    font-size: 12px;
+    display: inline;
 }
 
 .delete-btn {
@@ -9,7 +27,33 @@
   cursor: pointer;
 }
 
-.card-subtitle{
+.post-subtitle{
     color: grey;
     margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.post-text {
+    font-size: 12px;
+    margin: 0px 0px 10px 0px;
+}
+
+.postMeta {
+    display: inline;
+}
+
+.fltRight {
+    float: right;
+}
+
+.tagList{
+    color: grey;
+    float: right;
+    list-style: none;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }

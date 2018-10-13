@@ -80,7 +80,7 @@ class MainCategoryPage extends Component {
                   description={this.props.description}
                 />
                 
-                <PostList pose={isOpen ? 'open' : 'closed'}>
+                <PostList>
                   {this.props.categoryPosts.map(categoryPost => (
                     <PostListItem
                       key={categoryPost._id}

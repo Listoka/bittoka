@@ -24,12 +24,12 @@ export class Nav extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
+      <span id="logoImage"><Link style={{ color: 'snow', textDecoration: 'none' }} to='/'>Listoka</Link></span>
         <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
           <span> </span>
           <span> </span>
           <span> </span>
         </button>
-        <span id="logoImage"><Link style={{ color: 'snow', textDecoration: 'none' }} to='/'>Listoka</Link></span>
         <Typwriter
           cursor={{
             show: true,
