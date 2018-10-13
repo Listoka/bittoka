@@ -79,10 +79,6 @@ export default {
     },
     updatePost: (id, updatedData) => {
         return axios.put('/api/posts/' + id, updatedData)
-        .then(response => {
-            console.log(response);
-            return response;
-        })
         .catch(error => {
             console.log(error);
         });

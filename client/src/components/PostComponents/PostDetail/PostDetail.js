@@ -30,13 +30,8 @@ export class PostDetail extends Component {
         return (
             <React.Fragment>
                 <br />
-                <Link to={{pathname:'/editpage', state:{
-                    categoryName: this.state.categoryName, 
-                    body: this.state.body, 
-                    _id: this.state._id,
-                    title: this.state.title,
-                    teaser: this.state.teaser,
-                    authorName: this.state.authorName,}}}>
+                {/* TODO: make this only show if logged in user is author */}
+                <Link to={{pathname:`/posts/${this.state._id}/edit`}}>
                     <i className="far fa-edit"> 
                     Edit Post</i>
                 </Link>
