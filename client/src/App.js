@@ -44,11 +44,15 @@ class App extends Component {
   };
 
   handleCategoryChange = categoryName => {
+    this.setState({
+      isOpen: false,
+      tags: []
+  });
     API.getPostings(categoryName)
       .then(results => {
         const { category, posts } = results.data
         this.setState({
-          isOpen: false,
+          //isOpen: false,
           categoryPosts: posts,
           displayName: category.displayName,
           description: category.description,

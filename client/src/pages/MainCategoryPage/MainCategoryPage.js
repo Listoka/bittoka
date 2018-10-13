@@ -8,10 +8,10 @@ import posed from 'react-pose';
 const Sidebar = posed.ul({
   open: {
     x: '0%',
-    delayChildren: 200,
+    delayChildren: 100,
     staggerChildren: 50
   },
-  closed: { x: '-100%', delay: 300 }
+  closed: { x: '-100%', delay: 300}
 });
 
 const Item = posed.li({
@@ -27,13 +27,6 @@ class MainCategoryPage extends Component {
       categoryPosts: [],
       userPosts: "",
     };
-    //this.toggle = this.toggle.bind(this);
-  };
-
-  componentDidMount() {
-    //console.log(this.props);
-    //setTimeout(this.toggle, 1000);
-    //setTimeout(this.toggle, 1000);
   };
 
   handleDeleteButton = (event, id) => {
@@ -65,12 +58,12 @@ class MainCategoryPage extends Component {
         </div>
 
         <div className='row'>
-          <div className='col-lg-2'>
+          <div className='col-sm-2'>
             <div className='tagWrapper rounded'>
             <div className='headWrapper'>
                 <p>Tags</p>
               </div>
-              <Sidebar pose={isOpen ? 'open' : 'closed'}>
+              <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
                 {this.props.tags.map(tags => (
                   <Item className='tagLink' >
                     {tags}
@@ -80,7 +73,7 @@ class MainCategoryPage extends Component {
             </div>
             </div>
 
-            <div className='col-sm-8'>
+            <div className='col-md-8'>
               <CategoryDetail>
                 <CategoryDescription
                   displayName={this.props.displayName}
@@ -106,7 +99,7 @@ class MainCategoryPage extends Component {
                 </PostList>
               </CategoryDetail>
             </div>
-            <div className='col-xl-2'>
+            <div className='col-sm-2'>
               {/* Advertisements would go here */}
             </div>
           </div>

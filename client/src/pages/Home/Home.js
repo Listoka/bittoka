@@ -45,17 +45,15 @@ class Home extends Component {
         </div>
 
         <div className='row'>
-          <div className='col-lg-2'>
-            <TagWrapper>
-              {this.state.tags.map(tags => (
-                <Tags
-                  tag={tags}
-                />
-              ))}
-            </TagWrapper>
+          <div className='col-sm-2'>
+            <div className='tagWrapper rounded'>
+            <div className='headWrapper'>
+                <p>Home</p>
+              </div>
+          </div>
           </div>
 
-          <div className='col-sm-8'>
+          <div className='col-md-8'>
             <CategoryDetail>
               <CategoryDescription
                 displayName={this.state.displayName}
