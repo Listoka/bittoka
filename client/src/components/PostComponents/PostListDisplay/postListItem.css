@@ -1,7 +1,6 @@
 .listItem {
-    animation-name: slide-in-bck-bottom;
-    animation-duration: 1s;
-    
+    /*animation-name: slide-in-bck-bottom;
+    animation-duration: 1s;*/
     margin: 10px;
 }
 .delete-btn {

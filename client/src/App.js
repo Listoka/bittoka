@@ -60,7 +60,7 @@ class App extends Component {
         })
       })
       .then(() => {
-        setTimeout(this.toggle, 1000);
+        setTimeout(this.toggle, 30);
       });
   };
 

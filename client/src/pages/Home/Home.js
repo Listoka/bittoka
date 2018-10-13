@@ -3,7 +3,6 @@ import API from '../../utils/API';
 import {CategoryDescription, CategoryDetail} from '../../components/CategoryInfoDisplay';
 import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
 import {CreatePostButton} from '../../components/ButtonComponents/CreatePostButton';
-import {Tags, TagWrapper} from '../../components/TagDisplay';
 import './Home.css';
 
 class Home extends Component {
@@ -23,7 +22,6 @@ class Home extends Component {
   }
 
   getPosts = () => {
-    //console.log(categoryName)
     API.getAllPosts().then(results => {
       console.log(results.data);
       this.setState({ homePosts: results.data });
