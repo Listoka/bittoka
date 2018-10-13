@@ -37,7 +37,8 @@ export class PostDetail extends Component {
                     title: this.state.title,
                     teaser: this.state.teaser,
                     authorName: this.state.authorName,}}}>
-                    <i className="far fa-edit"> Edit Post</i>
+                    <i className="far fa-edit"> 
+                    Edit Post</i>
                 </Link>
                 <p>{this.props.title}</p>
                 <p>By: {this.props.authorName}</p>
