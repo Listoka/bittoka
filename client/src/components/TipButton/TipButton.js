@@ -53,7 +53,7 @@ class TipButton extends Component {
     render() {
         return (
             
-            <div className='card col-lg-3 col-md-4 col-sm-6 col-xs-6'>
+            <div className='card tipBtnCard col-lg-3 col-md-4 col-sm-6 col-xs-6'>
                 <div className='card-body'>
                     <div className='card-title'>
                         {this.props.tipMessage}
