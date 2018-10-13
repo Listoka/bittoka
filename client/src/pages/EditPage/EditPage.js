@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import API from '../../utils/API';
 import { Redirect } from 'react-router-dom';
-import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import RichTextEditor from 'react-rte'
 
 class EditPage extends Component {
