@@ -13,7 +13,7 @@ const PostSchema = new Schema({
   },
   teaser: { // should have a length limit and a minimum?
     type: String,
-    required: true
+    // required: true
   },
   tags: [String],
   author: { type: ObjectId, ref: 'User', required: true },
