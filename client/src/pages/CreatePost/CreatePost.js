@@ -4,6 +4,7 @@ import withAuthorization from '../../components/AuthUserSession/withAuthorizatio
 import './createPost.css';
 import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
+import RichTextEditor from 'react-rte'
 
 export class CreatePost extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export class CreatePost extends Component {
       title: "",
       redirectToNewPage: false,
       redirectPathId: "",
+      value: RichTextEditor.createEmptyValue()
     };
   }
 
@@ -29,6 +31,18 @@ export class CreatePost extends Component {
       [name]: value
     });
   };
+
+  onChange = (value) => {
+    this.setState({value})
+    if (this.props.onChange) {
+      // Send the changes up to the parent component as an HTML string.
+      // This is here to demonstrate using `.toString()` but in a real app it
+      // would be better to avoid generating a string on each change.
+      this.props.onChange(
+        value.toString('html')
+      );
+    }
+  }
 
   handleFormSubmit = (event) => {
     console.log(this.state);
@@ -68,32 +82,10 @@ export class CreatePost extends Component {
         <div className="row">
         <div className="col-md-2"></div>
         <div className="col-md-8">
-          <form>
-            <Input
-              value={this.state.title}
-              onChange={this.handleInputChange}
-              name="title"
-              placeholder="Title of your Story"
-            />
-            <Input
-              value={this.state.teaser}
-              onChange={this.handleInputChange}
-              name="teaser"
-              placeholder="Enter your teaser here"
-            />
-            <TextArea
-              value={this.state.body}
-              onChange={this.handleInputChange}
-              name="body"
-              placeholder="Enter Story Here"
-            />
-            <FormBtn
-              disabled={!(this.state.title && this.state.teaser && this.state.body)}
-              onClick={this.handleFormSubmit}
-            >
-              Submit Story
-            </FormBtn>
-          </form>
+          <RichTextEditor
+            value={this.state.value}
+            onChange={this.onChange}
+          />
         </div>
         <div className="col-md-2"></div>
         </div>
