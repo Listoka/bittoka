@@ -90,6 +90,6 @@ router.route('/comments/:commentId/comments')
       })
       .then(([dbComment, parentComment]) => res.json(dbComment))
       .catch(err => res.status(500).json(err))
-  })
+  });
 
 module.exports = router

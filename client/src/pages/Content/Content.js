@@ -24,6 +24,7 @@ class Content extends Component {
   getPostWithComments = () => {
     API.getPostWithComments(this.props.match.params.id)
     .then(res => this.setState({ post: res.data, comments: res.data.comments, body: "" }))
+    .then (res=> console.log(this.state.comments))
     .catch(err => console.log(err));
   }
 
@@ -95,7 +96,8 @@ class Content extends Component {
                       authorName={comments.authorName}
                       body={comments.body} 
                       // voters={comments.voters} 
-                      comments={comments.comments} 
+                      comments={comments.comments}
+                      createdAt={comments.createdAt} 
                       />
                   ))}
                 </CommentList>
