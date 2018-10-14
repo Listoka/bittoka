@@ -6,7 +6,6 @@ import Moment from 'react-moment';
 
 export const PostListItem = props => {
     return (
-
         <div className='listItem card' id={props._id}>
             <div className='post-body'>
                 <div className='clearfix'>
