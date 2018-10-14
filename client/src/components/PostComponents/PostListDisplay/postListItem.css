@@ -19,7 +19,7 @@
     display: inline;
 }
 
-.delete-btn {
+.edit-btn-float-right {
   float: right;
   cursor: pointer;
 }

@@ -11,7 +11,6 @@ class Home extends Component {
     super(props);
     this.state = {
       homePosts: [],
-      categoryName: "",
       displayName: "",
       description: "",
       tags: [],
@@ -29,27 +28,17 @@ class Home extends Component {
     });
   };
 
-  handleDeleteButton = (event, id) => {
-    event.preventDefault();
-    API.deletePost(id)
-      .then(res => {
-        this.updateAfterDelete(id)
-      })
-      .catch(err => console.log(err));
-  }
-
-
   render() {
     return (
       <div className='pagebody'>
       {/*Will need to find an alternate side bar solution with advertisements */}
-      <Stickybar></Stickybar>
+      <Stickybar categoryName={this.state.categoryName}></Stickybar>
         <div className='row'>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
-            <CreatePostButton
-              categoryName={"bitcoin-story"}
-            />
+            {/* <CreatePostButton
+              categoryName={this.state.categoryName}
+            /> */}
           </div>
           <div className='col-lg-2'>
           </div>
