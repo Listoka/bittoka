@@ -103,7 +103,7 @@ class MainCategoryPage extends Component {
                 </PostList>
               </CategoryDetail>
             </div>
-            <div className='col-sm-2'>
+            <div className='col-md-2'>
               {/* Advertisements would go here */}
             </div>
           </div>
