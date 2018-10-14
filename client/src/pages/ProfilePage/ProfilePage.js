@@ -1,18 +1,14 @@
 import React, { Component } from "react";
-import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
 import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
-import './account.css';
+import './profilePage.css';
 
-class Account extends Component {
+class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        userPosts: [],
-        userName: props.authUser.dbUser.username, 
-        id: props.authUser.dbUser._id,
-        formIsHidden: true
+        userPosts: []
     };
   };
 
@@ -27,41 +23,9 @@ class Account extends Component {
       });
   };
 
-  getPosts = (id) => {
-    return API.getUserPosts(id).then(results => results.data);
-  };
-
-  handleDeleteButton = (event, id) => {
-    event.preventDefault();
-    API.deletePost(id)
-    .then(res => {
-      this.updateAfterDelete(id)
-    })
-    .catch(err => console.log(err));
-  }
-
-  updateAfterDelete = (id) => {
-    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
-  }
-
-  toggleForm () {
-    this.setState({
-        formIsHidden: !this.state.formIsHidden
-    })
-  };
-
   render() {
       return (
         <div className='pagebody'>
-            <div className='row'>
-              <div className='col-lg-2'></div>
-              <div className='col-lg-8'></div>
-              <div>Hello {this.state.userName}!</div><hr/>
-              <button className="btn btn-success" onClick={this.toggleForm.bind(this)}>Update Bio</button>
-              {!this.state.formIsHidden && <BioComponent />}
-              <div className='col-lg-2'></div>
-            </div>
-
             <div className='row'>
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
@@ -94,13 +58,4 @@ class Account extends Component {
   };
 };
 
- const BioComponent = (props) => {
-  return (
-      <div>
-          hello
-      </div>
-  )
-}
-const authCondition = (authUser) => !!authUser
-
-export default withAuthorization(authCondition)(Account);
+export default ProfilePage;

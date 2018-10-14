@@ -48,7 +48,7 @@ class Home extends Component {
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
             <CreatePostButton
-              categoryName={this.state.categoryName}
+              categoryName={"bitcoin-story"}
             />
           </div>
           <div className='col-lg-2'>

@@ -36,7 +36,7 @@ export class Comments extends Component  {
                 {!this.state.commentsAreHidden && <LayeredComments commentID={this.props.id} />}
             </React.Fragment>
         );
-    };   
+    };
 };
 
 class LayeredComments extends Component {
