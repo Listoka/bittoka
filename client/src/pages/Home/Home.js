@@ -92,6 +92,7 @@ class Home extends Component {
                     _id={homePosts._id}
                     author={homePosts.author}
                     handleDeleteButton={this.handleDeleteButton}
+                    createdAt={homePosts.createdAt}
                   />
                 ))}
               </PostList>

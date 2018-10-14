@@ -97,6 +97,7 @@ class MainCategoryPage extends Component {
                       _id={categoryPost._id}
                       author={categoryPost.author}
                       handleDeleteButton={this.handleDeleteButton}
+                      createdAt={categoryPost.createdAt}
                     />
                   ))}
                 </PostList>
