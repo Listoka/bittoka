@@ -23,11 +23,38 @@ class MainCategoryPage extends Component {
 
   constructor(props) {
     super(props);
+    console.log('props', props)
     this.state = {
-      categoryPosts: [],
-      userPosts: "",
+      posts: [],
+      tags: [],
+      categoryDisplayName: '',
+      categoryDescription: ''
     };
+    this.categoryName = props.match.params.categoryName
   };
+
+  getCategoryAndPosts = () => {
+    API.getPostings(this.categoryName)
+      .then((result) => {
+        const { category, posts } = result.data
+        this.setState({
+          categoryDescription: category.description,
+          categoryDisplayName: category.displayName,
+          posts: posts,
+          tags: category.tags
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.getCategoryAndPosts()
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('componentDidUpdate')
+
+  }
 
   handleDeleteButton = (event, id) => {
     event.preventDefault();
@@ -64,7 +91,7 @@ class MainCategoryPage extends Component {
                 <p>Tags</p>
               </div>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
-                {this.props.tags.sort().map(tags => (
+                {this.state.tags.sort().map(tags => (
                   <Item className='tagLink' >
                     {tags}
                   </Item>        
@@ -76,24 +103,24 @@ class MainCategoryPage extends Component {
             <div className='col-md-8'>
               <CategoryDetail>
                 <CategoryDescription
-                  displayName={this.props.displayName}
-                  description={this.props.description}
+                  displayName={this.state.categoryDisplayName}
+                  description={this.state.categoryDescription}
                 />
                 
                 <PostList>
-                  {this.props.categoryPosts.map(categoryPost => (
+                  {this.state.posts.map(post => (
                     <PostListItem
-                      key={categoryPost._id}
-                      authorName={categoryPost.authorName}
-                      body={categoryPost.body}
-                      categoryName={categoryPost.categoryName}
-                      comments={categoryPost.comments}
-                      purchasers={categoryPost.purchasers}
-                      tags={categoryPost.tags}
-                      teaser={categoryPost.teaser}
-                      title={categoryPost.title}
-                      _id={categoryPost._id}
-                      author={categoryPost.author}
+                      key={post._id}
+                      authorName={post.authorName}
+                      body={post.body}
+                      categoryName={post.categoryName}
+                      comments={post.comments}
+                      purchasers={post.purchasers}
+                      tags={post.tags}
+                      teaser={post.teaser}
+                      title={post.title}
+                      _id={post._id}
+                      author={post.author}
                       handleDeleteButton={this.handleDeleteButton}
                     />
                   ))}

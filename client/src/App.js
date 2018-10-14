@@ -31,33 +31,7 @@ class App extends Component {
     this.state = {
       isOpen: false,
       categories: categories,
-      categoryPosts: [],
-      categoryName: "listoka",
-      displayName: "",
-      description: "",
-      tags: []
     };
-  };
-
-  handleCategoryChange = categoryName => {
-    this.setState({
-      isOpen: false,
-      tags: []
-  });
-    API.getPostings(categoryName)
-      .then(results => {
-        const { category, posts } = results.data
-        this.setState({
-          //isOpen: false,
-          categoryPosts: posts,
-          displayName: category.displayName,
-          description: category.description,
-          tags: category.tags
-        })
-      })
-      .then(() => {
-        setTimeout(this.toggle, 30);
-      });
   };
 
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
@@ -75,27 +49,23 @@ class App extends Component {
             key={category.id}
             href={category.href}
             name={category.name}
-            handleCategoryChange={this.handleCategoryChange}
+            // handleCategoryChange={this.handleCategoryChange}
             />
           ))}
           </FlexContainer>
           <Switch>
-            <Route exact path={routes.LANDING} component={Home} />
-            <Route exact path={routes.MAINCATEGORYPAGE} render={(routeProps) => 
-              <MainCategoryPage {...routeProps} categoryName={this.state.categoryName} tags={this.state.tags} description={this.state.description} categoryPosts={this.state.categoryPosts} displayName={this.state.displayName} isOpen={this.state.isOpen}/>}/>
-            <Route exact path={routes.HOME} component={Home} />
-            {/* <Route exact path={routes.LISTOKA} component={Listoka} />
-            <Route exact path={routes.STORIES} component={Stories} />
-            <Route exact path={routes.BITCOIN_STORY} component={BitcoinStories} /> */}
-            <Route exact path={routes.LOGIN} component={Login} />
-            <Route exact path={routes.JOIN} component={Join} />
-            <Route exact path={routes.GIST} component={Gist} />
-            <Route exact path={routes.CREATEPOST} component={CreatePost} />
-            <Route exact path={routes.EDITPAGE} component={EditPage} />
-            <Route exact path={routes.CONTENT} component={Content} />
-            {/* Need user account page to test auth */}
-            <Route exact path={routes.ACCOUNT} component={AccountPage} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/join' component={Join} />
+            <Route exact path='/gist' component={Gist} />
+            <Route exact path='/categories/:categoryName' component={MainCategoryPage} />
+            <Route exact path='/categories/:categoryName/posts/new' component={CreatePost} />
+            <Route exact path='/posts/:id' component={Content} />
+            <Route exact path='/posts/:id/edit' component={EditPage} />
+            <Route exact path='/account' component={AccountPage} />
             <Route exact path='/authtest' component={authTest} />
+            <Route exact path='/postman' component={authTest} />
             <Route component={NoMatch} />
           </Switch>
         </div>
