@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
 import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
-import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
-import posed from "react-pose";
+import posed from 'react-pose';
 import Stickybar from '../../components/Stickybar/Stickybar';
 
 const Sidebar = posed.ul({
@@ -20,6 +20,21 @@ const Item = posed.li({
   closed: { y: 20, opacity: 0 }
 });
 
+const PostListContainer = posed.div({
+  enter: {
+    opacity: 1,
+    //delay: 300,
+    beforeChildren: true,
+    staggerChildren: 50
+  },
+  exit: { opacity: 0 }
+});
+
+const P = posed.div({
+  enter: { x: 0, opacity: 1 },
+  exit: { x: 50, opacity: 0 }
+});
+
 class MainCategoryPage extends Component {
 
   constructor(props) {
@@ -31,6 +46,8 @@ class MainCategoryPage extends Component {
       categoryDisplayName: '',
       categoryDescription: '',
       categoryName: '',
+      isOpen: false,
+      isVisible: false
     };
   };
 
@@ -45,24 +62,33 @@ class MainCategoryPage extends Component {
           posts: posts,
           tags: category.tags,
           categoryName: category.name,
-          isOpen: true
+          isOpen: false,
+          isVisible: false,
         })
       })
       .catch(err => console.log(err))
   }
 
   componentDidMount() {
-    this.getCategoryAndPosts()
+    this.getCategoryAndPosts();
+    setTimeout(this.toggle, 500);
   }
+
+  toggle = () => this.setState({
+    isOpen: !this.state.isOpen,
+    isVisible: !this.state.isVisible
+  });
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.categoryName !== prevProps.match.params.categoryName) {
-      this.getCategoryAndPosts()
+      this.getCategoryAndPosts();
+      setTimeout(this.toggle, 500);
     }
   }
 
   render() {
     const { isOpen } = this.state;
+    const { isVisible } = this.state;
 
     return (
       <div className='pagebody'>
@@ -93,15 +119,15 @@ class MainCategoryPage extends Component {
             </div>
           </div>
 
-            <div className='col-md-8'>
-              <CategoryDetail>
-                <CategoryDescription
-                  displayName={this.state.categoryDisplayName}
-                  description={this.state.categoryDescription}
-                />
-                
-                <PostList>
-                  {this.state.posts.map(post => (
+          <div className='col-md-8'>
+            <CategoryDetail>
+              <CategoryDescription
+                displayName={this.state.categoryDisplayName}
+                description={this.state.categoryDescription}
+              />
+              <PostListContainer className='container postList' pose={isVisible ? 'enter' : 'exit'}>
+                {this.state.posts.map(post => (
+                  <P key={post._id}>
                     <PostListItem
                       key={post._id}
                       authorName={post.authorName}
@@ -117,15 +143,16 @@ class MainCategoryPage extends Component {
                       handleDeleteButton={this.handleDeleteButton}
                       createdAt={post.createdAt}
                     />
-                  ))}
-                </PostList>
-              </CategoryDetail>
-            </div>
-            <div className='col-sm-2'>
-              {/* Advertisements would go here */}
-            </div>
+                  </P>
+                ))}
+              </PostListContainer>
+            </CategoryDetail>
+          </div>
+          <div className='col-sm-2'>
+            {/* Advertisements would go here */}
           </div>
         </div>
+      </div>
     );
   };
 };

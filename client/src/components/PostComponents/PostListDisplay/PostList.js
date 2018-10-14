@@ -1,5 +1,5 @@
 import React from 'react';
-import './postList.css'
+import './postList.css';
 
 export const PostList = ({children}) => {
     return (
