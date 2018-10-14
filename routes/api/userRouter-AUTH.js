@@ -11,6 +11,22 @@ router.get('/users/uid/:uid', (req, res) => {
   })
 })
 
+router.put('/users/id/:id', (req, res) => {
+  const dbUser = res.locals.user.dbUser
+  if (dbUser._id.toString() !== req.params.id) {
+    return res.sendStatus(403)
+  }
+  const { bio } = req.body
+  db.User.findByIdAndUpdate(dbUser._id, { bio })
+    .then(result => {
+      res.json(result)
+    })
+    .catch(err => {
+      console.log(`Route Err - /users/id/${req.params.id}\n`, err)
+      res.status(500).json(err)
+    })
+})
+
 // TODO: this should check if the username is unique before creating the user
 router.post('/users', (req, res) => {
   console.log('>>> POST -- req.originalUrl: ', req.originalUrl)
