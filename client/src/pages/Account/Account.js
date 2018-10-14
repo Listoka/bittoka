@@ -20,7 +20,7 @@ class Account extends Component {
     let promises = [this.getPosts(this.state.id)]
     Promise.all(promises)
       .then(results => {
-          console.log(results)
+          // console.log(results[0].posts[0])
         this.setState({
           userPosts: results[0]
         });
@@ -30,6 +30,10 @@ class Account extends Component {
   getPosts = (id) => {
     return API.getUserPosts(id).then(results => results.data);
   };
+
+  getPostsAndBio = (id) => {
+    return API.getPostsAndBio(id).then (results => results.data)
+  }
 
   handleDeleteButton = (event, id) => {
     event.preventDefault();
@@ -54,19 +58,12 @@ class Account extends Component {
       return (
         <div className='pagebody'>
             <div className='row'>
-              <div className='col-lg-2'></div>
-              <div className='col-lg-8'></div>
-              <div>Hello {this.state.userName}!</div><hr/>
-              <button className="btn btn-success" onClick={this.toggleForm.bind(this)}>Update Bio</button>
-              {!this.state.formIsHidden && <BioComponent />}
-              <div className='col-lg-2'></div>
-            </div>
-
-            <div className='row'>
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
               <div className="categoryDetail">
-                
+              <div>Hello {this.state.userName}!</div><hr/>
+              <button className="btn btn-success" onClick={this.toggleForm.bind(this)}>Update Bio</button>
+              {!this.state.formIsHidden && <BioComponent />}
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem
