@@ -23,14 +23,12 @@ export const PostListItem = props => {
                         </div>
                         <p className='post-text'>{props.body}</p>
                     </span>
-
                 </div>
 
                 <div className='clearfix'>
                     <div className='infoContainers'>
                         <p className='smallPostText'><i className="fas fa-comments-dollar"></i>&nbsp;&nbsp;{props.comments.length} &nbsp;&nbsp;</p>
-
-                        <p className='smallPostText'><i className="fab fa-bitcoin"></i>&nbsp; $1.00 &nbsp;&nbsp;</p>
+                        <p className='smallPostText'><i className="fab fa-bitcoin"></i>&nbsp; $0.75 &nbsp;&nbsp;</p>
                     </div>
 
                     <div className="fltRight">

@@ -10,6 +10,7 @@ body {
   background-image: url("./assets/images/brushedalu.png");
   font-family: 'Varela Round', sans-serif;
   color: #333333;
+  padding-top: 70px;
 }
 
 .tagWrapper {
@@ -19,13 +20,39 @@ body {
   min-width: 150px;
   min-height: 500px;
   list-style-position: inside; 
-  padding-left: 0px;
+}
+
+.homeTagWrapper {
+  margin: 10px;
+  background-color: white;
+  min-width: 150px;
+  list-style-position: inside; 
 }
 
 .headWrapper {
   background-color: white;
   text-align: left;
   font-weight: bold;
+}
+
+.homeSidebarWrapper {
+  background-color: white;
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
+.homeSideBar {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.homeSidebarContent {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: left;
+  font-family: 'Karma', serif;
 }
 
 #tagUl {
@@ -38,7 +65,7 @@ body {
 
 @media screen and (min-width: 0px) and (max-width: 896px) {
   .tagWrapper { display: none; } 
+  .homeTagWrapper { display: none; } 
 }
-
 
 
