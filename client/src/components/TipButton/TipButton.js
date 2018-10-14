@@ -42,9 +42,9 @@ class TipButton extends Component {
         this.getPayees(this.props.payeeId)
     }
 
-    constructor(props) {
+    /*constructor(props) {
         super(props)
-    }
+    }*/
 
     handleError = err => {
         alert(`MoneyButton transaction failed. Error: ${err}`)
@@ -69,7 +69,7 @@ class TipButton extends Component {
                             />
                             :
                             <div>
-                                <p> (minimum {this.props.minTipAmt}): </p>
+                                <p className='tipAmount'> (minimum {this.props.minTipAmt}): </p>
 
                                 <Input
                                     onChange={this.handleTipChange}

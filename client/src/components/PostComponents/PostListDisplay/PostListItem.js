@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './postListItem.css';
-import AuthUserContext from '../../AuthUserSession/AuthUserContext'
+import AuthUserContext from '../../AuthUserSession/AuthUserContext';
+import Moment from 'react-moment';
 
 export const PostListItem = props => {
     return (
@@ -15,7 +16,7 @@ export const PostListItem = props => {
                             <div className='postMeta'>
                                 <ul className='tagList '>
                                     {props.tags.sort().map(tags => (
-                                        <li>#&nbsp;{tags}</li>
+                                        <li key={tags}>#&nbsp;{tags}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -23,14 +24,13 @@ export const PostListItem = props => {
                         </div>
                         <p className='post-text'>{props.body}</p>
                     </span>
-
                 </div>
 
                 <div className='clearfix'>
                     <div className='infoContainers'>
                         <p className='smallPostText'><i className="fas fa-comments-dollar"></i>&nbsp;&nbsp;{props.comments.length} &nbsp;&nbsp;</p>
-
-                        <p className='smallPostText'><i className="fab fa-bitcoin"></i>&nbsp; $1.00 &nbsp;&nbsp;</p>
+                        <p className='smallPostText'><i className="fab fa-bitcoin"></i>&nbsp; $0.75 &nbsp;&nbsp;</p>
+                        <p className='smallPostText'><i className="fas fa-calendar-alt"></i>&nbsp;<Moment fromNow>{props.createdAt}</Moment> &nbsp;&nbsp;</p>
                     </div>
 
                     <div className="fltRight">

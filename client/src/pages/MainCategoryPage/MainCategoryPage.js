@@ -3,7 +3,8 @@ import API from '../../utils/API';
 import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
 import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
-import posed, { PoseGroup } from "react-pose";
+import posed from "react-pose";
+import Stickybar from '../../components/Stickybar/Stickybar';
 
 const Sidebar = posed.ul({
   open: {
@@ -11,7 +12,7 @@ const Sidebar = posed.ul({
     delayChildren: 300,
     staggerChildren: 50
   },
-  closed: { x: '-100%', delay: 300}
+  closed: { x: '-100%', delay: 300 }
 });
 
 const Item = posed.li({
@@ -28,20 +29,21 @@ class MainCategoryPage extends Component {
       posts: [],
       tags: [],
       categoryDisplayName: '',
-      categoryDescription: ''
+      categoryDescription: '',
+      categoryName: '',
     };
-    this.categoryName = props.match.params.categoryName
   };
 
   getCategoryAndPosts = () => {
-    API.getPostings(this.categoryName)
+    API.getPostings(this.props.match.params.categoryName)
       .then((result) => {
         const { category, posts } = result.data
         this.setState({
           categoryDescription: category.description,
           categoryDisplayName: category.displayName,
           posts: posts,
-          tags: category.tags
+          tags: category.tags,
+          categoryName: category.name
         })
       })
       .catch(err => console.log(err))
@@ -53,7 +55,12 @@ class MainCategoryPage extends Component {
 
   componentDidUpdate(prevProps) {
     console.log('componentDidUpdate')
-
+    console.log('prevProps', prevProps)
+    console.log('this.props', this.props)
+    console.log('equals', this.props.match.params.categoryName === prevProps.match.params.categoryName)
+    if (this.props.match.params.categoryName !== prevProps.match.params.categoryName) {
+      this.getCategoryAndPosts()
+    }
   }
 
   handleDeleteButton = (event, id) => {
@@ -74,6 +81,7 @@ class MainCategoryPage extends Component {
 
     return (
       <div className='pagebody'>
+        <Stickybar></Stickybar>
         <div className='row'>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
@@ -87,18 +95,18 @@ class MainCategoryPage extends Component {
         <div className='row'>
           <div className='col-sm-2'>
             <div className='tagWrapper rounded'>
-            <div className='headWrapper'>
+              <div className='headWrapper'>
                 <p>Tags</p>
               </div>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
                 {this.state.tags.sort().map(tags => (
-                  <Item className='tagLink' >
+                  <Item className='tagLink' key={tags}>
                     {tags}
-                  </Item>        
+                  </Item>
                 ))}
               </Sidebar>
             </div>
-            </div>
+          </div>
 
             <div className='col-md-8'>
               <CategoryDetail>
@@ -132,8 +140,7 @@ class MainCategoryPage extends Component {
             </div>
           </div>
         </div>
-        );
-      };
-    
-    };
-    export default MainCategoryPage;
+    );
+  };
+};
+export default MainCategoryPage;

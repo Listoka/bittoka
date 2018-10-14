@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import './createPost.css';
+/*import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";*/
 import API from '../../utils/API';
 import RichTextEditor from 'react-rte'
 
