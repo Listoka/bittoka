@@ -57,7 +57,7 @@ export class CreatePost extends Component {
 
     if (this.state.redirectToNewPage) {
       return (
-        <Redirect to={{ pathname: '/api/posts/' + this.state.redirectPathId }} />
+        <Redirect to={{ pathname: '/posts/' + this.state.redirectPathId }} />
       )
     };
 
