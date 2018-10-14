@@ -8,7 +8,7 @@ import ReactTooltip from 'react-tooltip';
 const Stickybar = props => (
 
   <div className="icon-bar">
-  <Link className='facebook' to={{pathname:'/createpost', state:{categoryName: props.categoryName}}} data-tip data-for="createPost" data-offset="{'left': 15}"><i className="fas fa-pen-square"></i></Link>
+  <Link className='facebook' to={{pathname:`/categories/${props.categoryName}/posts/new`}} data-tip data-for="createPost" data-offset="{'left': 15}"><i className="fas fa-pen-square"></i></Link>
   <ReactTooltip id='createPost' place="left" type="dark" effect="solid" >
    Create a post
   </ReactTooltip>

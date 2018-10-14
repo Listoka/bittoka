@@ -43,7 +43,8 @@ class MainCategoryPage extends Component {
           categoryDisplayName: category.displayName,
           posts: posts,
           tags: category.tags,
-          categoryName: category.name
+          categoryName: category.name,
+          isOpen: true
         })
       })
       .catch(err => console.log(err))
@@ -54,10 +55,6 @@ class MainCategoryPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('componentDidUpdate')
-    console.log('prevProps', prevProps)
-    console.log('this.props', this.props)
-    console.log('equals', this.props.match.params.categoryName === prevProps.match.params.categoryName)
     if (this.props.match.params.categoryName !== prevProps.match.params.categoryName) {
       this.getCategoryAndPosts()
     }
@@ -77,16 +74,16 @@ class MainCategoryPage extends Component {
   }
 
   render() {
-    const { isOpen } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <div className='pagebody'>
-        <Stickybar></Stickybar>
+        <Stickybar categoryName={this.state.categoryName}></Stickybar>
         <div className='row'>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
             <CreatePostButton
-              categoryName={this.props.categoryName}
+              categoryName={this.state.categoryName}
             />
           </div>
           <div className='col-lg-2'></div>
