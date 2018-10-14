@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TipButton from '../../../components/TipButton';
+import renderHTML from 'react-render-html'
 import { Link } from 'react-router-dom';
 
 export class PostDetail extends Component {
@@ -15,11 +16,18 @@ export class PostDetail extends Component {
             body: props.body,
             _id: props._id,
             title: props.title,
-            teaser: props.teaser, 
-            authorName: props.authorName, 
+            teaser: props.teaser,
+            authorName: props.authorName,
             categoryName: props.categoryName,
             author: props.author,
         };
+    }
+
+    htmlDecode = (input) => {
+        console.log('htmlDecode input', input)
+        const doc = new DOMParser().parseFromString(input, "text/html");
+        console.log('htmlDecode doc', doc)
+        return doc.documentElement.textContent;
     }
 
     afterPayment = () => {
@@ -31,13 +39,17 @@ export class PostDetail extends Component {
             <React.Fragment>
                 <br />
                 {/* TODO: make this only show if logged in user is author */}
-                <Link to={{pathname:`/posts/${this.state._id}/edit`}}>
-                    <i className="far fa-edit"> 
-                    Edit Post</i>
+                <Link to={{ pathname: `/posts/${this.state._id}/edit` }}>
+                    <i className="far fa-edit">
+                        Edit Post</i>
                 </Link>
                 <p>{this.props.title}</p>
                 <p>By: {this.props.authorName}</p>
-                <p>{this.props.body}</p>
+                <div className='postBody'>
+                    <React.Fragment>
+                    {this.props.body ? renderHTML(this.props.body) : null}
+                    </React.Fragment>
+                </div>
                 <TipButton
                     minTipAmt='.03'
                     tipMessage='UPVOTE'
