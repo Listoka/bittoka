@@ -39,12 +39,7 @@ export const PostListItem = props => {
                                 authUser => {
                                     if (!!authUser && authUser.dbUser._id === props.author) {
                                         return (
-                                            <span className="delete-btn">
-                                                <span
-                                                    onClick={(event) => props.handleDeleteButton(event, props._id)}>
-                                                    <i className="far fa-trash-alt"></i>
-                                                </span>
-                                                &nbsp;&nbsp; | &nbsp;&nbsp;
+                                            <span className="edit-btn-float-right">
                                                 <span>
                                                     <Link to={{ pathname: `/posts/${props._id}/edit` }}>
                                                         <i className="far fa-edit"> Edit Post</i>
