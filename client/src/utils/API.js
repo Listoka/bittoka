@@ -42,7 +42,7 @@ export default {
         });
     },
     getPostings: (categoryName) => {
-        console.log(categoryName)
+        //console.log(categoryName)
         return axios.get(`/api/categories/${categoryName}/posts`);
     },
     getCategoryInfo: (categoryName) => {

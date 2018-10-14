@@ -16,7 +16,7 @@ export const PostListItem = props => {
                             <div className='postMeta'>
                                 <ul className='tagList '>
                                     {props.tags.sort().map(tags => (
-                                        <li>#&nbsp;{tags}</li>
+                                        <li key={tags}>#&nbsp;{tags}</li>
                                     ))}
                                 </ul>
                             </div>

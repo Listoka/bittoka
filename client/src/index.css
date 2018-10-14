@@ -17,6 +17,7 @@ body {
 
 .pagebody {
   position: absolute;
+  width: 100%;
 }
 
 .tagWrapper {

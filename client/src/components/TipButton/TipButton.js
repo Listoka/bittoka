@@ -42,9 +42,9 @@ class TipButton extends Component {
         this.getPayees(this.props.payeeId)
     }
 
-    constructor(props) {
+    /*constructor(props) {
         super(props)
-    }
+    }*/
 
     handleError = err => {
         alert(`MoneyButton transaction failed. Error: ${err}`)
