@@ -18,6 +18,9 @@ const UserSchema = new Schema({
     required: true,
     unique: true
   },
+  bio: {
+    type: String
+  },
   permissions: [String], // array of string identifiers for permission groups
   moneyBtnId: String // will be required
 },
