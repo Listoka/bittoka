@@ -13,6 +13,7 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-moment": "^0.8.1",
+    "react-pose": "^3.3.6",
     "react-post": "^1.0.3",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^4.3.1",
