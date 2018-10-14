@@ -45,19 +45,23 @@ class MainCategoryPage extends Component {
           posts: posts,
           tags: category.tags,
           categoryName: category.name,
-          isOpen: true
+          isOpen: false
         })
       })
       .catch(err => console.log(err))
   }
 
   componentDidMount() {
-    this.getCategoryAndPosts()
+    this.getCategoryAndPosts();
+    setTimeout(this.toggle, 1000);
   }
+
+  toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.categoryName !== prevProps.match.params.categoryName) {
-      this.getCategoryAndPosts()
+      this.getCategoryAndPosts();
+      setTimeout(this.toggle, 1000);
     }
   }
 
