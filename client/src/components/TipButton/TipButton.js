@@ -69,7 +69,7 @@ class TipButton extends Component {
                             />
                             :
                             <div>
-                                <p> (minimum {this.props.minTipAmt}): </p>
+                                <p className='tipAmount'> (minimum {this.props.minTipAmt}): </p>
 
                                 <Input
                                     onChange={this.handleTipChange}
