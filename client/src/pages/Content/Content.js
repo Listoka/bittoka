@@ -3,7 +3,7 @@ import API from '../../utils/API';
 import {PostDetail} from '../../components/PostComponents/PostDetail/PostDetail';
 import {Comments, CommentList} from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
-import TipButton from '../../components/TipButton';
+/*import TipButton from '../../components/TipButton';*/
 import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 
 class Content extends Component {

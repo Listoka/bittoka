@@ -63,7 +63,7 @@ class App extends Component {
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
   
   render(){
-    console.log('state: ', this.state)
+    //console.log('state: ', this.state)
     return(
       <Router>
         <div>
