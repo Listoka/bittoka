@@ -56,6 +56,7 @@ class Content extends Component {
 
     render() {
       return (
+        <div className="pagebody">
         <React.Fragment>
           <div className="container-fluid">
             <div className="row">
@@ -107,6 +108,7 @@ class Content extends Component {
             </div>
           </div>
         </React.Fragment>
+        </div>
       );
     };
 };

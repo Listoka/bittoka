@@ -37,6 +37,7 @@ class MainCategoryPage extends Component {
   getCategoryAndPosts = () => {
     API.getPostings(this.props.match.params.categoryName)
       .then((result) => {
+        console.log(result.data);
         const { category, posts } = result.data
         this.setState({
           categoryDescription: category.description,
@@ -127,6 +128,7 @@ class MainCategoryPage extends Component {
                       _id={post._id}
                       author={post.author}
                       handleDeleteButton={this.handleDeleteButton}
+                      createdAt={post.createdAt}
                     />
                   ))}
                 </PostList>

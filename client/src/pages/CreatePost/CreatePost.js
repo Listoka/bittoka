@@ -62,6 +62,7 @@ export class CreatePost extends Component {
     };
 
     return (
+      <div className="pagebody">
       <React.Fragment>
         <div className="row">
           <div className="col-md-2"></div>
@@ -82,6 +83,7 @@ export class CreatePost extends Component {
           <div className="col-md-2"></div>
         </div>
       </React.Fragment>
+      </div>
     );
   };
 };

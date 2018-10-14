@@ -24,7 +24,7 @@ class Home extends Component {
 
   getPosts = () => {
     API.getAllPosts().then(results => {
-      //console.log(results.data);
+      console.log(results.data);
       this.setState({ homePosts: results.data });
     });
   };
