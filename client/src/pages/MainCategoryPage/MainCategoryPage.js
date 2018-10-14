@@ -61,19 +61,6 @@ class MainCategoryPage extends Component {
     }
   }
 
-  handleDeleteButton = (event, id) => {
-    event.preventDefault();
-    API.deletePost(id)
-      .then(res => {
-        this.updateAfterDelete(id)
-      })
-      .catch(err => console.log(err));
-  }
-
-  updateAfterDelete = (id) => {
-    return API.getUserPosts(id).then(res => this.setState({ categoryPosts: res.data }))
-  }
-
   render() {
     const { isOpen } = this.state;
 
