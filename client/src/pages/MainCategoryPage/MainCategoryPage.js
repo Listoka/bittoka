@@ -4,6 +4,7 @@ import { CategoryDescription, CategoryDetail } from '../../components/CategoryIn
 import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
 import posed, { PoseGroup } from "react-pose";
+import Stickybar from '../../components/Stickybar/Stickybar';
 
 const Sidebar = posed.ul({
   open: {
@@ -47,6 +48,7 @@ class MainCategoryPage extends Component {
 
     return (
       <div className='pagebody'>
+      <Stickybar></Stickybar>
         <div className='row'>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
