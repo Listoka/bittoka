@@ -9,8 +9,8 @@ router.route('/posts')
     const dbUser = res.locals.user.dbUser
     const author = dbUser._id
     const authorName = dbUser.username
-    const { title, teaser, body, tags, isDraft } = req.body
-    const postData = { author, authorName, title, teaser, body, tags, isDraft }
+    const { title, teaser, body, tags, isDraft, categoryName } = req.body
+    const postData = { author, authorName, title, teaser, body, tags, isDraft, categoryName }
 
     db.Post.create(postData)
       .then(result => {
