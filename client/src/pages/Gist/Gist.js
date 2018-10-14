@@ -2,6 +2,7 @@ import React from "react";
 import './Gist.css';
 
 const Gist = () => (
+  <div className="pagebody">
   <div className="gistContainer">
     <div className="row">
       <div className="col-sm-2"></div>
@@ -29,6 +30,7 @@ const Gist = () => (
       </div>
       <div className="col-sm-2"></div>
     </div>
+  </div>
   </div>
 );
 
