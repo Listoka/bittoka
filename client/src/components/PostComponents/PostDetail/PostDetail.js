@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TipButton from '../../../components/TipButton';
+import renderHTML from 'react-render-html'
 import { Link } from 'react-router-dom';
 
 export class PostDetail extends Component {
@@ -44,9 +45,9 @@ export class PostDetail extends Component {
                 </Link>
                 <p>{this.props.title}</p>
                 <p>By: {this.props.authorName}</p>
-                <div>
+                <div className='postBody'>
                     <React.Fragment>
-                    {this.props.body}
+                    {this.props.body ? renderHTML(this.props.body) : null}
                     </React.Fragment>
                 </div>
                 <TipButton
