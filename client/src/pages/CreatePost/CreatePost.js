@@ -23,7 +23,7 @@ export class CreatePost extends Component {
 
 
   onEditorChange = (value) => this.setState({ value })
-    
+
   handleInputChange = (event) => {
     const { name, value } = event.target
     this.setState({ [name]: value })
@@ -57,7 +57,7 @@ export class CreatePost extends Component {
 
     if (this.state.redirectToNewPage) {
       return (
-        <Redirect to={{ pathname: '/api/posts/' + this.state.redirectPathId }} />
+        <Redirect to={{ pathname: '/posts/' + this.state.redirectPathId }} />
       )
     };
 
@@ -76,7 +76,7 @@ export class CreatePost extends Component {
                 value={this.state.value}
                 onChange={this.onEditorChange}
               />
-              <input className='btn btn-primary' style={{ margin: '20px 0'}} type='submit' />
+              <input className='btn btn-primary' style={{ margin: '20px 0' }} type='submit' />
             </form>
           </div>
           <div className="col-md-2"></div>

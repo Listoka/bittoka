@@ -10,12 +10,7 @@
     "express": "^4.16.3",
     "firebase-admin": "^6.0.0",
     "if-env": "^1.0.4",
-    "moment": "^2.22.2",
-    "mongoose": "^5.2.16",
-    "react-bootstrap": "^0.32.4",
-    "react-moment": "^0.8.1",
-    "react-pose": "^3.3.6",
-    "react-tooltip": "^3.9.0"
+    "mongoose": "^5.2.16"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
