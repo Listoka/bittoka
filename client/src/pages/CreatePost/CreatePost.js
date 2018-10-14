@@ -10,19 +10,15 @@ export class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: props.authUser.dbUser._id,
-      authorName: props.authUser.dbUser.username,
-      body: "",
-      categoryName: props.location.state.categoryName, //This comes from the CreatePostButton component
-      // comments: "",
-      // purchasers: "",
-      tags: "",
+      tags: [],
       teaser: "",
       title: "",
       redirectToNewPage: false,
       redirectPathId: "",
       value: RichTextEditor.createEmptyValue()
     };
+
+    this.categoryName = props.match.params.categoryName
   }
 
 
@@ -45,14 +41,12 @@ export class CreatePost extends Component {
         // teaser: teaser,
         body: body,
         tags: tags,
-        author: this.state.author,
-        authorName: this.state.authorName,
-        categoryName: this.state.categoryName
+        categoryName: this.categoryName
       }
 
       API.createPost(data)
         .then(result => {
-          console.log('authAxios result: ', result)
+          console.log('createPost result: ', result)
           this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
         }).catch(err => console.log(err))
 
@@ -72,6 +66,7 @@ export class CreatePost extends Component {
         <div className="row">
           <div className="col-md-2"></div>
           <div className="col-md-8">
+            <h2>Creating a post in {this.categoryName}</h2>
             <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
               <div className='form-group'>
                 {/* <label htmlFor='title-input'>Title</label> */}

@@ -1,13 +1,10 @@
 export const LANDING = '/';
 export const HOME = '/home';
-export const STORIES = '/stories';
-export const BITCOIN_STORY = '/yourbitcoinstory';
 export const LOGIN = '/login';
 export const JOIN = '/join';
 export const GIST = '/gist';
 export const ACCOUNT = '/account';
-export const CREATEPOST = '/createpost';
+export const CREATEPOST = '/categories/:categoryName/posts/new';
 export const CONTENT = '/posts/:id';
-export const LISTOKA = '/listoka';
-export const MAINCATEGORYPAGE = '/maincategorypage';
 export const EDITPAGE = '/posts/:id/edit';
+export const MAINCATEGORYPAGE = '/categories/:categoryName';

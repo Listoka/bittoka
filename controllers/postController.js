@@ -11,7 +11,14 @@ module.exports = {
   findById: (req, res) => {
     db.Post
       .findById(req.params.id)
-      .then(result => res.json(result))
+      .then(result => {
+        console.log(result)
+        if (!result) {
+          res.status(404)
+        } else {
+          res.json(result)
+        }
+      })
       .catch(err => res.status(500).json(err))
   },
 

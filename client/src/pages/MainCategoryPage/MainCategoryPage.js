@@ -24,11 +24,41 @@ class MainCategoryPage extends Component {
 
   constructor(props) {
     super(props);
+    console.log('props', props)
     this.state = {
-      categoryPosts: [],
-      userPosts: "",
+      posts: [],
+      tags: [],
+      categoryDisplayName: '',
+      categoryDescription: '',
+      categoryName: '',
     };
   };
+
+  getCategoryAndPosts = () => {
+    API.getPostings(this.props.match.params.categoryName)
+      .then((result) => {
+        const { category, posts } = result.data
+        this.setState({
+          categoryDescription: category.description,
+          categoryDisplayName: category.displayName,
+          posts: posts,
+          tags: category.tags,
+          categoryName: category.name,
+          isOpen: true
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.getCategoryAndPosts()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.categoryName !== prevProps.match.params.categoryName) {
+      this.getCategoryAndPosts()
+    }
+  }
 
   handleDeleteButton = (event, id) => {
     event.preventDefault();
@@ -44,16 +74,16 @@ class MainCategoryPage extends Component {
   }
 
   render() {
-    const { isOpen } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <div className='pagebody'>
-        <Stickybar></Stickybar>
+        <Stickybar categoryName={this.state.categoryName}></Stickybar>
         <div className='row'>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
             <CreatePostButton
-              categoryName={this.props.categoryName}
+              categoryName={this.state.categoryName}
             />
           </div>
           <div className='col-lg-2'></div>
@@ -66,7 +96,7 @@ class MainCategoryPage extends Component {
                 <p>Tags</p>
               </div>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
-                {this.props.tags.sort().map(tags => (
+                {this.state.tags.sort().map(tags => (
                   <Item className='tagLink' key={tags}>
                     {tags}
                   </Item>
@@ -75,38 +105,38 @@ class MainCategoryPage extends Component {
             </div>
           </div>
 
-          <div className='col-md-8'>
-            <CategoryDetail>
-              <CategoryDescription
-                displayName={this.props.displayName}
-                description={this.props.description}
-              />
-              <PostList>
-                {this.props.categoryPosts.map(categoryPost => (
-                  <PostListItem
-                    key={categoryPost._id}
-                    authorName={categoryPost.authorName}
-                    body={categoryPost.body}
-                    categoryName={categoryPost.categoryName}
-                    comments={categoryPost.comments}
-                    purchasers={categoryPost.purchasers}
-                    tags={categoryPost.tags}
-                    teaser={categoryPost.teaser}
-                    title={categoryPost.title}
-                    _id={categoryPost._id}
-                    author={categoryPost.author}
-                    handleDeleteButton={this.handleDeleteButton}
-                    createdAt={categoryPost.createdAt}
-                  />
-                ))}
-              </PostList>
-            </CategoryDetail>
-          </div>
-          <div className='col-sm-2'>
-            {/* Advertisements would go here */}
+            <div className='col-md-8'>
+              <CategoryDetail>
+                <CategoryDescription
+                  displayName={this.state.categoryDisplayName}
+                  description={this.state.categoryDescription}
+                />
+                
+                <PostList>
+                  {this.state.posts.map(post => (
+                    <PostListItem
+                      key={post._id}
+                      authorName={post.authorName}
+                      body={post.body}
+                      categoryName={post.categoryName}
+                      comments={post.comments}
+                      purchasers={post.purchasers}
+                      tags={post.tags}
+                      teaser={post.teaser}
+                      title={post.title}
+                      _id={post._id}
+                      author={post.author}
+                      handleDeleteButton={this.handleDeleteButton}
+                    />
+                  ))}
+                </PostList>
+              </CategoryDetail>
+            </div>
+            <div className='col-sm-2'>
+              {/* Advertisements would go here */}
+            </div>
           </div>
         </div>
-      </div>
     );
   };
 };
