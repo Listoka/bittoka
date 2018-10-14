@@ -11,6 +11,12 @@ body {
   font-family: 'Varela Round', sans-serif;
   color: #333333;
   padding-top: 70px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.pagebody {
+  position: absolute;
 }
 
 .tagWrapper {

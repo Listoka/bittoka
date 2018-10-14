@@ -5,7 +5,7 @@
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    right: 18px;
+    right: 0px;
     z-index: 9999;
   }
   
