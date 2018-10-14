@@ -54,3 +54,28 @@
     clear: both;
     display: table;
 }
+
+.flair {
+    padding: 0px 5px 0px 5px;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+.flair a:hover, a:link{
+    text-decoration: none;
+}
+
+.listokaFlair{
+    color: snow;
+    background-color: darkcyan;
+}
+
+.bitcoin-storyFlair{
+    color: snow;
+    background-color: royalblue;
+}
+
+.storiesFlair{
+    color: snow;
+    background-color: orangered;
+}
