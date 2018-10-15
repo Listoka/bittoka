@@ -29,8 +29,24 @@ body {
   list-style-position: inside; 
 }
 
-.active-tag {
-  color: orangered;
+.tagLink {
+  cursor: pointer;
+  list-style-type: none;
+  overflow: hidden;
+  padding-left: 5px;
+  border: 1px solid white;
+}
+.tagLink:hover {
+  background-color: lightblue;
+  color: grey;
+}
+.tagLinkInactive{
+  color: blue;
+  background-color: white;
+}
+.tagLinkActive {
+    color: snow;
+    background-color: orangered;
 }
 
 .homeTagWrapper {
