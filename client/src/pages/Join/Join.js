@@ -23,15 +23,9 @@ class Join extends React.Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault()
     const { username, email, passwordOne } = this.state
-
-    // let request = await axios.get('/api/users/username/' + username)
-    // if (request.data) {
-    //   this.setState({ error: 'Username is taken' })
-    //   return
-    // }
 
     axios.get('/api/users/username/' + username)
       .then(response => {
@@ -41,7 +35,6 @@ class Join extends React.Component {
         }
         return auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       })
-    // auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         let token = firebase.auth.currentUser.getIdToken()
         return Promise.all([authUser, token])
