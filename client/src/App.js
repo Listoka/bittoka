@@ -65,7 +65,7 @@ class App extends Component {
             <Route exact path='/posts/:id/edit' component={EditPage} />
             <Route exact path='/account' component={AccountPage} />
             <Route exact path='/(authtest|postman)' component={authTest} />
-            <Route exact path='/user/:id' component={Profile} />
+            <Route exact path='/users/:id' component={Profile} />
             <Route component={NoMatch} />
           </Switch>
         </div>

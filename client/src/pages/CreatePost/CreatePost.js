@@ -98,7 +98,7 @@ export class CreatePost extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log("I did a thing");
+    console.log("I did a thing"); // A++ logging, right here
   }
 
   dropdownChange(event) {
