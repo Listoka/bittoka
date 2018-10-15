@@ -9,26 +9,30 @@ class Profile extends Component {
     super(props);
     this.state = {
         userPosts: [],
-        authorName: ""
+        authorName: "",
+        displayedBio: "",
     };
   };
 
   componentDidMount() {
     console.log(this.props)
-    let promises = [this.getPosts(this.props.match.params.id)]
+    let promises = [this.getPostsAndBio(this.props.match.params.id)]
     Promise.all(promises)
       .then(results => {
           console.log(results)
         this.setState({
-          userPosts: results[0],
-          authorName: results[0][0].authorName
+          userPosts: results[0].posts,
+          displayedBio: results[0].user.bio,
+          authorName: results[0].user.username,
         });
       })
   };
 
-  getPosts = (id) => {
-    return API.getUserPosts(id).then(results => results.data);
+  getPostsAndBio = (id) => {
+    return API.getPostsAndBio(id).then(results => results.data);
   };
+
+  getProfile
 
   render() {
       return (
@@ -37,7 +41,8 @@ class Profile extends Component {
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
               <div className="categoryDetail">
-              <div><h3>{this.state.authorName}</h3></div>
+              <div><h3>Profile of: {this.state.authorName}</h3></div>
+              <div>Bio of {this.state.authorName}: {this.state.displayedBio} </div>
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem
@@ -51,7 +56,7 @@ class Profile extends Component {
                     teaser={userPosts.teaser}
                     title={userPosts.title}
                     _id={userPosts._id}
-                    author={userPosts.author}//This is the numbers one. May not need
+                    author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
                     />
                 ))}

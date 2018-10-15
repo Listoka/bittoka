@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
-import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
+import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import './account.css';
 
@@ -12,24 +12,28 @@ class Account extends Component {
         userPosts: [],
         userName: props.authUser.dbUser.username, 
         id: props.authUser.dbUser._id,
-        formIsHidden: true
+        // formIsHidden: true
+        bio: "",
+        displayedBio: "",
+        profileUsername: "",
     };
   };
 
   componentDidMount() {
-    let promises = [this.getPosts(this.state.id)]
+    let promises = [this.getPostsAndBio(this.state.id)]
     Promise.all(promises)
       .then(results => {
-          // console.log(results[0].posts[0])
+        console.log(results)
         this.setState({
-          userPosts: results[0]
+          userPosts: results[0].posts,
+          displayedBio: results[0].user.bio,
         });
       });
   };
 
-  getPosts = (id) => {
-    return API.getUserPosts(id).then(results => results.data);
-  };
+  // getPosts = (id) => {
+  //   return API.getUserPosts(id).then(results => results.data);
+  // };
 
   getPostsAndBio = (id) => {
     return API.getPostsAndBio(id).then (results => results.data)
@@ -48,11 +52,26 @@ class Account extends Component {
     return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
   }
 
-  toggleForm () {
+  handleInputChange = event => {
+    const { name, value } = event.target;
     this.setState({
-        formIsHidden: !this.state.formIsHidden
-    })
+      [name]: value
+    });
   };
+
+  handleFormSubmit = (event) => {
+    console.log(this.state);
+    event.preventDefault();
+    const data = {
+        bio: this.state.bio
+    };
+    if (this.state.bio.length > 4) {
+        
+        API.updateProfile(this.state.id, data)
+        .then(res => this.setState({ bio: "" }), API.getPostsAndBio(this.state.id))
+        .catch(err => console.log(err))
+    };
+};
 
   render() {
       return (
@@ -61,9 +80,25 @@ class Account extends Component {
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
               <div className="categoryDetail">
-              <div>Hello {this.state.userName}!</div><hr/>
-              <button className="btn btn-success" onClick={this.toggleForm.bind(this)}>Update Bio</button>
-              {!this.state.formIsHidden && <BioComponent />}
+              Eventually this will be filled with a Bio that turns into a form upon edit<hr />
+              {this.state.displayedBio}
+              <form>
+                <TextArea
+                  value={this.state.bio}
+                  onChange={this.handleInputChange}
+                  name="bio"
+                  placeholder="Enter bio here"
+                />
+                <FormBtn
+                  disabled={!(this.state.bio)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit Bio
+                </FormBtn>
+              </form>
+              {/* <div>Hello {this.state.userName}!</div><hr/> */}
+              {/* <button className="btn btn-success" onClick={this.toggleForm.bind(this)}>Update Bio</button>
+              {!this.state.formIsHidden && <BioComponent />} */}
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem
@@ -91,13 +126,6 @@ class Account extends Component {
   };
 };
 
- const BioComponent = (props) => {
-  return (
-      <div>
-          hello
-      </div>
-  )
-}
 const authCondition = (authUser) => !!authUser
 
 export default withAuthorization(authCondition)(Account);

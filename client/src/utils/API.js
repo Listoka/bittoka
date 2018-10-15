@@ -93,6 +93,7 @@ export default {
         return axios.get(`/api/users/${id}/profile`)//returns public profile
     },
     updateProfile: (id, updatedData) => {
+        console.log(updatedData)
         return axios.put(`api/users/id/${id}`, updatedData)
     }
     
