@@ -44,7 +44,7 @@ class MainCategoryPage extends Component {
       posts: [],
       tags: [],
       selectedTags: [],
-      selectedPosts: [],
+      filteredPosts: [],
       categoryDisplayName: '',
       categoryDescription: '',
       categoryName: '',
@@ -64,7 +64,7 @@ class MainCategoryPage extends Component {
           posts: posts,
           tags: category.tags,
           selectedTags: [],
-          selectedPosts: posts,
+          filteredPosts: posts,
           categoryName: category.name,
           isOpen: false,
           isVisible: false,
@@ -85,20 +85,21 @@ class MainCategoryPage extends Component {
 
   toggleSelectTag = (event, tag) => {
     event.target.classList.toggle('active-tag')
-    let selectedTags, selectedPosts
+    let selectedTags, filteredPosts
     if (this.state.selectedTags.includes(tag)) {
       selectedTags = this.state.selectedTags.filter(t => t !== tag)
     } else {
       selectedTags = this.state.selectedTags.concat(tag).sort()
     }
-    selectedPosts = this.state.posts.filter(post => {
+
+    filteredPosts = this.state.posts.filter(post => {
       if (selectedTags.length === 0) {
         return true
       } else {
         return post.tags.some(t => selectedTags.includes(t))
       }
     })
-    this.setState({ selectedTags, selectedPosts })
+    this.setState({ selectedTags, filteredPosts })
   }
 
   componentDidUpdate(prevProps) {
@@ -148,13 +149,7 @@ class MainCategoryPage extends Component {
                 description={this.state.categoryDescription}
               />
               <PostListContainer className='container postList' pose={isVisible ? 'enter' : 'exit'}>
-                {this.state.selectedPosts
-                  .filter(post => {
-                    if (this.state.tags.length === 0) {
-                      return true
-                    }
-                    return post.tags.some(tag => this.state.tags.includes(tag))
-                  })
+                {this.state.filteredPosts
                   .map(post => (
                     <P key={post._id}>
                       <PostListItem
@@ -169,7 +164,6 @@ class MainCategoryPage extends Component {
                         title={post.title}
                         _id={post._id}
                         author={post.author}
-                        handleDeleteButton={this.handleDeleteButton}
                         createdAt={post.createdAt}
                       />
                     </P>
