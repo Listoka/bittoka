@@ -23,7 +23,6 @@ class Account extends Component {
     let promises = [this.getPostsAndBio(this.state.id)]
     Promise.all(promises)
       .then(results => {
-        console.log(results)
         this.setState({
           userPosts: results[0].posts,
           bio: results[0].user.bio,
