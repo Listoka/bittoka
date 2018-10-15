@@ -18,13 +18,13 @@ export default {
             // tags: storyData.tags,  
             author: storyData.author
         })
-        .then(response => {
-            console.log(response);
-            return response;
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(response => {
+                console.log(response);
+                return response;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     },
     getPost: (id) => {
         console.log(id)
@@ -33,13 +33,13 @@ export default {
     getPostWithComments: (id) => {
         console.log(id)
         return axios.get(`/api/posts/${id}/comments`)
-        .then(response => {
-            console.log(response);
-            return response;
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(response => {
+                console.log(response);
+                return response;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     },
     getPostings: (categoryName) => {
         //console.log(categoryName)
@@ -59,13 +59,13 @@ export default {
         return axios.post(`/api/posts/${id}/comments`, {
             body: commentData.body
         })
-        .then(response => {
-            console.log(response);
-            return response;
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(response => {
+                console.log(response);
+                return response;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     },
     createLayeredComment: (id, commentData) => {
         console.log(commentData.body)
@@ -85,16 +85,25 @@ export default {
     },
     updatePost: (id, updatedData) => {
         return axios.put('/api/posts/' + id, updatedData)
-        .catch(error => {
-            console.log(error);
-        });
+            .catch(error => {
+                console.log(error);
+            });
     },
     getPostsAndBio: (id) => {
-        return axios.get(`/api/users/${id}/profile`)//returns public profile
+        // returns public profile object of the form
+        // {
+        //         user: {
+        //             username: <name>,
+        //             bio: <bio
+        //         },
+        //         posts: [],
+        //         comments: []
+        // }
+        return axios.get(`/api/users/id/${id}/profile`)
     },
     updateProfile: (id, updatedData) => {
         console.log(updatedData)
         return axios.put(`api/users/id/${id}`, updatedData)
     }
-    
+
 };
