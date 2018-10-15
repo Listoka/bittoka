@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import API from '../../utils/API';
 import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
 import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
-import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
 import './Home.css';
 import Stickybar from '../../components/Stickybar/Stickybar';
 
