@@ -10,6 +10,7 @@ import RichTextEditor from 'react-rte';
 // Tag Multiselect
 import Select from 'react-select';
 import chroma from 'chroma-js';
+import makeAnimated from 'react-select/lib/animated';
 import { TagOptions, colourOptions } from '../../components/TagDisplay/TagColor';
 
 // React Select docs: https://react-select.com/home
@@ -199,6 +200,7 @@ export class CreatePost extends Component {
                   isMulti
                   placeholder="Tags"
                   closeMenuOnSelect={false}
+                  components={makeAnimated()}
                   styles={colourStyles}
                 />
                 <br></br>
