@@ -4,7 +4,7 @@ import withAuthorization from '../../components/AuthUserSession/withAuthorizatio
 import './createPost.css';
 /*import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";*/
 import API from '../../utils/API';
-import RichTextEditor from 'react-rte'
+import RichTextEditor from 'react-rte';
 
 export class CreatePost extends Component {
   constructor(props) {
@@ -13,20 +13,27 @@ export class CreatePost extends Component {
       tags: [],
       teaser: "",
       title: "",
+      categoryName: "Select a category",
+      categoryTags: [],
       redirectToNewPage: false,
       redirectPathId: "",
       value: RichTextEditor.createEmptyValue()
     };
 
-    this.categoryName = props.match.params.categoryName
+    //this.categoryName = props.match.params.categoryName
   }
 
+  componentDidMount() {
+    this.setState({ categoryName: this.props.match.params.categoryName });
+    console.log(this.state);
+  }
 
   onEditorChange = (value) => this.setState({ value })
 
   handleInputChange = (event) => {
-    const { name, value } = event.target
-    this.setState({ [name]: value })
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    console.log("I did a thing");
   }
 
   handleFormSubmit = (event) => {
@@ -63,26 +70,38 @@ export class CreatePost extends Component {
 
     return (
       <div className="pagebody">
-      <React.Fragment>
-        <div className="row">
-          <div className="col-md-2"></div>
-          <div className="col-md-8">
-            <h2>Creating a post in {this.categoryName}</h2>
-            <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
-              <div className='form-group'>
-                {/* <label htmlFor='title-input'>Title</label> */}
-                <input className='form-control' type='text' onChange={this.handleInputChange} placeholder='Title' name='title' />
-              </div>
-              <RichTextEditor
-                value={this.state.value}
-                onChange={this.onEditorChange}
-              />
-              <input className='btn btn-primary' style={{ margin: '20px 0' }} type='submit' />
-            </form>
+        <React.Fragment>
+          <div className="row createForm">
+            <div className="col-md-2"></div>
+            <div className="col-md-8">
+              <h2>Create a post in: 
+                <div className="dropdown">
+                  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" onChange={this.handleInputChange} name= "categoryName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {this.state.categoryName}
+                  </button>
+                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a className="dropdown-item" >listoka</a>
+                    <a className="dropdown-item" >bitcoin-stories</a>
+                    <a className="dropdown-item" >stories</a>
+                  </div>
+                </div>
+                </h2>
+                
+              <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
+                <div className='form-group'>
+                  {/* <label htmlFor='title-input'>Title</label> */}
+                  <input className='form-control' type='text' onChange={this.handleInputChange} placeholder='Title' name='title' />
+                </div>
+                <RichTextEditor
+                  value={this.state.value}
+                  onChange={this.onEditorChange}
+                />
+                <input className='btn btn-primary' style={{ margin: '20px 0' }} type='submit' />
+              </form>
+            </div>
+            <div className="col-md-2"></div>
           </div>
-          <div className="col-md-2"></div>
-        </div>
-      </React.Fragment>
+        </React.Fragment>
       </div>
     );
   };
