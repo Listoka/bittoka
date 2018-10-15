@@ -29,6 +29,10 @@ body {
   list-style-position: inside; 
 }
 
+.active-tag {
+  color: orangered;
+}
+
 .homeTagWrapper {
   margin: 10px;
   background-color: white;

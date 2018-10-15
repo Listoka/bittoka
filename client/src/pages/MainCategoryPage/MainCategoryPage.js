@@ -43,6 +43,8 @@ class MainCategoryPage extends Component {
     this.state = {
       posts: [],
       tags: [],
+      selectedTags: [],
+      selectedPosts: [],
       categoryDisplayName: '',
       categoryDescription: '',
       categoryName: '',
@@ -61,6 +63,8 @@ class MainCategoryPage extends Component {
           categoryDisplayName: category.displayName,
           posts: posts,
           tags: category.tags,
+          selectedTags: [],
+          selectedPosts: posts,
           categoryName: category.name,
           isOpen: false,
           isVisible: false,
@@ -78,6 +82,24 @@ class MainCategoryPage extends Component {
     isOpen: !this.state.isOpen,
     isVisible: !this.state.isVisible
   });
+
+  toggleSelectTag = (event, tag) => {
+    event.target.classList.toggle('active-tag')
+    let selectedTags, selectedPosts
+    if (this.state.selectedTags.includes(tag)) {
+      selectedTags = this.state.selectedTags.filter(t => t !== tag)
+    } else {
+      selectedTags = this.state.selectedTags.concat(tag).sort()
+    }
+    selectedPosts = this.state.posts.filter(post => {
+      if (selectedTags.length === 0) {
+        return true
+      } else {
+        return post.tags.some(t => selectedTags.includes(t))
+      }
+    })
+    this.setState({ selectedTags, selectedPosts })
+  }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.categoryName !== prevProps.match.params.categoryName) {
@@ -110,9 +132,9 @@ class MainCategoryPage extends Component {
                 <p>Tags</p>
               </div>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
-                {this.state.tags.sort().map(tags => (
-                  <Item className='tagLink' key={tags}>
-                    {tags}
+                {this.state.tags.sort().map(tag => (
+                  <Item className='tagLink' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
+                    {tag}
                   </Item>
                 ))}
               </Sidebar>
@@ -126,25 +148,32 @@ class MainCategoryPage extends Component {
                 description={this.state.categoryDescription}
               />
               <PostListContainer className='container postList' pose={isVisible ? 'enter' : 'exit'}>
-                {this.state.posts.map(post => (
-                  <P key={post._id}>
-                    <PostListItem
-                      key={post._id}
-                      authorName={post.authorName}
-                      body={post.body}
-                      categoryName={post.categoryName}
-                      comments={post.comments}
-                      purchasers={post.purchasers}
-                      tags={post.tags}
-                      teaser={post.teaser}
-                      title={post.title}
-                      _id={post._id}
-                      author={post.author}
-                      handleDeleteButton={this.handleDeleteButton}
-                      createdAt={post.createdAt}
-                    />
-                  </P>
-                ))}
+                {this.state.selectedPosts
+                  .filter(post => {
+                    if (this.state.tags.length === 0) {
+                      return true
+                    }
+                    return post.tags.some(tag => this.state.tags.includes(tag))
+                  })
+                  .map(post => (
+                    <P key={post._id}>
+                      <PostListItem
+                        key={post._id}
+                        authorName={post.authorName}
+                        body={post.body}
+                        categoryName={post.categoryName}
+                        comments={post.comments}
+                        purchasers={post.purchasers}
+                        tags={post.tags}
+                        teaser={post.teaser}
+                        title={post.title}
+                        _id={post._id}
+                        author={post.author}
+                        handleDeleteButton={this.handleDeleteButton}
+                        createdAt={post.createdAt}
+                      />
+                    </P>
+                  ))}
               </PostListContainer>
             </CategoryDetail>
           </div>
