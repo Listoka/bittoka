@@ -7,6 +7,57 @@ import API from '../../utils/API';
 import RichTextEditor from 'react-rte';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
+// Tag Multiselect
+import Select from 'react-select';
+import chroma from 'chroma-js';
+import { TagOptions, colourOptions } from '../../components/TagDisplay/TagColor';
+
+// React Select docs: https://react-select.com/home
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+];
+
+const colourStyles = {
+  control: styles => ({ ...styles, backgroundColor: 'white' }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    const color = chroma(data.color);
+    return {
+      ...styles,
+      backgroundColor: isDisabled
+        ? null
+        : isSelected ? data.color : isFocused ? color.alpha(0.1).css() : null,
+      color: isDisabled
+        ? '#ccc'
+        : isSelected
+          ? chroma.contrast(color, 'white') > 2 ? 'white' : 'black'
+          : data.color,
+      cursor: isDisabled ? 'not-allowed' : 'default',
+    };
+  },
+  multiValue: (styles, { data }) => {
+    const color = chroma(data.color);
+    return {
+      ...styles,
+      backgroundColor: color.alpha(0.1).css(),
+    };
+  },
+  multiValueLabel: (styles, { data }) => ({
+    ...styles,
+    color: data.color,
+  }),
+  multiValueRemove: (styles, { data }) => ({
+    ...styles,
+    color: data.color,
+    ':hover': {
+      backgroundColor: data.color,
+      color: 'white',
+    },
+  }),
+};
+
 export class CreatePost extends Component {
   constructor(props) {
     super(props);
@@ -18,12 +69,13 @@ export class CreatePost extends Component {
       teaser: "",
       title: "",
       categoryName: "Select a category",
-      categories: [],
+      categories: ["listoka", "bitcoin-story", "stories"],
       categoryTags: [],
       dropdownOpen: false,
       redirectToNewPage: false,
       redirectPathId: "",
-      value: RichTextEditor.createEmptyValue()
+      value: RichTextEditor.createEmptyValue(),
+      selectedOption: null,
     };
 
     //this.categoryName = props.match.params.categoryName
@@ -55,6 +107,11 @@ export class CreatePost extends Component {
     })
   }
 
+  handleTagChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  }
+
   handleFormSubmit = (event) => {
     console.log(this.state);
     event.preventDefault();
@@ -80,6 +137,7 @@ export class CreatePost extends Component {
   }
 
   render() {
+    const { selectedOption } = this.state;
 
     if (this.state.redirectToNewPage) {
       return (
@@ -93,22 +151,22 @@ export class CreatePost extends Component {
           <div className="row createForm">
             <div className="col-md-2"></div>
             <div className="col-md-8">
-              <h2>Create a post in:</h2>
-              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                  <DropdownToggle caret>
-                    {this.state.categoryName}
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {this.state.categories.sort().map(category => (
-                    <DropdownItem key={category} onClick={this.dropdownChange}>
-                      {category}
-                    </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              
-
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
+                <div class="form-group">
+                  <p>Create a post in:</p>
+                  <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                    <DropdownToggle caret className='btn btn-outline-info createBtn'>
+                      {this.state.categoryName}
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      {this.state.categories.sort().map(category => (
+                        <DropdownItem key={category} onClick={this.dropdownChange}>
+                          {category}
+                        </DropdownItem>
+                      ))}
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
                 <div className='form-group'>
                   {/* <label htmlFor='title-input'>Title</label> */}
                   <input className='form-control' type='text' onChange={this.handleInputChange} placeholder='Title' name='title' />
@@ -117,7 +175,19 @@ export class CreatePost extends Component {
                   value={this.state.value}
                   onChange={this.onEditorChange}
                 />
-                <input className='btn btn-primary' style={{ margin: '20px 0' }} type='submit' />
+                <br></br>
+                <Select
+                  value={selectedOption}
+                  onChange={this.handleTagChange}
+                  options={colourOptions}
+                  isMulti
+                  placeholder= "Tags"
+                  closeMenuOnSelect={false}
+                  styles={colourStyles}
+                />
+                <br></br>
+                <input className='btn btn-outline-info createBtn' style={{ margin: '20px 0' }} type='submit' />
+
               </form>
             </div>
             <div className="col-md-2"></div>
