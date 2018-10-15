@@ -12,7 +12,7 @@ class Account extends Component {
         userPosts: [],
         userName: props.authUser.dbUser.username, 
         id: props.authUser.dbUser._id,
-        // formIsHidden: true
+        showBio: true,
         bio: "",
         displayedBio: "",
         profileUsername: "",
@@ -26,14 +26,10 @@ class Account extends Component {
         console.log(results)
         this.setState({
           userPosts: results[0].posts,
-          displayedBio: results[0].user.bio,
+          bio: results[0].user.bio,
         });
       });
   };
-
-  // getPosts = (id) => {
-  //   return API.getUserPosts(id).then(results => results.data);
-  // };
 
   getPostsAndBio = (id) => {
     return API.getPostsAndBio(id).then (results => results.data)
@@ -68,10 +64,12 @@ class Account extends Component {
     if (this.state.bio.length > 4) {
         
         API.updateProfile(this.state.id, data)
-        .then(res => this.setState({ bio: "" }), API.getPostsAndBio(this.state.id))
+        .then(res => console.log(res.data), this.setState({ showBio: true }), API.getPostsAndBio(this.state.id))
         .catch(err => console.log(err))
     };
 };
+
+editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
 
   render() {
       return (
@@ -80,25 +78,31 @@ class Account extends Component {
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
               <div className="categoryDetail">
-              Eventually this will be filled with a Bio that turns into a form upon edit<hr />
-              {this.state.displayedBio}
-              <form>
-                <TextArea
-                  value={this.state.bio}
-                  onChange={this.handleInputChange}
-                  name="bio"
-                  placeholder="Enter bio here"
-                />
-                <FormBtn
-                  disabled={!(this.state.bio)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit Bio
-                </FormBtn>
-              </form>
-              {/* <div>Hello {this.state.userName}!</div><hr/> */}
-              {/* <button className="btn btn-success" onClick={this.toggleForm.bind(this)}>Update Bio</button>
-              {!this.state.formIsHidden && <BioComponent />} */}
+              <hr />
+              {this.state.showBio 
+              ? <div>
+                  {this.state.userName}'s bio: <i className="far fa-edit btn" onClick={this.editBio}> Edit Bio</i><br />
+                  {this.state.bio} 
+                </div> 
+              : <form>
+                <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>
+                  <TextArea
+                    value={this.state.bio}
+                    onChange={this.handleInputChange}
+                    name="bio"
+                    placeholder="Enter bio here"
+                  />
+                  <FormBtn
+                    disabled={!(this.state.bio)}
+                    onClick={this.handleFormSubmit}
+                  >
+                    Submit Bio
+                  </FormBtn>
+                </form>
+              
+            }
+
+              
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem
@@ -112,7 +116,7 @@ class Account extends Component {
                     teaser={userPosts.teaser}
                     title={userPosts.title}
                     _id={userPosts._id}
-                    author={userPosts.author}//This is the numbers one. May not need
+                    author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
                     />
                 ))}
