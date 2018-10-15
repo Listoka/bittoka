@@ -12,18 +12,21 @@ const userData = [
     uid: 'XQayyvz0zkXKR1Fc1BeOXcFj7d02',
     email: 'sally@thing.com',
     permissions: [group.USER],
-    moneyBtnId: '783'
+    moneyBtnId: '783',
+    bio: 'This is Sally\'s bio.'
   },
   {
     username: 'Joe Schmoe',
     uid: '76uRmVJAuDUqqeLRhzEyyd2uc863',
     email: 'joe@thing.com',
+    bio: 'This is Joe\'s bio.',
     permissions: [group.USER]
   },
   {
     username: 'Bertrand',
     uid: '1aaIqR9kX5bAFXqR78T381MHLtf1',
     email: 'berty@thing.com',
+    bio: 'This is Bertrand\'s bio.',
     permissions: [group.USER]
   }
 ]
