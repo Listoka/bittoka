@@ -27,7 +27,14 @@ class Join extends React.Component {
     event.preventDefault()
     const { username, email, passwordOne } = this.state
 
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+    axios.get('/api/users/username/' + username)
+      .then(response => {
+        console.log('join reponse', response)
+        if (response.data) {
+          throw new Error('Username is already taken')
+        }
+        return auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+      })
       .then(authUser => {
         let token = firebase.auth.currentUser.getIdToken()
         return Promise.all([authUser, token])
