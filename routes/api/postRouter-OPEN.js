@@ -4,9 +4,13 @@ const db = require('../../models')
 
 require('./paramHelpers')(router)
 
-// TODO: this route should exclude any post that is a draft
 router.route('/posts')
-  .get(postController.findAll)
+  .get((req, res) => {
+    db.Post
+      .find({isDraft: false})
+      .then(posts => res.json(posts))
+      .catch(err => res.status(500).json(err))
+  })
 
 router.route('/posts/:id')
   .get(postController.findById)
