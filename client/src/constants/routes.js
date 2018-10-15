@@ -8,3 +8,4 @@ export const CREATEPOST = '/categories/:categoryName/posts/new';
 export const CONTENT = '/posts/:id';
 export const EDITPAGE = '/posts/:id/edit';
 export const MAINCATEGORYPAGE = '/categories/:categoryName';
+export const PROFILE = '/user/:id';

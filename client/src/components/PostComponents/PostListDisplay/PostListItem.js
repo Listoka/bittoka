@@ -19,7 +19,7 @@ export const PostListItem = props => {
                                     ))}
                                 </ul>
                             </div>
-                            <p className='post-subtitle'>Posted by: {props.authorName} in <Link to={`/categories/${props.categoryName}`}><span className={`${props.categoryName}Flair flair`}>{props.categoryName}</span></Link></p>
+                            <p className='post-subtitle'>Posted by: <Link to={{ pathname: `/user/${props.author}`}}> {props.authorName}</Link> in <Link to={`/categories/${props.categoryName}`}><span className={`${props.categoryName}Flair flair`}>{props.categoryName}</span></Link></p>
                         </div>
                         <p className='post-text'>{props.body}</p>
                     </span>

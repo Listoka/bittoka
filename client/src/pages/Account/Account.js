@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
+import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import './account.css';
 
@@ -11,23 +12,28 @@ class Account extends Component {
         userPosts: [],
         userName: props.authUser.dbUser.username, 
         id: props.authUser.dbUser._id,
+        showBio: true,
+        bio: "",
+        displayedBio: "",
+        profileUsername: "",
     };
   };
 
   componentDidMount() {
-    let promises = [this.getPosts(this.state.id)]
+    let promises = [this.getPostsAndBio(this.state.id)]
     Promise.all(promises)
       .then(results => {
-          console.log(results)
+        console.log(results)
         this.setState({
-          userPosts: results[0]
+          userPosts: results[0].posts,
+          bio: results[0].user.bio,
         });
       });
   };
 
-  getPosts = (id) => {
-    return API.getUserPosts(id).then(results => results.data);
-  };
+  getPostsAndBio = (id) => {
+    return API.getPostsAndBio(id).then (results => results.data)
+  }
 
   handleDeleteButton = (event, id) => {
     event.preventDefault();
@@ -42,15 +48,61 @@ class Account extends Component {
     return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
   }
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = (event) => {
+    console.log(this.state);
+    event.preventDefault();
+    const data = {
+        bio: this.state.bio
+    };
+    if (this.state.bio.length > 4) {
+        
+        API.updateProfile(this.state.id, data)
+        .then(res => console.log(res.data), this.setState({ showBio: true }), API.getPostsAndBio(this.state.id))
+        .catch(err => console.log(err))
+    };
+};
+
+editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
+
   render() {
       return (
         <div className='pagebody'>
             <div className='row'>
-            {/* <p>{JSON.stringify(props.authUser)}</p> */}
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
               <div className="categoryDetail">
-                Hello {this.state.userName}. Here are your posts!
+              <hr />
+              {this.state.showBio 
+              ? <div>
+                  {this.state.userName}'s bio: <i className="far fa-edit btn" onClick={this.editBio}> Edit Bio</i><br />
+                  {this.state.bio} 
+                </div> 
+              : <form>
+                <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>
+                  <TextArea
+                    value={this.state.bio}
+                    onChange={this.handleInputChange}
+                    name="bio"
+                    placeholder="Enter bio here"
+                  />
+                  <FormBtn
+                    disabled={!(this.state.bio)}
+                    onClick={this.handleFormSubmit}
+                  >
+                    Submit Bio
+                  </FormBtn>
+                </form>
+              
+            }
+
+              
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem
@@ -64,7 +116,7 @@ class Account extends Component {
                     teaser={userPosts.teaser}
                     title={userPosts.title}
                     _id={userPosts._id}
-                    author={userPosts.author}//This is the numbers one. May not need
+                    author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
                     />
                 ))}
@@ -77,6 +129,7 @@ class Account extends Component {
       );
   };
 };
+
 const authCondition = (authUser) => !!authUser
 
 export default withAuthorization(authCondition)(Account);
