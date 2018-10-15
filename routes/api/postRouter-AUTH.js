@@ -18,10 +18,25 @@ router.route('/posts')
       })
   })
 
-// TODO: These should only be allowed if user === author
 router.route('/posts/:id')
-  .put(postController.update)
-  .delete(postController.remove)
+  .put((req, res) => {
+    const dbUser = res.locals.user.dbUser
+    const { title, teaser, body, tags, isDraft, categoryName } = req.body
+    const updateData = { title, teaser, body, tags, isDraft, categoryName }
+
+    if (dbUser._id.toString() === req.params.id) {
+      db.Post
+        .findByIdAndUpdate(req.params.id, updateData)
+        .then(() => res.json(true))
+        .catch(err => {
+          console.log(err)
+          res.status(500).json(err)
+        })
+    } else {
+      res.sendStatus(403)
+    }
+  })
+  // .delete(postController.remove)
 
 // TODO: add check to esure only one vote per user
 router.route('/posts/:id/vote')

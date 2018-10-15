@@ -19,7 +19,7 @@ export const PostListItem = props => {
                                     ))}
                                 </ul>
                             </div>
-                            <p className='post-subtitle'>Posted by: <Link to={{ pathname: `/user/${props.author}`}}> {props.authorName}</Link> in <Link to={`/categories/${props.categoryName}`}><span className={`${props.categoryName}Flair flair`}>{props.categoryName}</span></Link></p>
+                            <p className='post-subtitle'>Posted by: <Link to={{ pathname: `/users/${props.author}`}}> {props.authorName}</Link> in <Link to={`/categories/${props.categoryName}`}><span className={`${props.categoryName}Flair flair`}>{props.categoryName}</span></Link></p>
                         </div>
                         <p className='post-text'>{props.body}</p>
                     </span>
@@ -39,11 +39,9 @@ export const PostListItem = props => {
                                     if (!!authUser && authUser.dbUser._id === props.author) {
                                         return (
                                             <span className="edit-btn-float-right">
-                                                <span>
                                                     <Link to={{ pathname: `/posts/${props._id}/edit` }}>
                                                         <i className="far fa-edit"> Edit Post</i>
                                                     </Link>
-                                                </span>
                                             </span>
                                         )
                                     }
