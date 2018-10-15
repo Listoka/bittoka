@@ -39,7 +39,6 @@ class MainCategoryPage extends Component {
 
   constructor(props) {
     super(props);
-    //console.log('props', props)
     this.state = {
       posts: [],
       tags: [],
@@ -48,8 +47,8 @@ class MainCategoryPage extends Component {
       categoryDisplayName: '',
       categoryDescription: '',
       categoryName: '',
-      isOpen: false,
-      isVisible: false
+      isOpen: true,
+      isVisible: true
     };
   };
 

@@ -41,12 +41,12 @@ body {
   color: grey;
 }
 .tagLinkInactive{
-  color: blue;
+  color: royalblue;
   background-color: white;
 }
 .tagLinkActive {
     color: snow;
-    background-color: orangered;
+    background-color: royalblue;
 }
 
 .homeTagWrapper {
