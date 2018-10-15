@@ -2,6 +2,10 @@
     min-height: 300px;
   }
 
+  .categorySelect {
+    z-index: 99;
+  }
+
   .createForm {
     margin-top: 50px;
   }

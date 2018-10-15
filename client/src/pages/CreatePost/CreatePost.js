@@ -5,7 +5,7 @@ import './createPost.css';
 /*import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";*/
 import API from '../../utils/API';
 import RichTextEditor from 'react-rte';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+//import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 // Tag Multiselect
 import Select from 'react-select';
@@ -152,8 +152,23 @@ export class CreatePost extends Component {
             <div className="col-md-2"></div>
             <div className="col-md-8">
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
-                <div class="form-group">
+                <div className="form-group">
                   <p>Create a post in:</p>
+                  <Select className = "categorySelect"
+                    defaultValue={this.state.categoryName}
+                    options={TagOptions}
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 0,
+                      colors: {
+                        ...theme.colors,
+                        text: 'orangered',
+                        primary25: 'hotpink',
+                        primary: 'black',
+                      },
+                    })}
+                  />
+                  {/*
                   <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                     <DropdownToggle caret className='btn btn-outline-info createBtn'>
                       {this.state.categoryName}
@@ -165,7 +180,7 @@ export class CreatePost extends Component {
                         </DropdownItem>
                       ))}
                     </DropdownMenu>
-                  </Dropdown>
+                  </Dropdown>*/}
                 </div>
                 <div className='form-group'>
                   {/* <label htmlFor='title-input'>Title</label> */}
@@ -181,7 +196,7 @@ export class CreatePost extends Component {
                   onChange={this.handleTagChange}
                   options={colourOptions}
                   isMulti
-                  placeholder= "Tags"
+                  placeholder="Tags"
                   closeMenuOnSelect={false}
                   styles={colourStyles}
                 />
@@ -190,7 +205,8 @@ export class CreatePost extends Component {
 
               </form>
             </div>
-            <div className="col-md-2"></div>
+            <div className="col-md-2">
+            </div>
           </div>
         </React.Fragment>
       </div>
