@@ -15,7 +15,8 @@ export class CreatePost extends Component {
       title: "",
       redirectToNewPage: false,
       redirectPathId: "",
-      value: RichTextEditor.createEmptyValue()
+      value: RichTextEditor.createEmptyValue(),
+      categoryName: props.match.params.categoryName
     };
 
     this.categoryName = props.match.params.categoryName
@@ -41,7 +42,7 @@ export class CreatePost extends Component {
         // teaser: teaser,
         body: body,
         tags: tags,
-        categoryName: this.categoryName
+        categoryName: this.state.categoryName
       }
 
       API.createPost(data)

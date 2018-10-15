@@ -19,6 +19,7 @@ import NoMatch from './pages/NoMatch';
 // import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
 import MainCategoryPage from './pages/MainCategoryPage';
+import Profile from './pages/Profile';
 
 import authTest from './pages/AUTH-TEST';
 
@@ -64,6 +65,7 @@ class App extends Component {
             <Route exact path='/posts/:id/edit' component={EditPage} />
             <Route exact path='/account' component={AccountPage} />
             <Route exact path='/(authtest|postman)' component={authTest} />
+            <Route exact path='/user/:id' component={Profile} />
             <Route component={NoMatch} />
           </Switch>
         </div>

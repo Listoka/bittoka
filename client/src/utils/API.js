@@ -88,6 +88,13 @@ export default {
         .catch(error => {
             console.log(error);
         });
+    },
+    getPostsAndBio: (id) => {
+        return axios.get(`/api/users/${id}/profile`)//returns public profile
+    },
+    updateProfile: (id, updatedData) => {
+        console.log(updatedData)
+        return axios.put(`api/users/id/${id}`, updatedData)
     }
     
 };
