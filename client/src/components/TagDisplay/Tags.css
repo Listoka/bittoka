@@ -1,4 +1,5 @@
 .tagLink {
+  cursor: pointer;
     list-style-type: none;
     /*animation-name: tracking-in-expand;
     animation-duration: 1s;*/

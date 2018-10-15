@@ -20,7 +20,7 @@ const categoryData = [
 },
 {
   name: 'stories',
-  displayName: 'Story',
+  displayName: 'Stories',
   description: `It's all about the stories.`,
   settings: {
     allowedPosters: [group.USER, group.ADMIN],

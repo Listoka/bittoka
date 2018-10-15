@@ -39,7 +39,6 @@ class MainCategoryPage extends Component {
 
   constructor(props) {
     super(props);
-    console.log('props', props)
     this.state = {
       posts: [],
       tags: [],
@@ -48,15 +47,15 @@ class MainCategoryPage extends Component {
       categoryDisplayName: '',
       categoryDescription: '',
       categoryName: '',
-      isOpen: false,
-      isVisible: false
+      isOpen: true,
+      isVisible: true
     };
   };
 
   getCategoryAndPosts = () => {
     API.getPostings(this.props.match.params.categoryName)
       .then((result) => {
-        console.log(result.data);
+        //console.log(result.data);
         const { category, posts } = result.data
         this.setState({
           categoryDescription: category.description,
@@ -84,7 +83,8 @@ class MainCategoryPage extends Component {
   });
 
   toggleSelectTag = (event, tag) => {
-    event.target.classList.toggle('active-tag')
+    event.target.classList.toggle('tagLinkInactive');
+    event.target.classList.toggle('tagLinkActive');
     let selectedTags, filteredPosts
     if (this.state.selectedTags.includes(tag)) {
       selectedTags = this.state.selectedTags.filter(t => t !== tag)
@@ -134,7 +134,7 @@ class MainCategoryPage extends Component {
               </div>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
                 {this.state.tags.sort().map(tag => (
-                  <Item className='tagLink' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
+                  <Item className='tagLink tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
                     {tag}
                   </Item>
                 ))}
