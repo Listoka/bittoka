@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -8,10 +9,12 @@ const serviceAccount = require('./secret/firebase-secret.json');
 
 const PORT = process.env.PORT || 3001;
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://react-auth-demo-24abd.firebaseio.com'
-});
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: 'https://react-auth-demo-24abd.firebaseio.com'
+// });
+
+admin.initializeApp()
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB', { useNewUrlParser: true });
