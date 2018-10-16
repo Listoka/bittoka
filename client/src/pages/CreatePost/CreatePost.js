@@ -134,7 +134,25 @@ export class CreatePost extends Component {
           this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
         }).catch(err => console.log(err))
 
+    };
+  };
+  //Saving a draft
+  saveDraft = (event) => {
+    event.preventDefault();
+    const { title, tags, value } = this.state
+    const body = value.toString('html')
+    
+    const data = {
+      title: title,
+      // teaser: teaser,
+      body: body,
+      tags: tags,
+      categoryName: this.state.categoryName,
+      isDraft: true
     }
+    API.submitDraft(data)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
   }
 
   render() {
@@ -154,7 +172,7 @@ export class CreatePost extends Component {
             <div className="col-md-8">
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
-                  <p>Create a post in:</p>
+                  <p>Create a post in: <a className="btn floatRight"><span onClick={this.saveDraft}>Save Draft <i className="fas fa-save"></i></span></a></p>
                   <Select className = "categorySelect"
                     defaultValue={this.state.categoryName}
                     options={TagOptions}

@@ -104,6 +104,27 @@ export default {
     updateProfile: (id, updatedData) => {
         console.log(updatedData)
         return axios.put(`api/users/id/${id}`, updatedData)
+    },
+    submitDraft: (data) => {
+        console.log(data)
+        return axios.post('/api/posts', {
+            title: data.title,
+            // teaser: data.teaser,
+            body: data.body,
+            tags: data.tags,
+            categoryName: data.categoryName,
+            isDraft: data.isDraft
+        })
+        .then(response => {
+            console.log(response);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    },
+    getPostsAndDrafts: (id) => {
+        return axios.get(`/api/users/id/${id}/posts`)
     }
 
 };

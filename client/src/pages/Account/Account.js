@@ -20,9 +20,10 @@ class Account extends Component {
   };
 
   componentDidMount() {
-    let promises = [this.getPostsAndBio(this.state.id)]
+    let promises = [this.getPostsAndBio(this.state.id), this.getPostsAndDrafts(this.state.id)]
     Promise.all(promises)
       .then(results => {
+        console.log(results)
         this.setState({
           userPosts: results[0].posts,
           bio: results[0].user.bio,
@@ -30,8 +31,12 @@ class Account extends Component {
       });
   };
 
+  getPostsAndDrafts = (id) => {
+    return API.getPostsAndDrafts(id).then(results => results.data)
+  }
+
   getPostsAndBio = (id) => {
-    return API.getPostsAndBio(id).then (results => results.data)
+    return API.getPostsAndBio(id).then(results => results.data)
   }
 
   handleDeleteButton = (event, id) => {
@@ -68,7 +73,7 @@ class Account extends Component {
     };
 };
 
-editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
+  editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
 
   render() {
       return (

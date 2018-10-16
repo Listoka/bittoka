@@ -11,6 +11,9 @@ export class Comments extends Component  {
           commentsAreHidden: true
         }
       };
+      componentDidMount() {
+          console.log(this.props)
+      }
 
       toggleCommentBox () {
         this.setState({
@@ -32,11 +35,11 @@ export class Comments extends Component  {
                 <p><b>Comment:</b> {this.props.body}</p>
                 <p>[#Upvotes][Upvote MoneyButton Component]</p>
                 <p><button className="btn btn-success" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button>[Created on: {createdDate}] <a className="btn" onClick={this.toggleComments.bind(this)}>[View <i className="far fa-comment">]</i></a></p>
-                {!this.state.commentBoxIsHidden && <CommentBox id={this.props.id} toggleCommentBox = {this.toggleCommentBox}/>}
-                {!this.state.commentsAreHidden && <LayeredComments commentID={this.props.id} />}
+                {!this.state.commentBoxIsHidden && <CommentBox id={this.props._id} toggleCommentBox = {this.toggleCommentBox}/>}
+                {!this.state.commentsAreHidden && <LayeredComments commentID={this.props._id} />}
             </React.Fragment>
         );
-    };   
+    };
 };
 
 class LayeredComments extends Component {
@@ -53,7 +56,7 @@ class LayeredComments extends Component {
     };
 
     getLayeredComments = () => {
-        console.log(this.props.commentID)
+        console.log(this.props)
         API.getLayeredComments(this.props.commentID)
         .then( res => this.setState({ layeredComments: res.data.comments }))
         .then( res => console.log(this.state.layeredComments))
@@ -101,7 +104,7 @@ class CommentBox extends Component {
             body: this.state.layeredBody
         };
         if (this.state.layeredBody.length > 4) {
-            
+            console.log(this.props.id)
             API.createLayeredComment(this.props.id, data)
             .then( res => this.setState({ layeredBody: "" }))
             // .then( res => this.state.props.toggleCommentBox())
