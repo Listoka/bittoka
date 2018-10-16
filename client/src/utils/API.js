@@ -54,7 +54,7 @@ export default {
         });
     },
     getCategoriesTags: (categoryName) => {
-        console.log("getting Category Info")
+        //console.log("getting Category Info")
         return axios.get(`/api/categories`)
     },
     createComment: (id, commentData) => {

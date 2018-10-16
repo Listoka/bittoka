@@ -15,12 +15,6 @@ import { TagOptions, colourOptions } from '../../components/TagDisplay/TagColor'
 
 // React Select docs: https://react-select.com/home
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-];
-
 const colourStyles = {
   control: styles => ({ ...styles, backgroundColor: 'white' }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -69,9 +63,8 @@ export class CreatePost extends Component {
       tags: [],
       teaser: "",
       title: "",
-      categoryName: "Select a category",
-      categories: ["listoka", "bitcoin-story", "stories"],
-      categoryTags: [],
+      categoryName: "",
+      categories: [],
       dropdownOpen: false,
       redirectToNewPage: false,
       redirectPathId: "",
@@ -85,7 +78,21 @@ export class CreatePost extends Component {
 
   componentDidMount() {
     this.setState({ categoryName: this.props.match.params.categoryName });
-    console.log(this.state);
+    this.getCategories();
+    // console.log(this.state);
+  }
+
+  getCategories = () => {
+    API.getCategoriesTags()
+    .then((result) => {
+      //console.log(result.data);
+      const cData = result.data;
+      let categoriesFromApi = cData.map(category => { return {value: category.name, label: category.displayName, tags: category.tags} })
+      this.setState({ categories: (categoriesFromApi) });
+      console.log(this.state);
+    }).catch(error => {
+      console.log(error);
+    });
   }
 
   toggle() {
@@ -103,10 +110,14 @@ export class CreatePost extends Component {
   }
 
   dropdownChange(event) {
+    //console.log("dropdown function");
+    console.log (event);
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
-      categoryName: event.target.innerText
+      categoryName: event.value,
+      tags: event.tags
     })
+    console.log(this.state);
   }
 
   handleTagChange = (selectedOption) => {
@@ -157,8 +168,9 @@ export class CreatePost extends Component {
                 <div className="form-group">
                   <p>Create a post in:</p>
                   <Select className = "categorySelect"
+                    onChange = {this.dropdownChange}
                     defaultValue={this.state.categoryName}
-                    options={TagOptions}
+                    options={this.state.categories}
                     theme={(theme) => ({
                       ...theme,
                       borderRadius: 0,
@@ -184,7 +196,7 @@ export class CreatePost extends Component {
                 <Select
                   value={selectedOption}
                   onChange={this.handleTagChange}
-                  options={colourOptions}
+                  options={this.state.tags}
                   isMulti
                   placeholder="Tags"
                   closeMenuOnSelect={false}

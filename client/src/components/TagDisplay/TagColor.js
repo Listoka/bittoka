@@ -1,7 +1,7 @@
 export const TagOptions = [
-    { value: 'listoka', label: 'listoka', rating: 'safe' },
-    { value: 'bitcoin-story', label: 'bitcoin-story', rating: 'good' },
-    { value: 'stories', label: 'stories', rating: 'wild' },
+    { value: 'listoka', label: 'Listoka', rating: 'safe' },
+    { value: 'bitcoin-story', label: 'Bitcoin-story', rating: 'good' },
+    { value: 'stories', label: 'Stories', rating: 'wild' },
   ];
 
   export const colourOptions = [
