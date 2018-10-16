@@ -15,7 +15,7 @@ export default {
             // comments: storyData.comments,
             // purchasers: storyData.purchasers,
             // voters: storyData.voters,
-            // tags: storyData.tags,  
+            tags: storyData.tags,  
             author: storyData.author
         })
             .then(response => {
@@ -52,6 +52,10 @@ export default {
             description: categoryName.description,
             tags: categoryName.tags
         });
+    },
+    getCategoriesTags: (categoryName) => {
+        //console.log("getting Category Info")
+        return axios.get(`/api/categories`)
     },
     createComment: (id, commentData) => {
         console.log(commentData.body)

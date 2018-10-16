@@ -46,7 +46,7 @@ class Home extends Component {
         <div className='row'>
           <div className='col-sm-2'>
             <div className='homeTagWrapper rounded'>
-              <div className='homeSidebarWrapper rounded'>
+              <div className='homeSidebarWrapper'>
                 <img className="img-fluid" src="./images/newSidebar.jpg" alt="Welcome to Listoka"></img>
                 <div className="homeSideBar">
                   <h6>Welcome to Listoka</h6>
