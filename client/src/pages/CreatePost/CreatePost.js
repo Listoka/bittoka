@@ -103,7 +103,6 @@ export class CreatePost extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log("I did a thing"); // A++ logging, right here
   }
 
   dropdownChange(event) {
@@ -111,7 +110,9 @@ export class CreatePost extends Component {
       dropdownOpen: !this.state.dropdownOpen,
       categoryName: event.value,
       tags: event.tags,
+      selectedOption: null
     })
+    
     console.log(this.state);
   }
 
