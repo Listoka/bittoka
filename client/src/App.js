@@ -25,15 +25,51 @@ import authTest from './pages/AUTH-TEST';
 
 // Auth Helper
 import withAuthentication from './components/AuthUserSession/withAuthentication';
-
+import ModalConductor from './components/Modals/ModalConductor'
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // isOpen: false,
       categories: categories,
+      currentModal: '',
+      modalIsOpen: false,
+
+
+
+
     };
   };
+  // modalOverlayOn = () => {
+  //   document.getElementById("overlay").style.display = "block";
+  //   console.log('overlay on')
+  // }
+  // modalOverlayOff = () => {
+  //   document.getElementById("overlay").style.display = "none";
+  // }
+  openGistModal = event => {
+    this.setState({ currentModal: 'GIST' })
+    // this.modalOverlayOn();
+    console.log("gist modal open")
+  }
+
+  openJoinModal = event => {
+    this.setState({ currentModal: 'JOIN' })
+    console.log("join modal open")
+  }
+
+  openLoginModal = event => {
+    this.setState({ currentModal: 'LOGIN' })
+    console.log("login modal open")
+
+  }
+
+  closeModal = event => {
+    this.setState({ currentModal: '' });
+    // this.modalOverlayOff();
+    console.log('modal closed')
+  }
+
 
   // toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
@@ -42,7 +78,11 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav
+            openGistModal={this.openGistModal}
+            openJoinModal={this.openJoinModal}
+            openLoginModal={this.openLoginModal}
+          />
           <FlexContainer>
             {this.state.categories.map(category => (
               <SubNav
@@ -53,6 +93,11 @@ class App extends Component {
               />
             ))}
           </FlexContainer>
+          <ModalConductor
+            currentModal={this.state.currentModal}
+            modalOverlayOn={this.modalOverlayOn}
+            closeModal={this.closeModal}
+          />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/home' component={Home} />

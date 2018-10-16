@@ -45,7 +45,11 @@ export class Nav extends Component {
               authUser =>
                 authUser
                   ? <NavLoggedIn logOutHandler={this.logOutHandler} />
-                  : <NavNotLoggedIn />
+                  : <NavNotLoggedIn 
+                  openGistModal={this.props.openGistModal}
+                  openJoinModal={this.props.openJoinModal}
+                  openLoginModal={this.props.openLoginModal}
+                  />
             }
           </AuthUserContext.Consumer>
         </div>
