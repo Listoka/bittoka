@@ -165,24 +165,12 @@ export class CreatePost extends Component {
                       colors: {
                         ...theme.colors,
                         text: 'orangered',
-                        primary25: 'hotpink',
+                        primary25: 'royalblue',
                         primary: 'black',
                       },
                     })}
                   />
-                  {/*
-                  <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle caret className='btn btn-outline-info createBtn'>
-                      {this.state.categoryName}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      {this.state.categories.sort().map(category => (
-                        <DropdownItem key={category} onClick={this.dropdownChange}>
-                          {category}
-                        </DropdownItem>
-                      ))}
-                    </DropdownMenu>
-                  </Dropdown>*/}
+
                 </div>
                 <div className='form-group'>
                   {/* <label htmlFor='title-input'>Title</label> */}
