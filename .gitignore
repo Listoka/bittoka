@@ -1,6 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 secret/
 
+.env
+
 # dependencies
 /node_modules
 /client/node_modules
