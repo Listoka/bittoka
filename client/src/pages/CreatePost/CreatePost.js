@@ -79,17 +79,14 @@ export class CreatePost extends Component {
   componentDidMount() {
     this.setState({ categoryName: this.props.match.params.categoryName });
     this.getCategories();
-    // console.log(this.state);
   }
 
   getCategories = () => {
     API.getCategoriesTags()
     .then((result) => {
-      //console.log(result.data);
       const cData = result.data;
-      let categoriesFromApi = cData.map(category => { return {value: category.name, label: category.displayName, tags: category.tags} })
+      let categoriesFromApi = cData.map(category => { return {value: category.name, label: category.displayName, tags: category.tags.map(tag => {return {value: tag, label: tag, color: "darkcyan"}})}})
       this.setState({ categories: (categoriesFromApi) });
-      console.log(this.state);
     }).catch(error => {
       console.log(error);
     });
@@ -110,12 +107,10 @@ export class CreatePost extends Component {
   }
 
   dropdownChange(event) {
-    //console.log("dropdown function");
-    console.log (event);
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
       categoryName: event.value,
-      tags: event.tags
+      tags: event.tags,
     })
     console.log(this.state);
   }
@@ -194,10 +189,12 @@ export class CreatePost extends Component {
                 />
                 <br></br>
                 <Select
+                  id= "tagField"
                   value={selectedOption}
                   onChange={this.handleTagChange}
                   options={this.state.tags}
                   isMulti
+                  isClearable= {true}
                   placeholder="Tags"
                   closeMenuOnSelect={false}
                   components={makeAnimated()}
