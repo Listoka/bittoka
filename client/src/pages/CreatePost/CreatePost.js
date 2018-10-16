@@ -86,7 +86,7 @@ export class CreatePost extends Component {
     API.getCategoriesTags()
     .then((result) => {
       const cData = result.data;
-      let categoriesFromApi = cData.map(category => { return {value: category.name, label: category.displayName, tags: category.tags.map(tag => {return {value: tag, label: tag, color: "darkcyan"}})}})
+      let categoriesFromApi = cData.map(category => { return {value: category.name, label: category.displayName, tags: category.tags.sort().map(tag => {return {value: tag, label: tag, color: "darkcyan"}})}})
       this.setState({ categories: (categoriesFromApi) });
     }).catch(error => {
       console.log(error);
@@ -167,9 +167,9 @@ export class CreatePost extends Component {
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
                   <p>Create a post in:</p>
-                  <Select className = "categorySelect"
-                    onChange = {this.dropdownChange}
-                    defaultValue={this.state.categoryName}
+                  <Select className= "categorySelect"
+                    onChange= {this.dropdownChange}
+                    // defaultValue= {this.state.defaultCategory}
                     options={this.state.categories}
                     theme={(theme) => ({
                       ...theme,
