@@ -5,13 +5,11 @@ import './createPost.css';
 /*import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";*/
 import API from '../../utils/API';
 import RichTextEditor from 'react-rte';
-//import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 // Tag Multiselect
 import Select from 'react-select';
 import chroma from 'chroma-js';
 import makeAnimated from 'react-select/lib/animated';
-import { TagOptions, colourOptions } from '../../components/TagDisplay/TagColor';
 
 // React Select docs: https://react-select.com/home
 
@@ -63,7 +61,6 @@ export class CreatePost extends Component {
       tags: [],
       teaser: "",
       title: "",
-      categoryName: "",
       categories: [],
       categoryTags: [],
       dropdownOpen: false,
@@ -84,13 +81,13 @@ export class CreatePost extends Component {
 
   getCategories = () => {
     API.getCategoriesTags()
-    .then((result) => {
-      const cData = result.data;
-      let categoriesFromApi = cData.map(category => { return {value: category.name, label: category.displayName, tags: category.tags.sort().map(tag => {return {value: tag, label: tag, color: "darkcyan"}})}})
-      this.setState({ categories: (categoriesFromApi) });
-    }).catch(error => {
-      console.log(error);
-    });
+      .then((result) => {
+        const cData = result.data;
+        let categoriesFromApi = cData.map(category => { return { value: category.name, label: category.displayName, tags: category.tags.sort().map(tag => { return { value: tag, label: tag, color: "darkcyan" } }) } })
+        this.setState({ categories: (categoriesFromApi) });
+      }).catch(error => {
+        console.log(error);
+      });
   }
 
   toggle() {
@@ -118,7 +115,7 @@ export class CreatePost extends Component {
   }
 
   handleTagChange = (selectedOption) => {
-    this.setState({ 
+    this.setState({
       selectedOption,
       categoryTags: selectedOption.map(tag => tag.value)
     });
@@ -129,7 +126,7 @@ export class CreatePost extends Component {
     console.log(this.state);
     event.preventDefault();
 
-    const { title, tags, value } = this.state
+    const { title, value } = this.state
     const body = value.toString('html')
     if (title && body) {
       const data = {
@@ -162,13 +159,16 @@ export class CreatePost extends Component {
       <div className="pagebody">
         <React.Fragment>
           <div className="row createForm">
-            <div className="col-md-2"></div>
-            <div className="col-md-8">
+            <div className="col-md-1">
+
+            </div>
+
+            <div className="col-md-8 formBody rounded" >
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
-                  <p>Create a post in:</p>
-                  <Select className= "categorySelect"
-                    onChange= {this.dropdownChange}
+                  <h2 className='postHeader'>CREATE POST</h2>
+                  <Select className="categorySelect"
+                    onChange={this.dropdownChange}
                     // defaultValue= {this.state.defaultCategory}
                     options={this.state.categories}
                     theme={(theme) => ({
@@ -187,14 +187,14 @@ export class CreatePost extends Component {
                 />
                 <br></br>
                 <Select
-                  id= "tagField"
+                  id="tagField"
                   className='react-select-container'
                   classNamePrefix="rounded "
                   value={selectedOption}
                   onChange={this.handleTagChange}
                   options={this.state.tags}
                   isMulti
-                  isClearable= {true}
+                  isClearable={true}
                   placeholder="Tags"
                   closeMenuOnSelect={false}
                   components={makeAnimated()}
@@ -209,9 +209,21 @@ export class CreatePost extends Component {
 
               </form>
             </div>
-            <div className="col-md-2">
-            </div>
-          </div>
+            <div className="col-md-3">
+              <div className='guidelineWrapper rounded'>
+                  <img className="img-fluid" src="/images/guidelines.png" alt="Listoka Guidelines"></img>
+                    <h6 className='guidelineHeader'>Posting Guidelines</h6>
+                    <hr></hr>
+                    <ul>
+                      <li>Guideline 1</li>
+                      <li>Guideline 2</li>
+                      <li>Guideline 3</li>
+                      <li>Guideline 4</li>
+                      <li>Guideline 5</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
         </React.Fragment>
       </div>
     );
