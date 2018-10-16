@@ -15,7 +15,7 @@ export default {
             // comments: storyData.comments,
             // purchasers: storyData.purchasers,
             // voters: storyData.voters,
-            // tags: storyData.tags,  
+            tags: storyData.tags,  
             author: storyData.author
         })
             .then(response => {

@@ -65,6 +65,7 @@ export class CreatePost extends Component {
       title: "",
       categoryName: "",
       categories: [],
+      categoryTags: [],
       dropdownOpen: false,
       redirectToNewPage: false,
       redirectPathId: "",
@@ -110,14 +111,17 @@ export class CreatePost extends Component {
       dropdownOpen: !this.state.dropdownOpen,
       categoryName: event.value,
       tags: event.tags,
-      selectedOption: null
+      selectedOption: null,
+      categoryTags: null,
     })
-    
     console.log(this.state);
   }
 
   handleTagChange = (selectedOption) => {
-    this.setState({ selectedOption });
+    this.setState({ 
+      selectedOption,
+      categoryTags: selectedOption.map(tag => tag.value)
+    });
     console.log(`Option selected:`, selectedOption);
   }
 
@@ -132,7 +136,7 @@ export class CreatePost extends Component {
         title: title,
         // teaser: teaser,
         body: body,
-        tags: tags,
+        tags: this.state.categoryTags,
         categoryName: this.state.categoryName
       }
 
