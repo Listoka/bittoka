@@ -16,15 +16,17 @@ router.route('/posts')
       .then(result => {
         res.json(result)
       })
+      .then(err => res.status(400).json(err))
   })
 
-router.route('/posts/:id')
+router.route('/posts/:postId')
   .put((req, res) => {
     const dbUser = res.locals.user.dbUser
+    const dbPost = res.locals.post
     const { title, teaser, body, tags, isDraft, categoryName } = req.body
     const updateData = { title, teaser, body, tags, isDraft, categoryName }
 
-    if (dbUser._id.toString() === req.params.id) {
+    if (dbUser._id.equals(dbPost.author)) {
       db.Post
         .findByIdAndUpdate(req.params.id, updateData)
         .then(() => res.json(true))
