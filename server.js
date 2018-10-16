@@ -9,11 +9,7 @@ const serviceAccount = require('./secret/firebase-secret.json');
 
 const PORT = process.env.PORT || 3001;
 
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: 'https://react-auth-demo-24abd.firebaseio.com'
-// });
-
+// Graps required config from .env
 admin.initializeApp()
 
 // Connect to the Mongo DB
