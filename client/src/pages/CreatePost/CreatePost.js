@@ -169,19 +169,12 @@ export class CreatePost extends Component {
                     options={this.state.categories}
                     theme={(theme) => ({
                       ...theme,
-                      borderRadius: 0,
-                      colors: {
-                        ...theme.colors,
-                        text: 'orangered',
-                        primary25: 'royalblue',
-                        primary: 'black',
-                      },
+                      borderRadius: 5,
                     })}
                   />
 
                 </div>
                 <div className='form-group'>
-                  {/* <label htmlFor='title-input'>Title</label> */}
                   <input className='form-control' type='text' onChange={this.handleInputChange} placeholder='Title' name='title' />
                 </div>
                 <RichTextEditor
@@ -191,6 +184,8 @@ export class CreatePost extends Component {
                 <br></br>
                 <Select
                   id= "tagField"
+                  className='react-select-container'
+                  classNamePrefix="rounded "
                   value={selectedOption}
                   onChange={this.handleTagChange}
                   options={this.state.tags}
@@ -200,6 +195,10 @@ export class CreatePost extends Component {
                   closeMenuOnSelect={false}
                   components={makeAnimated()}
                   styles={colourStyles}
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 5,
+                  })}
                 />
                 <br></br>
                 <input className='btn btn-outline-info createBtn' style={{ margin: '20px 0' }} type='submit' />
