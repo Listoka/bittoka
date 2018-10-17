@@ -2,7 +2,6 @@ import React from 'react';
 import './Modal.css'
 
 const ModalWrapper = props => {
-  console.log('ModalWrapper props', props)
     const handleBackgroundClick = e => {
       if (e.target === e.currentTarget) props.closeModal();
     };
@@ -30,7 +29,7 @@ const ModalWrapper = props => {
           </header>
     
           {props.children}
-          {/* {okButton} */}
+          {okButton}
         </div>
         </div>
       );

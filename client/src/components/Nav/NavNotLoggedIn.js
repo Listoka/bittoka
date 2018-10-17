@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 
 export const NavNotLoggedIn = (props) => {
-  console.log('NavNotLoggedIn props', props)
   return (
     <ul className="nav navbar-nav navbar-right">
       <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
