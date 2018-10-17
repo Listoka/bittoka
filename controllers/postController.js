@@ -74,7 +74,7 @@ module.exports = {
 
   remove: (req, res) => {
     db.Post
-      .findByIdAndRemove(req.params.id)
+      .findByIdAndRemove(req.params.postId)
       .then(result => res.json(result))
       .catch(err => res.status(500).json(err))
   },
