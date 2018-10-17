@@ -38,7 +38,17 @@ router.route('/posts/:postId')
       res.sendStatus(403)
     }
   })
-  .delete(postController.remove)
+  .delete((req, res) => {
+    const dbUser = res.locals.user.dbUser
+    const dbPost = res.locals.post
+    if (dbUser._id.equals(dbPost.author)) {
+      db.Post.findByIdAndRemove(req.params.postId)
+        .then(result => res.json(result))
+        .catch(err => res.status(500).json(err))
+    } else {
+      res.sendStatus(403)
+    }
+  })
 
 // TODO: add check to esure only one vote per user
 router.route('/posts/:id/vote')
