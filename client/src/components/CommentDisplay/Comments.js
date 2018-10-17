@@ -4,6 +4,7 @@ import API from '../../utils/API';
 import {NestedComments} from '../CommentDisplay/NestedComments';
 import Moment from 'react-moment';
 import './Comments.css';
+import { Link } from 'react-router-dom';
 
 export class Comments extends Component  {
     constructor (props) {
@@ -31,7 +32,7 @@ export class Comments extends Component  {
             <React.Fragment>
                 <hr/>
                 <div className= 'comment'>
-                <p className='smallPostCommentText'>{this.props.authorName}&nbsp;&nbsp;<i className="fas fa-calendar-alt"></i>&nbsp;&nbsp;<Moment fromNow>{this.props.createdAt}</Moment>&nbsp;&nbsp;<i className="fab fa-bitcoin"></i>&nbsp;&nbsp;[earned $x.xx]</p>
+                <p className='smallPostCommentText'><Link to={{ pathname: `/user/${this.props.author}` }}>{this.props.authorName}</Link>&nbsp;&nbsp;<i className="fas fa-calendar-alt"></i>&nbsp;&nbsp;<Moment fromNow>{this.props.createdAt}</Moment>&nbsp;&nbsp;<i className="fab fa-bitcoin"></i>&nbsp;&nbsp;[earned $x.xx]</p>
                 <br></br>  
                 <p className='mediumPostText'> {this.props.body}</p>
                 <p>[#Upvotes][Upvote MoneyButton Component]</p>
