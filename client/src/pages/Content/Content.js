@@ -5,6 +5,7 @@ import { Comments, CommentList } from '../../components/CommentDisplay';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 /*import TipButton from '../../components/TipButton';*/
 import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
+import './content.css';
 
 class Content extends Component {
   constructor(props) {
@@ -58,10 +59,10 @@ class Content extends Component {
       <div className="pagebody">
         <React.Fragment>
           <div className="container-fluid">
-            <div className="row">
+            <div className="row displayForm">
               <div className="col-xl-2"></div>
-              <div className="col-xl-8">
-                <PostDetail key={this.state.post._id} {...this.state.post} />
+              <div className="col-xl-8 formBody rounded">
+                <PostDetail className= "containerHeader" key={this.state.post._id} {...this.state.post} />
                 <hr />
                 <TextArea
                   value={this.state.commentBody}
