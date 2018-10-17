@@ -12,9 +12,6 @@ import Home from './pages/Home';
 import CreatePost from './pages/CreatePost';
 import EditPage from './pages/EditPage';
 import Content from './pages/Content';
-import Gist from './pages/Gist';
-import Join from './pages/Join';
-import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 // import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
@@ -25,24 +22,28 @@ import authTest from './pages/AUTH-TEST';
 
 // Auth Helper
 import withAuthentication from './components/AuthUserSession/withAuthentication';
-
+import ModalConductor from './components/Modals/ModalConductor'
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isOpen: false,
       categories: categories,
+      currentModal: '',
     };
   };
 
-  // toggle = () => this.setState({ isOpen: !this.state.isOpen });
+  openModal = (event, modalName) => {
+    event.preventDefault()
+    this.setState({ currentModal: modalName })
+  }
+
+  closeModal = () => this.setState({ currentModal: '' })
 
   render() {
-    //console.log('state: ', this.state)
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav openModal={this.openModal} />
           <FlexContainer>
             {this.state.categories.map(category => (
               <SubNav
@@ -53,19 +54,20 @@ class App extends Component {
               />
             ))}
           </FlexContainer>
+          <ModalConductor
+            currentModal={this.state.currentModal}
+            closeModal={this.closeModal}
+          />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/join' component={Join} />
-            <Route exact path='/gist' component={Gist} />
             <Route exact path='/categories/:categoryName' component={MainCategoryPage} />
             <Route exact path='/categories/:categoryName/posts/new' component={CreatePost} />
             <Route exact path='/posts/:id' component={Content} />
             <Route exact path='/posts/:id/edit' component={EditPage} />
             <Route exact path='/account' component={AccountPage} />
-            <Route exact path='/(authtest|postman)' component={authTest} />
             <Route exact path='/users/:id' component={Profile} />
+            <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
           </Switch>
         </div>
