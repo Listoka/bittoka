@@ -40,16 +40,10 @@ class App extends Component {
 
     };
   };
-  // modalOverlayOn = () => {
-  //   document.getElementById("overlay").style.display = "block";
-  //   console.log('overlay on')
-  // }
-  // modalOverlayOff = () => {
-  //   document.getElementById("overlay").style.display = "none";
-  // }
+
   openGistModal = event => {
     this.setState({ currentModal: 'GIST' })
-    // this.modalOverlayOn();
+  
     console.log("gist modal open")
   }
 
@@ -66,7 +60,7 @@ class App extends Component {
 
   closeModal = event => {
     this.setState({ currentModal: '' });
-    // this.modalOverlayOff();
+    
     console.log('modal closed')
   }
 

@@ -1,6 +1,6 @@
 .Modal {
     background: white;
-    width:75%;
+    width:800px;
     /* height:100%; */
     margin:auto;
     margin-left: auto;
@@ -11,6 +11,12 @@
     position: absolute;
     left:0;
     right: 0;
+}
+.modals2-3{
+    width: 500px;
+}
+.modal-gist {
+    width:75%;
 }
 
 .close {
@@ -30,6 +36,15 @@
     z-index: 2;
 }
 
-.gist-header {
+.header {
     text-align: center;
+    font-family: 'Merienda', cursive;
+    font-weight: bold;
+}
+
+hr {
+    border-color: (0, 150, 136); 
+    border-style: outset;
+    border-width: 2px;
+    
 }

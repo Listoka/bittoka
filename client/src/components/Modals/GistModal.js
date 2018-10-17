@@ -9,7 +9,8 @@ const GistModal = props => {
         <ModalWrapper
             {...props}
             // title="Listoka's Gist"
-
+            // width={75}
+            className='modal-gist'
             showOk={false}
         >
             {/* <div className="gistContainer">
@@ -18,7 +19,7 @@ const GistModal = props => {
                     <div className="col-sm-8">
                         <div className="gistDescriptionBox"> */}
             {/* <i onClick={props.closeModal} className="fas fa-window-close"></i> */}
-            <h2 className="gist-header">Listoka's Gist</h2>
+            <h2 className="header">Listoka's Gist</h2>
             <hr></hr>
             {/* <div className="gist-body">*/}
             <div className='row'>
