@@ -104,6 +104,7 @@ export default {
         return axios.get(`/api/users/id/${userID}/posts/`);
     },
     deletePost: (id) => {
+        console.log(id)
         return axios.delete('/api/posts/' + id);
     },
     updatePost: (id, updatedData) => {

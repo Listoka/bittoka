@@ -63,11 +63,14 @@ class Account extends Component {
   };
 
   removeDraft = (event, index, id) => {
+    console.log(id)
     event.preventDefault();
     let array = this.state.drafts
     array.splice(index, 1)
     this.setState({drafts: array})
-    //Now I need to have the API delete function
+    API.deletePost(id)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   };
 
   handleFormSubmit = (event) => {
