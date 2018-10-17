@@ -37,6 +37,7 @@ module.exports = {
   getPostAndChildComments: (req, res) => {
     db.Post.findById(req.params.id)
       .populate('comments')
+      .populate('voters')
       .then(dbPost => {
         res.json(dbPost)
       })
