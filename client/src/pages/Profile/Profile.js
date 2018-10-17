@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
-import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
+// import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import './profile.css';
 

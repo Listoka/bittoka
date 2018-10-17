@@ -29,13 +29,14 @@ router.put('/users/id/:id', (req, res) => {
 
 // TODO: this should check if the username is unique before creating the user
 router.post('/users', (req, res) => {
-  console.log('>>> POST -- req.originalUrl: ', req.originalUrl)
-  console.log('>>> POST -- req.body: ', req.body)
+  console.log('\n>>> POST -- req.originalUrl: ', req.originalUrl)
+  console.log('>>> POST -- req.body: \n', req.body)
+  console.log('>>> POST -- res.locals\n', res.locals)
   const { username } = req.body
   const userData = {
     username: username,
-    email: res.locals.user.email,
-    uid: res.locals.user.uid,
+    email: res.locals.user.token.email,
+    uid: res.locals.user.token.uid,
     permissions: ['user']
   }
   db.User.create(userData).then(result => {

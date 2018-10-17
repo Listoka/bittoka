@@ -12,9 +12,6 @@ import Home from './pages/Home';
 import CreatePost from './pages/CreatePost';
 import EditPage from './pages/EditPage';
 import Content from './pages/Content';
-import Gist from './pages/Gist';
-import Join from './pages/Join';
-import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 // import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
@@ -30,53 +27,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isOpen: false,
       categories: categories,
       currentModal: '',
-      modalIsOpen: false,
-
-
-
-
     };
   };
 
-  openGistModal = event => {
-    this.setState({ currentModal: 'GIST' })
-  
-    console.log("gist modal open")
+  openModal = (event, modalName) => {
+    event.preventDefault()
+    this.setState({ currentModal: modalName })
   }
 
-  openJoinModal = event => {
-    this.setState({ currentModal: 'JOIN' })
-    console.log("join modal open")
-  }
-
-  openLoginModal = event => {
-    this.setState({ currentModal: 'LOGIN' })
-    console.log("login modal open")
-
-  }
-
-  closeModal = event => {
-    this.setState({ currentModal: '' });
-    
-    console.log('modal closed')
-  }
-
-
-  // toggle = () => this.setState({ isOpen: !this.state.isOpen });
+  closeModal = () => this.setState({ currentModal: '' })
 
   render() {
-    //console.log('state: ', this.state)
     return (
       <Router>
         <div>
-          <Nav
-            openGistModal={this.openGistModal}
-            openJoinModal={this.openJoinModal}
-            openLoginModal={this.openLoginModal}
-          />
+          <Nav openModal={this.openModal} />
           <FlexContainer>
             {this.state.categories.map(category => (
               <SubNav
@@ -89,22 +56,18 @@ class App extends Component {
           </FlexContainer>
           <ModalConductor
             currentModal={this.state.currentModal}
-            modalOverlayOn={this.modalOverlayOn}
             closeModal={this.closeModal}
           />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/join' component={Join} />
-            <Route exact path='/gist' component={Gist} />
             <Route exact path='/categories/:categoryName' component={MainCategoryPage} />
             <Route exact path='/categories/:categoryName/posts/new' component={CreatePost} />
             <Route exact path='/posts/:id' component={Content} />
             <Route exact path='/posts/:id/edit' component={EditPage} />
             <Route exact path='/account' component={AccountPage} />
-            <Route exact path='/(authtest|postman)' component={authTest} />
             <Route exact path='/users/:id' component={Profile} />
+            <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
           </Switch>
         </div>

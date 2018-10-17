@@ -1,60 +1,87 @@
 import React from 'react';
+import { auth } from '../../firebase'
 
 import ModalWrapper from './ModalWrapper';
 
-const LoginModal = props => {
-    return (
-        <ModalWrapper
-            {...props}
-            // width={400}
-            className='modals2-3'
-            showOk={false}
-        >
+class LoginModal extends React.Component {
+    constructor(props) {
+        super(props)
 
-            <h2 className="header">Login</h2>
-            <hr></hr>
-            <div className='row'>
-                <div className='col-sm-2'></div>
-                <div className="col-sm-8">
+        this.state = {
+            email: '',
+            password: '',
+            error: null
+        }
+    }
 
-                    <form /*onSubmit={this.handleSubmit}*/>
-                        <div className='form-group'>
-                            <label for='username'>Email:</label>
-                            <input
-                                name='email'
-                                placeholder='email'
-                                // value={email}
-                                // onChange={this.handleChange}
-                                className='form-control'
-                                type='email'
-                            />
-                        </div>
-                        <div className='form-group'>
-                            <label for='password'>Password:</label>
-                            <input
-                                name='password'
-                                placeholder='password'
-                                // value={password}
-                                // onChange={this.handleChange}
-                                className='form-control'
-                                type='password'
-                            />
-                        </div>
-                        <button type='submit' className='button'>Submit</button>
-                        {/* {
-                    error
-                        ? <p>{error.message}</p>
-                        : null
-                } */}
-                    </form>
+    handleChange = (event) => {
+        const { name, value } = event.target
+        this.setState({ [name]: value })
+    }
+
+    handleSubmit = (event) => {
+        const { email, password } = this.state
+        event.preventDefault()
+
+        auth
+            .doSignInWithEmailAndPassword(email, password)
+            .then(() => this.props.closeModal())
+            .catch(error => {
+                console.log(error)
+                this.setState({ error })
+            })
+    }
+
+    render() {
+
+        const { email, password, error } = this.state
+
+        return (
+            <ModalWrapper
+                // width={400}
+                showOk={false}
+                {...this.props}
+            >
+
+                <h2 className="join-header">Login</h2>
+
+                <div className='row'>
+                    <div className="col-sm-2"></div>
+                    <div className="col-sm-8">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className='form-group'>
+                                <label htmlFor='username'>Email:</label>
+                                <input
+                                    name='email'
+                                    placeholder='email'
+                                    value={email}
+                                    onChange={this.handleChange}
+                                    className='form-control'
+                                    type='email'
+                                />
+                            </div>
+                            <div className='form-group'>
+                                <label htmlFor='password'>Password:</label>
+                                <input
+                                    name='password'
+                                    placeholder='password'
+                                    value={password}
+                                    onChange={this.handleChange}
+                                    className='form-control'
+                                    type='password'
+                                />
+                            </div>
+                            <button type='submit' className='btn btn-success'>Submit</button>
+                            {error ? <p>{error.message}</p> : null}
+                        </form>
+                    </div>
+                    <div className="col-sm-2"></div>
                 </div>
-                <div className='col-sm-2'></div>
-            </div>
 
+            </ModalWrapper >
+        )
 
-
-        </ModalWrapper >
-    )
+    }
 }
 
 export default LoginModal;

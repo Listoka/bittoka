@@ -1,20 +1,26 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 
 export const NavNotLoggedIn = (props) => {
-
-    return (
-        <ul className="nav navbar-nav navbar-right">
-            <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-              <div className="nav-link" onClick={props.openGistModal}><Link style={{ color:'snow' }} to="/gist">Gist</Link><span className="sr-only">Gist</span></div>
-            </li>
-            <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-              <div className="nav-link hover" onClick={props.openJoinModal}><Link style={{ color:'snow' }} to="/join">Join</Link><span className="sr-only">Join</span></div>
-            </li>
-            <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-              <div className="nav-link hover" onClick={props.openLoginModal}><Link style={{ color:'snow' }} to="/login">Login</Link><span className="sr-only">Login</span></div>
-            </li>
-            {/* Will need to pass in an onclick function. We pass in the props here. Within Nav we add the function to pop up the modal. */}
-        </ul>
-    )
+  return (
+    <ul className="nav navbar-nav navbar-right">
+      <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+        <div className="nav-link">
+          <a style={{ color: 'snow' }} onClick={(e) => props.openModal(e, 'GIST')} href='/'>Gist</a>
+          <span className="sr-only">Gist</span>
+        </div>
+      </li>
+      <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+        <div className="nav-link hover">
+          <a style={{ color: 'snow' }} onClick={(e) => props.openModal(e, 'JOIN')} href='/'>Join</a>
+          <span className="sr-only">Join</span>
+        </div>
+      </li>
+      <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+        <div className="nav-link">
+          <a style={{ color: 'snow' }} onClick={(e) => props.openModal(e, 'LOGIN')} href='/'>Login</a>
+          <span className="sr-only">Login</span>
+        </div>
+      </li>
+    </ul>
+  )
 };

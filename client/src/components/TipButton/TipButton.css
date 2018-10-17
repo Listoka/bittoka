@@ -3,11 +3,8 @@
     margin-right: 10px;
 }
 
-Input {
-    width: 80px;
-}
-
 .tipBtnCard {
     box-shadow: 0 6px 10px 0px #333; 
     background-color: #009688;
+    margin-bottom: 40px;
 }

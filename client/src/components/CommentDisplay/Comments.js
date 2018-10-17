@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { TextArea, FormBtn } from "../PostComponents/PostForm";
 import API from '../../utils/API';
 import {NestedComments} from '../CommentDisplay/NestedComments';
+import Moment from 'react-moment';
+import './Comments.css';
+import { Link } from 'react-router-dom';
 
 export class Comments extends Component  {
     constructor (props) {
@@ -28,12 +31,16 @@ export class Comments extends Component  {
         return (
             <React.Fragment>
                 <hr/>
-                <p><b>Author:</b> {this.props.authorName} [earned $x.xx]</p> 
-                <p><b>Comment:</b> {this.props.body}</p>
+                <div className= 'comment'>
+                <p className='smallPostCommentText'><Link to={{ pathname: `/user/${this.props.author}` }}>{this.props.authorName}</Link>&nbsp;&nbsp;<i className="fas fa-calendar-alt"></i>&nbsp;&nbsp;<Moment fromNow>{this.props.createdAt}</Moment>&nbsp;&nbsp;<i className="fab fa-bitcoin"></i>&nbsp;&nbsp;[earned $x.xx]</p>
+                <br></br>  
+                <p className='mediumPostText'> {this.props.body}</p>
                 <p>[#Upvotes][Upvote MoneyButton Component]</p>
-                <p><button className="btn btn-success" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button>[Created on: {createdDate}] <a className="btn" onClick={this.toggleComments.bind(this)}>[View <i className="far fa-comment">]</i></a></p>
+                <p><button className="btn btn-secondary" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button>&nbsp;&nbsp;</p>
+                <p><button type="button" className="btn btn-primary viewButton" onClick={this.toggleComments.bind(this)}>[View Replies <i className="far fa-comment">]</i></button></p>
                 {!this.state.commentBoxIsHidden && <CommentBox id={this.props.id} toggleCommentBox = {this.toggleCommentBox}/>}
                 {!this.state.commentsAreHidden && <LayeredComments commentID={this.props.id} />}
+                </div>
             </React.Fragment>
         );
     };   
