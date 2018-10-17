@@ -15,7 +15,8 @@ export class Comments extends Component  {
         }
       };
       componentDidMount() {
-          console.log(this.props)
+        console.log(this.props)
+        console.log(this.props._id)
       }
 
       toggleCommentBox () {
@@ -41,8 +42,8 @@ export class Comments extends Component  {
                 <p>[#Upvotes][Upvote MoneyButton Component]</p>
                 <p><button className="btn btn-secondary" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button>&nbsp;&nbsp;</p>
                 <p><button type="button" className="btn btn-primary viewButton" onClick={this.toggleComments.bind(this)}>[View Replies <i className="far fa-comment">]</i></button></p>
-                {!this.state.commentBoxIsHidden && <CommentBox id={this.props.id} toggleCommentBox = {this.toggleCommentBox}/>}
-                {!this.state.commentsAreHidden && <LayeredComments commentID={this.props.id} />}
+                {!this.state.commentBoxIsHidden && <CommentBox id={this.props._id} toggleCommentBox = {this.toggleCommentBox}/>}
+                {!this.state.commentsAreHidden && <LayeredComments commentID={this.props._id} />}
                 </div>
             </React.Fragment>
         );
@@ -59,6 +60,7 @@ class LayeredComments extends Component {
     };
 
     componentDidMount() {
+        console.log(this.props)
         this.getLayeredComments()
     };
 
