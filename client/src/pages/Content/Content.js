@@ -59,7 +59,7 @@ class Content extends Component {
       <div className="pagebody">
         <React.Fragment>
           <div className="container-fluid">
-            <div className="row editForm">
+            <div className="row displayForm">
               <div className="col-xl-2"></div>
               <div className="col-xl-8 formBody rounded">
                 <PostDetail className= "containerHeader" key={this.state.post._id} {...this.state.post} />

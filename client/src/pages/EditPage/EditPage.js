@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import API from '../../utils/API';
 import { Redirect } from 'react-router-dom';
-import RichTextEditor from 'react-rte'
+import RichTextEditor from 'react-rte';
+import './editpage.css';
 
 class EditPage extends Component {
   constructor(props) {
@@ -53,20 +54,22 @@ class EditPage extends Component {
       )
     };
     return (
+      <div className= "pagebody">
       <React.Fragment>
-        <div className="row">
+        <div className="row editForm">
           <div className="col-md-2"></div>
-          <div className="col-md-8">
-          <h2>{this.state.title}</h2>
-          <hr />
+          <div className="col-md-8 formBody rounded">
+          <h2 className='editFormTitle'>{this.state.title}</h2>
+          <hr></hr>
             <form onSubmit={this.handleFormSubmit}>
                 <RichTextEditor value={this.state.value} onChange={this.onEditorChange} />
-              <input type='submit' className='btn btn-primary' />
+              <input type='submit' className='btn btn-primary editPageBtn' />
             </form>
           </div>
           <div className="col-md-2"></div>
         </div>
       </React.Fragment>
+      </div>
     );
   };
 };
