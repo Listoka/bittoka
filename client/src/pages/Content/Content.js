@@ -50,10 +50,6 @@ class Content extends Component {
     }
   }
 
-  afterPayment = () => {
-    alert('Payment successful!')
-  }
-
   render() {
     return (
       <div className="pagebody">
