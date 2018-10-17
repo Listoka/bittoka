@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { PostList, PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
 import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import './account.css';
@@ -16,22 +16,30 @@ class Account extends Component {
         bio: "",
         displayedBio: "",
         profileUsername: "",
+        drafts: [],
     };
   };
 
   componentDidMount() {
-    let promises = [this.getPostsAndBio(this.state.id)]
+    let promises = [this.getPostsAndBio(this.state.id), this.getPostsAndDrafts(this.state.id)]
     Promise.all(promises)
       .then(results => {
+        const drafts = results[1].filter(post => post.isDraft)
+        console.log(results)
         this.setState({
           userPosts: results[0].posts,
           bio: results[0].user.bio,
+          drafts: drafts
         });
-      });
+      })
   };
 
+  getPostsAndDrafts = (id) => {
+    return API.getPostsAndDrafts(id).then(results => results.data)
+  }
+
   getPostsAndBio = (id) => {
-    return API.getPostsAndBio(id).then (results => results.data)
+    return API.getPostsAndBio(id).then(results => results.data)
   }
 
   handleDeleteButton = (event, id) => {
@@ -54,6 +62,17 @@ class Account extends Component {
     });
   };
 
+  removeDraft = (event, index, id) => {
+    console.log(id)
+    event.preventDefault();
+    let array = this.state.drafts
+    array.splice(index, 1)
+    this.setState({drafts: array})
+    API.deletePost(id)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  };
+
   handleFormSubmit = (event) => {
     console.log(this.state);
     event.preventDefault();
@@ -68,7 +87,7 @@ class Account extends Component {
     };
 };
 
-editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
+  editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
 
   render() {
       return (
@@ -98,10 +117,7 @@ editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
                     Submit Bio
                   </FormBtn>
                 </form>
-              
             }
-
-              
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem
@@ -124,6 +140,22 @@ editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
             </div>
             <div className='col-lg-2'></div>
             </div>
+            <hr />
+            <PostList>
+              <h1>DRAFTS!</h1>
+              {this.state.drafts.map((drafts, index) => (
+                <DraftListItem 
+                  key={drafts._id}
+                  index={index}
+                  categoryName={drafts.categoryName}
+                  title={drafts.title}
+                  postId={drafts._id}
+                  author={drafts.author}
+                  updatedAt={drafts.updatedAt}
+                  removeDraft={this.removeDraft}
+                />
+              ))}
+            </PostList>
         </div>
       );
   };

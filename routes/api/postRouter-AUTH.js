@@ -16,20 +16,20 @@ router.route('/posts')
       .then(result => {
         res.json(result)
       })
-      .then(err => res.status(400).json(err))
+      .catch(err => res.status(400).json(err))
   })
 
 router.route('/posts/:postId')
   .put((req, res) => {
     const dbUser = res.locals.user.dbUser
     const dbPost = res.locals.post
-    const { title, teaser, body, tags, isDraft, categoryName } = req.body
-    const updateData = { title, teaser, body, tags, isDraft, categoryName }
+    const { title, teaser, body, isDraft, tags } = req.body
+    const updateData = { title, teaser, body, isDraft, tags }
 
     if (dbUser._id.equals(dbPost.author)) {
       db.Post
-        .findByIdAndUpdate(req.params.id, updateData)
-        .then(() => res.json(true))
+        .findByIdAndUpdate(req.params.postId, updateData)
+        .then(dbPost => res.json(dbPost))
         .catch(err => {
           console.log(err)
           res.status(500).json(err)
@@ -38,12 +38,16 @@ router.route('/posts/:postId')
       res.sendStatus(403)
     }
   })
-  // .delete(postController.remove)
+  .delete(postController.remove)
 
 // TODO: add check to esure only one vote per user
 router.route('/posts/:id/vote')
   .get((req, res) => {
     const dbUser = res.locals.user.dbUser
     db.Post.findByIdAndUpdate(req.params.id, { $push: { voters: dbUser._id } })
+      .populate('voters')
+      .then( (result) => {
+        res.json(result)
+      })
   })
 module.exports = router

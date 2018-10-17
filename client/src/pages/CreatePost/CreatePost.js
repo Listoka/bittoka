@@ -68,7 +68,9 @@ export class CreatePost extends Component {
       redirectPathId: "",
       value: RichTextEditor.createEmptyValue(),
       selectedOption: null,
-      categoryName: props.match.params.categoryName
+      categoryName: props.match.params.categoryName,
+      savedDraftID: "",
+      author: props.authUser.dbUser._id
     };
 
     //this.categoryName = props.match.params.categoryName
@@ -77,7 +79,24 @@ export class CreatePost extends Component {
   componentDidMount() {
     this.setState({ categoryName: this.props.match.params.categoryName });
     this.getCategories();
+    this.initialSave();
+    console.log(this.state)
   }
+  initialSave = () => {
+    const { tags, value } = this.state
+    const body = value.toString('html')
+      const data = {
+        title: "untitled",
+        // teaser: teaser,
+        body: body,
+        tags: tags,
+        categoryName: this.state.categoryName,
+        isDraft: true
+      }
+    API.createInitialPost(data)
+    .then(res => this.setState({ savedDraftID: res.data._id }))
+    .catch(err => console.log(err))
+  };
 
   getCategories = () => {
     API.getCategoriesTags()
@@ -88,20 +107,20 @@ export class CreatePost extends Component {
       }).catch(error => {
         console.log(error);
       });
-  }
+  };
 
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
-  }
+  };
 
   onEditorChange = (value) => this.setState({ value })
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   dropdownChange(event) {
     this.setState({
@@ -112,7 +131,7 @@ export class CreatePost extends Component {
       categoryTags: null,
     })
     console.log(this.state);
-  }
+  };
 
   handleTagChange = (selectedOption) => {
     this.setState({
@@ -120,7 +139,7 @@ export class CreatePost extends Component {
       categoryTags: selectedOption.map(tag => tag.value)
     });
     console.log(`Option selected:`, selectedOption);
-  }
+  };
 
   handleFormSubmit = (event) => {
     console.log(this.state);
@@ -134,8 +153,9 @@ export class CreatePost extends Component {
         // teaser: teaser,
         body: body,
         tags: this.state.categoryTags,
-        categoryName: this.state.categoryName
-      }
+        categoryName: this.state.categoryName,
+        isDraft: false
+      };
 
       API.createPost(data)
         .then(result => {
@@ -143,8 +163,26 @@ export class CreatePost extends Component {
           this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
         }).catch(err => console.log(err))
 
-    }
-  }
+    };
+  };
+  //Saving a draft
+  saveDraft = (event) => {
+    event.preventDefault();
+    console.log(this.state.savedDraftID)
+    const { title, tags, value } = this.state
+    const body = value.toString('html')
+    
+    const data = {
+      title: title,
+      // teaser: teaser,
+      body: body,
+      tags: tags,
+      isDraft: true,
+    };
+    API.submitDraft(this.state.savedDraftID, data)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  };
 
   render() {
     const { selectedOption } = this.state;
@@ -152,7 +190,7 @@ export class CreatePost extends Component {
     if (this.state.redirectToNewPage) {
       return (
         <Redirect to={{ pathname: '/posts/' + this.state.redirectPathId }} />
-      )
+      );
     };
 
     return (
@@ -206,8 +244,10 @@ export class CreatePost extends Component {
                 />
                 <br></br>
                 <input className='btn btn-outline-info createBtn' style={{ margin: '20px 0' }} type='submit' />
-
+                <span><button onClick={this.saveDraft} className="btn fas fa-save floatRight">
+                    Save Draft <i className="fas fa-save"></i></button></span> 
               </form>
+
             </div>
             <div className="col-md-3">
               <div className='guidelineWrapper rounded'>

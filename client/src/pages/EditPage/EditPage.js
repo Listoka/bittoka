@@ -16,6 +16,8 @@ class EditPage extends Component {
       postId: props.match.params.id,
       value: RichTextEditor.createEmptyValue(),
       error: null,
+      title: "",
+      tags: []
     };
     console.log(props)
   };
@@ -27,24 +29,36 @@ class EditPage extends Component {
         this.setState({
           value: RichTextEditor.createValueFromString(dbPost.data.body, 'html'),
           title: dbPost.data.title,
-        })
-      })
-  }
+        });
+      });
+  };
 
   onEditorChange = (value) => this.setState({ value })
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+    console.log(this.state.postId)
     const { value } = this.state
     const data = {
-      body: value.toString('html')
+      body: value.toString('html'),
+      // teaser: this.state.teaser,
+      title: this.state.title,
+      tags: this.state.tags, 
+      //NEED TO ADD TAGS TO THE EDIT PAGE rather than adding an empty array
+      isDraft: false
     }
     API.updatePost(this.state.postId, data)
       .then(result => {
         console.log('result', result)
         this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
       })
-      .catch(err => console.log(err))
+    .catch(err => console.log(err))
+  }
+
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    console.log("I did a thing"); // A++ logging, right here
   }
 
   render() {
@@ -59,14 +73,14 @@ class EditPage extends Component {
         <div className="row editForm">
           <div className="col-md-2"></div>
           <div className="col-md-8 formBody rounded">
-          <h2 className='editFormTitle'>{this.state.title}</h2>
-          <hr></hr>
+          <h3 className='editFormTitle'>Title</h3>
+            <input className='form-control' type='text' onChange={this.handleInputChange} value={this.state.title} name='title' />
+          <h3 className='editFormTitle'>Content</h3>
             <form onSubmit={this.handleFormSubmit}>
                 <RichTextEditor value={this.state.value} onChange={this.onEditorChange} />
               <input type='submit' className='btn btn-primary editPageBtn' />
             </form>
           </div>
-          <div className="col-md-2"></div>
         </div>
       </React.Fragment>
       </div>
