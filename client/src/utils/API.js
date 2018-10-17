@@ -49,6 +49,9 @@ export default {
         console.log(id)
         return axios.get('/api/posts/' + id)
     },
+    upvotePost: (id) => {
+        return axios.get(`/api/posts/${id}/vote`)
+    },
     getPostWithComments: (id) => {
         console.log(id)
         return axios.get(`/api/posts/${id}/comments`)

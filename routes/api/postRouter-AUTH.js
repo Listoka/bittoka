@@ -45,5 +45,9 @@ router.route('/posts/:id/vote')
   .get((req, res) => {
     const dbUser = res.locals.user.dbUser
     db.Post.findByIdAndUpdate(req.params.id, { $push: { voters: dbUser._id } })
+      .populate('voters')
+      .then( (result) => {
+        res.json(result)
+      })
   })
 module.exports = router
