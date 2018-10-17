@@ -16,7 +16,8 @@ class EditPage extends Component {
       postId: props.match.params.id,
       value: RichTextEditor.createEmptyValue(),
       error: null,
-      title: ""
+      title: "",
+      tags: []
     };
     console.log(props)
   };
@@ -42,6 +43,8 @@ class EditPage extends Component {
       body: value.toString('html'),
       // teaser: this.state.teaser,
       title: this.state.title,
+      tags: this.state.tags, 
+      //NEED TO ADD TAGS TO THE EDIT PAGE rather than adding an empty array
       isDraft: false
     }
     API.updatePost(this.state.postId, data)
@@ -70,8 +73,9 @@ class EditPage extends Component {
         <div className="row editForm">
           <div className="col-md-2"></div>
           <div className="col-md-8 formBody rounded">
-          <h2 className='editFormTitle'>{this.state.title}</h2>
-          <hr></hr>
+          <h3 className='editFormTitle'>Title</h3>
+            <input className='form-control' type='text' onChange={this.handleInputChange} value={this.state.title} name='title' />
+          <h3 className='editFormTitle'>Content</h3>
             <form onSubmit={this.handleFormSubmit}>
                 <RichTextEditor value={this.state.value} onChange={this.onEditorChange} />
               <input type='submit' className='btn btn-primary editPageBtn' />

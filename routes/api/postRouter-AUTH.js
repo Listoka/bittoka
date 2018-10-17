@@ -38,7 +38,7 @@ router.route('/posts/:postId')
       res.sendStatus(403)
     }
   })
-  // .delete(postController.remove)
+  .delete(postController.remove)
 
 // TODO: add check to esure only one vote per user
 router.route('/posts/:id/vote')

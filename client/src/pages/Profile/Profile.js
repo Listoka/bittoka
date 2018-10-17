@@ -32,8 +32,6 @@ class Profile extends Component {
     return API.getPostsAndBio(id).then(results => results.data);
   };
 
-  getProfile
-
   render() {
       return (
         <div className='pagebody'>
