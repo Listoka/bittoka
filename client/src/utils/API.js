@@ -156,6 +156,9 @@ export default {
     },
     getPostsAndDrafts: (id) => {
         return axios.get(`/api/users/id/${id}/posts`)
+    },
+    getMoneyButton: (id) => {
+        return axios.get(`/api/users/id/${id}/profile`)//May need to change. Wherever we can publicly grab the MB id from
     }
 
 };
