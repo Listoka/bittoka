@@ -4,19 +4,20 @@ export default {
     getAllPosts: () => {
         return axios.get('/api/posts');
     },
-    createPost: (storyData) => {
-        console.log(storyData)
+    createPost: (data) => {
+        console.log(data)
         return axios.post('/api/posts', {
-            title: storyData.title,
-            teaser: storyData.teaser,
-            body: storyData.body,
-            authorName: storyData.authorName,
-            categoryName: storyData.categoryName,
-            // comments: storyData.comments,
-            // purchasers: storyData.purchasers,
-            // voters: storyData.voters,
-            // tags: storyData.tags,  
-            author: storyData.author
+            title: data.title,
+            teaser: data.teaser,
+            body: data.body,
+            authorName: data.authorName,
+            categoryName: data.categoryName,
+            // comments: data.comments,
+            // purchasers: data.purchasers,
+            // voters: data.voters,
+            // tags: data.tags,  
+            author: data.author,
+            isDraft: data.isDraft
         })
             .then(response => {
                 console.log(response);
@@ -25,6 +26,24 @@ export default {
             .catch(error => {
                 console.log(error);
             });
+    },
+    createInitialPost: (data) => {
+        return axios.post(`/api/posts`, {
+            title: data.title,
+            // teaser: data.teaser,
+            body: data.body,
+            tags: data.tags,
+            categoryName: data.categoryName,
+            isDraft: data.isDraft,
+            authorName: data.authorName,
+            author: data.author
+        }).then(response => {
+            console.log(response)
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+        });
     },
     getPost: (id) => {
         console.log(id)
@@ -84,7 +103,13 @@ export default {
         return axios.delete('/api/posts/' + id);
     },
     updatePost: (id, updatedData) => {
+        console.log(id)
+        console.log(updatedData)
         return axios.put('/api/posts/' + id, updatedData)
+        .then(response => {
+            console.log(response);
+            return response;
+        })
             .catch(error => {
                 console.log(error);
             });
@@ -103,17 +128,18 @@ export default {
     },
     updateProfile: (id, updatedData) => {
         console.log(updatedData)
-        return axios.put(`api/users/id/${id}`, updatedData)
+        return axios.put(`/api/users/id/${id}`, updatedData)
     },
-    submitDraft: (data) => {
+    submitDraft: (postID, data) => {
         console.log(data)
-        return axios.post('/api/posts', {
+        console.log(postID)
+        return axios.put('/api/posts/' + postID, {
             title: data.title,
             // teaser: data.teaser,
             body: data.body,
-            tags: data.tags,
-            categoryName: data.categoryName,
-            isDraft: data.isDraft
+            // tags: data.tags,
+            // categoryName: data.categoryName,
+            // isDraft: data.isDraft
         })
         .then(response => {
             console.log(response);

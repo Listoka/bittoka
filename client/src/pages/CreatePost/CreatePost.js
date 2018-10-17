@@ -68,7 +68,7 @@ export class CreatePost extends Component {
       tags: [],
       teaser: "",
       title: "",
-      categoryName: "Select a category",
+      // categoryName: "Select a category",
       categories: ["listoka", "bitcoin-story", "stories"],
       categoryTags: [],
       dropdownOpen: false,
@@ -76,15 +76,34 @@ export class CreatePost extends Component {
       redirectPathId: "",
       value: RichTextEditor.createEmptyValue(),
       selectedOption: null,
-      categoryName: props.match.params.categoryName
+      categoryName: props.match.params.categoryName,
+      savedDraftID: "",
+      author: props.authUser.dbUser._id
     };
 
     //this.categoryName = props.match.params.categoryName
   }
 
   componentDidMount() {
-    this.setState({ categoryName: this.props.match.params.categoryName });
+    // this.setState({ categoryName: this.props.match.params.categoryName });
     console.log(this.state);
+    this.initialSave()
+  }
+
+  initialSave = () => {
+    const { tags, value } = this.state
+    const body = value.toString('html')
+      const data = {
+        title: "untitled",
+        // teaser: teaser,
+        body: body,
+        tags: tags,
+        categoryName: this.state.categoryName,
+        isDraft: true
+      }
+    API.createInitialPost(data)
+    .then(res => this.setState({ savedDraftID: res.data._id }))
+    .catch(err => console.log(err))
   }
 
   toggle() {
@@ -125,7 +144,8 @@ export class CreatePost extends Component {
         // teaser: teaser,
         body: body,
         tags: tags,
-        categoryName: this.state.categoryName
+        categoryName: this.state.categoryName,
+        isDraft: false
       }
 
       API.createPost(data)
@@ -139,6 +159,7 @@ export class CreatePost extends Component {
   //Saving a draft
   saveDraft = (event) => {
     event.preventDefault();
+    console.log(this.state.savedDraftID)
     const { title, tags, value } = this.state
     const body = value.toString('html')
     
@@ -147,11 +168,10 @@ export class CreatePost extends Component {
       // teaser: teaser,
       body: body,
       tags: tags,
-      categoryName: this.state.categoryName,
-      isDraft: true
+      isDraft: true,
     }
-    API.submitDraft(data)
-    .then(res => console.log(res.data))
+    API.submitDraft(this.state.savedDraftID, data)
+    .then(res => console.log(res))
     .catch(err => console.log(err))
   }
 
@@ -172,7 +192,8 @@ export class CreatePost extends Component {
             <div className="col-md-8">
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
-                  <p>Create a post in: <a className="btn floatRight"><span onClick={this.saveDraft}>Save Draft <i className="fas fa-save"></i></span></a></p>
+                  <p>Create a post in: 
+                  </p>
                   <Select className = "categorySelect"
                     defaultValue={this.state.categoryName}
                     options={TagOptions}
@@ -221,8 +242,10 @@ export class CreatePost extends Component {
                 />
                 <br></br>
                 <input className='btn btn-outline-info createBtn' style={{ margin: '20px 0' }} type='submit' />
-
+                <span><button onClick={this.saveDraft} className="btn fas fa-save floatRight">
+                    Save Draft <i className="fas fa-save"></i></button></span> 
               </form>
+
             </div>
             <div className="col-md-2">
             </div>
