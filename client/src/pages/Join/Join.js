@@ -18,49 +18,6 @@ class Join extends React.Component {
     }
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.setState({ [name]: value })
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault()
-    const { username, email, passwordOne } = this.state
-
-    axios.get('/api/users/username/' + username)
-      .then(response => {
-        console.log('join reponse', response)
-        if (response.data) {
-          throw new Error('Username is already taken')
-        }
-        return auth.doCreateUserWithEmailAndPassword(email, passwordOne)
-      })
-      .then(authUser => {
-        let token = firebase.auth.currentUser.getIdToken()
-        return Promise.all([authUser, token])
-      })
-      .then(([authUser, authToken]) => {
-        console.log(authUser)
-        return axios({
-          url: '/api/users',
-          method: 'post',
-          data: {
-            username: username,
-            uid: authUser.user.uid,
-            email: email,
-          },
-          headers: {
-            'Authorization': 'Bearer ' + authToken
-          }
-        })
-      })
-      .then(response => console.log(response))
-      .then(() => this.props.history.push(routes.ACCOUNT))
-      .catch(error => {
-        this.setState({ error })
-      })
-  }
-
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state
     const isInvalid =

@@ -30,58 +30,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isOpen: false,
       categories: categories,
       currentModal: '',
       modalIsOpen: false,
-
-
-
-
     };
   };
-  // modalOverlayOn = () => {
-  //   document.getElementById("overlay").style.display = "block";
-  //   console.log('overlay on')
-  // }
-  // modalOverlayOff = () => {
-  //   document.getElementById("overlay").style.display = "none";
-  // }
-  openGistModal = event => {
-    this.setState({ currentModal: 'GIST' })
-    // this.modalOverlayOn();
-    console.log("gist modal open")
-  }
 
-  openJoinModal = event => {
-    this.setState({ currentModal: 'JOIN' })
-    console.log("join modal open")
-  }
-
-  openLoginModal = event => {
-    this.setState({ currentModal: 'LOGIN' })
-    console.log("login modal open")
-
+  openModal = (event, modalName) => {
+    event.preventDefault()
+    this.setState({ currentModal: modalName })
   }
 
   closeModal = event => {
     this.setState({ currentModal: '' });
-    // this.modalOverlayOff();
     console.log('modal closed')
   }
 
-
-  // toggle = () => this.setState({ isOpen: !this.state.isOpen });
-
   render() {
-    //console.log('state: ', this.state)
     return (
       <Router>
         <div>
           <Nav
-            openGistModal={this.openGistModal}
-            openJoinModal={this.openJoinModal}
-            openLoginModal={this.openLoginModal}
+            openModal={this.openModal}
+            closeModal={this.closeModal}
           />
           <FlexContainer>
             {this.state.categories.map(category => (
@@ -95,7 +66,7 @@ class App extends Component {
           </FlexContainer>
           <ModalConductor
             currentModal={this.state.currentModal}
-            modalOverlayOn={this.modalOverlayOn}
+            // modalOverlayOn={this.modalOverlayOn}
             closeModal={this.closeModal}
           />
           <Switch>
