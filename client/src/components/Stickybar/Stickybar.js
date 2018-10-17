@@ -2,23 +2,27 @@ import React from 'react';
 import './Stickybar.css';
 import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
+import AuthUserContext from '../AuthUserSession/AuthUserContext'
 
 /* React Tooltip Documentation https://www.npmjs.com/package/react-tooltip */
 
 const Stickybar = props => (
 
   <div className="icon-bar">
-    {
-      props.categoryName
-        ? (
-          <React.Fragment>
-            <Link className='facebook' to={{ pathname: `/categories/${props.categoryName}/posts/new` }} data-tip data-for="createPost" data-offset="{'left': 15}"><i className="fas fa-pen-square"></i></Link>
-            <ReactTooltip id='createPost' place="left" type="dark" effect="solid" > Create a post </ReactTooltip>
-          </React.Fragment>
-        )
-        : null
-
-    }
+    <AuthUserContext.Consumer>
+      {
+        authUser => {
+          return props.categoryName && authUser
+            ? (
+              <React.Fragment>
+                <Link className='facebook' to={{ pathname: `/categories/${props.categoryName}/posts/new` }} data-tip data-for="createPost" data-offset="{'left': 15}"><i className="fas fa-pen-square"></i></Link>
+                <ReactTooltip id='createPost' place="left" type="dark" effect="solid" > Create a post </ReactTooltip>
+              </React.Fragment>
+            )
+            : null
+        }
+      }
+    </AuthUserContext.Consumer>
     {/* TODO: placeholders, not sure what we want to link to from here, but the page needed some color*/}
     <a href="https://twitter.com/popmotionjs?lang=en" data-tip data-for='twitterToolTip' data-offset="{'left': 15}" className="twitter"><i className="fab fa-twitter"></i></a>
     <ReactTooltip id='twitterToolTip' place="left" type="dark" effect="solid">

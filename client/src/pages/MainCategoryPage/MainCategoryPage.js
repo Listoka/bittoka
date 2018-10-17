@@ -5,6 +5,7 @@ import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
 import posed from 'react-pose';
 import Stickybar from '../../components/Stickybar/Stickybar';
+import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
 
 const Sidebar = posed.ul({
   open: {
@@ -119,9 +120,11 @@ class MainCategoryPage extends Component {
         <div className='row'>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
-            <CreatePostButton
-              categoryName={this.state.categoryName}
-            />
+            <AuthUserContext.Consumer>
+              {
+                authUser => authUser ? <CreatePostButton categoryName={this.state.categoryName} /> : null
+              }
+            </AuthUserContext.Consumer>
           </div>
           <div className='col-lg-2'></div>
         </div>
