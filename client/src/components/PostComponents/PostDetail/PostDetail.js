@@ -3,6 +3,7 @@ import TipButton from '../../../components/TipButton';
 import renderHTML from 'react-render-html'
 import { Link } from 'react-router-dom';
 import AuthUserContext from "../../AuthUserSession/AuthUserContext";
+import './postDetail.css';
 
 export class PostDetail extends Component {
 
@@ -37,7 +38,7 @@ export class PostDetail extends Component {
                         }
                     }
                 </AuthUserContext.Consumer>
-                <p>{this.props.title}</p>
+                <h2>{this.props.title}</h2>
                 <p>By: <Link to={{ pathname: `/user/${this.props.author}` }}>{this.props.authorName}</Link></p>
                 <div className='postBody'>
                     <React.Fragment>

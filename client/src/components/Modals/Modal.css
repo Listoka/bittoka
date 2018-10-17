@@ -1,0 +1,35 @@
+.Modal {
+    background: white;
+    width:75%;
+    /* height:100%; */
+    margin:auto;
+    margin-left: auto;
+    margin-right: auto;
+    /* text-align: center; */
+    padding: 20px;
+    z-index: 3;
+    position: absolute;
+    left:0;
+    right: 0;
+}
+
+.close {
+    text-align: right;
+}
+
+#overlay {
+    position: fixed;
+    /* display: none; */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+.gist-header {
+    text-align: center;
+}

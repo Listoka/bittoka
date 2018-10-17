@@ -5,20 +5,13 @@ import './createPost.css';
 /*import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";*/
 import API from '../../utils/API';
 import RichTextEditor from 'react-rte';
-//import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 // Tag Multiselect
 import Select from 'react-select';
 import chroma from 'chroma-js';
-import { TagOptions, colourOptions } from '../../components/TagDisplay/TagColor';
+import makeAnimated from 'react-select/lib/animated';
 
 // React Select docs: https://react-select.com/home
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-];
 
 const colourStyles = {
   control: styles => ({ ...styles, backgroundColor: 'white' }),
@@ -68,8 +61,7 @@ export class CreatePost extends Component {
       tags: [],
       teaser: "",
       title: "",
-      // categoryName: "Select a category",
-      categories: ["listoka", "bitcoin-story", "stories"],
+      categories: [],
       categoryTags: [],
       dropdownOpen: false,
       redirectToNewPage: false,
@@ -85,11 +77,11 @@ export class CreatePost extends Component {
   }
 
   componentDidMount() {
-    // this.setState({ categoryName: this.props.match.params.categoryName });
-    console.log(this.state);
-    this.initialSave()
+    this.setState({ categoryName: this.props.match.params.categoryName });
+    this.getCategories();
+    this.initialSave();
+    console.log(this.state)
   }
-
   initialSave = () => {
     const { tags, value } = this.state
     const body = value.toString('html')
@@ -104,49 +96,66 @@ export class CreatePost extends Component {
     API.createInitialPost(data)
     .then(res => this.setState({ savedDraftID: res.data._id }))
     .catch(err => console.log(err))
-  }
+  };
+
+  getCategories = () => {
+    API.getCategoriesTags()
+      .then((result) => {
+        const cData = result.data;
+        let categoriesFromApi = cData.map(category => { return { value: category.name, label: category.displayName, tags: category.tags.sort().map(tag => { return { value: tag, label: tag, color: "darkcyan" } }) } })
+        this.setState({ categories: (categoriesFromApi) });
+      }).catch(error => {
+        console.log(error);
+      });
+  };
 
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
-  }
+  };
 
   onEditorChange = (value) => this.setState({ value })
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log("I did a thing"); // A++ logging, right here
-  }
+  };
 
   dropdownChange(event) {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
-      categoryName: event.target.innerText
+      categoryName: event.value,
+      tags: event.tags,
+      selectedOption: null,
+      categoryTags: null,
     })
-  }
+    console.log(this.state);
+  };
 
   handleTagChange = (selectedOption) => {
-    this.setState({ selectedOption });
+    this.setState({
+      selectedOption,
+      categoryTags: selectedOption.map(tag => tag.value)
+    });
     console.log(`Option selected:`, selectedOption);
-  }
+  };
 
   handleFormSubmit = (event) => {
     console.log(this.state);
     event.preventDefault();
 
-    const { title, tags, value } = this.state
+    const { title, value } = this.state
     const body = value.toString('html')
     if (title && body) {
       const data = {
         title: title,
         // teaser: teaser,
         body: body,
-        tags: tags,
+        tags: this.state.categoryTags,
         categoryName: this.state.categoryName,
         isDraft: false
-      }
+      };
 
       API.createPost(data)
         .then(result => {
@@ -169,11 +178,11 @@ export class CreatePost extends Component {
       body: body,
       tags: tags,
       isDraft: true,
-    }
+    };
     API.submitDraft(this.state.savedDraftID, data)
     .then(res => console.log(res))
     .catch(err => console.log(err))
-  }
+  };
 
   render() {
     const { selectedOption } = this.state;
@@ -181,49 +190,33 @@ export class CreatePost extends Component {
     if (this.state.redirectToNewPage) {
       return (
         <Redirect to={{ pathname: '/posts/' + this.state.redirectPathId }} />
-      )
+      );
     };
 
     return (
       <div className="pagebody">
         <React.Fragment>
           <div className="row createForm">
-            <div className="col-md-2"></div>
-            <div className="col-md-8">
+            <div className="col-md-1">
+
+            </div>
+
+            <div className="col-md-8 formBody rounded" >
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
-                  <p>Create a post in: 
-                  </p>
-                  <Select className = "categorySelect"
-                    defaultValue={this.state.categoryName}
-                    options={TagOptions}
+                  <h2 className='postHeader'>CREATE POST</h2>
+                  <Select className="categorySelect"
+                    onChange={this.dropdownChange}
+                    // defaultValue= {this.state.defaultCategory}
+                    options={this.state.categories}
                     theme={(theme) => ({
                       ...theme,
-                      borderRadius: 0,
-                      colors: {
-                        ...theme.colors,
-                        text: 'orangered',
-                        primary25: 'hotpink',
-                        primary: 'black',
-                      },
+                      borderRadius: 5,
                     })}
                   />
-                  {/*
-                  <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle caret className='btn btn-outline-info createBtn'>
-                      {this.state.categoryName}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      {this.state.categories.sort().map(category => (
-                        <DropdownItem key={category} onClick={this.dropdownChange}>
-                          {category}
-                        </DropdownItem>
-                      ))}
-                    </DropdownMenu>
-                  </Dropdown>*/}
+
                 </div>
                 <div className='form-group'>
-                  {/* <label htmlFor='title-input'>Title</label> */}
                   <input className='form-control' type='text' onChange={this.handleInputChange} placeholder='Title' name='title' />
                 </div>
                 <RichTextEditor
@@ -232,13 +225,22 @@ export class CreatePost extends Component {
                 />
                 <br></br>
                 <Select
+                  id="tagField"
+                  className='react-select-container'
+                  classNamePrefix="rounded "
                   value={selectedOption}
                   onChange={this.handleTagChange}
-                  options={colourOptions}
+                  options={this.state.tags}
                   isMulti
+                  isClearable={true}
                   placeholder="Tags"
                   closeMenuOnSelect={false}
+                  components={makeAnimated()}
                   styles={colourStyles}
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 5,
+                  })}
                 />
                 <br></br>
                 <input className='btn btn-outline-info createBtn' style={{ margin: '20px 0' }} type='submit' />
@@ -247,9 +249,21 @@ export class CreatePost extends Component {
               </form>
 
             </div>
-            <div className="col-md-2">
-            </div>
-          </div>
+            <div className="col-md-3">
+              <div className='guidelineWrapper rounded'>
+                  <img className="img-fluid" src="/images/guidelines.png" alt="Listoka Guidelines"></img>
+                    <h6 className='guidelineHeader'>Posting Guidelines</h6>
+                    <hr></hr>
+                    <ul>
+                      <li>Guideline 1</li>
+                      <li>Guideline 2</li>
+                      <li>Guideline 3</li>
+                      <li>Guideline 4</li>
+                      <li>Guideline 5</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
         </React.Fragment>
       </div>
     );
