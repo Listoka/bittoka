@@ -9,14 +9,14 @@ class Account extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        userPosts: [],
-        userName: props.authUser.dbUser.username, 
-        id: props.authUser.dbUser._id,
-        showBio: true,
-        bio: "",
-        displayedBio: "",
-        profileUsername: "",
-        drafts: [],
+      userPosts: [],
+      userName: props.authUser.dbUser.username,
+      id: props.authUser.dbUser._id,
+      showBio: true,
+      bio: "",
+      displayedBio: "",
+      profileUsername: "",
+      drafts: [],
     };
   };
 
@@ -45,14 +45,14 @@ class Account extends Component {
   handleDeleteButton = (event, id) => {
     event.preventDefault();
     API.deletePost(id)
-    .then(res => {
-      this.updateAfterDelete(id)
-    })
-    .catch(err => console.log(err));
+      .then(res => {
+        this.updateAfterDelete(id)
+      })
+      .catch(err => console.log(err));
   }
 
   updateAfterDelete = (id) => {
-    return API.getUserPosts(id).then(res => this.setState({userPosts: res.data}))
+    return API.getUserPosts(id).then(res => this.setState({ userPosts: res.data }))
   }
 
   handleInputChange = event => {
@@ -67,60 +67,63 @@ class Account extends Component {
     event.preventDefault();
     let array = this.state.drafts
     array.splice(index, 1)
-    this.setState({drafts: array})
+    this.setState({ drafts: array })
     API.deletePost(id)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   };
 
   handleFormSubmit = (event) => {
     console.log(this.state);
     event.preventDefault();
     const data = {
-        bio: this.state.bio
+      bio: this.state.bio
     };
     if (this.state.bio.length > 4) {
-        
-        API.updateProfile(this.state.id, data)
+
+      API.updateProfile(this.state.id, data)
         .then(res => console.log(res.data), this.setState({ showBio: true }), API.getPostsAndBio(this.state.id))
         .catch(err => console.log(err))
     };
-};
+  };
 
-  editBio = () => {this.setState(prevState => ({showBio: !prevState.showBio}))}
+  editBio = () => { this.setState(prevState => ({ showBio: !prevState.showBio })) }
 
   render() {
-      return (
-        <div className='pagebody'>
-            <div className='row'>
-            <div className='col-lg-2'></div>
-            <div className='col-lg-8'>
-              <div className="categoryDetail">
-              <hr />
-              {this.state.showBio 
-              ? <div>
-                  {this.state.userName}'s bio: <i className="far fa-edit btn" onClick={this.editBio}> Edit Bio</i><br />
-                  {this.state.bio} 
-                </div> 
-              : <form>
-                <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>
-                  <TextArea
-                    value={this.state.bio}
-                    onChange={this.handleInputChange}
-                    name="bio"
-                    placeholder="Enter bio here"
-                  />
-                  <FormBtn
-                    disabled={!(this.state.bio)}
-                    onClick={this.handleFormSubmit}
-                  >
-                    Submit Bio
+    return (
+      <div className='pagebody'>
+        <div className='row'>
+          <div className='col-lg-2'></div>
+          <div className='col-lg-7'>
+            <div className="categoryDetail rounded">
+              <div className='bioContainer'>
+                <h2 className='bioHeader'>{this.state.userName}'s Bio</h2>
+                {this.state.showBio
+                  ? <div className='bioTextWrapper'>
+                    <i className="far fa-edit btn" onClick={this.editBio}>Edit Bio</i>
+                    <hr></hr>
+                    {this.state.bio}
+                  </div>
+                  : <form>
+                    <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>
+                    <TextArea
+                      value={this.state.bio}
+                      onChange={this.handleInputChange}
+                      name="bio"
+                      placeholder="Enter bio here"
+                    />
+                    <FormBtn
+                      disabled={!(this.state.bio)}
+                      onClick={this.handleFormSubmit}
+                    >
+                      Update Bio
                   </FormBtn>
-                </form>
-            }
-                <PostList>
+                  </form>
+                }
+              </div>
+              <PostList>
                 {this.state.userPosts.map(userPosts => (
-                    <PostListItem
+                  <PostListItem
                     key={userPosts._id}
                     authorName={userPosts.authorName}
                     body={userPosts.body}
@@ -133,31 +136,35 @@ class Account extends Component {
                     _id={userPosts._id}
                     author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
-                    />
+                  />
                 ))}
-                </PostList>
-              </div>
+              </PostList>
+              <hr></hr>
             </div>
-            <div className='col-lg-2'></div>
+          </div>
+          <div className='col-lg-3'>
+            <div className='categoryDetail rounded'>
+              <PostList>
+                <h5>Pending Drafts</h5>
+                <hr></hr>
+                {this.state.drafts.map((drafts, index) => (
+                  <DraftListItem
+                    key={drafts._id}
+                    index={index}
+                    categoryName={drafts.categoryName}
+                    title={drafts.title}
+                    postId={drafts._id}
+                    author={drafts.author}
+                    updatedAt={drafts.updatedAt}
+                    removeDraft={this.removeDraft}
+                  />
+                ))}
+              </PostList>
             </div>
-            <hr />
-            <PostList>
-              <h1>DRAFTS!</h1>
-              {this.state.drafts.map((drafts, index) => (
-                <DraftListItem 
-                  key={drafts._id}
-                  index={index}
-                  categoryName={drafts.categoryName}
-                  title={drafts.title}
-                  postId={drafts._id}
-                  author={drafts.author}
-                  updatedAt={drafts.updatedAt}
-                  removeDraft={this.removeDraft}
-                />
-              ))}
-            </PostList>
+          </div>
         </div>
-      );
+      </div>
+    );
   };
 };
 
