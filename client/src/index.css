@@ -91,6 +91,15 @@ body {
   padding-left: 0px;
 }
 
+.button {
+  background-color: rgb(0, 150, 136);
+  color: snow;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border-color: rgb(0, 150, 136);
+  border-style: solid
+}
+
 @media screen and (min-width: 0px) and (max-width: 896px) {
   .tagWrapper { display: none; } 
   .homeTagWrapper { display: none; } 

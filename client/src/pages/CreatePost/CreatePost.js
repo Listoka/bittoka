@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import './createPost.css';
-/*import { Input, TextArea, FormBtn } from "../../components/PostComponents/PostForm";*/
+import { Input, TextArea } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import RichTextEditor from 'react-rte';
 
@@ -70,7 +70,9 @@ export class CreatePost extends Component {
       selectedOption: null,
       categoryName: props.match.params.categoryName,
       savedDraftID: "",
-      author: props.authUser.dbUser._id
+      author: props.authUser.dbUser._id,
+      paywallCost: '',
+      teaser: '',
     };
 
     //this.categoryName = props.match.params.categoryName
@@ -121,6 +123,7 @@ export class CreatePost extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    console.log(this.state)
   };
 
   dropdownChange(event) {
@@ -146,23 +149,23 @@ export class CreatePost extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const { title, value } = this.state
+    const { title, value, teaser, paywallCost } = this.state
     const body = value.toString('html')
     if (title && body) {
       const data = {
         title: title,
-        // teaser: teaser,
+        teaser: teaser,
         body: body,
         tags: this.state.categoryTags,
         categoryName: this.state.categoryName,
-        isDraft: false
+        isDraft: false,
+        paywallCost: paywallCost
       };
 
       API.createPost(data)
         .then(result => {
           this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
         }).catch(err => console.log(err))
-
     };
   };
   //Saving a draft
@@ -220,6 +223,20 @@ export class CreatePost extends Component {
                 <div className='form-group'>
                   <input className='form-control' type='text' onChange={this.handleInputChange} placeholder='Title' name='title' />
                 </div>
+                <Input
+                  onChange={this.handleInputChange}
+                  type='text'
+                  style={{ width: 175 + 'px' }}
+                  placeholder='Paywall Cost (x.xx)'
+                  value={this.state.paywallCost}
+                  name='paywallCost'
+                />
+                <TextArea
+                  placeholder='Teaser'
+                  onChange={this.handleInputChange}
+                  name='teaser'
+                  value={this.state.teaser}
+                />
                 <RichTextEditor
                   value={this.state.value}
                   onChange={this.onEditorChange}
@@ -228,7 +245,7 @@ export class CreatePost extends Component {
                 <Select
                   id="tagField"
                   className='react-select-container'
-                  classNamePrefix="rounded "
+                  classNamePrefix="rounded"
                   value={selectedOption}
                   onChange={this.handleTagChange}
                   options={this.state.tags}

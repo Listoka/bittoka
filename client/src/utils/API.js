@@ -17,7 +17,8 @@ export default {
             // voters: data.voters,
             // tags: data.tags,  
             author: data.author,
-            isDraft: data.isDraft
+            isDraft: data.isDraft,
+            paywallCost: data.paywallCost
         })
             .then(response => {
                 console.log(response);
@@ -154,6 +155,9 @@ export default {
 
     getPostsAndDrafts: (id) => {
         return axios.get(`/api/users/id/${id}/posts`)
+    },
+    getMoneyButton: (id) => {
+        return axios.get(`/api/users/id/${id}/profile`)//May need to change. Wherever we can publicly grab the MB id from
     }
 
 };
