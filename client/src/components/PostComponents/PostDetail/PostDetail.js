@@ -58,7 +58,7 @@ export class PostDetail extends Component {
                     }
                 </AuthUserContext.Consumer>
                 <h2>{this.props.title}</h2>
-                <p>By: <Link to={{ pathname: `/user/${this.props.author}` }}>{this.props.authorName}</Link></p>
+                <p>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link></p>
                 <div className='postBody'>
                     <React.Fragment>
                         {this.props.body ? renderHTML(this.props.body) : null}
