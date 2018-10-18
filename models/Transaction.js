@@ -22,11 +22,6 @@ const TransactionSchema = new Schema({
     enum: ['comment-vote', 'post-vote', 'purchase', 'tip', 'comment', 'post'],
     required: true
   },
-  txStatus: {
-    type: String,
-    enum: ['pending', 'complete'],
-    default: 'pending',
-  },
   txOutputs: {
     type: [{ moneybuttonId: String, amount: Number }],
   },
