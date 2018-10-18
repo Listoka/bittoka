@@ -82,6 +82,7 @@ export class CreatePost extends Component {
     this.initialSave();
     console.log(this.state)
   }
+
   initialSave = () => {
     const { tags, value } = this.state
     const body = value.toString('html')
@@ -139,10 +140,10 @@ export class CreatePost extends Component {
       categoryTags: selectedOption.map(tag => tag.value)
     });
     console.log(`Option selected:`, selectedOption);
+    console.log('this.state', this.state)
   };
 
   handleFormSubmit = (event) => {
-    console.log(this.state);
     event.preventDefault();
 
     const { title, value } = this.state
@@ -159,7 +160,6 @@ export class CreatePost extends Component {
 
       API.createPost(data)
         .then(result => {
-          console.log('createPost result: ', result)
           this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
         }).catch(err => console.log(err))
 
@@ -168,17 +168,18 @@ export class CreatePost extends Component {
   //Saving a draft
   saveDraft = (event) => {
     event.preventDefault();
-    console.log(this.state.savedDraftID)
-    const { title, tags, value } = this.state
+    const { title, categoryTags, value } = this.state
     const body = value.toString('html')
     
     const data = {
       title: title,
       // teaser: teaser,
       body: body,
-      tags: tags,
+      tags: categoryTags,
+      categoryName: this.state.categoryName,
       isDraft: true,
     };
+    console.log('saveDraft data', data)
     API.submitDraft(this.state.savedDraftID, data)
     .then(res => console.log(res))
     .catch(err => console.log(err))
@@ -243,8 +244,8 @@ export class CreatePost extends Component {
                   })}
                 />
                 <br></br>
-                <input className='btn btn-outline-info createBtn' style={{ margin: '20px 0' }} type='submit' />
-                <span><button onClick={this.saveDraft} className="btn fas fa-save floatRight">
+                <input name='submit-btn' className='btn btn-outline-info createBtn' style={{ margin: '20px 0' }} type='submit' />
+                <span><button name='save-btn' onClick={this.saveDraft} className="btn fas fa-save floatRight">
                     Save Draft <i className="fas fa-save"></i></button></span> 
               </form>
 
