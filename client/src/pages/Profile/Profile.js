@@ -62,7 +62,6 @@ class Profile extends Component {
     alert(`MoneyButton transaction failed. Error: ${err}`)
   }
 
-
   render() {
       return (
         <div className='pagebody'>

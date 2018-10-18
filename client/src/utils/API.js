@@ -17,7 +17,8 @@ export default {
             // voters: data.voters,
             // tags: data.tags,  
             author: data.author,
-            isDraft: data.isDraft
+            isDraft: data.isDraft,
+            paywallCost: data.paywallCost
         })
             .then(response => {
                 console.log(response);
