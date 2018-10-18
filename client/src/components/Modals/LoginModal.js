@@ -44,7 +44,7 @@ class LoginModal extends React.Component {
             >
 
                 <h2 className="header">Login</h2>
-                <hr></hr>
+                <hr className="hrModals"></hr>
                 <div className='row'>
                     <div className="col-sm-1"></div>
                     <div className="col-sm-10">

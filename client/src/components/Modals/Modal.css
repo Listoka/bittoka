@@ -44,7 +44,7 @@
     font-weight: bold;
 }
 
-hr {
+.hrModals {
     border-color: rgba(0, 150, 136); 
     border-style: outset;
     border-width: 2px;
@@ -53,3 +53,9 @@ hr {
 .close:hover {
     color: rgb(224, 0, 0)!important;
 }
+
+@media only screen and (max-width: 768px) {
+.Modal {
+    width: 80%;
+}
+} 
