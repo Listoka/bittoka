@@ -23,7 +23,8 @@ const PostSchema = new Schema({
   comments: [{ type: ObjectId, ref: 'Comment' }],
   voters: [{ type: ObjectId, ref: 'User' }],
   purchasers: [{ type: ObjectId, ref: 'User' }],
-  isDraft: { type: Boolean, default: false }
+  isDraft: { type: Boolean, default: false },
+  paywallCost: { type: Number }
 },
   {
     timestamps: true

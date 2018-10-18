@@ -9,8 +9,8 @@ router.route('/posts')
     const dbUser = res.locals.user.dbUser
     const author = dbUser._id
     const authorName = dbUser.username
-    const { title, teaser, body, tags, isDraft, categoryName } = req.body
-    const postData = { author, authorName, title, teaser, body, tags, isDraft, categoryName }
+    const { title, teaser, body, tags, isDraft, categoryName, paywallCost } = req.body
+    const postData = { author, authorName, title, teaser, body, tags, isDraft, categoryName, paywallCost }
 
     db.Post.create(postData)
       .then(result => {
@@ -24,8 +24,8 @@ router.route('/posts/:postId')
     console.log('>>>>> Update Post: \n', req.body)
     const dbUser = res.locals.user.dbUser
     const dbPost = res.locals.post
-    const { title, teaser, body, isDraft, tags } = req.body
-    const updateData = { title, teaser, body, isDraft, tags }
+    const { title, teaser, body, isDraft, tags, paywallCost } = req.body
+    const updateData = { title, teaser, body, isDraft, tags, paywallCost }
 
     if (dbUser._id.equals(dbPost.author)) {
       db.Post
@@ -55,7 +55,7 @@ router.route('/posts/:postId')
 router.route('/posts/:id/vote')
   .get((req, res) => {
     const dbUser = res.locals.user.dbUser
-    db.Post.findByIdAndUpdate(req.params.id, { $push: { voters: dbUser._id } })
+    db.Post.findByIdAndUpdate(req.params.id, { $push: { voters: dbUser._id } }, { new: true })
       .populate('voters')
       .then( (result) => {
         res.json(result)
@@ -65,7 +65,7 @@ router.route('/posts/:id/vote')
 router.route('/posts/:id/purchase')
   .get((req, res) => {
     const dbUser = res.locals.user.dbUser
-    db.Post.findByIdAndUpdate(req.params.id, { $push: { purchasers: dbUser._id } })
+    db.Post.findByIdAndUpdate(req.params.id, { $push: { purchasers: dbUser._id } }, { new: true })
       .populate('purchasers')
       .then( (result) => {
         res.json(result)

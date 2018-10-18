@@ -22,7 +22,7 @@ export class PostDetail extends Component {
             upvoteList: props.voters || [],
             purchasers: props.purchasers || []
         };
-        console.log('voters: ' + JSON.stringify(props.voters))
+        console.log('props: ' + JSON.stringify(props))
     }
 
     afterUpvotePayment = (trans) => {
@@ -74,63 +74,76 @@ export class PostDetail extends Component {
 
                     {
                         authUser => {
-                            this.state.purchasers.find(purchaser => authUser.dbUser._id) ?
-                                <React.Fragment>
-                                    <div className='postBody'>
-                                        {this.props.teaser || null}
-                                    </div>
-                                    <TipButton
-                                        minTipAmt={this.props.price}
-                                        tipMessage='PURCHASE'
-                                        paymentSuccessCbk={this.afterPurchase}
-                                        label='Purchase'
-                                        payeeId={this.props.author}
-                                    />
-                                </React.Fragment>
-                                :
-                                <React.Fragment>
-                                    <div className='postBody'>
-                                        <React.Fragment>
-                                            {this.props.body ? renderHTML(this.props.body) : null}
-                                        </React.Fragment>
-                                    </div>
-                                    <div className='container'>
-                                        <div className='row'>
-                                            <AuthUserContext.Consumer>
-                                                {authUser => {
-                                                    if (authUser) {
-                                                        // Don't allow user to upvote more than once
-                                                        if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
-                                                            return (
-                                                                <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
-                                                            )
+                            if (authUser) {
+                                // If I am the author or I am a purchaser, display the body and offer an upvote
+                                // Otherwise, offer the teaser and a purchase button
+                                return (authUser.dbUser._id === this.props.author ||
+                                    this.state.purchasers.find(purchaser => purchaser._id === authUser.dbUser._id) ?
+                                    <React.Fragment>
+                                        <div className='postBody'>
+                                            <React.Fragment>
+                                                {this.props.body ? renderHTML(this.props.body) : null}
+                                            </React.Fragment>
+                                        </div>
+                                        <div className='container'>
+                                            <div className='row'>
+                                                <AuthUserContext.Consumer>
+                                                    {authUser => {
+                                                        if (authUser) {
+                                                            // Don't allow user to upvote more than once
+                                                            if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
+                                                                return (
+                                                                    <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <TipButton
+                                                                        minTipAmt='.03'
+                                                                        tipMessage='UPVOTE'
+                                                                        paymentSuccessCbk={this.afterUpvotePayment}
+                                                                        label='Upvote'
+                                                                        payeeId={this.props.author}
+                                                                    />
+                                                                )
+                                                            }
                                                         } else {
                                                             return (
-                                                                <TipButton
-                                                                    minTipAmt='.03'
-                                                                    tipMessage='UPVOTE'
-                                                                    paymentSuccessCbk={this.afterUpvotePayment}
-                                                                    label='Upvote'
-                                                                    payeeId={this.props.author}
-                                                                />
+                                                                <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
                                                             )
                                                         }
-                                                    } else {
-                                                        return (
-                                                            <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
-                                                        )
-                                                    }
-                                                }}
-                                            </AuthUserContext.Consumer>
-                                            <div className='col-lg-3 col-md-4 col-sm-6 col-xs-6' >
-                                                <h5>Upvotes: {this.state.upvotes}</h5>
-                                                <ul>
-                                                    {this.state.upvoteList.map(user => <li key={user._id}>{user.username}</li>)}
-                                                </ul>
+                                                    }}
+                                                </AuthUserContext.Consumer>
+                                                <div className='col-lg-3 col-md-4 col-sm-6 col-xs-6' >
+                                                    <h5>Upvotes: {this.state.upvotes}</h5>
+                                                    <ul>
+                                                        {this.state.upvoteList.map(user => <li key={user._id}>{user.username}</li>)}
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </React.Fragment>
+                                    </React.Fragment>
+                                    :
+                                    <React.Fragment>
+                                        <div className='postBody'>
+                                            {this.props.teaser || null}
+                                        </div>
+                                        <TipButton
+                                            minTipAmt={parseFloat(this.props.paywallCost)}
+                                            tipMessage='PURCHASE'
+                                            paymentSuccessCbk={this.afterPurchasePayment}
+                                            label='Purchase'
+                                            payeeId={this.props.author}
+                                        />
+                                    </React.Fragment>
+                                )
+                            }
+                            else {
+                                // If no one is logged in, just return the teaser
+                                return (
+                                    <p>{this.props.teaser || null}</p>
+                                )
+                            }
+
                         }
                     }
                 </AuthUserContext.Consumer>

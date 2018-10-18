@@ -10,6 +10,7 @@ const postData = [
         tags: ["Getting Started", "Success"],
         categoryName: 'bitcoin-story',
         teaser: "teaser",
+	paywallCost: .05,
         body:
             "Bitcoin has the potential to become the best and fairest form of money to ever exist. It essentially rolls gold, cash, and our credit card system into one. It takes the strengths of each and leaves the weaknesses behind. It has the limited supply quality of gold, but can be used to purchase everyday items. It has the speed of a credit card, but respects and protects your privacy. Transactions are settled instantly like cash, but are recorded on a public ledger.",
     },
@@ -19,6 +20,7 @@ const postData = [
         tags: ["Success"],
         categoryName: 'bitcoin-story',
         teaser: "teaser",
+	paywallCost: .02,
         body:
             "Some guy named from class won't shut up about it. He told me he'd give me $.25 to sign up on his platform so I thought, why not?",
     },
@@ -28,6 +30,7 @@ const postData = [
         tags: ["Getting Started"],
         categoryName: 'bitcoin-story',
         teaser: "teaser",
+	paywallCost: .03,
         body:
             "A classmate asked me to join the group to build the platform",
     },
@@ -36,6 +39,7 @@ const postData = [
         categoryName: "listoka",
         tags: ["Maintenance"],
         teaser: "teaser",
+	paywallCost: .04,
         body: "Stay healthy forever. Be financially comfortable. Enjoy life. To me, these are the three overall aspects to life. They're listed in no particular order, but if you were to order them, how would you do it and why?",
     },
     {
@@ -43,6 +47,7 @@ const postData = [
         categoryName: "listoka",
         tags: ["Maintenance"],
         teaser: "teaser",
+	paywallCost: .02,
         body: "Great advice can be tough to come by. What's the best advice you've ever received and who was it from? Go."
     },
     {
@@ -50,6 +55,7 @@ const postData = [
         categoryName: "listoka",
         tags: ["Updates"],
         teaser: "teaser",
+	paywallCost: .02,
         body: "We all have people we look up to. People we admire for one reason or another. Share with us the person you most admire and why you admire them."
     },
     {
@@ -64,6 +70,7 @@ const postData = [
         categoryName: "stories",
         tags: ["Humor", "Paranormal Romance"],
         teaser: "teaser",
+	paywallCost: .04,
         body: "Insert a comical story here"
     },
     {
@@ -71,6 +78,7 @@ const postData = [
         categoryName: "stories",
         tags: ["Paranormal Romance"],
         teaser: "teaser",
+	paywallCost: .03,
         body: "Insert Inspirational Story Here"
     },
     {
