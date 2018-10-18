@@ -61,4 +61,15 @@ router.route('/posts/:id/vote')
         res.json(result)
       })
   })
+
+router.route('/posts/:id/purchase')
+  .get((req, res) => {
+    const dbUser = res.locals.user.dbUser
+    db.Post.findByIdAndUpdate(req.params.id, { $push: { purchasers: dbUser._id } })
+      .populate('purchasers')
+      .then( (result) => {
+        res.json(result)
+      })
+  })
+  
 module.exports = router
