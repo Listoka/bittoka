@@ -55,7 +55,9 @@ class ListokaMoneyButton extends Component {
     }
 
     render() {
-        return (
+        return ( 
+            <div>
+                {this.state.payees ? 
             <MoneyButton
                 outputs={this.state.payees}
                 type='tip'
@@ -63,6 +65,10 @@ class ListokaMoneyButton extends Component {
                 onPayment={this.logPayment}
                 onError={this.handleError}
             />
+            :
+            <p>MoneyButton loading...</p>
+            }
+            </div>
         )
     }
 }
