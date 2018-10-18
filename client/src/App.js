@@ -9,8 +9,7 @@ import FlexContainer from './components/flexContainer';
 // import API from './utils/API';
 //Routes
 import Home from './pages/Home';
-import CreatePost from './pages/CreatePost';
-import EditPage from './pages/EditPage';
+import Editor from './pages/Editor'
 import Content from './pages/Content';
 import NoMatch from './pages/NoMatch';
 // import * as routes from './constants/routes';
@@ -62,11 +61,12 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/home' component={Home} />
             <Route exact path='/categories/:categoryName' component={MainCategoryPage} />
-            <Route exact path='/categories/:categoryName/posts/new' component={CreatePost} />
+            <Route exact path='/categories/:categoryName/posts/new' component={Editor} />
             <Route exact path='/posts/:id' component={Content} />
-            <Route exact path='/posts/:id/edit' component={EditPage} />
+            <Route exact path='/posts/:postId/edit' component={Editor} />
             <Route exact path='/account' component={AccountPage} />
             <Route exact path='/users/:id' component={Profile} />
+            <Route exact path='/editor' component={Editor} />
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
           </Switch>
