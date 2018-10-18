@@ -21,6 +21,7 @@ router.route('/posts')
 
 router.route('/posts/:postId')
   .put((req, res) => {
+    console.log('>>>>> Update Post: \n', req.body)
     const dbUser = res.locals.user.dbUser
     const dbPost = res.locals.post
     const { title, teaser, body, isDraft, tags } = req.body
