@@ -15,24 +15,8 @@ class Profile extends Component {
         userPosts: [],
         authorName: "",
         displayedBio: "",
-        payees: [{ amount: 0 }],
-        tipState: 0,
         author: this.props.match.params.id,
-        payees: []
-    };
-  };
-
-  componentDidMount() {
-    console.log(this.props)
-    let promises = [this.getPostsAndBio(this.props.match.params.id), this.getPayees(this.props.match.params.id)]
-    Promise.all(promises)
-      .then(results => {
-          console.log(results)
-        this.setState({
-          userPosts: results[0].posts,
-          displayedBio: results[0].user.bio,
-          authorName: results[0].user.username,
-          payees: [{
+        payees: [{
             to: listokaAcctNum,
             amount: listokaCut,
             currency: 'USD'
@@ -41,8 +25,34 @@ class Profile extends Component {
             to: 783,
             amount: .09,
             currency: 'USD'
-          }
-        ]
+          }],
+        tipAmt: 0,
+        labelAmount: .10
+    };
+  };
+
+  componentDidMount() {
+    console.log(this.props)
+    this.getPayees(this.props.match.params.id)
+    let promises = [this.getPostsAndBio(this.props.match.params.id)]
+    Promise.all(promises)
+      .then(results => {
+          console.log(results)
+        this.setState({
+          userPosts: results[0].posts,
+          displayedBio: results[0].user.bio,
+          authorName: results[0].user.username,
+          // payees: [{
+          //   to: listokaAcctNum,
+          //   amount: listokaCut,
+          //   currency: 'USD'
+          // },
+          // {
+          //   to: 783,
+          //   amount: .09,
+          //   currency: 'USD'
+          // }
+        // ]
         });
       })
   };
@@ -52,15 +62,41 @@ class Profile extends Component {
   };
 
   getPayees = (id) => {
-    return API.getMoneyButton(id).then(results => results.data);
-  }
+    API.getMoneyButton(id).then(results => {
+      this.setState({
+        payees: [{
+            to: listokaAcctNum,
+            amount: this.state.labelAmount - listokaCut,
+            currency: 'USD'
+        },
+        {
+            to: listokaAcctNum,
+            amount: listokaCut,
+            currency: 'USD'
+        }]
+    });
+    console.log(results.data)
+    console.log('payees: ' + JSON.stringify(this.state.payees))
+    });
+  };
 
   afterPayment = () => {
     alert("Payment Successful!")
   };
+
   handleError = err => {
     alert(`MoneyButton transaction failed. Error: ${err}`)
-  }
+  };
+
+  handleTipSubmit = (event) => {
+    event.preventDefault();
+    this.getPayees(this.props.match.params.id)
+    this.setState({tipAmt: 0})
+  };
+  
+  handleTipChange = (event) => {
+    this.setState({ tipAmt: event.target.value })
+  } ;
 
   render() {
       return (
@@ -77,6 +113,9 @@ class Profile extends Component {
                   className='form-control'
                   type='text'
                   style={{ width: 80 + 'px' }}
+                  value={this.state.tipAmt}
+                  placeholder='.00'
+                  name='tipAmt'
               />
               <FormBtn
                   onClick={this.handleTipSubmit}
@@ -86,10 +125,18 @@ class Profile extends Component {
                   <MoneyButton
                     outputs={this.state.payees}
                     type='tip'
+                    labelAmount={this.state.labelAmount}
                     label={`Tip to ${this.state.authorName}`}
                     onPayment={this.afterPayment}
                     onError={this.handleError}
                   />
+                  {/* <MoneyButtonDonate display="input"
+                  devMode={this.state.devMode} labelMoneyButton={this.state.labelMoneyButton}
+                  labelAmount = {this.state.labelAmount} labelReference = {this.state.labelReference}
+                  showTransaction = {this.state.configTransactionAfterPayment} showSocialMedia = {this.state.configSocialMediaAfterPayment}
+                  buttonId={this.state.buttonId} buttonData={buttonData} clientIdentifier={this.state.clientIdentifier}
+                  type={this.state.type} to={this.state.to} defaultAmount={this.state.defaultAmount}
+                /> */}
                 </div>
               <div>Bio of {this.state.authorName}: {this.state.displayedBio} </div>
                 <PostList>
