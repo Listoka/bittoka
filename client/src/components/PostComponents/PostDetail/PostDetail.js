@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AuthUserContext from "../../AuthUserSession/AuthUserContext";
 import API from '../../../utils/API'
 import './postDetail.css'
+import ListokaMoneyButton from "../../ListokaMoneyButton";
 
 export class PostDetail extends Component {
 
@@ -97,9 +98,8 @@ export class PostDetail extends Component {
                                                                 )
                                                             } else {
                                                                 return (
-                                                                    <TipButton
-                                                                        minTipAmt='.03'
-                                                                        tipMessage='UPVOTE'
+                                                                    <ListokaMoneyButton
+                                                                        payVal='.03'                                                                        
                                                                         paymentSuccessCbk={this.afterUpvotePayment}
                                                                         label='Upvote'
                                                                         payeeId={this.props.author}
@@ -127,9 +127,8 @@ export class PostDetail extends Component {
                                         <div className='postBody'>
                                             {this.props.teaser || null}
                                         </div>
-                                        <TipButton
-                                            minTipAmt={parseFloat(this.props.paywallCost)}
-                                            tipMessage='PURCHASE'
+                                        <ListokaMoneyButton
+                                            payVal={parseFloat(this.props.paywallCost)}
                                             paymentSuccessCbk={this.afterPurchasePayment}
                                             label='Purchase'
                                             payeeId={this.props.author}
