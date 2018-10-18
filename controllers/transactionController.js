@@ -17,6 +17,7 @@ module.exports = {
   },
 
   create: (req, res) => {
+    console.log('transactionController req.body: ' + JSON.stringify(req.body))
     db.Transaction
       .create(req.body)
       .then(result => res.json(result))

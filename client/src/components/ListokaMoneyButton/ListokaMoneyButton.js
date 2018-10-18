@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import axios from '../../utils/authAxios'
 import MoneyButton from '@moneybutton/react-money-button'
+import API from '../../utils/API'
 
 const listokaCut = .01
-const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
+const listokaAcctNum = '783' // FIXME: Put in secure place (read from db?)
 
 class ListokaMoneyButton extends Component {
     state = {
@@ -36,7 +37,21 @@ class ListokaMoneyButton extends Component {
 
     logPayment = (trans) => {
         console.log('Trans: ' + JSON.stringify(trans))
-        this.props.paymentSuccessCbk(trans)
+        const txDetails = {
+            userId: this.props.userId,
+            paidUserId: this.props.payeeId,
+            txFrom: trans.userId,
+            txType: this.props.txType,
+            txOutputs: [{ moneyButtonId: trans.outputs[0].to, amount: trans.outputs[0].amount }, 
+                        { moneyButtonId: trans.outputs[1].to, amount: trans.outputs[1].amount } ],
+            commentId: this.props.commentId || null,
+            postId: this.props.postId || null
+        }
+        API.createTransaction(txDetails).then( result => {
+            console.log('tx log result: ' + JSON.stringify(result))
+            this.props.paymentSuccessCbk(trans)
+        })
+        
     }
 
     render() {

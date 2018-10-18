@@ -103,6 +103,9 @@ export class PostDetail extends Component {
                                                                         paymentSuccessCbk={this.afterUpvotePayment}
                                                                         label='Upvote'
                                                                         payeeId={this.props.author}
+                                                                        userId={authUser.dbUser._id}
+                                                                        txType='post-vote'
+                                                                        postId={this.state._id}
                                                                     />
                                                                 )
                                                             }
@@ -132,6 +135,9 @@ export class PostDetail extends Component {
                                             paymentSuccessCbk={this.afterPurchasePayment}
                                             label='Purchase'
                                             payeeId={this.props.author}
+                                            userId={authUser.dbUser._id}
+                                            txType='post-vote'
+                                            postId={this.state._id}
                                         />
                                     </React.Fragment>
                                 )
