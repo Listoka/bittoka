@@ -95,13 +95,15 @@ class Account extends Component {
             <div className='row'>
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
-              <div className="categoryDetail">
-              <hr />
+              <div className="categoryDetail rounded">
+              <div className='bioContainer'>
+                  <h2 className='bioHeader'>{this.state.userName}'s Bio</h2> 
               {this.state.showBio 
-              ? <div>
-                  {this.state.userName}'s bio: <i className="far fa-edit btn" onClick={this.editBio}> Edit Bio</i><br />
+              ?   <div className='bioTextWrapper'>
+                  <i className="far fa-edit btn" onClick={this.editBio}>Edit Bio</i>
+                  <hr></hr>
                   {this.state.bio} 
-                </div> 
+                  </div> 
               : <form>
                 <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>
                   <TextArea
@@ -114,10 +116,11 @@ class Account extends Component {
                     disabled={!(this.state.bio)}
                     onClick={this.handleFormSubmit}
                   >
-                    Submit Bio
+                    Update Bio
                   </FormBtn>
                 </form>
             }
+            </div>
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem

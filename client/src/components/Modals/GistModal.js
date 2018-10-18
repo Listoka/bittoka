@@ -32,7 +32,7 @@ const GistModal = props => {
                                           money-making platform that becomes the gateway to Bitcoin for the average, everyday person.</p>
                 </div>
                 <div className="col-lg-5">
-                    <img className="gistImg img-fluid" src="./images/gistImg.jpg" alt="Young people working"></img>
+                    <img className="gistImg img-fluid" src="/images/gistImg.jpg" alt="Young people working"></img>
                 </div>
             </div>
             {/*</div>
