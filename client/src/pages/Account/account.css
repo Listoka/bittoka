@@ -10,3 +10,27 @@
 .editBio {
     margin-top: 10px;
 }
+
+.draftTitle {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.draftDate{
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.draftInfo {
+    font-size: 12px; 
+}
+
+.draftButtons{
+    color: #007bff!important;
+    margin-bottom: 10px;
+}
+
+.draftHr {
+    clear: both;
+}

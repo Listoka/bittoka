@@ -94,7 +94,7 @@ class Account extends Component {
       <div className='pagebody'>
         <div className='row'>
           <div className='col-lg-2'></div>
-          <div className='col-lg-8'>
+          <div className='col-lg-7'>
             <div className="categoryDetail rounded">
               <div className='bioContainer'>
                 <h2 className='bioHeader'>{this.state.userName}'s Bio</h2>
@@ -142,10 +142,11 @@ class Account extends Component {
               <hr></hr>
             </div>
           </div>
-          <div className='col-lg-2'>
+          <div className='col-lg-3'>
             <div className='categoryDetail rounded'>
               <PostList>
-                <h3>Pending Work</h3>
+                <h5>Pending Drafts</h5>
+                <hr></hr>
                 {this.state.drafts.map((drafts, index) => (
                   <DraftListItem
                     key={drafts._id}
