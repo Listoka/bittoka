@@ -14,7 +14,7 @@ const GistModal = props => {
             showOk={false}
         >
             <h2 className="header">Listoka's Gist</h2>
-            <hr></hr>
+            <hr className="hrModals"></hr>
             <div className='row'>
                 <div className="col-lg-7">
                     <p className='gist'>Listoka is a writing and entertainment based platform where users will also find and contribute
