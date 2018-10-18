@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from '../../utils/API';
 import { PostDetail } from '../../components/PostComponents/PostDetail/PostDetail';
 import { Comments, CommentList } from '../../components/CommentDisplay';
-import withAuthorization from '../../components/AuthUserSession/withAuthorization'
+// import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 /*import TipButton from '../../components/TipButton';*/
 import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import './content.css';
@@ -50,10 +50,6 @@ class Content extends Component {
     }
   }
 
-  afterPayment = () => {
-    alert('Payment successful!')
-  }
-
   render() {
     return (
       <div className="pagebody">
@@ -92,6 +88,5 @@ class Content extends Component {
   };
 };
 
-const authCondition = (authUser) => !!authUser
 
-export default withAuthorization(authCondition)(Content);
+export default Content;
