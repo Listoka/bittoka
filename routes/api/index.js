@@ -21,11 +21,11 @@ const userRouter_AUTH = require('./userRouter-AUTH')
 router.use(categoryRouter)
 router.use(postRouter)
 router.use(commentRouter)
-router.use(transactionRouter)
 router.use(userRouter)
 
 router.use(authCheck) // Auth Routes go after Open routes and auth middleware
 
+router.use(transactionRouter)
 router.use(categoryRouter_AUTH)
 router.use(postRouter_AUTH)
 router.use(commentRouter_AUTH)
