@@ -135,21 +135,15 @@ export default {
         // }
         return axios.get(`/api/users/id/${id}/profile`)
     },
+
     updateProfile: (id, updatedData) => {
         console.log(updatedData)
         return axios.put(`/api/users/id/${id}`, updatedData)
     },
+
     submitDraft: (postID, data) => {
-        console.log(data)
-        console.log(postID)
-        return axios.put('/api/posts/' + postID, {
-            title: data.title,
-            // teaser: data.teaser,
-            body: data.body,
-            // tags: data.tags,
-            // categoryName: data.categoryName,
-            // isDraft: data.isDraft
-        })
+        data.isDraft = true
+        return axios.put('/api/posts/' + postID, data)
         .then(response => {
             console.log(response);
             return response;
@@ -158,6 +152,7 @@ export default {
             console.log(error);
         });
     },
+
     getPostsAndDrafts: (id) => {
         return axios.get(`/api/users/id/${id}/posts`)
     },

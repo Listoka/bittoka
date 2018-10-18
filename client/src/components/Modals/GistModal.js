@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ModalWrapper from './ModalWrapper';
+import ModalWrapper from './GistModalWrapper';
 
 
 const GistModal = props => {
@@ -9,18 +9,12 @@ const GistModal = props => {
         <ModalWrapper
             {...props}
             // title="Listoka's Gist"
-
+            // width={75}
+            className='modal-gist'
             showOk={false}
         >
-            {/* <div className="gistContainer">
-                <div className="row">
-                    <div className="col-sm-2"></div>
-                    <div className="col-sm-8">
-                        <div className="gistDescriptionBox"> */}
-            {/* <i onClick={props.closeModal} className="fas fa-window-close"></i> */}
-            <h2 className="gist-header">Listoka's Gist</h2>
-            <hr></hr>
-            {/* <div className="gist-body">*/}
+            <h2 className="header">Listoka's Gist</h2>
+            <hr className="hrModals"></hr>
             <div className='row'>
                 <div className="col-lg-7">
                     <p className='gist'>Listoka is a writing and entertainment based platform where 
@@ -33,15 +27,9 @@ const GistModal = props => {
                     everyday person.</p>
                 </div>
                 <div className="col-lg-5">
-                    <img className="gistImg img-fluid" src="./images/gistImg.jpg" alt="Young people working"></img>
+                    <img className="gistImg img-fluid" src="/images/gistImg.jpg" alt="Young people working"></img>
                 </div>
             </div>
-            {/*</div>
-                        </div>
-                    </div>
-                    <div className="col-sm-2"></div>
-                </div> */}
-            {/* </div> */}
         </ModalWrapper >
     )
 }

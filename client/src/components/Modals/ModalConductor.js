@@ -7,9 +7,9 @@ import LoginModal from './LoginModal';
 const ModalConductor = props => {
     switch (props.currentModal) {
         case 'GIST':
-            return <GistModal {...props}/>;
+            return <GistModal {...props} className='modal-gist'/>;
         case 'JOIN':
-            return <JoinModal {...props}/>;
+            return <JoinModal {...props} className=''/>;
         case 'LOGIN': 
             return <LoginModal {...props}/>
         default:
