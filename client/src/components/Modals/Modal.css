@@ -1,26 +1,28 @@
-.Modal {
+.Modal, .GistModal {
     background: white;
-    width:800px;
-    /* height:100%; */
     margin:auto;
     margin-left: auto;
     margin-right: auto;
-    /* text-align: center; */
     padding: 20px;
     z-index: 3;
     position: absolute;
     left:0;
     right: 0;
+    border-radius: 10px;
+    /* border-radius: 2px; */
+    box-shadow: 0 6px 10px 0px #333; 
 }
-.modals2-3{
-    width: 500px;
+
+.Modal {   
+    width:40%;
 }
-.modal-gist {
-    width:75%;
+.GistModal {
+    width: 70%;
 }
 
 .close {
     text-align: right;
+    color: rgb(224, 0, 0);
 }
 
 #overlay {
@@ -43,8 +45,11 @@
 }
 
 hr {
-    border-color: (0, 150, 136); 
+    border-color: rgba(0, 150, 136); 
     border-style: outset;
     border-width: 2px;
-    
+}
+
+.close:hover {
+    color: rgb(224, 0, 0)!important;
 }

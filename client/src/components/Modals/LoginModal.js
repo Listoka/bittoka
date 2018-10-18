@@ -43,11 +43,11 @@ class LoginModal extends React.Component {
                 {...this.props}
             >
 
-                <h2 className="join-header">Login</h2>
-
+                <h2 className="header">Login</h2>
+                <hr></hr>
                 <div className='row'>
-                    <div className="col-sm-2"></div>
-                    <div className="col-sm-8">
+                    <div className="col-sm-1"></div>
+                    <div className="col-sm-10">
                         <form onSubmit={this.handleSubmit}>
                             <div className='form-group'>
                                 <label htmlFor='username'>Email:</label>
@@ -71,11 +71,11 @@ class LoginModal extends React.Component {
                                     type='password'
                                 />
                             </div>
-                            <button type='submit' className='btn btn-success'>Submit</button>
+                            <button type='submit' className='button'>Submit</button>
                             {error ? <p>{error.message}</p> : null}
                         </form>
                     </div>
-                    <div className="col-sm-2"></div>
+                    <div className="col-sm-1"></div>
                 </div>
 
             </ModalWrapper >

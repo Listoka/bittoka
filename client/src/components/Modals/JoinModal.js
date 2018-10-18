@@ -73,11 +73,11 @@ class JoinModal extends React.Component {
                 showOk={false}
             >
 
-                <h2 className="header">Join Listoka!</h2>
-
+                <h2 className="header">Join Listoka</h2>
+                <hr></hr>
                 <div className='row'>
-                    <div className="col-sm-2"></div>
-                    <div className="col-sm-8">
+                    <div className="col-sm-1"></div>
+                    <div className="col-sm-10">
                         <form onSubmit={this.handleSubmit}>
                             <div className='form-group'>
                                 <label htmlFor='username'>Username:</label>
@@ -123,11 +123,11 @@ class JoinModal extends React.Component {
                                     placeholder='Confirm Password'
                                 />
                             </div>
-                            <button disabled={isInvalid} type='submit' className='btn btn-success'>Sign Up</button>
+                            <button disabled={isInvalid} type='submit' className='button'>Sign Up</button>
                             {error ? <p>Error: {error.message}</p> : null}
                         </form>
                     </div>
-                    <div className="col-sm-2"></div>
+                    <div className="col-sm-1"></div>
                 </div>
 
 
