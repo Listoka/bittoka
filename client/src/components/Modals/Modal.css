@@ -1,20 +1,28 @@
-.Modal {
+.Modal, .GistModal {
     background: white;
-    width:75%;
-    /* height:100%; */
     margin:auto;
     margin-left: auto;
     margin-right: auto;
-    /* text-align: center; */
     padding: 20px;
     z-index: 3;
     position: absolute;
     left:0;
     right: 0;
+    border-radius: 10px;
+    /* border-radius: 2px; */
+    box-shadow: 0 6px 10px 0px #333; 
+}
+
+.Modal {   
+    width:40%;
+}
+.GistModal {
+    width: 70%;
 }
 
 .close {
     text-align: right;
+    color: rgb(224, 0, 0);
 }
 
 #overlay {
@@ -30,6 +38,18 @@
     z-index: 2;
 }
 
-.gist-header {
+.header {
     text-align: center;
+    font-family: 'Merienda', cursive;
+    font-weight: bold;
+}
+
+hr {
+    border-color: rgba(0, 150, 136); 
+    border-style: outset;
+    border-width: 2px;
+}
+
+.close:hover {
+    color: rgb(224, 0, 0)!important;
 }
