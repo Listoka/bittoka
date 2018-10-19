@@ -13,13 +13,16 @@ class ListokaMoneyButton extends Component {
 
     constructor(props) {
         super(props)
-        axios.get(`/api/users/id/${props.payeeId}`).then(result => {
-            console.log('payee:' + props.payeeId)
+    }
+
+    componentDidMount = () => {
+        axios.get(`/api/users/id/${this.props.payeeId}`).then(result => {
+            console.log('payee:' + this.props.payeeId)
             console.log('payee mb id: ' + result.data.moneyBtnId)
             this.setState({
                 payees: [{
                     to: result.data.moneyBtnId,
-                    amount: props.payVal - listokaCut,
+                    amount: this.props.payVal - listokaCut,
                     currency: 'USD'
                 },
                 {
@@ -57,7 +60,7 @@ class ListokaMoneyButton extends Component {
     render() {
         return ( 
             <div>
-                {this.state.payees ? 
+                {(this.state.payees && this.state.payees.length > 0) ? 
             <MoneyButton
                 outputs={this.state.payees}
                 type='tip'
