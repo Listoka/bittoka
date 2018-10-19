@@ -71,7 +71,7 @@ class LoginModal extends React.Component {
                                     type='password'
                                 />
                             </div>
-                            <button type='submit' className='button'>Submit</button>
+                            <button type='submit' className='listoka-button'>Submit</button>
                             {error ? <p>{error.message}</p> : null}
                         </form>
                     </div>

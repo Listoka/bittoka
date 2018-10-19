@@ -123,7 +123,7 @@ class JoinModal extends React.Component {
                                     placeholder='Confirm Password'
                                 />
                             </div>
-                            <button disabled={isInvalid} type='submit' className='button'>Sign Up</button>
+                            <button disabled={isInvalid} type='submit' className='listoka-button'>Sign Up</button>
                             {error ? <p>Error: {error.message}</p> : null}
                         </form>
                     </div>
