@@ -25,7 +25,7 @@ class Content extends Component {
   getPostWithComments = () => {
     API.getPostWithComments(this.props.match.params.id)
       .then(res => this.setState({ post: res.data, comments: res.data.comments, commentBody: "" }))
-      // .then (res=> console.log(res.data))
+       .then (res=> console.log(res.data))
       .catch(err => console.log(err));
   }
 
@@ -83,10 +83,10 @@ class Content extends Component {
                     <Comments key={comment._id} {...comment} />
                   ))}
                 </CommentList>
+                </div>
               </div>
               <div className="col-xl-2"></div>
             </div>
-          </div>
         </React.Fragment>
       </div>
     );
