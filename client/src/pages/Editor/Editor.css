@@ -9,7 +9,7 @@
     min-width: 150px;
   }
 
-  .guidelineHeader{
+  .guidelineHeader {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
@@ -23,13 +23,14 @@
     text-align: left;
   }
 
-  .formBody{
+  .formBody {
     background-color: white;
     margin-bottom: 40px;
     margin-top: 10px;
+    padding: 10px 20px 40px 20px;
   }
 
-  .postHeader{
+  .postHeader {
     margin-bottom:20px;
   }
 
@@ -41,7 +42,7 @@
     margin-top: 50px;
   }
 
-  .createBtn{
+  .createBtn {
     background-color: white;
     margin: 10px 0px 10px 0px;
   }

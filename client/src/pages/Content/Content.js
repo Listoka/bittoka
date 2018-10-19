@@ -24,7 +24,7 @@ class Content extends Component {
   getPostWithComments = () => {
     API.getPostWithComments(this.props.match.params.id)
       .then(res => this.setState({ post: res.data, comments: res.data.comments, commentBody: "" }))
-      // .then (res=> console.log(res.data))
+       .then (res=> console.log(res.data))
       .catch(err => console.log(err));
   }
 
@@ -59,7 +59,9 @@ class Content extends Component {
               <div className="col-xl-2"></div>
               <div className="col-xl-8 formBody rounded">
                 <PostDetail className= "containerHeader" key={this.state.post._id} {...this.state.post} />
-                <hr />
+                <hr></hr>
+                <div className='commentContainer clearFix'>
+                <h3 className= 'commentHeader'> Comments</h3>
                 <TextArea
                   value={this.state.commentBody}
                   onChange={this.handleInputChange}
@@ -72,12 +74,13 @@ class Content extends Component {
                 >
                   Submit Comment
                 </FormBtn>
-                <hr />
+                <br></br>
                 <CommentList>
                   {this.state.comments.map(comment => (
                     <Comments key={comment._id} {...comment} />
                   ))}
                 </CommentList>
+                </div>
               </div>
               <div className="col-xl-2"></div>
             </div>

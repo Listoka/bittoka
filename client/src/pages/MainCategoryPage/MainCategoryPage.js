@@ -171,6 +171,7 @@ class MainCategoryPage extends Component {
                         _id={post._id}
                         author={post.author}
                         createdAt={post.createdAt}
+                        voters={post.voters}
                       />
                     </P>
                   ))}

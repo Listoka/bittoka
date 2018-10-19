@@ -53,9 +53,9 @@ class ListokaMoneyButton extends Component {
 
     render() {
         return (
-            <div>
+            <div className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>
                 {(this.state.payeeMbId) ?
-                    <MoneyButton
+                    <MoneyButton 
                         outputs={[{
                             to: this.state.payeeMbId,
                             amount: this.props.payVal - listokaCut,

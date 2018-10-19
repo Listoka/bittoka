@@ -81,6 +81,7 @@ class Home extends Component {
                     author={homePosts.author}
                     handleDeleteButton={this.handleDeleteButton}
                     createdAt={homePosts.createdAt}
+                    voters={homePosts.voters}
                   />
                 ))}
               </PostList>

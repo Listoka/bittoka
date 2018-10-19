@@ -21,7 +21,7 @@ body {
 }
 
 .tagWrapper {
-  margin: 10px;
+  margin: 10px 0px 10px 10px;
   padding: 10px;
   background-color: white;
   min-width: 150px;
@@ -116,4 +116,18 @@ body {
 @media screen and (min-width: 0px) and (max-width: 896px) {
   .tagWrapper { display: none; } 
   .homeTagWrapper { display: none; } 
+}
+
+.commentContainer{
+  margin-top:0px;
+}
+
+.commentHeader {
+  background-color:#007bff;
+  color: snow;
+  padding: 5px;
+}
+
+.commentBtn{
+  margin: 10px 0px 20px 0px;
 }

@@ -113,7 +113,7 @@ class JoinModal extends React.Component {
                                     className='form-control'
                                     placeholder='Example: 1111'
                                 />
-                                <div className='getMoneyBtnId'> Don't have a MoneyButton User Number? Click <a href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here</a> to get one</div>
+                                <div className='getMoneyBtnId'> No MoneyButton account? Click <a href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here</a>.</div>
                             </div>
                             <div className='form-group'>
                                 <label htmlFor='passwordOne'>Password:</label>
