@@ -10,6 +10,7 @@ class JoinModal extends React.Component {
         this.state = {
             username: '',
             email: '',
+            moneyBtnId: '',
             passwordOne: '',
             passwordTwo: '',
             error: null
@@ -23,7 +24,7 @@ class JoinModal extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { username, email, passwordOne } = this.state
+        const { username, email, passwordOne, moneyBtnId } = this.state
 
         axios.get('/api/users/username/' + username)
             .then(response => {
@@ -46,6 +47,7 @@ class JoinModal extends React.Component {
                         username: username,
                         uid: authUser.user.uid,
                         email: email,
+                        moneyBtnId: moneyBtnId
                     },
                     headers: {
                         'Authorization': 'Bearer ' + authToken
@@ -61,7 +63,7 @@ class JoinModal extends React.Component {
 
     render() {
 
-        const { username, email, passwordOne, passwordTwo, error } = this.state
+        const { username, email, passwordOne, passwordTwo, error, moneyBtnId } = this.state
         const isInvalid =
             passwordOne !== passwordTwo || passwordOne === '' ||
             username === '' || email === '' || error
@@ -102,6 +104,18 @@ class JoinModal extends React.Component {
                                 />
                             </div>
                             <div className='form-group'>
+                                <label htmlFor='moneyBtnId'>MoneyButton User Number:</label>
+                                <input
+                                    value={moneyBtnId}
+                                    name='moneyBtnId'
+                                    onChange={this.handleChange}
+                                    type='moneyBtnId'
+                                    className='form-control'
+                                    placeholder='Example: 1111'
+                                />
+                                <div className='getMoneyBtnId'> Don't have a MoneyButton User Number? Click <a href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here</a> to get one</div>
+                            </div>
+                            <div className='form-group'>
                                 <label htmlFor='passwordOne'>Password:</label>
                                 <input
                                     value={passwordOne}
@@ -123,7 +137,7 @@ class JoinModal extends React.Component {
                                     placeholder='Confirm Password'
                                 />
                             </div>
-                            <button disabled={isInvalid} type='submit' className='listoka-button'>Sign Up</button>
+                            <button disabled={isInvalid} type='submit' className='modalButton'>Sign Up</button>
                             {error ? <p>Error: {error.message}</p> : null}
                         </form>
                     </div>

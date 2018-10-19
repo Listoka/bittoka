@@ -13,13 +13,19 @@ class ListokaMoneyButton extends Component {
 
     constructor(props) {
         super(props)
-        axios.get(`/api/users/id/${props.payeeId}`).then(result => {
-            console.log('payee:' + props.payeeId)
+    }
+
+    componentDidMount = () => {
+        if (!this.props.payeeId) return
+      
+        axios.get(`/api/users/id/${this.props.payeeId}`).then(result => {
+            console.log('payee:' + this.props.payeeId)
             console.log('payee mb id: ' + result.data.moneyBtnId)
+            console.log(result)
             this.setState({
                 payees: [{
                     to: result.data.moneyBtnId,
-                    amount: props.payVal - listokaCut,
+                    amount: this.props.payVal - listokaCut,
                     currency: 'USD'
                 },
                 {
@@ -27,13 +33,13 @@ class ListokaMoneyButton extends Component {
                     amount: listokaCut,
                     currency: 'USD'
                 }]
-            })
-        })
-    }
+            });
+        });
+    };
 
     handleError = err => {
         alert(`MoneyButton transaction failed. Error: ${err}`)
-    }
+    };
 
     logPayment = (trans) => {
         console.log('Trans: ' + JSON.stringify(trans))
@@ -50,14 +56,13 @@ class ListokaMoneyButton extends Component {
         API.createTransaction(txDetails).then( result => {
             console.log('tx log result: ' + JSON.stringify(result))
             this.props.paymentSuccessCbk(trans)
-        })
-        
-    }
+        });
+    };
 
     render() {
         return ( 
             <div>
-                {this.state.payees ? 
+                {(this.state.payees && this.state.payees.length > 0) ? 
             <MoneyButton
                 outputs={this.state.payees}
                 type='tip'

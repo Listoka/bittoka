@@ -13,7 +13,7 @@ router.get('/users/id/:id/posts', (req, res) => {
 router.get('/users/id/:id/profile', (req, res) => {
   db.User
     .findById(req.params.id)
-    .select('username bio')
+    .select('username bio moneyBtnId')
     .then(user => {
       let posts = db.Post.find({ author: user._id, isDraft: false })
       let comments = db.Comment.find({ author: user._id })

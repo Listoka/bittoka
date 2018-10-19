@@ -63,9 +63,10 @@ class Profile extends Component {
 
   getPayees = (id) => {
     API.getMoneyButton(id).then(results => {
+      console.log(results)
       this.setState({
         payees: [{
-            to: listokaAcctNum,
+            to: results.data.user.moneyBtnId,
             amount: this.state.labelAmount - listokaCut,
             currency: 'USD'
         },
@@ -74,9 +75,7 @@ class Profile extends Component {
             amount: listokaCut,
             currency: 'USD'
         }]
-    });
-    console.log(results.data)
-    console.log('payees: ' + JSON.stringify(this.state.payees))
+      });
     });
   };
 
@@ -95,8 +94,8 @@ class Profile extends Component {
   };
   
   handleTipChange = (event) => {
-    this.setState({ tipAmt: event.target.value })
-  } ;
+    this.setState({ tipAmt: event.target.value, labelAmount: event.target.value })
+  };
 
   render() {
       return (
@@ -110,9 +109,11 @@ class Profile extends Component {
                 Enter Tip Amount
                 <Input
                   onChange={this.handleTipChange}
+                  type='number'
+                  step='0.01'
+                  min='0.10'
                   className='form-control'
-                  type='text'
-                  style={{ width: 80 + 'px' }}
+                  style={{ width: 180 + 'px' }}
                   value={this.state.tipAmt}
                   placeholder='.00'
                   name='tipAmt'
@@ -126,7 +127,7 @@ class Profile extends Component {
                     outputs={this.state.payees}
                     type='tip'
                     labelAmount={this.state.labelAmount}
-                    label={`Tip to ${this.state.authorName}`}
+                    label={`Tip`}
                     onPayment={this.afterPayment}
                     onError={this.handleError}
                   />

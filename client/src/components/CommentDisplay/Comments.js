@@ -15,8 +15,8 @@ export class Comments extends Component {
     }
   };
   componentDidMount() {
-    console.log(this.props)
-    console.log(this.props._id)
+    // console.log(this.props)
+    // console.log(this.props._id)
   }
 
   toggleCommentBox(event) {
@@ -74,7 +74,6 @@ class LayeredComments extends Component {
     console.log(this.props)
     API.getLayeredComments(this.props.commentID)
       .then(res => this.setState({ layeredComments: res.data.comments }))
-      .then(res => console.log(this.state.layeredComments))
   }
 
   render() {
