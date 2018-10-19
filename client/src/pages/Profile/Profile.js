@@ -69,9 +69,9 @@ class Profile extends Component {
       console.log(results)
       this.setState({
         payees: [{
-            to: results.data.user.moneyBtnId,
-            amount: this.state.labelAmount - listokaCut,
-            currency: 'USD'
+          to: results.data.user.moneyBtnId,
+          amount: this.state.labelAmount - listokaCut,
+          currency: 'USD'
         },
         {
           to: listokaAcctNum,
@@ -101,12 +101,58 @@ class Profile extends Component {
   };
 
   render() {
-      return (
-        <div className='pagebody'>
-            <div className='row'>
-            <div className='col-lg-2'></div>
-            <div className='col-lg-8'>
-              <div className="profileContainer rounded">
+    return (
+      <div className='pagebody'>
+        <div className='row'>
+          <div className='col-lg-2'></div>
+          
+          <div className='col-lg-8 '>
+          <div className='profileContainer rounded'>
+            <div className='row profileHeader'>
+              <div className='col-lg-8'>
+                <h2>{this.state.authorName}</h2>
+                <p>{this.state.displayedBio}</p>
+              </div>
+              <div className='col-sm-4'>
+                <div >
+                  Custom Tip Amount
+                <Input
+                    onChange={this.handleTipChange}
+                    type='number'
+                    step='0.01'
+                    min='0.10'
+                    className='form-control'
+                    style={{ width: 180 + 'px' }}
+                    value={this.state.tipAmt}
+                    placeholder='.00'
+                    name='tipAmt'
+                  />
+                  <FormBtn
+                    onClick={this.handleTipSubmit}
+                  >Submit</FormBtn>
+                  <AuthUserContext.Consumer>
+                    {authUser => {
+                      if (authUser) {
+                        return (
+                          <ListokaMoneyButton
+                            payVal={this.state.payVal}
+                            payeeId={this.state.author}
+                            userId={authUser.dbUser._id}
+                            txType='tip'
+                            label={`Tip`}
+                            paymentSuccessCbk={this.afterPayment}
+                            onError={this.handleError}
+                          />
+                        )
+                      }
+                    }
+                    }
+                  </AuthUserContext.Consumer>
+                </div>    
+            </div>
+            </div>
+
+            {/*<div className="profileContainer rounded">
               <h2>{this.state.authorName}</h2>
               <p>{this.state.displayedBio}</p>
               <hr></hr>
@@ -150,35 +196,36 @@ class Profile extends Component {
                     showTransaction = {this.state.configTransactionAfterPayment} showSocialMedia = {this.state.configSocialMediaAfterPayment}
                     buttonId={this.state.buttonId} buttonData={buttonData} clientIdentifier={this.state.clientIdentifier}
                     type={this.state.type} to={this.state.to} defaultAmount={this.state.defaultAmount}
-                  /> }*/
-                  }
+                  /> }
+              }
                 </AuthUserContext.Consumer>
-              </div>
-              <div>Bio of {this.state.authorName}: {this.state.displayedBio} </div>
-              <PostList>
-                {this.state.userPosts.map(userPosts => (
-                  <PostListItem
-                    key={userPosts._id}
-                    authorName={userPosts.authorName}
-                    body={userPosts.body}
-                    categoryName={userPosts.categoryName}
-                    comments={userPosts.comments}
-                    purchasers={userPosts.purchasers}
-                    tags={userPosts.tags}
-                    teaser={userPosts.teaser}
-                    title={userPosts.title}
-                    _id={userPosts._id}
-                    author={userPosts.author}
-                    handleDeleteButton={this.handleDeleteButton}
-                    voters={userPosts.voters}
-                  />
-                ))}
-              </PostList>
+        </div>
+            <div>Bio of {this.state.authorName}: {this.state.displayedBio} </div>*/}
+            <PostList>
+              {this.state.userPosts.map(userPosts => (
+                <PostListItem
+                  key={userPosts._id}
+                  authorName={userPosts.authorName}
+                  body={userPosts.body}
+                  categoryName={userPosts.categoryName}
+                  comments={userPosts.comments}
+                  purchasers={userPosts.purchasers}
+                  tags={userPosts.tags}
+                  teaser={userPosts.teaser}
+                  title={userPosts.title}
+                  _id={userPosts._id}
+                  author={userPosts.author}
+                  handleDeleteButton={this.handleDeleteButton}
+                  voters={userPosts.voters}
+                />
+              ))}
+            </PostList>
+            </div>
             </div>
           </div>
           <div className='col-lg-2'></div>
-        </div>
-      </div>
+        </div >
+     
     );
   };
 };
