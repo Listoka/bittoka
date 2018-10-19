@@ -95,7 +95,7 @@ class Profile extends Component {
   };
   
   handleTipChange = (event) => {
-    this.setState({ tipAmt: event.target.value })
+    this.setState({ tipAmt: event.target.value, labelAmount: event.target.value })
   } ;
 
   render() {
@@ -110,9 +110,11 @@ class Profile extends Component {
                 Enter Tip Amount
                 <Input
                   onChange={this.handleTipChange}
+                  type='number'
+                  step='0.01'
+                  min='0.10'
                   className='form-control'
-                  type='text'
-                  style={{ width: 80 + 'px' }}
+                  style={{ width: 180 + 'px' }}
                   value={this.state.tipAmt}
                   placeholder='.00'
                   name='tipAmt'
@@ -126,7 +128,7 @@ class Profile extends Component {
                     outputs={this.state.payees}
                     type='tip'
                     labelAmount={this.state.labelAmount}
-                    label={`Tip to ${this.state.authorName}`}
+                    label={`Tip`}
                     onPayment={this.afterPayment}
                     onError={this.handleError}
                   />

@@ -45,9 +45,9 @@ export class PostDetail extends Component {
             console.log('After purchase success: ' + JSON.stringify(result))
             this.setState({
                 purchasers: result.data.purchasers
-            })
-        })
-    }
+            });
+        });
+    };
 
     render() {
         return (

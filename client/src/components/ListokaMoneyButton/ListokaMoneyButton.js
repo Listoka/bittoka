@@ -16,6 +16,7 @@ class ListokaMoneyButton extends Component {
         axios.get(`/api/users/id/${props.payeeId}`).then(result => {
             console.log('payee:' + props.payeeId)
             console.log('payee mb id: ' + result.data.moneyBtnId)
+            console.log(result)
             this.setState({
                 payees: [{
                     to: result.data.moneyBtnId,
