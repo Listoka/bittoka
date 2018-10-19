@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import {PostList, PostListItem} from '../../components/PostComponents/PostListDisplay';
+import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { Input, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import './profile.css';
-import MoneyButton from '@moneybutton/react-money-button'
+import ListokaMoneyButton from "../../components/ListokaMoneyButton";
+import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
+
 
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
@@ -12,22 +14,23 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        userPosts: [],
-        authorName: "",
-        displayedBio: "",
-        author: this.props.match.params.id,
-        payees: [{
-            to: listokaAcctNum,
-            amount: listokaCut,
-            currency: 'USD'
-          },
-          {
-            to: 783,
-            amount: .09,
-            currency: 'USD'
-          }],
-        tipAmt: 0,
-        labelAmount: .10
+      userPosts: [],
+      authorName: "",
+      displayedBio: "",
+      author: this.props.match.params.id,
+      payees: [{
+        to: listokaAcctNum,
+        amount: listokaCut,
+        currency: 'USD'
+      },
+      {
+        to: 783,
+        amount: .09,
+        currency: 'USD'
+      }],
+      tipAmt: 0,
+      labelAmount: .10,
+      payVal: .10
     };
   };
 
@@ -37,7 +40,7 @@ class Profile extends Component {
     let promises = [this.getPostsAndBio(this.props.match.params.id)]
     Promise.all(promises)
       .then(results => {
-          console.log(results)
+        console.log(results)
         this.setState({
           userPosts: results[0].posts,
           displayedBio: results[0].user.bio,
@@ -52,7 +55,7 @@ class Profile extends Component {
           //   amount: .09,
           //   currency: 'USD'
           // }
-        // ]
+          // ]
         });
       })
   };
@@ -63,20 +66,19 @@ class Profile extends Component {
 
   getPayees = (id) => {
     API.getMoneyButton(id).then(results => {
+      console.log(results)
       this.setState({
         payees: [{
-            to: listokaAcctNum,
+            to: results.data.user.moneyBtnId,
             amount: this.state.labelAmount - listokaCut,
             currency: 'USD'
         },
         {
-            to: listokaAcctNum,
-            amount: listokaCut,
-            currency: 'USD'
+          to: listokaAcctNum,
+          amount: listokaCut,
+          currency: 'USD'
         }]
-    });
-    console.log(results.data)
-    console.log('payees: ' + JSON.stringify(this.state.payees))
+      });
     });
   };
 
@@ -90,13 +92,13 @@ class Profile extends Component {
 
   handleTipSubmit = (event) => {
     event.preventDefault();
-    this.getPayees(this.props.match.params.id)
-    this.setState({tipAmt: 0})
+    //this.getPayees(this.props.match.params.id)
+    this.setState({ tipAmt: 0, payVal: this.state.labelAmount })
   };
-  
+
   handleTipChange = (event) => {
-    this.setState({ tipAmt: event.target.value })
-  } ;
+    this.setState({ tipAmt: event.target.value, labelAmount: event.target.value })
+  };
 
   render() {
       return (
@@ -112,38 +114,50 @@ class Profile extends Component {
                 Enter Tip Amount
                 <Input
                   onChange={this.handleTipChange}
+                  type='number'
+                  step='0.01'
+                  min='0.10'
                   className='form-control'
-                  type='text' // Should this really be text?  Are we validating they entered a numerical dollar amount?
-                  style={{ width: 80 + 'px' }}
+                  style={{ width: 180 + 'px' }}
                   value={this.state.tipAmt}
                   placeholder='.00'
                   name='tipAmt'
-              />
-              <FormBtn
+                />
+                <FormBtn
                   onClick={this.handleTipSubmit}
-              >Submit</FormBtn>
-              <div>
-                  <MoneyButton
-                    outputs={this.state.payees}
-                    type='tip'
-                    labelAmount={this.state.labelAmount}
-                    label={`Tip to ${this.state.authorName}`}
-                    onPayment={this.afterPayment}
-                    onError={this.handleError}
-                  />
-                  {/* <MoneyButtonDonate display="input"
-                  devMode={this.state.devMode} labelMoneyButton={this.state.labelMoneyButton}
-                  labelAmount = {this.state.labelAmount} labelReference = {this.state.labelReference}
-                  showTransaction = {this.state.configTransactionAfterPayment} showSocialMedia = {this.state.configSocialMediaAfterPayment}
-                  buttonId={this.state.buttonId} buttonData={buttonData} clientIdentifier={this.state.clientIdentifier}
-                  type={this.state.type} to={this.state.to} defaultAmount={this.state.defaultAmount}
-                /> */}
-                </div>
+                >Submit</FormBtn>
               </div>
-                
-                <PostList>
+              <div>
+                <AuthUserContext.Consumer>
+                  {authUser => {
+                    if (authUser) {
+                      return (
+                        <ListokaMoneyButton
+                          payVal={this.state.payVal}
+                          payeeId={this.state.author}
+                          userId={authUser.dbUser._id}
+                          txType='tip'
+                          label={`Tip`}
+                          paymentSuccessCbk={this.afterPayment}
+                          onError={this.handleError}
+                        />
+                      )
+                    }
+                  }
+                    /*{ <MoneyButtonDonate display="input"
+                    devMode={this.state.devMode} labelMoneyButton={this.state.labelMoneyButton}
+                    labelAmount = {this.state.labelAmount} labelReference = {this.state.labelReference}
+                    showTransaction = {this.state.configTransactionAfterPayment} showSocialMedia = {this.state.configSocialMediaAfterPayment}
+                    buttonId={this.state.buttonId} buttonData={buttonData} clientIdentifier={this.state.clientIdentifier}
+                    type={this.state.type} to={this.state.to} defaultAmount={this.state.defaultAmount}
+                  /> }*/
+                  }
+                </AuthUserContext.Consumer>
+              </div>
+              <div>Bio of {this.state.authorName}: {this.state.displayedBio} </div>
+              <PostList>
                 {this.state.userPosts.map(userPosts => (
-                    <PostListItem
+                  <PostListItem
                     key={userPosts._id}
                     authorName={userPosts.authorName}
                     body={userPosts.body}
@@ -156,15 +170,15 @@ class Profile extends Component {
                     _id={userPosts._id}
                     author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
-                    />
+                  />
                 ))}
-                </PostList>
-              </div>
+              </PostList>
             </div>
-            <div className='col-lg-2'></div>
-            </div>
+          </div>
+          <div className='col-lg-2'></div>
         </div>
-      );
+      </div>
+    );
   };
 };
 

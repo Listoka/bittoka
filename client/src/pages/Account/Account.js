@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import { PostList, PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
-import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
+import { TextArea, FormBtn, Input } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import './account.css';
 
@@ -17,6 +17,7 @@ class Account extends Component {
       displayedBio: "",
       profileUsername: "",
       drafts: [],
+      showMoneyBtnId: true,
     };
   };
 
@@ -29,7 +30,8 @@ class Account extends Component {
         this.setState({
           userPosts: results[0].posts,
           bio: results[0].user.bio,
-          drafts: drafts
+          drafts: drafts,
+          moneyBtnId: results[0].user.moneyBtnId
         });
       })
   };
@@ -77,7 +79,8 @@ class Account extends Component {
     console.log(this.state);
     event.preventDefault();
     const data = {
-      bio: this.state.bio
+      bio: this.state.bio,
+      moneyBtnId: this.state.moneyBtnId
     };
     if (this.state.bio.length > 4) {
 
@@ -88,6 +91,18 @@ class Account extends Component {
   };
 
   editBio = () => { this.setState(prevState => ({ showBio: !prevState.showBio })) }
+  editmoneyBtnId = () => { this.setState(prevState => ({ showMoneyBtnId: !prevState.showMoneyBtnId }))}
+
+  handleMoneyBtnIdSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      moneyBtnId: this.state.moneyBtnId,
+      bio: this.state.bio
+    };
+    API.updateProfile(this.state.id, data)
+      .then(res => console.log(res.data), this.setState({ showMoneyBtnId: true }))
+      .catch(err => console.log(err))
+  };
 
   render() {
     return (
@@ -118,6 +133,28 @@ class Account extends Component {
                     >
                       Update Bio
                   </FormBtn>
+                  </form>
+                }
+              </div>
+              <div className='moneyBtnIdContainer'>
+                {this.state.showMoneyBtnId
+                ? <div>Your MoneyButton User Number: {this.state.moneyBtnId} <i className="far fa-edit btn" 
+                    onClick={this.editmoneyBtnId}>Edit</i>
+                  </div>
+                : <form>
+                  <i className="fas fa-undo btn" onClick={this.editmoneyBtnId}>Cancel</i>
+                    <Input 
+                      value={this.state.moneyBtnId}
+                      onChange={this.handleInputChange}
+                      name="moneyBtnId"
+                      style={{ width: 125 + 'px' }}
+                    />
+                    <FormBtn
+                      disabled={!(this.state.moneyBtnId)}
+                      onClick={this.handleMoneyBtnIdSubmit}
+                    >
+                      Update 
+                    </FormBtn>
                   </form>
                 }
               </div>
