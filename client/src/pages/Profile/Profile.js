@@ -104,14 +104,16 @@ class Profile extends Component {
             <div className='row'>
             <div className='col-lg-2'></div>
             <div className='col-lg-8'>
-              <div className="categoryDetail">
-              <div><h3>Profile of: {this.state.authorName}</h3></div>
-              <div>
+              <div className="profileContainer rounded">
+              <h2>{this.state.authorName}</h2>
+              <p>{this.state.displayedBio}</p>
+              <hr></hr>
+              <div className='fltRight'>
                 Enter Tip Amount
                 <Input
                   onChange={this.handleTipChange}
                   className='form-control'
-                  type='text'
+                  type='text' // Should this really be text?  Are we validating they entered a numerical dollar amount?
                   style={{ width: 80 + 'px' }}
                   value={this.state.tipAmt}
                   placeholder='.00'
@@ -120,8 +122,7 @@ class Profile extends Component {
               <FormBtn
                   onClick={this.handleTipSubmit}
               >Submit</FormBtn>
-              </div>
-                <div>
+              <div>
                   <MoneyButton
                     outputs={this.state.payees}
                     type='tip'
@@ -138,7 +139,8 @@ class Profile extends Component {
                   type={this.state.type} to={this.state.to} defaultAmount={this.state.defaultAmount}
                 /> */}
                 </div>
-              <div>Bio of {this.state.authorName}: {this.state.displayedBio} </div>
+              </div>
+                
                 <PostList>
                 {this.state.userPosts.map(userPosts => (
                     <PostListItem
