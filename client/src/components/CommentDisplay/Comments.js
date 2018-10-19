@@ -5,6 +5,7 @@ import { NestedComments } from '../CommentDisplay/NestedComments';
 import Moment from 'react-moment';
 import './Comments.css';
 import { Link } from 'react-router-dom';
+import AuthUserContext from "../AuthUserSession/AuthUserContext";
 
 export class Comments extends Component {
   constructor(props) {
@@ -43,7 +44,13 @@ export class Comments extends Component {
           <p className='mediumPostText'> {this.props.body}</p>
           <p>[#Upvotes][Upvote MoneyButton Component]</p>
           <p>
-            <a onClick={this.toggleCommentBox.bind(this)} href={`/comments/${this.props._id}`}>[Reply]</a>
+            <AuthUserContext.Consumer>
+              {authUser =>
+                authUser
+                  ? <a onClick={this.toggleCommentBox.bind(this)} href={`/comments/${this.props._id}`}>[Reply]</a>
+                  : null
+              }
+            </AuthUserContext.Consumer>
             <a onClick={this.toggleComments.bind(this)} href={`/comments/${this.props._id}`}>[View Replies]</a>
           </p>
           {/* <button className="btn btn-secondary btn-sm" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button>&nbsp;&nbsp; */}

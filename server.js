@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 const app = express();
 const admin = require('firebase-admin');
-const serviceAccount = require('./secret/firebase-secret.json');
 
 const PORT = process.env.PORT || 3001;
 
