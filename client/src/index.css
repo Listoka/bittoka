@@ -131,3 +131,7 @@ body {
 .commentBtn{
   margin: 10px 0px 20px 0px;
 }
+
+.fa-edit{
+  color: #007bff;
+}

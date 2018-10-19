@@ -170,6 +170,7 @@ class Profile extends Component {
                     _id={userPosts._id}
                     author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
+                    voters={userPosts.voters}
                   />
                 ))}
               </PostList>

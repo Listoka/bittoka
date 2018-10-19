@@ -34,3 +34,14 @@
 .draftHr {
     clear: both;
 }
+
+.draftDetail {
+    background-color: white;
+    margin: 10px 10px 40px 0px;
+    padding: 20px 0px 20px 0px;
+    min-height: 100%;
+}
+
+#mbEdit {
+    text-align: right;
+}
