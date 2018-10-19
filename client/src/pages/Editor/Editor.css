@@ -7,6 +7,7 @@
     padding: 10px;
     background-color: white;
     min-width: 150px;
+    text-align: center;
   }
 
   .guidelineHeader {
@@ -23,6 +24,10 @@
     text-align: left;
   }
 
+  #guidelineList{
+    text-align: left;
+  }
+
   .formBody {
     background-color: white;
     margin-bottom: 40px;
@@ -32,6 +37,10 @@
 
   .postHeader {
     margin-bottom:20px;
+  }
+
+  #paywallField {
+    min-width: 180px;
   }
 
   .categorySelect {
@@ -49,4 +58,9 @@
 
   @media screen and (min-width: 0px) and (max-width: 896px) {
     .GuidelineWrapper { display: none; }  
+  }
+
+  .form-control:disabled{
+    background-color: whitesmoke;
+    color:darkgrey;
   }
