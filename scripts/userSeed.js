@@ -20,6 +20,7 @@ const userData = [
     uid: '76uRmVJAuDUqqeLRhzEyyd2uc863',
     email: 'joe@thing.com',
     bio: 'This is Joe\'s bio.',
+    moneyBtnId: '588',
     permissions: [group.USER]
   },
   {

@@ -16,8 +16,8 @@ router.put('/users/id/:id', (req, res) => {
   if (dbUser._id.toString() !== req.params.id) {
     return res.sendStatus(403)
   }
-  const { bio } = req.body
-  db.User.findByIdAndUpdate(dbUser._id, { bio })
+  const { bio, moneyBtnId } = req.body
+  db.User.findByIdAndUpdate(dbUser._id, { bio, moneyBtnId })
     .then(result => {
       res.json(result)
     })
@@ -32,12 +32,13 @@ router.post('/users', (req, res) => {
   console.log('\n>>> POST -- req.originalUrl: ', req.originalUrl)
   console.log('>>> POST -- req.body: \n', req.body)
   console.log('>>> POST -- res.locals\n', res.locals)
-  const { username } = req.body
+  const { username, moneyBtnId } = req.body
   const userData = {
     username: username,
     email: res.locals.user.token.email,
     uid: res.locals.user.token.uid,
-    permissions: ['user']
+    permissions: ['user'],
+    moneyBtnId: moneyBtnId
   }
   db.User.create(userData).then(result => {
     res.json(result)
