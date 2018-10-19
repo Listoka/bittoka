@@ -24,8 +24,8 @@ router.route('/posts/:postId')
     console.log('>>>>> Update Post: \n', req.body)
     const dbUser = res.locals.user.dbUser
     const dbPost = res.locals.post
-    const { title, teaser, body, isDraft, tags, paywallCost } = req.body
-    const updateData = { title, teaser, body, isDraft, tags, paywallCost }
+    const { title, teaser, body, isDraft, tags, paywallCost, categoryName } = req.body
+    const updateData = { title, teaser, body, isDraft, tags, categoryName, paywallCost }
 
     if (dbUser._id.equals(dbPost.author)) {
       db.Post
