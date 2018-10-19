@@ -12,6 +12,8 @@ import makeAnimated from 'react-select/lib/animated';
 
 // React Select docs: https://react-select.com/home
 
+// FIXME: Any logged in user can open up the editor view by putting /edit after a post url
+//          Actually updating it is blocked serverside.
 
 class CreatePost extends Component {
   constructor(props) {
@@ -160,12 +162,13 @@ class CreatePost extends Component {
         tags: this.state.selectedTags,
         categoryName: this.state.categoryName,
         isDraft: false,
-        tags: this.state.selectedTags,
+        tags: this.state.selectedTags || [],
       };
 
       API.updatePost(this.state.postId, data)
         .then(result => {
-          this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
+          // this.setState({ redirectToNewPage: true, redirectPathId: result.data._id })
+          this.props.history.push(`/posts/${result.data._id}`)
         }).catch(err => console.log(err))
     };
   };
@@ -208,7 +211,10 @@ class CreatePost extends Component {
             <div className="col-md-8 formBody rounded" >
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
-                  <h2 className='postHeader'>CREATE POST</h2>
+                {this.props.match.params.postId
+                  ? <h2 className='postHeader'>EDIT POST</h2>
+                  : <h2 className='postHeader'>CREATE POST</h2>
+                }
                   <Select className="categorySelect"
                     onChange={this.dropdownChange}
                     options={this.state.categories}
@@ -238,7 +244,7 @@ class CreatePost extends Component {
                   onChange={this.handleInputChange}
                   type='number'
                   step='0.01'
-                  min='0.03'
+                  min='0.00'
                   style={{ width: 175 + 'px' }}
                   placeholder='Paywall Cost (x.xx)'
                   value={this.state.paywallCost}

@@ -80,8 +80,6 @@ export default {
     return axios.delete('/api/posts/' + id);
   },
   updatePost: (id, updatedData) => {
-    console.log('updatePost id', id)
-    console.log('updatePost data', updatedData)
     return axios.put('/api/posts/' + id, updatedData)
       .then(response => {
         console.log('updatePost response', response);
