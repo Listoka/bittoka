@@ -125,7 +125,7 @@ export default {
 
   getMoneyButton: (id) => {
     return axios.get(`/api/users/id/${id}/profile`)//May need to change. Wherever we can publicly grab the MB id from
-  },
+  }, 
 
   createTransaction: (tx) => {
     console.log('createTransaction: tx: ' + JSON.stringify(tx))

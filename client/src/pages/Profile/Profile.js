@@ -63,9 +63,10 @@ class Profile extends Component {
 
   getPayees = (id) => {
     API.getMoneyButton(id).then(results => {
+      console.log(results)
       this.setState({
         payees: [{
-            to: listokaAcctNum,
+            to: results.data.user.moneyBtnId,
             amount: this.state.labelAmount - listokaCut,
             currency: 'USD'
         },
@@ -74,9 +75,7 @@ class Profile extends Component {
             amount: listokaCut,
             currency: 'USD'
         }]
-    });
-    console.log(results.data)
-    console.log('payees: ' + JSON.stringify(this.state.payees))
+      });
     });
   };
 
@@ -96,7 +95,7 @@ class Profile extends Component {
   
   handleTipChange = (event) => {
     this.setState({ tipAmt: event.target.value, labelAmount: event.target.value })
-  } ;
+  };
 
   render() {
       return (
