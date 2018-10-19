@@ -4,6 +4,7 @@ import { PostDetail } from '../../components/PostComponents/PostDetail/PostDetai
 import { Comments, CommentList } from '../../components/CommentDisplay';
 // import withAuthorization from '../../components/AuthUserSession/withAuthorization'
 /*import TipButton from '../../components/TipButton';*/
+import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
 import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
 import './content.css';
 
@@ -58,21 +59,25 @@ class Content extends Component {
             <div className="row displayForm">
               <div className="col-xl-2"></div>
               <div className="col-xl-8 formBody rounded">
-                <PostDetail className= "containerHeader" key={this.state.post._id} {...this.state.post} />
-                <hr />
-                <TextArea
-                  value={this.state.commentBody}
-                  onChange={this.handleInputChange}
-                  name="commentBody"
-                  placeholder="Share your comment here"
-                />
-                <FormBtn
-                  disabled={!(this.state.commentBody.length > 4)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit Comment
-                </FormBtn>
-                <hr />
+                <PostDetail className="containerHeader" key={this.state.post._id} {...this.state.post} />
+                <AuthUserContext.Consumer>
+                  {authUser => {
+                    authUser
+                      ? (
+                        <React.Fragment>
+                          <hr />
+                          <TextArea
+                            value={this.state.commentBody}
+                            onChange={this.handleInputChange}
+                            name="commentBody"
+                            placeholder="Share your comment here"
+                          />
+                          <FormBtn disabled={!(this.state.commentBody.length > 4)} onClick={this.handleFormSubmit}>Submit Comment</FormBtn>
+                           <hr />
+                        </React.Fragment>
+                      ) : null
+                  }}
+                </AuthUserContext.Consumer>
                 <CommentList>
                   {this.state.comments.map(comment => (
                     <Comments key={comment._id} {...comment} />
