@@ -8,7 +8,7 @@ const listokaAcctNum = '783' // FIXME: Put in secure place (read from db?)
 
 class ListokaMoneyButton extends Component {
     state = {
-        payees: []
+        payeeMbId: 0
     }
 
     constructor(props) {
@@ -23,23 +23,14 @@ class ListokaMoneyButton extends Component {
             console.log('payee mb id: ' + result.data.moneyBtnId)
             console.log(result)
             this.setState({
-                payees: [{
-                    to: result.data.moneyBtnId,
-                    amount: this.props.payVal - listokaCut,
-                    currency: 'USD'
-                },
-                {
-                    to: listokaAcctNum,
-                    amount: listokaCut,
-                    currency: 'USD'
-                }]
-            });
-        });
-    };
+                payeeMbId: result.data.moneyBtnId
+            })
+        })
+    }
 
     handleError = err => {
-        alert(`MoneyButton transaction failed. Error: ${err}`)
-    };
+        alert(`MoneyButton transaction failed. ${err}`)
+    }
 
     logPayment = (trans) => {
         console.log('Trans: ' + JSON.stringify(trans))
@@ -48,31 +39,41 @@ class ListokaMoneyButton extends Component {
             paidUserId: this.props.payeeId,
             txFrom: trans.userId,
             txType: this.props.txType,
-            txOutputs: [{ moneyButtonId: trans.outputs[0].to, amount: trans.outputs[0].amount }, 
-                        { moneyButtonId: trans.outputs[1].to, amount: trans.outputs[1].amount } ],
+            txOutputs: [{ moneyButtonId: trans.outputs[0].to, amount: trans.outputs[0].amount },
+            { moneyButtonId: trans.outputs[1].to, amount: trans.outputs[1].amount }],
             commentId: this.props.commentId || null,
             postId: this.props.postId || null
         }
-        API.createTransaction(txDetails).then( result => {
+        API.createTransaction(txDetails).then(result => {
             console.log('tx log result: ' + JSON.stringify(result))
             this.props.paymentSuccessCbk(trans)
-        });
-    };
+        })
+
+    }
 
     render() {
-        return ( 
+        return (
             <div>
-                {(this.state.payees && this.state.payees.length > 0) ? 
-            <MoneyButton
-                outputs={this.state.payees}
-                type='tip'
-                label={this.props.label}
-                onPayment={this.logPayment}
-                onError={this.handleError}
-            />
-            :
-            <p>MoneyButton loading...</p>
-            }
+                {(this.state.payeeMbId) ?
+                    <MoneyButton
+                        outputs={[{
+                            to: this.state.payeeMbId,
+                            amount: this.props.payVal - listokaCut,
+                            currency: 'USD'
+                        },
+                        {
+                            to: listokaAcctNum,
+                            amount: listokaCut,
+                            currency: 'USD'
+                        }]}
+                        type='tip'
+                        label={this.props.label}
+                        onPayment={this.logPayment}
+                        onError={this.handleError}
+                    />
+                    :
+                    <p>MoneyButton loading...</p>
+                }
             </div>
         )
     }
