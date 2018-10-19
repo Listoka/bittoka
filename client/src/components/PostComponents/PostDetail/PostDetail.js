@@ -11,20 +11,20 @@ export class PostDetail extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            body: props.body,
-            _id: props._id,
-            title: props.title,
-            teaser: props.teaser,
-            authorName: props.authorName,
-            categoryName: props.categoryName,
-            author: props.author,
-            upvotes: props.voters ? props.voters.length : 0,
-            upvoteList: props.voters || [],
-            purchasers: props.purchasers || []
-        };
-        console.log('props: ' + JSON.stringify(props))
     }
+
+    state = {
+        body: this.props.body,
+        _id: this.props._id,
+        title: this.props.title,
+        teaser: this.props.teaser,
+        authorName: this.props.authorName,
+        categoryName: this.props.categoryName,
+        author: this.props.author,
+        upvotes: this.props.voters ? this.props.voters.length : 0,
+        upvoteList: this.props.voters || [],
+        purchasers: this.props.purchasers || []
+    };
 
     afterUpvotePayment = (trans) => {
         console.log('Last transaction' + JSON.stringify(trans))
@@ -99,7 +99,7 @@ export class PostDetail extends Component {
                                                             } else {
                                                                 return (
                                                                     <ListokaMoneyButton
-                                                                        payVal='.03'                                                                        
+                                                                        payVal='.03'
                                                                         paymentSuccessCbk={this.afterUpvotePayment}
                                                                         label='Upvote'
                                                                         payeeId={this.props.author}
