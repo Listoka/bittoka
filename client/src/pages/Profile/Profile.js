@@ -97,16 +97,6 @@ class Profile extends Component {
     this.setState({ tipAmt: event.target.value, labelAmount: event.target.value })
   };
 
-  afterPurchasePayment = (trans) => {
-    console.log('purchase trans: ' + JSON.stringify(trans))
-    API.purchasePost(this.state._id).then(result => {
-        console.log('After purchase success: ' + JSON.stringify(result))
-        this.setState({
-            purchasers: result.data.purchasers
-        });
-    });
-};
-
   render() {
       return (
         <div className='pagebody'>
