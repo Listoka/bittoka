@@ -16,6 +16,8 @@ class ListokaMoneyButton extends Component {
     }
 
     componentDidMount = () => {
+        if (!this.props.payeeId) return
+      
         axios.get(`/api/users/id/${this.props.payeeId}`).then(result => {
             console.log('payee:' + this.props.payeeId)
             console.log('payee mb id: ' + result.data.moneyBtnId)
@@ -31,13 +33,13 @@ class ListokaMoneyButton extends Component {
                     amount: listokaCut,
                     currency: 'USD'
                 }]
-            })
-        })
-    }
+            });
+        });
+    };
 
     handleError = err => {
         alert(`MoneyButton transaction failed. Error: ${err}`)
-    }
+    };
 
     logPayment = (trans) => {
         console.log('Trans: ' + JSON.stringify(trans))
@@ -54,9 +56,8 @@ class ListokaMoneyButton extends Component {
         API.createTransaction(txDetails).then( result => {
             console.log('tx log result: ' + JSON.stringify(result))
             this.props.paymentSuccessCbk(trans)
-        })
-        
-    }
+        });
+    };
 
     render() {
         return ( 
