@@ -20,6 +20,7 @@ const hasPermission = (condition, message) => {
     if (condition(dbUser)) {
       next()
     } else {
+      // TODO: I think this is borked
       !message
         ? res.sendStatus(403)
         : res.status(403).json({ mesage })
