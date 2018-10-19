@@ -40,7 +40,6 @@ class CreatePost extends Component {
       postId: null,
       author: props.authUser.dbUser._id,
       paywallCost: '',
-      teaser: '',
     };
   }
 
@@ -159,7 +158,6 @@ class CreatePost extends Component {
         teaser: teaser,
         body: body,
         paywallCost: paywallCost,
-        tags: this.state.selectedTags,
         categoryName: this.state.categoryName,
         isDraft: false,
         tags: this.state.selectedTags || [],
