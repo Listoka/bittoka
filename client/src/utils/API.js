@@ -130,5 +130,13 @@ export default {
   createTransaction: (tx) => {
     console.log('createTransaction: tx: ' + JSON.stringify(tx))
     return axios.post('/api/transactions', tx)
+  },
+
+  getTotalPaidFromUser: (id) => {
+      return axios.get(`/api/transactions/paid/userId/${id}`)
+  },
+
+  getTotalPaidToUser: (id) => {
+      return axios.get(`/api/transactions/paid/paidUserId/${id}`)
   }
 };

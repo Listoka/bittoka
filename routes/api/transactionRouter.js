@@ -14,5 +14,9 @@ router.route('/transactions/:id')
   .put(transactionController.update)
   .delete(transactionController.remove)
 
+// userFieldName === 'userId' means paid BY user
+// userFieldName === 'paidUserId' means paid TO user
+router.route('/transactions/paid/:userFieldName/:uid')
+  .get(transactionController.totalAmtPaid)
 
 module.exports = router
