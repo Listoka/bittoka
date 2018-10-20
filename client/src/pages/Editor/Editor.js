@@ -9,6 +9,7 @@ import colourStyles from './colourStyles'
 // Tag Multiselect
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
+import guidelinesImage from '../../assets/images/guidelines.png'
 
 // React Select docs: https://react-select.com/home
 
@@ -294,7 +295,7 @@ class CreatePost extends Component {
             </div>
             <div className="col-md-3">
               <div className='guidelineWrapper rounded'>
-                <img className="img-fluid" src="/images/guidelines.png" alt="Listoka Guidelines"></img>
+                <img className="img-fluid" src={guidelinesImage} alt="Listoka Guidelines"></img>
                 <h6 className='guidelineHeader'>Posting Guidelines</h6>
                 <hr></hr>
                 <ul>
