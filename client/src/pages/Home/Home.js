@@ -4,6 +4,7 @@ import { CategoryDescription, CategoryDetail } from '../../components/CategoryIn
 import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
 import './Home.css';
 import Stickybar from '../../components/Stickybar/Stickybar';
+import sidebarImage from '../../assets/images/sidebar-400x400.jpg'
 
 class Home extends Component {
   constructor(props) {
@@ -46,8 +47,8 @@ class Home extends Component {
         <div className='row'>
           <div className='col-sm-2'>
             <div className='homeTagWrapper rounded'>
-              <div className='homeSidebarWrapper rounded'>
-                <img className="img-fluid" src="./images/newSidebar.jpg" alt="Welcome to Listoka"></img>
+              <div className='homeSidebarWrapper'>
+                <img className="img-fluid" src={sidebarImage} alt="Welcome to Listoka"></img>
                 <div className="homeSideBar rounded">
                   <h6>Welcome to Listoka</h6>
                   <p className='homeSidebarContent'><strong>Write something, earn Bitcoin.  It's that simple.</strong></p>
