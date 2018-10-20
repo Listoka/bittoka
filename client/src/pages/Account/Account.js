@@ -147,10 +147,11 @@ class Account extends Component {
                     </div>
                   </div>
                 </div>
-                <hr></hr>
+                
                 {this.state.showBio
                   ? <div className='bioTextWrapper'>
                     {this.state.bio}
+                    <hr></hr>
                   </div>
                   : <form>
                     <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>

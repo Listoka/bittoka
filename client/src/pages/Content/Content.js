@@ -61,10 +61,9 @@ class Content extends Component {
               <div className="col-xl-8 formBody rounded">
                 <PostDetail className="containerHeader" key={this.state.post._id} {...this.state.post} />
                 <AuthUserContext.Consumer>
-                  {authUser => {
+                  {authUser => 
                     authUser
-                      ? (
-                        <React.Fragment>
+                      ? ( <div>
                           <hr />
                           <TextArea
                             value={this.state.commentBody}
@@ -74,9 +73,9 @@ class Content extends Component {
                           />
                           <FormBtn disabled={!(this.state.commentBody.length > 4)} onClick={this.handleFormSubmit}>Submit Comment</FormBtn>
                            <hr />
-                        </React.Fragment>
+                        </div>
                       ) : null
-                  }}
+                  }
                 </AuthUserContext.Consumer>
                 <CommentList>
                   {this.state.comments.map(comment => (
@@ -87,7 +86,6 @@ class Content extends Component {
               </div>
               <div className="col-xl-2"></div>
             </div>
-          
         </React.Fragment>
       </div>
     );
