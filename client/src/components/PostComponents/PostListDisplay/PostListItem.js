@@ -21,13 +21,14 @@ export const PostListItem = props => {
                             </div>
                             <p className='post-subtitle'>Posted by: <Link to={{ pathname: `/users/${props.author}`}}> {props.authorName}</Link> in <Link to={`/categories/${props.categoryName}`}><span className={`${props.categoryName}Flair flair`}>{props.categoryName}</span></Link></p>
                         </div>
-                        <p className='post-text'>{props.body}</p>
+                        <p className='post-text'>{props.teaser}</p>
                     </span>
                 </div>
 
                 <div className='clearfix'>
                     <div className='infoContainers'>
                         <p className='smallPostText'><Link to={{ pathname: `/posts/${props._id}` }}><i className="fas fa-comments-dollar"></i>&nbsp;&nbsp;{props.comments.length} &nbsp;&nbsp;</Link></p>
+                        <p className='smallPostText'><i className="fas fa-arrow-up"></i>&nbsp;{props.voters.length}&nbsp;&nbsp;</p>
                         <p className='smallPostText'><i className="fab fa-bitcoin"></i>&nbsp; $0.75 &nbsp;&nbsp;</p>
                         <p className='smallPostText'><i className="fas fa-calendar-alt"></i>&nbsp;<Moment fromNow>{props.createdAt}</Moment> &nbsp;&nbsp;</p>
                     </div>

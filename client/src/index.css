@@ -21,7 +21,7 @@ body {
 }
 
 .tagWrapper {
-  margin: 10px;
+  margin: 10px 0px 10px 10px;
   padding: 10px;
   background-color: white;
   min-width: 150px;
@@ -33,27 +33,34 @@ body {
   cursor: pointer;
   list-style-type: none;
   overflow: hidden;
-  padding-left: 5px;
+  padding-left: 10px;
   border: 1px solid white;
+
 }
 .tagLink:hover {
   background-color: lightblue;
   color: grey;
 }
-.tagLinkInactive{
+.tagLinkInactive {
   color: royalblue;
   background-color: white;
+}
+.tagLinkInactive:before {
+  content: "+ "
 }
 .tagLinkActive {
     color: snow;
     background-color: royalblue;
+}
+.tagLinkActive:before {
+  content: "- "
 }
 
 .homeTagWrapper {
   margin: 10px;
   background-color: white;
   min-width: 150px;
-  min-height: 100%;
+  min-height: 400px;
   list-style-position: inside; 
 }
 
@@ -80,7 +87,12 @@ body {
   margin-top: 20px;
   font-size: 14px;
   text-align: left;
-  font-family: 'Karma', serif;
+}
+
+.para {
+  font-weight: 400;
+  font-size: 12px;
+  text-align: left;
 }
 
 #tagUl {
@@ -104,4 +116,22 @@ body {
 @media screen and (min-width: 0px) and (max-width: 896px) {
   .tagWrapper { display: none; } 
   .homeTagWrapper { display: none; } 
+}
+
+.commentContainer{
+  margin-top:0px;
+}
+
+.commentHeader {
+  background-color:#007bff;
+  color: snow;
+  padding: 5px;
+}
+
+.commentBtn{
+  margin: 10px 0px 20px 0px;
+}
+
+.fa-edit{
+  color: #007bff;
 }
