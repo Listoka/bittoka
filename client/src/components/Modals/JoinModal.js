@@ -82,58 +82,59 @@ class JoinModal extends React.Component {
                     <div className="col-sm-10">
                         <form onSubmit={this.handleSubmit}>
                             <div className='form-group'>
-                                <label htmlFor='username'>Username:</label>
+                                <label className='modal-label' htmlFor='username'>Username:</label>
                                 <input
                                     value={username}
                                     name='username'
                                     onChange={this.handleChange}
                                     type='text'
-                                    className='form-control'
+                                    className='form-control join-control'
                                     placeholder='Name'
                                 />
                             </div>
                             <div className='form-group'>
-                                <label htmlFor='email'>Email:</label>
+                                <label className='modal-label' htmlFor='email'>Email:</label>
                                 <input
                                     value={email}
                                     name='email'
                                     onChange={this.handleChange}
                                     type='email'
-                                    className='form-control'
+                                    className='form-control join-control'
                                     placeholder='Email'
                                 />
                             </div>
                             <div className='form-group'>
-                                <label htmlFor='moneyBtnId'>MoneyButton User Number:</label>
+                                <label className='modal-label' htmlFor='moneyBtnId'>MoneyButton User Number:</label>
                                 <input
                                     value={moneyBtnId}
                                     name='moneyBtnId'
                                     onChange={this.handleChange}
                                     type='moneyBtnId'
-                                    className='form-control'
+                                    className='form-control join-control'
                                     placeholder='Example: 1111'
                                 />
-                                <div className='getMoneyBtnId'> No MoneyButton account? Click <a href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here</a>.</div>
+                                <div className='getMoneyBtnId '> No MoneyButton account? Click <a href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here</a>. <br></br></div>
+
                             </div>
                             <div className='form-group'>
-                                <label htmlFor='passwordOne'>Password:</label>
+                                <label className='modal-label' htmlFor='passwordOne'>Password:</label>
                                 <input
                                     value={passwordOne}
                                     name='passwordOne'
                                     onChange={this.handleChange}
                                     type='password'
-                                    className='form-control'
+                                    className='form-control join-control'
                                     placeholder='Password'
                                 />
                             </div>
                             <div className='form-group'>
-                                <label htmlFor='passwordTwo'>Confirm Password:</label>
+                                <label className='modal-label' htmlFor='passwordTwo'>Confirm Password:</label>
                                 <input
                                     value={passwordTwo}
                                     name='passwordTwo'
                                     onChange={this.handleChange}
                                     type='password'
-                                    className='form-control'
+                                    className='form-control join-control'
                                     placeholder='Confirm Password'
                                 />
                             </div>
