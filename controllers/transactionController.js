@@ -1,4 +1,5 @@
 const db = require('../models')
+const mongoose = require('mongoose')
 
 // TODO: Change the error status codes to something other than "I'm a teapot"
 module.exports = {
@@ -37,4 +38,17 @@ module.exports = {
       .then(result => res.json(result))
       .catch(err => res.status(418).json(err))
   },
+
+  totalAmtPaid: (req, res) => {
+    db.Transaction
+      .aggregate( [{ $group: { _id: {[req.params.userFieldName]: mongoose.Types.ObjectId(req.params.uid) }, 
+        totalPaid: { $sum: {"$arrayElemAt": ["$txOutputs.amount", 1] }}}} // txOutputs[0]=listokaAcct, txOutputs[1]=userAcct
+        ])
+      .then(result => res.json(result))
+      .catch(err => res.status(418).json(err))
+  },
+
+  totalReceivedByUser: (req, res) => {
+      
+  }
 }

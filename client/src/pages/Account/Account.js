@@ -18,11 +18,13 @@ class Account extends Component {
       profileUsername: "",
       drafts: [],
       showMoneyBtnId: true,
+      amtPaid: 0,
+      amtEarned: 0
     };
   };
 
   componentDidMount() {
-    let promises = [this.getPostsAndBio(this.state.id), this.getPostsAndDrafts(this.state.id)]
+    let promises = [this.getPostsAndBio(this.state.id), this.getPostsAndDrafts(this.state.id), this.getTotalPaidToUser(this.state.id), this.getTotalPaidFromUser(this.state.id)]
     Promise.all(promises)
       .then(results => {
         const drafts = results[1].filter(post => post.isDraft)
@@ -31,7 +33,9 @@ class Account extends Component {
           userPosts: results[0].posts,
           bio: results[0].user.bio,
           drafts: drafts,
-          moneyBtnId: results[0].user.moneyBtnId
+          moneyBtnId: results[0].user.moneyBtnId,
+          amtEarned: results[2].totalPaid.toFixed(2),
+          amtPaid: results[3].totalPaid.toFixed(2)
         });
       })
   };
@@ -42,6 +46,14 @@ class Account extends Component {
 
   getPostsAndBio = (id) => {
     return API.getPostsAndBio(id).then(results => results.data)
+  }
+
+  getTotalPaidToUser = (id) => {
+    return API.getTotalPaidToUser(id).then(results => results.data[0])
+  }
+
+  getTotalPaidFromUser = (id) => {
+    return API.getTotalPaidFromUser(id).then(results => results.data[0])
   }
 
   handleDeleteButton = (event, id) => {
@@ -91,7 +103,7 @@ class Account extends Component {
   };
 
   editBio = () => { this.setState(prevState => ({ showBio: !prevState.showBio })) }
-  editmoneyBtnId = () => { this.setState(prevState => ({ showMoneyBtnId: !prevState.showMoneyBtnId }))}
+  editmoneyBtnId = () => { this.setState(prevState => ({ showMoneyBtnId: !prevState.showMoneyBtnId })) }
 
   handleMoneyBtnIdSubmit = (event) => {
     event.preventDefault();
@@ -136,27 +148,30 @@ class Account extends Component {
                   </form>
                 }
               </div>
-              <div className='moneyBtnIdContainer'>
-                {this.state.showMoneyBtnId
-                ? <div>Your MoneyButton User Number: {this.state.moneyBtnId} <i className="far fa-edit btn" 
-                    onClick={this.editmoneyBtnId}>Edit</i>
-                  </div>
-                : <form>
-                  <i className="fas fa-undo btn" onClick={this.editmoneyBtnId}>Cancel</i>
-                    <Input 
-                      value={this.state.moneyBtnId}
-                      onChange={this.handleInputChange}
-                      name="moneyBtnId"
-                      style={{ width: 125 + 'px' }}
-                    />
-                    <FormBtn
-                      disabled={!(this.state.moneyBtnId)}
-                      onClick={this.handleMoneyBtnIdSubmit}
-                    >
-                      Update 
+              <div className='container'>
+                <div className='moneyBtnIdContainer'>
+                  {this.state.showMoneyBtnId
+                    ? <div>Your MoneyButton User Number: {this.state.moneyBtnId} <i className="far fa-edit btn"
+                      onClick={this.editmoneyBtnId}>Edit</i>
+                    </div>
+                    : <form>
+                      <i className="fas fa-undo btn" onClick={this.editmoneyBtnId}>Cancel</i>
+                      <Input
+                        value={this.state.moneyBtnId}
+                        onChange={this.handleInputChange}
+                        name="moneyBtnId"
+                        style={{ width: 125 + 'px' }}
+                      />
+                      <FormBtn
+                        disabled={!(this.state.moneyBtnId)}
+                        onClick={this.handleMoneyBtnIdSubmit}
+                      >
+                        Update
                     </FormBtn>
-                  </form>
-                }
+                    </form>
+                  }
+                </div>
+                <p>Total paid to other users to date: ${this.state.amtPaid}<br></br>Total earned from other users to date: ${this.state.amtEarned}</p>
               </div>
               <PostList>
                 {this.state.userPosts.map(userPosts => (
