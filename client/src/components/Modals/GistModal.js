@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ModalWrapper from './GistModalWrapper';
+import gistImage from '../../assets/images/gistImg-600x404.jpg'
 
 
 const GistModal = props => {
@@ -27,7 +28,7 @@ const GistModal = props => {
                     everyday person.</p>
                 </div>
                 <div className="col-lg-5">
-                    <img className="gistImg img-fluid" src="/images/gistImg.jpg" alt="Young people working"></img>
+                    <img className="gistImg img-fluid" src={gistImage} alt="Young people working"></img>
                 </div>
             </div>
         </ModalWrapper >
