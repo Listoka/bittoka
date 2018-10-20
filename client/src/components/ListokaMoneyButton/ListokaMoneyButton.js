@@ -10,11 +10,7 @@ class ListokaMoneyButton extends Component {
     state = {
         payeeMbId: 0
     }
-
-    constructor(props) {
-        super(props)
-    }
-
+    
     componentDidMount = () => {
         if (!this.props.payeeId) return
       

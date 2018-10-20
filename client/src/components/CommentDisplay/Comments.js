@@ -34,7 +34,7 @@ export class Comments extends Component {
   };
 
   render() {
-    const createdDate = this.props.createdAt && this.props.createdAt.slice(0, 10)
+  
     return (
       <React.Fragment>
         <hr />
