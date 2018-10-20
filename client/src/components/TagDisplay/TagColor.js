@@ -11,7 +11,7 @@ export const TagOptions = [
   ];
 
   export const listokaTags = [
-    { value: 'Maintenance', label: 'Maintenance', color: 'darkcyan', },
+    { value: 'Stay Healthy', label: 'Maintenance', color: 'darkcyan', },
     { value: 'Updates', label: 'Updates', color: 'royalblue'},
   ];
 

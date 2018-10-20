@@ -1,5 +1,4 @@
 import React from 'react';
-import './Tags.css';
 
 export const Tags = props => {
     return (

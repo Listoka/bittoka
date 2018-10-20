@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TipButton from '../../../components/TipButton';
+//import TipButton from '../../../components/TipButton';
 import renderHTML from 'react-render-html'
 import { Link } from 'react-router-dom';
 import AuthUserContext from "../../AuthUserSession/AuthUserContext";
@@ -8,10 +8,6 @@ import './postDetail.css'
 import ListokaMoneyButton from "../../ListokaMoneyButton";
 
 export class PostDetail extends Component {
-
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         body: this.props.body,
@@ -31,7 +27,7 @@ export class PostDetail extends Component {
         API.upvotePost(this.state._id).then(result => {
             console.log('After upvote: ' + JSON.stringify(result))
             let voteNames = []
-            result.data.voters.map(voterRec => { voteNames.push(voterRec) })
+            result.data.voters.map(voterRec => voteNames.push(voterRec))
             this.setState({
                 upvotes: result.data.voters.length,
                 upvoteList: voteNames
@@ -52,8 +48,6 @@ export class PostDetail extends Component {
     render() {
         return (
             <React.Fragment>
-                <br />
-
                 {/* TODO: refactor edit button into its own component using withAuthorization */}
                 <AuthUserContext.Consumer>
                     {
@@ -69,8 +63,40 @@ export class PostDetail extends Component {
                         }
                     }
                 </AuthUserContext.Consumer>
-                <h2>{this.props.title}</h2>
-                <p>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link></p>
+                <div className='row'>
+                    <div className='col-lg-8'>
+                        <h2>{this.props.title}</h2>
+                        <p>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link> in <Link to={`/categories/${this.props.categoryName}`}><span className={`${this.props.categoryName}Flair flair`}>{this.props.categoryName}</span></Link> <i class="fas fa-arrow-up"></i> {this.state.upvotes}</p>
+                    </div>
+                    <AuthUserContext.Consumer>
+                        {authUser => {
+                            if (authUser) {
+                                // Don't allow user to upvote more than once
+                                if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
+                                    return (
+                                        <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
+                                    )
+                                } else {
+                                    return (
+                                        <ListokaMoneyButton
+                                            payVal='.03'
+                                            paymentSuccessCbk={this.afterUpvotePayment}
+                                            label='Upvote'
+                                            payeeId={this.props.author}
+                                            userId={authUser.dbUser._id}
+                                            txType='post-vote'
+                                            postId={this.state._id}
+                                        />
+                                    )
+                                }
+                            } else {
+                                return (
+                                    <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
+                                )
+                            }
+                        }}
+                    </AuthUserContext.Consumer>
+                </div>
                 <AuthUserContext.Consumer>
 
                     {
@@ -88,40 +114,14 @@ export class PostDetail extends Component {
                                         </div>
                                         <div className='container'>
                                             <div className='row'>
-                                                <AuthUserContext.Consumer>
-                                                    {authUser => {
-                                                        if (authUser) {
-                                                            // Don't allow user to upvote more than once
-                                                            if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
-                                                                return (
-                                                                    <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
-                                                                )
-                                                            } else {
-                                                                return (
-                                                                    <ListokaMoneyButton
-                                                                        payVal='.03'
-                                                                        paymentSuccessCbk={this.afterUpvotePayment}
-                                                                        label='Upvote'
-                                                                        payeeId={this.props.author}
-                                                                        userId={authUser.dbUser._id}
-                                                                        txType='post-vote'
-                                                                        postId={this.state._id}
-                                                                    />
-                                                                )
-                                                            }
-                                                        } else {
-                                                            return (
-                                                                <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
-                                                            )
-                                                        }
-                                                    }}
-                                                </AuthUserContext.Consumer>
-                                                <div className='col-lg-3 col-md-4 col-sm-6 col-xs-6' >
-                                                    <h5>Upvotes: {this.state.upvotes}</h5>
+
+
+                                                {/*<div className='col-lg-3 col-md-4 col-sm-6 col-xs-6' >
+                                                    <h5><i class="fas fa-arrow-up"></i> {this.state.upvotes}</h5>
                                                     <ul>
                                                         {this.state.upvoteList.map(user => <li key={user._id}>{user.username}</li>)}
                                                     </ul>
-                                                </div>
+                                                </div>*/}
                                             </div>
                                         </div>
                                     </React.Fragment>
@@ -130,15 +130,6 @@ export class PostDetail extends Component {
                                         <div className='postBody'>
                                             {this.props.teaser || null}
                                         </div>
-                                        <ListokaMoneyButton
-                                            payVal={parseFloat(this.props.paywallCost)}
-                                            paymentSuccessCbk={this.afterPurchasePayment}
-                                            label='Purchase'
-                                            payeeId={this.props.author}
-                                            userId={authUser.dbUser._id}
-                                            txType='post-vote'
-                                            postId={this.state._id}
-                                        />
                                     </React.Fragment>
                                 )
                             }
@@ -152,7 +143,7 @@ export class PostDetail extends Component {
                         }
                     }
                 </AuthUserContext.Consumer>
-            </React.Fragment>
+            </React.Fragment >
         );
     };
 };

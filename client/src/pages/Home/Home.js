@@ -4,6 +4,7 @@ import { CategoryDescription, CategoryDetail } from '../../components/CategoryIn
 import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
 import './Home.css';
 import Stickybar from '../../components/Stickybar/Stickybar';
+import sidebarImage from '../../assets/images/sidebar-400x400.jpg'
 
 class Home extends Component {
   constructor(props) {
@@ -47,13 +48,13 @@ class Home extends Component {
           <div className='col-sm-2'>
             <div className='homeTagWrapper rounded'>
               <div className='homeSidebarWrapper'>
-                <img className="img-fluid" src="./images/newSidebar.jpg" alt="Welcome to Listoka"></img>
-                <div className="homeSideBar">
+                <img className="img-fluid" src={sidebarImage} alt="Welcome to Listoka"></img>
+                <div className="homeSideBar rounded">
                   <h6>Welcome to Listoka</h6>
-                  <p className='homeSidebarContent'>
-                    Interested in Bitcoin but you're not sure where to start?  We're here to help!
-                    All we ask is that you make the world a better place by sharing a story, your thoughts, or a little friendly advise.
-                  </p>
+                  <p className='homeSidebarContent'><strong>Write something, earn Bitcoin.  It's that simple.</strong></p>
+                    <p className='para'>Share a story, create a DIY project, or post your travelog.  Get paid to make Listoka a better place.  
+                        Upvote content you like and give the poster or commenter a $0.02 tip.  If you're really impressed, visit the author's profile page and leave a custom tip.
+                        Good content deserves support.  So get to to it!  </p>
                 </div>
               </div>
             </div>
@@ -81,6 +82,7 @@ class Home extends Component {
                     author={homePosts.author}
                     handleDeleteButton={this.handleDeleteButton}
                     createdAt={homePosts.createdAt}
+                    voters={homePosts.voters}
                   />
                 ))}
               </PostList>

@@ -48,8 +48,8 @@ class MainCategoryPage extends Component {
       categoryDisplayName: '',
       categoryDescription: '',
       categoryName: '',
-      isOpen: true,
-      isVisible: true
+      isOpen: false,
+      isVisible: false
     };
   };
 
@@ -76,6 +76,8 @@ class MainCategoryPage extends Component {
   componentDidMount() {
     this.getCategoryAndPosts();
     setTimeout(this.toggle, 500);
+    // console.log("Did Mount isOpen " + this.state.isOpen);
+    // console.log("Did Mount isVisible " + this.state.isVisible);
   }
 
   toggle = () => this.setState({
@@ -86,6 +88,7 @@ class MainCategoryPage extends Component {
   toggleSelectTag = (event, tag) => {
     event.target.classList.toggle('tagLinkInactive');
     event.target.classList.toggle('tagLinkActive');
+    
     let selectedTags, filteredPosts
     if (this.state.selectedTags.includes(tag)) {
       selectedTags = this.state.selectedTags.filter(t => t !== tag)
@@ -137,8 +140,8 @@ class MainCategoryPage extends Component {
               </div>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
                 {this.state.tags.sort().map(tag => (
-                  <Item className='tagLink tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
-                    {tag}
+                  <Item className='tagLink rounded tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
+                  {tag}
                   </Item>
                 ))}
               </Sidebar>
@@ -168,6 +171,7 @@ class MainCategoryPage extends Component {
                         _id={post._id}
                         author={post.author}
                         createdAt={post.createdAt}
+                        voters={post.voters}
                       />
                     </P>
                   ))}

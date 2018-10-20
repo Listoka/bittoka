@@ -28,10 +28,10 @@ const Stickybar = props => (
     <ReactTooltip id='twitterToolTip' place="left" type="dark" effect="solid">
       Follow us on Twitter
   </ReactTooltip>
-    <a href="https://www.google.com/search?q=bitcoin&oq=bitcoin&aqs=chrome..69i57j0j69i60l2j0l2.5688j0j4&sourceid=chrome&ie=UTF-8" data-tip data-for='googleToolTip' data-offset="{'left': 15}" className="google"><i className="fab fa-google"></i></a>
+    {/*<a href="https://www.google.com/search?q=bitcoin&oq=bitcoin&aqs=chrome..69i57j0j69i60l2j0l2.5688j0j4&sourceid=chrome&ie=UTF-8" data-tip data-for='googleToolTip' data-offset="{'left': 15}" className="google"><i className="fab fa-google"></i></a>
     <ReactTooltip id='googleToolTip' place="left" type="dark" effect="solid">
       Google, if you must
-  </ReactTooltip>
+    </ReactTooltip>
     <a href="https://www.linkedin.com/feed/" data-tip data-for='linkedInToolTip' data-offset="{'left': 15}" className="linkedin"><i className="fab fa-linkedin"></i></a>
     <ReactTooltip id='linkedInToolTip' place="left" type="dark" effect="solid">
       Get a job ya hippie!
@@ -39,7 +39,7 @@ const Stickybar = props => (
     <a href="https://youtu.be/o0u4M6vppCI" data-tip data-for='youtubeTooltip' data-offset="{'left': 15}" className="youtube"><i className="fab fa-youtube"></i></a>
     <ReactTooltip className="tooltip" id='youtubeTooltip' place="left" type="dark" effect="solid">
       Cheap Netflix
-  </ReactTooltip>
+  </ReactTooltip>*/}
 
   </div>
 );

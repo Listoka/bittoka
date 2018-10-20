@@ -10,11 +10,7 @@ class ListokaMoneyButton extends Component {
     state = {
         payeeMbId: 0
     }
-
-    constructor(props) {
-        super(props)
-    }
-
+    
     componentDidMount = () => {
         if (!this.props.payeeId) return
       
@@ -55,7 +51,7 @@ class ListokaMoneyButton extends Component {
         return (
             <div>
                 {(this.state.payeeMbId) ?
-                    <MoneyButton
+                    <MoneyButton 
                         outputs={[{
                             to: this.state.payeeMbId,
                             amount: this.props.payVal - listokaCut,
