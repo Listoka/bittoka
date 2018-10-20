@@ -27,7 +27,7 @@ export class PostDetail extends Component {
         API.upvotePost(this.state._id).then(result => {
             console.log('After upvote: ' + JSON.stringify(result))
             let voteNames = []
-            result.data.voters.map(voterRec => { voteNames.push(voterRec) })
+            result.data.voters.map(voterRec => voteNames.push(voterRec))
             this.setState({
                 upvotes: result.data.voters.length,
                 upvoteList: voteNames
