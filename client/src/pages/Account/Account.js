@@ -91,7 +91,7 @@ class Account extends Component {
   };
 
   editBio = () => { this.setState(prevState => ({ showBio: !prevState.showBio })) }
-  editmoneyBtnId = () => { this.setState(prevState => ({ showMoneyBtnId: !prevState.showMoneyBtnId }))}
+  editmoneyBtnId = () => { this.setState(prevState => ({ showMoneyBtnId: !prevState.showMoneyBtnId })) }
 
   handleMoneyBtnIdSubmit = (event) => {
     event.preventDefault();
@@ -112,12 +112,46 @@ class Account extends Component {
           <div className='col-lg-7'>
             <div className="categoryDetail rounded">
               <div className='bioContainer'>
-                <h2 className='bioHeader'>{this.state.userName}'s Bio</h2>
+                <div className='row'>
+                  <div className='col-md-6'>
+                    <h2 className='bioHeader'>{this.state.userName}'s Bio 
+                    {this.state.showBio
+                    ? <i className="far fa-edit btn" onClick={this.editBio}></i>
+                    : null
+                    }
+                    </h2>
+                  </div>
+                  <div className='col-md-6'>
+                    <div className='moneyBtnIdContainer'>
+                      {this.state.showMoneyBtnId
+                        ? <p id='mbEdit'>Your MoneyButton User Number: {this.state.moneyBtnId}
+                           <i className="far fa-edit btn"
+                            onClick={this.editmoneyBtnId}></i>
+                        </p>
+                        : <form>
+                          <i className="fas fa-undo btn" onClick={this.editmoneyBtnId}>Cancel</i>
+                          <Input
+                            value={this.state.moneyBtnId}
+                            onChange={this.handleInputChange}
+                            name="moneyBtnId"
+                            style={{ width: 125 + 'px' }}
+                          />
+                          <FormBtn
+                            disabled={!(this.state.moneyBtnId)}
+                            onClick={this.handleMoneyBtnIdSubmit}
+                          >
+                            Update
+                    </FormBtn>
+                        </form>
+                      }
+                    </div>
+                  </div>
+                </div>
+                
                 {this.state.showBio
                   ? <div className='bioTextWrapper'>
-                    <i className="far fa-edit btn" onClick={this.editBio}>Edit Bio</i>
-                    <hr></hr>
                     {this.state.bio}
+                    <hr></hr>
                   </div>
                   : <form>
                     <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>
@@ -136,28 +170,6 @@ class Account extends Component {
                   </form>
                 }
               </div>
-              <div className='moneyBtnIdContainer'>
-                {this.state.showMoneyBtnId
-                ? <div>Your MoneyButton User Number: {this.state.moneyBtnId} <i className="far fa-edit btn" 
-                    onClick={this.editmoneyBtnId}>Edit</i>
-                  </div>
-                : <form>
-                  <i className="fas fa-undo btn" onClick={this.editmoneyBtnId}>Cancel</i>
-                    <Input 
-                      value={this.state.moneyBtnId}
-                      onChange={this.handleInputChange}
-                      name="moneyBtnId"
-                      style={{ width: 125 + 'px' }}
-                    />
-                    <FormBtn
-                      disabled={!(this.state.moneyBtnId)}
-                      onClick={this.handleMoneyBtnIdSubmit}
-                    >
-                      Update 
-                    </FormBtn>
-                  </form>
-                }
-              </div>
               <PostList>
                 {this.state.userPosts.map(userPosts => (
                   <PostListItem
@@ -173,6 +185,7 @@ class Account extends Component {
                     _id={userPosts._id}
                     author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
+                    voters={userPosts.voters}
                   />
                 ))}
               </PostList>
@@ -180,7 +193,7 @@ class Account extends Component {
             </div>
           </div>
           <div className='col-lg-3'>
-            <div className='categoryDetail rounded'>
+            <div className='draftDetail rounded'>
               <PostList>
                 <h5>Pending Drafts</h5>
                 <hr></hr>

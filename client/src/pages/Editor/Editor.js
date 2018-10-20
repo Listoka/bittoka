@@ -202,9 +202,7 @@ class CreatePost extends Component {
       <div className="pagebody">
         <React.Fragment>
           <div className="row createForm">
-            <div className="col-md-1">
-
-            </div>
+            <div className="col-md-1"></div>
 
             <div className="col-md-8 formBody rounded" >
               <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
@@ -239,6 +237,7 @@ class CreatePost extends Component {
                 </div>
                 <Input
                   className='form-control'
+                  id= 'paywallField'
                   onChange={this.handleInputChange}
                   type='number'
                   step='0.01'
@@ -254,6 +253,7 @@ class CreatePost extends Component {
                   name='teaser'
                   value={this.state.teaser}
                 />
+                <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
                 <RichTextEditor
                   value={this.state.value}
                   onChange={this.onEditorChange}
@@ -280,13 +280,13 @@ class CreatePost extends Component {
                 <br></br>
                 <input
                   name='submit-btn'
-                  className='btn btn-outline-info createBtn'
+                  className='btn btn-secondary'
                   style={{ margin: '20px 0' }}
                   type='submit'
                 />
                 {
                   this.state.isDraft
-                    ? <button name='save-btn' onClick={this.saveDraft} className="btn btn-outline-info mx-2"> Save Draft </button>
+                    ? <button name='save-btn' onClick={this.saveDraft} className="btn btn-secondary mx-2"> Save Draft </button>
                     : null
                 }
               </form>
@@ -297,7 +297,7 @@ class CreatePost extends Component {
                 <img className="img-fluid" src="/images/guidelines.png" alt="Listoka Guidelines"></img>
                 <h6 className='guidelineHeader'>Posting Guidelines</h6>
                 <hr></hr>
-                <ul>
+                <ul id="guidelineList">
                   <li>Guideline 1</li>
                   <li>Guideline 2</li>
                   <li>Guideline 3</li>

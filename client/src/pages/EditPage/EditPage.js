@@ -9,8 +9,8 @@ class EditPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // categoryName: props.location.state.categoryName,
-      // teaser: props.location.state.teaser,
+      categoryName: props.location.state.categoryName,
+      teaser: props.location.state.teaser,
       redirectToNewPage: false,
       redirectPathId: "",
       postId: props.match.params.id,

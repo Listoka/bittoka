@@ -69,9 +69,9 @@ class Profile extends Component {
       console.log(results)
       this.setState({
         payees: [{
-            to: results.data.user.moneyBtnId,
-            amount: this.state.labelAmount - listokaCut,
-            currency: 'USD'
+          to: results.data.user.moneyBtnId,
+          amount: this.state.labelAmount - listokaCut,
+          currency: 'USD'
         },
         {
           to: listokaAcctNum,
@@ -104,18 +104,19 @@ class Profile extends Component {
     return (
       <div className='pagebody'>
         <div className='row'>
-          <div className='col-lg-2'></div>
-          <div className='col-lg-8'>
-            <div className="categoryDetail">
-              <div><h3>Profile of: {this.state.authorName}</h3></div>
-              <div>
-                Enter Tip Amount
+          <div className='col-md-2'>
+            <div className='profileWrapper rounded'>
+              <img className="img-fluid" src="/images/tipjar.png " alt="tip jar"></img>
+              <h6 className='profileSidebarHeader'>Leave {this.state.authorName} a tip!</h6>
+              <hr></hr>
+              <div className='profileSidebarWrapper'>
+                Custom Tip Amount
                 <Input
                   onChange={this.handleTipChange}
                   type='number'
                   step='0.01'
                   min='0.10'
-                  className='form-control'
+                  className='form-control customTipField'
                   style={{ width: 180 + 'px' }}
                   value={this.state.tipAmt}
                   placeholder='.00'
@@ -123,36 +124,41 @@ class Profile extends Component {
                 />
                 <FormBtn
                   onClick={this.handleTipSubmit}
-                >Submit</FormBtn>
-              </div>
-              <div>
-                <AuthUserContext.Consumer>
-                  {authUser => {
-                    if (authUser) {
-                      return (
-                        <ListokaMoneyButton
-                          payVal={this.state.payVal}
-                          payeeId={this.state.author}
-                          userId={authUser.dbUser._id}
-                          txType='tip'
-                          label={`Tip`}
-                          paymentSuccessCbk={this.afterPayment}
-                          onError={this.handleError}
-                        />
-                      )
+                  className='customTipButton'
+                >Update Tip Amount</FormBtn>
+                <div className='tipButton'>
+                  <AuthUserContext.Consumer>
+                    {authUser => {
+                      if (authUser) {
+                        return (
+                          <ListokaMoneyButton
+                            payVal={this.state.payVal}
+                            payeeId={this.state.author}
+                            userId={authUser.dbUser._id}
+                            txType='tip'
+                            label={`Tip`}
+                            paymentSuccessCbk={this.afterPayment}
+                            onError={this.handleError}
+                          />
+                        )
+                      }
                     }
-                  }
-                    /*{ <MoneyButtonDonate display="input"
-                    devMode={this.state.devMode} labelMoneyButton={this.state.labelMoneyButton}
-                    labelAmount = {this.state.labelAmount} labelReference = {this.state.labelReference}
-                    showTransaction = {this.state.configTransactionAfterPayment} showSocialMedia = {this.state.configSocialMediaAfterPayment}
-                    buttonId={this.state.buttonId} buttonData={buttonData} clientIdentifier={this.state.clientIdentifier}
-                    type={this.state.type} to={this.state.to} defaultAmount={this.state.defaultAmount}
-                  /> }*/
-                  }
-                </AuthUserContext.Consumer>
+                    }
+                  </AuthUserContext.Consumer>
+                </div>
               </div>
-              <div>Bio of {this.state.authorName}: {this.state.displayedBio} </div>
+            </div>
+          </div>
+
+          <div className='col-lg-8'>
+            <div className='profileContainer rounded'>
+              <div className='bioContainer'>
+                  <div className='profileHeader'>
+                    <h2>{this.state.authorName}</h2>
+                    <p>{this.state.displayedBio}</p>
+                  </div>
+                  <hr></hr>
+              </div>
               <PostList>
                 {this.state.userPosts.map(userPosts => (
                   <PostListItem
@@ -168,14 +174,18 @@ class Profile extends Component {
                     _id={userPosts._id}
                     author={userPosts.author}
                     handleDeleteButton={this.handleDeleteButton}
+                    voters={userPosts.voters}
                   />
                 ))}
               </PostList>
             </div>
           </div>
+
           <div className='col-lg-2'></div>
+
         </div>
       </div>
+
     );
   };
 };

@@ -16,7 +16,7 @@ export class Comments extends Component {
     }
   };
   componentDidMount() {
-    // console.log(this.props)
+     console.log(this.props)
     // console.log(this.props._id)
   }
 
@@ -51,7 +51,7 @@ export class Comments extends Component {
                   : null
               }
             </AuthUserContext.Consumer>
-            <a onClick={this.toggleComments.bind(this)} href={`/comments/${this.props._id}`}>[View Replies]</a>
+            <a onClick={this.toggleComments.bind(this)} href={`/comments/${this.props._id}`}>[View Replies {this.props.comments.length}]</a>
           </p>
           {/* <button className="btn btn-secondary btn-sm" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button>&nbsp;&nbsp; */}
           {/* <button type="button" className="btn btn-secondary btn-sm" onClick={this.toggleComments.bind(this)}>[View Replies <i className="far fa-comment">]</i></button> */}
