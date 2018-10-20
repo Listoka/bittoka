@@ -6,7 +6,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
 const postData = [
     {
         title: "The Cyprus Beginning",
-        tags: ["About You", "Other Thoughts", "Your Experience", "Your Future Vision"],
+        tags: ["About You",  "Your Experience", "Your Future Vision"],
         categoryName: 'bitcoin-story',
         teaser: "teaser",
 	paywallCost: .05,
@@ -34,7 +34,7 @@ const postData = [
     {
         title: "3 Main Apsects of Life",
         categoryName: "listoka",
-        tags: ['Health', 'Financial', 'Enjoy Life', 'Wisdom', 'Business', 'Favorites', 'Writings', 'Self-Reflection', 'Bitcoin'],
+        tags: ['Health', 'Financial', 'Enjoy Life', 'Bitcoin'],
         teaser: "Only if you pay $.04",
 	paywallCost: .04,
         body: "Stay healthy forever. Be financially comfortable. Enjoy life. To me, these are the three overall aspects to life. They're listed in no particular order, but if you were to order them, how would you do it and why?",
@@ -50,7 +50,7 @@ const postData = [
     {
         title: "Admiration",
         categoryName: "listoka",
-        tags: ["Health", 'Enjoy Life', 'Bitcoin', 'Business'],
+        tags: ["Health", 'Enjoy Life', 'Bitcoin', ],
         teaser: "It'll cost ya! A whoppin $.02",
 	paywallCost: .02,
         body: "We all have people we look up to. People we admire for one reason or another. Share with us the person you most admire and why you admire them."
@@ -58,7 +58,7 @@ const postData = [
     {
         title: "The Haunted Mansion",
         categoryName: "stories",
-        tags: ['Story Prompts', 'Your Story', 'Fiction', 'Drama', 'Comedy','Fantasy', 'Paranormal Romance', 'Thriller', 'Inspirational'],
+        tags: ['Story Prompts', 'Thriller', 'Inspirational'],
         teaser: "HAUNTED MANSIONS. What could be better...",
         body: "Insert a story about a haunted mansion here."
     },
@@ -89,7 +89,7 @@ const postData = [
     {
         title: "What is your favorite Bitcoin app and why?",
         categoryName: "listoka",
-        tags: ['Favorites', 'Writings', 'Self-Reflection', 'Bitcoin'],
+        tags: ['Favorites', 'Writings', 'Self-Reflection'],
         teaser: "Hope you can afford the $.04 price to pay!",
 	paywallCost: .04,
         body: "Psyche! Nothing's here!",
