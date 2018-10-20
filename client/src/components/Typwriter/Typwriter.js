@@ -4,11 +4,11 @@ import Typist from 'react-typist';
 import 'react-typist/dist/Typist.css';
 
 // https://www.npmjs.com/package/react-typist#onTypingDone for documentation
-const Typwriter = ({children}) => {
+const Typwriter = ({ children }) => {
     return (
         <Typist>
             <Typist.Delay ms={2000} />
-            is ... 
+            is ...
             <Typist.Backspace count={3} delay={1500} />
             <Typist.Delay ms={1500} />
             in development
