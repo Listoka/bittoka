@@ -34,12 +34,12 @@ export class Comments extends Component {
   };
 
   render() {
-    const createdDate = this.props.createdAt && this.props.createdAt.slice(0, 10)
+  
     return (
       <React.Fragment>
         <hr />
         <div className='comment'>
-          <p className='smallPostCommentText'><Link to={{ pathname: `/user/${this.props.author}` }}>{this.props.authorName}</Link>&nbsp;&nbsp;<i className="fas fa-calendar-alt"></i>&nbsp;&nbsp;<Moment fromNow>{this.props.createdAt}</Moment>&nbsp;&nbsp;<i className="fab fa-bitcoin"></i>&nbsp;&nbsp;[earned $x.xx]</p>
+          <p className='smallPostCommentText'><Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link>&nbsp;&nbsp;<i className="fas fa-calendar-alt"></i>&nbsp;&nbsp;<Moment fromNow>{this.props.createdAt}</Moment>&nbsp;&nbsp;<i className="fab fa-bitcoin"></i>&nbsp;&nbsp;[earned $x.xx]</p>
           <br></br>
           <p className='mediumPostText'> {this.props.body}</p>
           <p>[#Upvotes][Upvote MoneyButton Component]</p>

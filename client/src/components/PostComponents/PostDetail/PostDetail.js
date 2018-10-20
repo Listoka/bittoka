@@ -9,10 +9,6 @@ import ListokaMoneyButton from "../../ListokaMoneyButton";
 
 export class PostDetail extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     state = {
         body: this.props.body,
         _id: this.props._id,
