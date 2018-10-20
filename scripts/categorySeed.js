@@ -29,7 +29,7 @@ const categoryData = [
   The author provides a free 'teaser' that entices their audience to continue reading, and they get paid by 
   hiding content behind a paywall, with a price set by them. That's right, you don't need to be a well-known
   author to make money any longer. You can now earn it right here, right now, and without the hastle of publishing.
-  The higher the quality the content, the more you're likely to earn. Use your paywall wisely. We look forward to reading your stories!`,
+  The higher the quality the content, the more you're likely to earn. Use your paywall wisely.`,
   settings: {
     allowedPosters: [group.USER, group.ADMIN],
     defaultContentPrice: 0,
@@ -45,7 +45,7 @@ const categoryData = [
   description: `Think of this as one big, ongoing list that intends to better the lives of those that view it. 
   The platform provides the writing parameters, and the users provide the answers. 
   The most upvoted and commented answers will rise to the top, and they can only be unseated when the community decides something else should overtake the throne.
-  The game will go on forever and the orderings should change over time as well.
+  The game will go on forever and the orderings should change over time.
   $.05 to post, $.03 to upvote, $.03 to comment. Looking forward to your contributions!`,
   settings: {
     allowedPosters: [group.USER, group.ADMIN],
@@ -54,7 +54,7 @@ const categoryData = [
     costToComment: 0,
     costToPost: 0
   },
-  tags: ['Stay Healthy Forever', 'Be Financially Comfortable', 'Enjoy Life', 'Wisdom', 'Business', 'Favorites', 'Writings', 'Self-Reflection', 'Bitcoin']
+  tags: ['Health', 'Financial', 'Enjoy Life', 'Wisdom', 'Business', 'Favorites', 'Writings', 'Self-Reflection', 'Bitcoin']
 }
 ]
 

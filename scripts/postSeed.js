@@ -6,8 +6,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
 const postData = [
     {
         title: "The Cyprus Beginning",
-        author: "kels0la",
-        tags: ["Getting Started", "Success"],
+        tags: ["About You", "Other Thoughts", "Your Experience", "Your Future Vision"],
         categoryName: 'bitcoin-story',
         teaser: "teaser",
 	paywallCost: .05,
@@ -16,20 +15,18 @@ const postData = [
     },
     {
         title: "My Bitcoin Story",
-        author: "Chris Christian",
-        tags: ["Success"],
+        tags: ["Other Thoughts", "Your Experience", "Your Future Vision"],
         categoryName: 'bitcoin-story',
-        teaser: "teaser",
+        teaser: "teased",
 	paywallCost: .02,
         body:
             "Some guy named from class won't shut up about it. He told me he'd give me $.25 to sign up on his platform so I thought, why not?",
     },
     {
         title: "How I got involved with Bitcoin",
-        author: "Nicrob Andrewtim",
-        tags: ["Getting Started"],
+        tags: ["Other Thoughts", "Your Future Vision"],
         categoryName: 'bitcoin-story',
-        teaser: "teaser",
+        teaser: "Gonna cost you",
 	paywallCost: .03,
         body:
             "A classmate asked me to join the group to build the platform",
@@ -37,58 +34,73 @@ const postData = [
     {
         title: "3 Main Apsects of Life",
         categoryName: "listoka",
-        tags: ["Maintenance"],
-        teaser: "teaser",
+        tags: ['Health', 'Financial', 'Enjoy Life', 'Wisdom', 'Business', 'Favorites', 'Writings', 'Self-Reflection', 'Bitcoin'],
+        teaser: "Only if you pay $.04",
 	paywallCost: .04,
         body: "Stay healthy forever. Be financially comfortable. Enjoy life. To me, these are the three overall aspects to life. They're listed in no particular order, but if you were to order them, how would you do it and why?",
     },
     {
         title: "Best Advice",
         categoryName: "listoka",
-        tags: ["Maintenance"],
-        teaser: "teaser",
+        tags: ["Wisdom", "Self-Reflection"],
+        teaser: "Must use paywall!",
 	paywallCost: .02,
         body: "Great advice can be tough to come by. What's the best advice you've ever received and who was it from? Go."
     },
     {
         title: "Admiration",
         categoryName: "listoka",
-        tags: ["Updates"],
-        teaser: "teaser",
+        tags: ["Health", 'Enjoy Life', 'Bitcoin', 'Business'],
+        teaser: "It'll cost ya! A whoppin $.02",
 	paywallCost: .02,
         body: "We all have people we look up to. People we admire for one reason or another. Share with us the person you most admire and why you admire them."
     },
     {
         title: "The Haunted Mansion",
         categoryName: "stories",
-        tags: ["Drama", "Thiller"],
-        teaser: "teaser",
+        tags: ['Story Prompts', 'Your Story', 'Fiction', 'Drama', 'Comedy','Fantasy', 'Paranormal Romance', 'Thriller', 'Inspirational'],
+        teaser: "HAUNTED MANSIONS. What could be better...",
         body: "Insert a story about a haunted mansion here."
     },
     {
         title: "A Super Funny Story",
         categoryName: "stories",
         tags: ["Humor", "Paranormal Romance"],
-        teaser: "teaser",
+        teaser: "Oh this one is a real knee-slappin' paranormal romance",
 	paywallCost: .04,
         body: "Insert a comical story here"
     },
     {
         title: "How I Overcame the Odds",
         categoryName: "stories",
-        tags: ["Paranormal Romance"],
-        teaser: "teaser",
+        tags: ["Thriller", 'Your Story', 'Drama'],
+        teaser: "I went to great lengths to overcome these odds. It was a long, hard journey.",
 	paywallCost: .03,
         body: "Insert Inspirational Story Here"
     },
     {
         title: "This is a Work in Progress",
         categoryName: "stories",
-        tags: ["Fantasy"],
+        tags: ["Fantasy", 'Fiction', 'Your Story'],
         teaser: "WIP Teaser",
         body: "Much work in progress.  Such wow.",
         isDraft: true
-    }
+    },
+    {
+        title: "What is your favorite Bitcoin app and why?",
+        categoryName: "listoka",
+        tags: ['Favorites', 'Writings', 'Self-Reflection', 'Bitcoin'],
+        teaser: "Hope you can afford the $.04 price to pay!",
+	paywallCost: .04,
+        body: "Psyche! Nothing's here!",
+    },
+    {
+        title: "My Bitcoin Story began in 2013 and it's been my passion ever since?",
+        categoryName: "bitcoin-story",
+        tags: ["Your Experience", "Your Future Vision"],
+        teaser: "BITCOIN STORY INCOMING!",
+        body: "Just kidding! Nothing's here!",
+    },
 
 ];
 
