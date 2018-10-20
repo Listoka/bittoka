@@ -142,13 +142,6 @@ class Profile extends Component {
                       )
                     }
                   }
-                    /*{ <MoneyButtonDonate display="input"
-                    devMode={this.state.devMode} labelMoneyButton={this.state.labelMoneyButton}
-                    labelAmount = {this.state.labelAmount} labelReference = {this.state.labelReference}
-                    showTransaction = {this.state.configTransactionAfterPayment} showSocialMedia = {this.state.configSocialMediaAfterPayment}
-                    buttonId={this.state.buttonId} buttonData={buttonData} clientIdentifier={this.state.clientIdentifier}
-                    type={this.state.type} to={this.state.to} defaultAmount={this.state.defaultAmount}
-                  /> }*/
                   }
                 </AuthUserContext.Consumer>
               </div>
