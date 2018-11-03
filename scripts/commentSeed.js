@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-mongoose.connect('mongodb://heroku_2xfvfxz7:vnb5tlo781co76huf8ar995fq8@ds137263.mlab.com:37263/heroku_2xfvfxz7')
+
 
 const commentData = [
   { body: "Bitcoin has the potential to become the best and fairest form of money to ever exist." },
