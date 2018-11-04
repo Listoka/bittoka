@@ -1,5 +1,4 @@
 import React from 'react';
-import './subNav.css';
 import { Link } from 'react-router-dom';
 
 const SubNav = props => (

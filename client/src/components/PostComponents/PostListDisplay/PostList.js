@@ -1,11 +1,11 @@
 import React from 'react';
-import './postList.css';
+import { Container } from '../../Widgets';
 
 export const PostList = ({children}) => {
     return (
-        <div className='container postList'>
+        <Container className='postList'>
             {children}
             {/*Perhaps 20-30 displayed per page with 5-10 visible on a normal screen */}
-        </div>
+        </Container>
     );
 };

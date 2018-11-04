@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
+import { Link } from 'react-router-dom';
+import { CategoryDescription } from '../../components/CategoryInfoDisplay';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
-import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
+import { Button } from '../../components/Widgets/Button'
 import posed from 'react-pose';
 import Stickybar from '../../components/Stickybar/Stickybar';
-import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
+import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
+import { PageBody, Row, MainWrapper } from '../../components/Widgets';
 
 const Sidebar = posed.ul({
   open: {
@@ -118,26 +120,27 @@ class MainCategoryPage extends Component {
     const { isVisible } = this.state;
 
     return (
-      <div className='pagebody'>
+      <PageBody>
         <Stickybar categoryName={this.state.categoryName}></Stickybar>
-        <div className='row'>
+        <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
             <AuthUserContext.Consumer>
               {
-                authUser => authUser ? <CreatePostButton categoryName={this.state.categoryName} /> : null
+                authUser => authUser ? 
+                <Link to={{pathname:`/categories/${this.state.categoryName}/posts/new`}}>
+                  <Button text='Create Post' />
+                </Link> : null
               }
             </AuthUserContext.Consumer>
           </div>
           <div className='col-lg-2'></div>
-        </div>
+        </Row>
 
-        <div className='row'>
+        <Row>
           <div className='col-sm-2'>
-            <div className='tagWrapper rounded'>
-              <div className='headWrapper'>
-                <p>Tags</p>
-              </div>
+            <MainWrapper classType='tagWrapper'>
+              <p className='text-left font-bold mb-1'>Tags</p>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
                 {this.state.tags.sort().map(tag => (
                   <Item className='tagLink rounded tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
@@ -145,11 +148,11 @@ class MainCategoryPage extends Component {
                   </Item>
                 ))}
               </Sidebar>
-            </div>
+            </MainWrapper>
           </div>
 
           <div className='col-md-8'>
-            <CategoryDetail>
+            <MainWrapper>
               <CategoryDescription
                 displayName={this.state.categoryDisplayName}
                 description={this.state.categoryDescription}
@@ -176,13 +179,13 @@ class MainCategoryPage extends Component {
                     </P>
                   ))}
               </PostListContainer>
-            </CategoryDetail>
+            </MainWrapper>
           </div>
           <div className='col-sm-2'>
             {/* Advertisements would go here */}
           </div>
-        </div>
-      </div>
+        </Row>
+      </PageBody>
     );
   };
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import './Stickybar.css';
 import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import AuthUserContext from '../AuthUserSession/AuthUserContext'

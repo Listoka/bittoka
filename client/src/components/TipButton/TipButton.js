@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
-import axios from '../../utils/authAxios'
-import { Input, FormBtn } from '../PostComponents/PostForm'
-import MoneyButton from '@moneybutton/react-money-button'
-import './TipButton.css'
+import React, { Component } from 'react';
+import axios from '../../utils/authAxios';
+import MoneyButton from '@moneybutton/react-money-button';
+import { Button, Input } from '../Widgets';
 
-const listokaCut = .01
-const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
+const listokaCut = .01;
+const listokaAcctNum = '588'; // FIXME: Put in secure place (read from db?)
 
 class TipButton extends Component {
     state = {
@@ -77,14 +76,10 @@ class TipButton extends Component {
                                     type='text'
                                     style={{ width: 80 + 'px' }}
                                 />
-                                <FormBtn
-                                    onClick={this.handleTipSubmit}
-                                >Submit</FormBtn>
-                                    
-                        
-
+                                <Button onClick={this.handleTipSubmit}> 
+                                  Submit
+                                </Button>
                             </div>
-
                         )}
                     </div>
                 </div>

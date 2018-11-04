@@ -1,5 +1,4 @@
 import React from 'react';
-import './Modal.css'
 
 const ModalWrapper = props => {
     const handleBackgroundClick = e => {

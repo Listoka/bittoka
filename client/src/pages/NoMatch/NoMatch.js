@@ -1,7 +1,8 @@
 import React from "react";
+import { PageBody } from '../../components/Widgets';
 
 const NoMatch = () => (
-  <div className="pagebody">
+  <PageBody>
     <div>
       <h1>404 Page Not Found</h1>
       <h1>
@@ -10,7 +11,7 @@ const NoMatch = () => (
       </span>
       </h1>
     </div>
-  </div>
+  </PageBody>
 );
 
 export default NoMatch;

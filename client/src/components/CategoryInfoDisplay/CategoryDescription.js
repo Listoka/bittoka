@@ -1,13 +1,11 @@
 import React from 'react';
-import './categoryDescription.css';
+import { Container } from '../Widgets';
 
 export const CategoryDescription = props => {
     return (
-        <div className='container categoryDescription'>
-        <h2>{props.displayName}</h2>
-            <p>{props.description}</p>
-        </div>
+        <Container>
+          <h2 className='font-header mb-3'>{props.displayName}</h2>
+          <p className='font-paragraph mb-3'>{props.description}</p>
+        </Container>
     );
 };
-
-// export default CategoryDescription;

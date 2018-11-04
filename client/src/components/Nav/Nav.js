@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {NavLoggedIn, NavNotLoggedIn} from "../Nav";
 // import NavNotLoggedIn from "../NavNotLoggedIn";
-import './Nav.css';
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
 import Typwriter from '../Typwriter';

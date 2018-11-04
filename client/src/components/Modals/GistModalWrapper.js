@@ -1,5 +1,4 @@
 import React from 'react';
-import './Modal.css'
 
 const GistModalWrapper = props => {
     const handleBackgroundClick = e => {

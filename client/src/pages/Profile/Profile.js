@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
-import { Input, FormBtn } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
-import './profile.css';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
 import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
-
+import { PageBody, Row, Input, Button, BioContainer, MainWrapper } from '../../components/Widgets';
 
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
@@ -102,14 +100,14 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className='pagebody'>
-        <div className='row'>
+      <PageBody>
+        <Row>
           <div className='col-md-2'>
-            <div className='profileWrapper rounded'>
+            <MainWrapper classType='profileWrapper'>
               <img className="img-fluid" src="/images/tipjar.png " alt="tip jar"></img>
-              <h6 className='profileSidebarHeader'>Leave {this.state.authorName} a tip!</h6>
+              <h6 className='uppercase font-bold pt-2'>Leave {this.state.authorName} a tip!</h6>
               <hr></hr>
-              <div className='profileSidebarWrapper'>
+              <div className='text-left'>
                 Custom Tip Amount
                 <Input
                   onChange={this.handleTipChange}
@@ -122,11 +120,8 @@ class Profile extends Component {
                   placeholder='.00'
                   name='tipAmt'
                 />
-                <FormBtn
-                  onClick={this.handleTipSubmit}
-                  className='customTipButton'
-                >Update Tip Amount</FormBtn>
-                <div className='tipButton'>
+                <Button onClick={this.handleTipSubmit} text='Update Tip' classType='text-sm'/>
+                <div className='mt-4'>
                   <AuthUserContext.Consumer>
                     {authUser => {
                       if (authUser) {
@@ -147,18 +142,16 @@ class Profile extends Component {
                   </AuthUserContext.Consumer>
                 </div>
               </div>
-            </div>
+            </MainWrapper>
           </div>
 
           <div className='col-lg-8'>
-            <div className='profileContainer rounded'>
-              <div className='bioContainer'>
-                  <div className='profileHeader'>
-                    <h2>{this.state.authorName}</h2>
-                    <p>{this.state.displayedBio}</p>
-                  </div>
-                  <hr></hr>
-              </div>
+            <MainWrapper>
+              <BioContainer>
+                <h2>{this.state.authorName}</h2>
+                <p>{this.state.displayedBio}</p>
+                <hr/>
+              </BioContainer>
               <PostList>
                 {this.state.userPosts.map(userPosts => (
                   <PostListItem
@@ -178,13 +171,11 @@ class Profile extends Component {
                   />
                 ))}
               </PostList>
-            </div>
+            </MainWrapper>
           </div>
-
           <div className='col-lg-2'></div>
-
-        </div>
-      </div>
+        </Row>
+      </PageBody>
 
     );
   };

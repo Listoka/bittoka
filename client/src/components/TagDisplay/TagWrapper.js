@@ -1,5 +1,4 @@
 import React from 'react';
-import './TagWrapper.css'
 
 export const TagWrapper = ({ children }) => {
     return (

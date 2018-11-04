@@ -67,7 +67,7 @@ hr {
  */
 
 pre {
-  font-family: monospace, monospace; /* 1 */
+  font-family: 'Montserrat', sans-serif; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -111,7 +111,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
+  font-family: 'Montserrat', sans-serif; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -168,7 +168,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
+  font-family: 'Montserrat', sans-serif; /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
@@ -373,7 +373,7 @@ template {
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; /* 1 */
-  font-family: sans-serif; /* 2 */
+  font-family: 'Montserrat', sans-serif; /* 2 */
 }
 
 *,
@@ -3020,6 +3020,13 @@ table {
 .font-mono {
   font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
+.font-paragraph {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-header {
+  font-family: 'Roboto', sans-serif;
+}
 
 .font-hairline {
   font-weight: 100;
@@ -3215,6 +3222,19 @@ table {
 
 .leading-loose {
   line-height: 2;
+}
+
+.m-10px {
+  margin: 10px;
+}
+.mt-10px {
+  margin-top: 10px;
+}
+.p-10px {
+  padding: 10px;
+}
+.mb-20px {
+  margin-bottom: 20px;
 }
 
 .m-0 {
@@ -4364,6 +4384,15 @@ table {
   padding-bottom: 0;
 }
 
+.py-5px {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.px-10px {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .px-0 {
   padding-left: 0;
   padding-right: 0;
@@ -4954,6 +4983,10 @@ table {
 
 .text-justify {
   text-align: justify;
+}
+
+.text-link-color {
+  color: #007bff;
 }
 
 .text-transparent {

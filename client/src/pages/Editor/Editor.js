@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import './Editor.css';
-import { Input, TextArea } from "../../components/PostComponents/PostForm";
 import API from '../../utils/API';
 import RichTextEditor from 'react-rte';
-import colourStyles from './colourStyles'
+import colourStyles from './colourStyles';
 // Tag Multiselect
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
-import guidelinesImage from '../../assets/images/guidelines.png'
+import guidelinesImage from '../../assets/images/guidelines.png';
+import { PageBody, Row, Input, TextArea } from '../../components/Widgets';
 
 // React Select docs: https://react-select.com/home
 
@@ -200,9 +199,9 @@ class CreatePost extends Component {
     };
 
     return (
-      <div className="pagebody">
-        <React.Fragment>
-          <div className="row createForm">
+      <React.Fragment>
+        <PageBody>
+          <Row className="createForm">
             <div className="col-md-1"></div>
 
             <div className="col-md-8 formBody rounded" >
@@ -307,9 +306,9 @@ class CreatePost extends Component {
                 </ul>
               </div>
             </div>
-          </div>
-        </React.Fragment>
-      </div>
+          </Row>
+      </PageBody>
+    </React.Fragment>
     );
   };
 };
