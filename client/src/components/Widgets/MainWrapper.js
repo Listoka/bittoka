@@ -2,7 +2,7 @@ import React from 'react';
 
 export const MainWrapper = props => {
     return (
-        <div className={`m-10px pt-3 p-10px rounded bg-white ${props.classType}`}>
+        <div className={`m-10px p-10px pt-3 rounded bg-white ${props.styles}`}>
             {props.children}
         </div>
     );

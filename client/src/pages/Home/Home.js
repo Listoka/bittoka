@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
 import { CategoryDescription } from '../../components/CategoryInfoDisplay';
-import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import Stickybar from '../../components/Stickybar/Stickybar';
 import sidebarImage from '../../assets/images/sidebar-400x400.jpg'
-import { PageBody, Row, MainWrapper } from '../../components/Widgets';
+import { PageBody, Row, MainWrapper, Container } from '../../components/Widgets';
 
 class Home extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class Home extends Component {
         
         <Row>
           <div className='col-sm-2'>
-            <MainWrapper classType='homeTagWrapper'>
+            <MainWrapper styles={'homeTagWrapper'}>
               <img className="img-fluid" src={sidebarImage} alt="Welcome to Listoka"></img>
                 <h6 className='m-10px p-10px font-bold text-base' >Welcome to Listoka</h6>
                 <p className='my-2 text-sm'><strong>Write something, earn Bitcoin.  It's that simple.</strong></p>
@@ -60,7 +60,7 @@ class Home extends Component {
                 displayName={this.state.displayName}
                 description={this.state.description}
               />
-              <PostList>
+              <Container>
                 {this.state.homePosts.map(homePosts => (
                   <PostListItem
                     key={homePosts._id}
@@ -79,7 +79,7 @@ class Home extends Component {
                     voters={homePosts.voters}
                   />
                 ))}
-              </PostList>
+              </Container>
             </MainWrapper>
           </div>
           <div className='col-sm-2'>

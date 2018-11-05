@@ -8,7 +8,7 @@ import colourStyles from './colourStyles';
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import guidelinesImage from '../../assets/images/guidelines.png';
-import { PageBody, Row, Input, TextArea } from '../../components/Widgets';
+import { PageBody, Row, Input, TextArea, MainWrapper, Form, Paragraph, Button, Header } from '../../components/Widgets';
 
 // React Select docs: https://react-select.com/home
 
@@ -201,16 +201,17 @@ class CreatePost extends Component {
     return (
       <React.Fragment>
         <PageBody>
-          <Row className="createForm">
+          <Row styles={"mt-12"}>
             <div className="col-md-1"></div>
-
-            <div className="col-md-8 formBody rounded" >
-              <form style={{ margin: '30px 0' }} onSubmit={this.handleFormSubmit}>
+            <div className="col-md-8" >
+            <MainWrapper styles={'px-3 pt-4'}>
+              <Form onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
                 {this.props.match.params.postId
-                  ? <h2 className='postHeader'>EDIT POST</h2>
-                  : <h2 className='postHeader'>CREATE POST</h2>
+                  ? <h2 className='mb-4'>EDIT POST</h2>
+                  : <h2 className='mb-4'>CREATE POST</h2>
                 }
+                {/* Will need to find the other z-index's before I change this ctaegorySelect z-index */}
                   <Select className="categorySelect"
                     onChange={this.dropdownChange}
                     options={this.state.categories}
@@ -242,7 +243,7 @@ class CreatePost extends Component {
                   type='number'
                   step='0.01'
                   min='0.00'
-                  style={{ width: 175 + 'px' }}
+                  style={{ width: 200 + 'px' }}
                   placeholder='Paywall Cost (x.xx)'
                   value={this.state.paywallCost}
                   name='paywallCost'
@@ -253,12 +254,12 @@ class CreatePost extends Component {
                   name='teaser'
                   value={this.state.teaser}
                 />
-                <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
+                <Paragraph>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</Paragraph>
                 <RichTextEditor
                   value={this.state.value}
                   onChange={this.onEditorChange}
                 />
-                <br></br>
+                <br/>
                 <Select
                   id="tagField"
                   className='react-select-container'
@@ -277,34 +278,32 @@ class CreatePost extends Component {
                     borderRadius: 5,
                   })}
                 />
-                <br></br>
-                <input
-                  name='submit-btn'
-                  className='btn btn-secondary'
-                  style={{ margin: '20px 0' }}
+                <br/>
+                <Button
                   type='submit'
+                  text='Submit'
                 />
                 {
                   this.state.isDraft
-                    ? <button name='save-btn' onClick={this.saveDraft} className="btn btn-secondary mx-2"> Save Draft </button>
+                    ? <Button  onClick={this.saveDraft} text='Save Draft'></Button>
                     : null
                 }
-              </form>
-
+              </Form>
+            </MainWrapper>
             </div>
             <div className="col-md-3">
-              <div className='guidelineWrapper rounded'>
+              <MainWrapper styles={'min-width150px'}>
                 <img className="img-fluid" src={guidelinesImage} alt="Listoka Guidelines"></img>
-                <h6 className='guidelineHeader'>Posting Guidelines</h6>
-                <hr></hr>
-                <ul id="guidelineList">
+                <Header styles={'text-lg mt-3 text-center font-bold'}>Posting Guidelines</Header>
+                <hr/>
+                <ul>
                   <li>Guideline 1</li>
                   <li>Guideline 2</li>
                   <li>Guideline 3</li>
                   <li>Guideline 4</li>
                   <li>Guideline 5</li>
                 </ul>
-              </div>
+              </MainWrapper>
             </div>
           </Row>
       </PageBody>

@@ -139,7 +139,7 @@ class MainCategoryPage extends Component {
 
         <Row>
           <div className='col-sm-2'>
-            <MainWrapper classType='tagWrapper'>
+            <MainWrapper styles={'tagWrapper'}>
               <p className='text-left font-bold mb-1'>Tags</p>
               <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
                 {this.state.tags.sort().map(tag => (

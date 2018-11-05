@@ -235,8 +235,8 @@ module.exports = {
       'Courier New',
       'monospace',
     ],
-    'headers': 'Roboto',
-    'paragraphs': 'Montserrat'
+    'header': 'Roboto',
+    'normal': 'Montserrat'
   },
 
 

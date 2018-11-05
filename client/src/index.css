@@ -19,6 +19,9 @@ body {
   min-width: 150px;
   list-style-position: inside; 
 }
+.min-width150px {
+  min-width: 150px;
+}
 
 .tagLink {
   cursor: pointer;
@@ -376,27 +379,6 @@ ul.navbar-nav a:hover::before, a:focus::before {
 
 /* PostList Component */
 
-.listItem {
-  font-size: 12px;
-  margin: 10px;
-  padding: 5px 10px 5px 10px;
-  border-color: darkcyan;
-}
-
-.post-body {
-  padding: 10px 10px 0px 15px;
-  width: 100%;
-}
-
-.infoContainers {
-  display: inline;
-}
-
-.smallPostText {
-  font-size: 12px;
-  display: inline;
-}
-
 .post-subtitle{
   color: grey;
   margin-bottom: 10px;
@@ -412,12 +394,6 @@ ul.navbar-nav a:hover::before, a:focus::before {
   color: grey;
   float: right;
   list-style: none;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
 }
 
 .flair {
@@ -748,11 +724,7 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 }
 
 .guidelineWrapper {
-  margin: 10px;
-  padding: 10px;
-  background-color: white;
   min-width: 150px;
-  text-align: center;
 }
 
 .guidelineHeader {
@@ -779,11 +751,6 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
   margin-top: 10px;
   padding: 10px 20px 40px 20px;
 }
-
-.postHeader {
-  margin-bottom:20px;
-}
-
 #paywallField {
   min-width: 180px;
 }
@@ -802,7 +769,7 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 }
 
 @media screen and (min-width: 0px) and (max-width: 896px) {
-  .GuidelineWrapper { display: none; }  
+  .guidelineWrapper { display: none; }  
 }
 
 .form-control:disabled{

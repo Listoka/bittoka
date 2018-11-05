@@ -2,8 +2,9 @@ import React from 'react';
 
 export const Button = props => {
     return (
+      // The Bootstrap and postBtn will be changed once Lindsay themes the website. Left for now.
         <button className='btn postBtn' {...props}>
-          <span className={`${props.classType} font-paragraph`}>{props.text}</span>
+          <span className={`font-normal ${props.styles}`}>{props.text}</span>
         </button>
     );
 };

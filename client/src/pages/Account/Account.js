@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import { PostList, PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
-import { EditButton, PageBody, Row, CancelIcon, Button, TextArea, Input, Container, DraftContainer, BioContainer } from '../../components/Widgets';
+import { PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
+import { EditButton, PageBody, Row, CancelIcon, Button, TextArea, Input, Container, DraftContainer } from '../../components/Widgets';
 import API from '../../utils/API';
 
 class Account extends Component {
@@ -122,8 +122,8 @@ class Account extends Component {
           <div className='col-lg-2'></div>
           <div className='col-lg-7'>
           {/* This could be added to another type of its own container */}
-            <div className="mt-10px py-2 rounded min-h-full bg-white">
-              <BioContainer>
+            <Container styles={"mt-10px py-2 rounded min-h-full bg-white"}>
+              <Container styles={'m-2 px-2 pb-2'}>
                 <Row>
                   <div className='col-md-6'>
                     <h2 className='font-header'>{this.state.userName}'s Bio 
@@ -156,7 +156,7 @@ class Account extends Component {
                   <CancelIcon onClick={this.editBio} text='Cancel'/>
                   </form>
                 }
-              </BioContainer>
+              </Container>
 
               <Container>
                   {this.state.showMoneyBtnId
@@ -172,7 +172,7 @@ class Account extends Component {
                         value={this.state.moneyBtnId}
                         onChange={this.handleInputChange}
                         name="moneyBtnId"
-                        style={{ width: 125 + 'px' }}
+                        styles={{ width: 125 + 'px' }}
                       />
                       <Button
                         disabled={!(this.state.moneyBtnId)}
@@ -188,7 +188,7 @@ class Account extends Component {
                 </div>
               </Container>
 
-              <PostList>
+              <Container>
                 {this.state.userPosts.map(userPosts => (
                   <PostListItem
                     key={userPosts._id}
@@ -206,13 +206,13 @@ class Account extends Component {
                     voters={userPosts.voters}
                   />
                 ))}
-              </PostList>
+              </Container>
               <hr></hr>
-            </div>
+            </Container>
           </div>
           <div className='col-lg-3'>
             <DraftContainer>
-              <PostList>
+              <Container>
                 <h5 className='font-header'>Pending Drafts</h5>
                 <hr></hr>
                 {this.state.drafts.map((drafts, index) => (
@@ -227,7 +227,7 @@ class Account extends Component {
                     removeDraft={this.removeDraft}
                   />
                 ))}
-              </PostList>
+              </Container>
             </DraftContainer>
           </div>
         </Row>

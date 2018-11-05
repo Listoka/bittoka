@@ -4,7 +4,7 @@ export const CancelIcon = props => {
     return (
       <React.Fragment>
         <i className="fas fa-undo btn" {...props}>
-          <span className='font-paragraph text-base'> {props.text}</span>
+          <span className='font-normal text-base'> {props.text}</span>
         </i>
       </React.Fragment>
     );

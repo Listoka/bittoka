@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import API from '../../utils/API';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
 import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
-import { PageBody, Row, Input, Button, BioContainer, MainWrapper } from '../../components/Widgets';
+import { PageBody, Row, Input, Button, MainWrapper, Container } from '../../components/Widgets';
 
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
@@ -103,7 +103,7 @@ class Profile extends Component {
       <PageBody>
         <Row>
           <div className='col-md-2'>
-            <MainWrapper classType='profileWrapper'>
+            <MainWrapper styles={'profileWrapper'}>
               <img className="img-fluid" src="/images/tipjar.png " alt="tip jar"></img>
               <h6 className='uppercase font-bold pt-2'>Leave {this.state.authorName} a tip!</h6>
               <hr></hr>
@@ -120,7 +120,7 @@ class Profile extends Component {
                   placeholder='.00'
                   name='tipAmt'
                 />
-                <Button onClick={this.handleTipSubmit} text='Update Tip' classType='text-sm'/>
+                <Button onClick={this.handleTipSubmit} text='Update Tip' styles={'text-sm'}/>
                 <div className='mt-4'>
                   <AuthUserContext.Consumer>
                     {authUser => {
@@ -147,12 +147,12 @@ class Profile extends Component {
 
           <div className='col-lg-8'>
             <MainWrapper>
-              <BioContainer>
+              <Container styles={'m-2 px-2 pb-2'}>
                 <h2>{this.state.authorName}</h2>
                 <p>{this.state.displayedBio}</p>
                 <hr/>
-              </BioContainer>
-              <PostList>
+              </Container>
+              <Container>
                 {this.state.userPosts.map(userPosts => (
                   <PostListItem
                     key={userPosts._id}
@@ -170,7 +170,7 @@ class Profile extends Component {
                     voters={userPosts.voters}
                   />
                 ))}
-              </PostList>
+              </Container>
             </MainWrapper>
           </div>
           <div className='col-lg-2'></div>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import AuthUserContext from "../../AuthUserSession/AuthUserContext";
 import API from '../../../utils/API';
 import ListokaMoneyButton from "../../ListokaMoneyButton";
-import { EditButton, Row, Container } from '../../Widgets';
+import { EditButton, Row, Container, Paragraph, Header, InlineParagraph, UpArrowIcon } from '../../Widgets';
 
 export class PostDetail extends Component {
 
@@ -48,34 +48,41 @@ export class PostDetail extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* TODO: refactor edit button into its own component using withAuthorization */}
-        <AuthUserContext.Consumer>
-          {
-            authUser => {
-              if (authUser && authUser.dbUser._id === this.props.author) {
-                return (
-                  <Link to={{ pathname: `/posts/${this.props._id}/edit` }}>
-                    <EditButton 
-                      text='Edit Post'
-                    />
-                  </Link>
-                )
+        <Row>
+          <div className='col-lg-12'>
+          {/* TODO: refactor edit button into its own component using withAuthorization */}
+          <AuthUserContext.Consumer>
+            {
+              authUser => {
+                if (authUser && authUser.dbUser._id === this.props.author) {
+                  return (
+                    <InlineParagraph styles={'float-right'}>
+                    <Link to={{ pathname: `/posts/${this.props._id}/edit` }}>
+                      <EditButton 
+                        text='Edit Post'
+                      />
+                    </Link>
+                    </InlineParagraph>
+                  )
+                }
               }
             }
-          }
-        </AuthUserContext.Consumer>
-        <Row>
-          <div className='col-lg-8'>
-            <h2>{this.props.title}</h2>
-            <p>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link> in <Link to={`/categories/${this.props.categoryName}`}><span className={`${this.props.categoryName}Flair flair`}>{this.props.categoryName}</span></Link> <i className="fas fa-arrow-up"></i> {this.state.upvotes}</p>
-          </div>
+          </AuthUserContext.Consumer>
+
+            <Header styles={'text-4xl'}>{this.props.title}</Header>
+            <Paragraph styles={'my-2'}>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}
+              </Link> in <Link to={`/categories/${this.props.categoryName}`}>
+                <span className={`${this.props.categoryName}Flair flair`}>{this.props.categoryName}</span>
+              </Link> <UpArrowIcon/> {this.state.upvotes}
+            </Paragraph>
+
           <AuthUserContext.Consumer>
             {authUser => {
               if (authUser) {
                 // Don't allow user to upvote more than once
                 if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
                   return (
-                      <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
+                    <InlineParagraph styles={'float-right'}className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</InlineParagraph>
                   )
                 } else {
                   return (
@@ -92,11 +99,12 @@ export class PostDetail extends Component {
                 }
               } else {
                 return (
-                  <p className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
+                  <InlineParagraph styles={'float-right'}className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</InlineParagraph>
                 )
               }
             }}
           </AuthUserContext.Consumer>
+          </div>
         </Row>
         <AuthUserContext.Consumer>
           {
@@ -107,7 +115,7 @@ export class PostDetail extends Component {
                 return (authUser.dbUser._id === this.props.author ||
                   this.state.purchasers.find(purchaser => purchaser._id === authUser.dbUser._id) ?
                   <React.Fragment>
-                    <div className='p-10px mt-10px mb-20px'>
+                    <div className='mt-10px mb-20px'>
                       {this.props.body ? renderHTML(this.props.body) : null}
                     </div>
                     <Container>
@@ -123,9 +131,9 @@ export class PostDetail extends Component {
                   </React.Fragment>
                   :
                   <React.Fragment>
-                      <div className='p-10px mt-10px mb-20px'>
-                          {this.props.teaser || null}
-                      </div>
+                    <div className='mt-10px mb-20px'>
+                      {this.props.teaser || null}
+                    </div>
                   </React.Fragment>
                 )
               } else {
