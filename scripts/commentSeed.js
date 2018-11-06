@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bittokaDB");
+
 
 const commentData = [
   { body: "Bitcoin has the potential to become the best and fairest form of money to ever exist." },

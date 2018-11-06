@@ -3,38 +3,8 @@ import API from '../../utils/API';
 import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
-import posed from 'react-pose';
 import Stickybar from '../../components/Stickybar/Stickybar';
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
-
-const Sidebar = posed.ul({
-  open: {
-    x: '0%',
-    delayChildren: 300,
-    staggerChildren: 50
-  },
-  closed: { x: '-100%', delay: 300 }
-});
-
-const Item = posed.li({
-  open: { y: 0, opacity: 1 },
-  closed: { y: 20, opacity: 0 }
-});
-
-const PostListContainer = posed.div({
-  enter: {
-    opacity: 1,
-    //delay: 300,
-    beforeChildren: true,
-    staggerChildren: 50
-  },
-  exit: { opacity: 0 }
-});
-
-const P = posed.div({
-  enter: { x: 0, opacity: 1 },
-  exit: { x: 50, opacity: 0 }
-});
 
 class MainCategoryPage extends Component {
 
@@ -47,9 +17,7 @@ class MainCategoryPage extends Component {
       filteredPosts: [],
       categoryDisplayName: '',
       categoryDescription: '',
-      categoryName: '',
-      isOpen: false,
-      isVisible: false
+      categoryName: ''
     };
   };
 
@@ -65,9 +33,7 @@ class MainCategoryPage extends Component {
           tags: category.tags,
           selectedTags: [],
           filteredPosts: posts,
-          categoryName: category.name,
-          isOpen: false,
-          isVisible: false,
+          categoryName: category.name
         })
       })
       .catch(err => console.log(err))
@@ -75,15 +41,7 @@ class MainCategoryPage extends Component {
 
   componentDidMount() {
     this.getCategoryAndPosts();
-    setTimeout(this.toggle, 500);
-    // console.log("Did Mount isOpen " + this.state.isOpen);
-    // console.log("Did Mount isVisible " + this.state.isVisible);
   }
-
-  toggle = () => this.setState({
-    isOpen: !this.state.isOpen,
-    isVisible: !this.state.isVisible
-  });
 
   toggleSelectTag = (event, tag) => {
     event.target.classList.toggle('tagLinkInactive');
@@ -109,13 +67,10 @@ class MainCategoryPage extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.match.params.categoryName !== prevProps.match.params.categoryName) {
       this.getCategoryAndPosts();
-      setTimeout(this.toggle, 500);
     }
   }
 
   render() {
-    const { isOpen } = this.state;
-    const { isVisible } = this.state;
 
     return (
       <div className='pagebody'>
@@ -138,13 +93,13 @@ class MainCategoryPage extends Component {
               <div className='headWrapper'>
                 <p>Tags</p>
               </div>
-              <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
+              <ul id='tagUl'>
                 {this.state.tags.sort().map(tag => (
-                  <Item className='tagLink rounded tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
+                  <li className='tagLink rounded tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
                   {tag}
-                  </Item>
+                  </li>
                 ))}
-              </Sidebar>
+              </ul>
             </div>
           </div>
 
@@ -154,10 +109,9 @@ class MainCategoryPage extends Component {
                 displayName={this.state.categoryDisplayName}
                 description={this.state.categoryDescription}
               />
-              <PostListContainer className='container postList' pose={isVisible ? 'enter' : 'exit'}>
+              <div className='container postList'>
                 {this.state.filteredPosts
                   .map(post => (
-                    <P key={post._id}>
                       <PostListItem
                         key={post._id}
                         authorName={post.authorName}
@@ -173,9 +127,8 @@ class MainCategoryPage extends Component {
                         createdAt={post.createdAt}
                         voters={post.voters}
                       />
-                    </P>
                   ))}
-              </PostListContainer>
+              </div>
             </CategoryDetail>
           </div>
           <div className='col-sm-2'>
