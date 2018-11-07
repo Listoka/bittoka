@@ -14,5 +14,4 @@ export * from './BitcoinIcon';
 export * from './CommentsDollarIcon';
 export * from './UpArrowIcon';
 export * from './Card';
-export * from './PostBody';
 export * from './Form';

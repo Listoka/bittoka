@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AuthUserContext from '../../AuthUserSession/AuthUserContext';
 import Moment from 'react-moment';
-import { EditButton, BitcoinIcon, CalendarIcon, CommentsDollarIcon, UpArrowIcon, Card, PostBody } from '../../Widgets';
+import { EditButton, BitcoinIcon, CalendarIcon, CommentsDollarIcon, UpArrowIcon, Card } from '../../Widgets';
 
 export const PostListItem = props => {
   return (
     <Card>
-      <PostBody>
+      <div className='pt-10px pr-10px pl-15px w-full'>
         <div className='clearfix'>
           <span>
             <p className='inline font-header text-2xl'>
@@ -64,7 +64,7 @@ export const PostListItem = props => {
               </AuthUserContext.Consumer>
             </div>
         </div>
-      </PostBody>
+      </div>
     </Card>
   );
 };
