@@ -3,7 +3,7 @@ import API from '../../utils/API';
 import { CategoryDescription } from '../../components/CategoryInfoDisplay';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import sidebarImage from '../../assets/images/sidebar-400x400.jpg'
-import { PageBody, Row, MainWrapper, Container } from '../../components/Widgets';
+import { Row, MainWrapper, Container } from '../../components/Widgets';
 
 class Home extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-      <PageBody>
+      <div className='absolute w-full'>
       {/*Will need to find an alternate side bar solution with advertisements */}
         <Row>
           <div className='col-lg-2'></div>
@@ -84,7 +84,7 @@ class Home extends Component {
             {/* Advertisements would go here */}
           </div>
         </Row>
-      </PageBody>
+      </div>
       </React.Fragment>
     );
   };

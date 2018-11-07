@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import { PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
-import { EditButton, PageBody, Row, CancelIcon, Button, TextArea, Input, Container, MainWrapper } from '../../components/Widgets';
+import { EditButton, Row, CancelIcon, Button, TextArea, Input, Container, MainWrapper } from '../../components/Widgets';
 import API from '../../utils/API';
 
 class Account extends Component {
@@ -117,7 +117,7 @@ class Account extends Component {
 
   render() {
     return (
-      <PageBody>
+      <div className='absolute w-full'>
         <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-7'>
@@ -231,7 +231,7 @@ class Account extends Component {
             </MainWrapper>
           </div>
         </Row>
-      </PageBody>
+      </div>
     );
   };
 };
