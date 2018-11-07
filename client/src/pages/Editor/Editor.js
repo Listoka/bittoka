@@ -8,7 +8,7 @@ import colourStyles from './colourStyles';
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import guidelinesImage from '../../assets/images/guidelines.png';
-import { PageBody, Row, Input, TextArea, MainWrapper, Form, Button } from '../../components/Widgets';
+import { Row, Input, TextArea, MainWrapper, Form, Button } from '../../components/Widgets';
 
 // React Select docs: https://react-select.com/home
 
@@ -200,7 +200,7 @@ class CreatePost extends Component {
 
     return (
       <React.Fragment>
-        <PageBody>
+        <div className='absolute w-full'>
           <Row styles={"mt-12"}>
             <div className="col-md-1"></div>
             <div className="col-md-8" >
@@ -308,7 +308,7 @@ class CreatePost extends Component {
               </MainWrapper>
             </div>
           </Row>
-      </PageBody>
+      </div>
     </React.Fragment>
     );
   };

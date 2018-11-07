@@ -5,7 +5,7 @@ import { CategoryDescription } from '../../components/CategoryInfoDisplay';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import { Button } from '../../components/Widgets/Button';
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
-import { PageBody, Row, MainWrapper } from '../../components/Widgets';
+import { Row, MainWrapper } from '../../components/Widgets';
 
 class MainCategoryPage extends Component {
 
@@ -74,7 +74,7 @@ class MainCategoryPage extends Component {
   render() {
 
     return (
-      <PageBody>
+      <div className='absolute w-full'>
         <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
@@ -134,7 +134,7 @@ class MainCategoryPage extends Component {
             {/* Advertisements would go here */}
           </div>
         </Row>
-      </PageBody>
+      </div>
     );
   };
 };

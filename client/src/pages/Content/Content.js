@@ -5,7 +5,7 @@ import { Comments, CommentList } from '../../components/CommentDisplay';
 // import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 /*import TipButton from '../../components/TipButton';*/
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
-import { PageBody, Row, Button, TextArea, MainWrapper } from '../../components/Widgets';
+import { Row, Button, TextArea, MainWrapper } from '../../components/Widgets';
 
 class Content extends Component {
   constructor(props) {
@@ -52,7 +52,7 @@ class Content extends Component {
   render() {
     return (
       <React.Fragment>
-      <PageBody>
+      <div className='absolute w-full'>
             <Row>
               <div className="col-md-2"></div>
               <div className="col-md-8">
@@ -88,7 +88,7 @@ class Content extends Component {
                 </div>
                 <div className="col-md-2"></div>
               </Row>
-      </PageBody>
+      </div>
       </React.Fragment>
     );
   };

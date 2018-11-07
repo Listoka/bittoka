@@ -1,7 +1,6 @@
 export * from "./Button";
 export * from './EditButton';
 export * from './DeleteIcon';
-export * from './PageBody';
 export * from './Row';
 export * from './Container';
 export * from './CancelIcon';

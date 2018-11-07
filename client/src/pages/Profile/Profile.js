@@ -3,7 +3,7 @@ import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import API from '../../utils/API';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
 import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
-import { PageBody, Row, Input, Button, MainWrapper, Container } from '../../components/Widgets';
+import {  Row, Input, Button, MainWrapper, Container } from '../../components/Widgets';
 
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
@@ -100,7 +100,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <PageBody>
+      <div className='absolute w-full'>
         <Row>
           <div className='col-md-2'>
             <MainWrapper styles={'profileWrapper'}>
@@ -175,7 +175,7 @@ class Profile extends Component {
           </div>
           <div className='col-lg-2'></div>
         </Row>
-      </PageBody>
+      </div>
 
     );
   };
