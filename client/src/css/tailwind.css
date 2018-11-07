@@ -4660,11 +4660,6 @@ table {
   padding-bottom: 1.25rem;
 }
 
-.py-5px {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -4796,10 +4791,6 @@ table {
 
 .pb-1 {
   padding-bottom: .25rem;
-}
-
-.pl-15px {
-  padding-left: 15px;
 }
 
 .pl-1 {
@@ -9242,7 +9233,7 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .sm\:font-headers {
+  .sm\:font-header {
     font-family: Roboto;
   }
 
@@ -15254,11 +15245,11 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .md\:font-headers {
+  .md\:font-header {
     font-family: Roboto;
   }
 
-  .md\:font-paragraphs {
+  .md\:font-normal {
     font-family: Montserrat;
   }
 
@@ -21266,11 +21257,11 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .lg\:font-headers {
+  .lg\:font-header {
     font-family: Roboto;
   }
 
-  .lg\:font-paragraphs {
+  .lg\:font-normal {
     font-family: Montserrat;
   }
 
@@ -27278,11 +27269,11 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .xl\:font-headers {
+  .xl\:font-header {
     font-family: Roboto;
   }
 
-  .xl\:font-paragraphs {
+  .xl\:font-normal {
     font-family: Montserrat;
   }
 
