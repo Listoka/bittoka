@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import API from '../../utils/API';
 import { CategoryDescription } from '../../components/CategoryInfoDisplay';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
-import Stickybar from '../../components/Stickybar/Stickybar';
 import sidebarImage from '../../assets/images/sidebar-400x400.jpg'
 import { PageBody, Row, MainWrapper, Container } from '../../components/Widgets';
 
@@ -33,7 +32,6 @@ class Home extends Component {
       <React.Fragment>
       <PageBody>
       {/*Will need to find an alternate side bar solution with advertisements */}
-      <Stickybar categoryName={this.state.categoryName}></Stickybar>
         <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>

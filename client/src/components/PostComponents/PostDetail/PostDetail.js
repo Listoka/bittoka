@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import AuthUserContext from "../../AuthUserSession/AuthUserContext";
 import API from '../../../utils/API';
 import ListokaMoneyButton from "../../ListokaMoneyButton";
-import { EditButton, Row, Container, Paragraph, Header, InlineParagraph, UpArrowIcon } from '../../Widgets';
+import { EditButton, Row, Container, UpArrowIcon } from '../../Widgets';
 
 export class PostDetail extends Component {
 
@@ -56,25 +56,25 @@ export class PostDetail extends Component {
               authUser => {
                 if (authUser && authUser.dbUser._id === this.props.author) {
                   return (
-                    <InlineParagraph styles={'float-right'}>
+                    <p className='float-right inline'> 
                     <Link to={{ pathname: `/posts/${this.props._id}/edit` }}>
                       <EditButton 
                         text='Edit Post'
                       />
                     </Link>
-                    </InlineParagraph>
+                    </p>
                   )
                 }
               }
             }
           </AuthUserContext.Consumer>
 
-            <Header styles={'text-4xl'}>{this.props.title}</Header>
-            <Paragraph styles={'my-2'}>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}
+            <h2>{this.props.title}</h2>
+            <p className='my-2'>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}
               </Link> in <Link to={`/categories/${this.props.categoryName}`}>
                 <span className={`${this.props.categoryName}Flair flair`}>{this.props.categoryName}</span>
               </Link> <UpArrowIcon/> {this.state.upvotes}
-            </Paragraph>
+            </p>
 
           <AuthUserContext.Consumer>
             {authUser => {
@@ -82,7 +82,7 @@ export class PostDetail extends Component {
                 // Don't allow user to upvote more than once
                 if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
                   return (
-                    <InlineParagraph styles={'float-right'}className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</InlineParagraph>
+                    <p className='float-right inline col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
                   )
                 } else {
                   return (
@@ -99,7 +99,7 @@ export class PostDetail extends Component {
                 }
               } else {
                 return (
-                  <InlineParagraph styles={'float-right'}className='col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</InlineParagraph>
+                  <p className='float-right inline col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
                 )
               }
             }}

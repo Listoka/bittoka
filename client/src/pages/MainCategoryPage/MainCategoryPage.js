@@ -3,9 +3,7 @@ import API from '../../utils/API';
 import { Link } from 'react-router-dom';
 import { CategoryDescription } from '../../components/CategoryInfoDisplay';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
-import { Button } from '../../components/Widgets/Button'
-import posed from 'react-pose';
-import Stickybar from '../../components/Stickybar/Stickybar';
+import { Button } from '../../components/Widgets/Button';
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
 import { PageBody, Row, MainWrapper } from '../../components/Widgets';
 
@@ -77,7 +75,6 @@ class MainCategoryPage extends Component {
 
     return (
       <PageBody>
-        <Stickybar categoryName={this.state.categoryName}></Stickybar>
         <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
@@ -97,13 +94,11 @@ class MainCategoryPage extends Component {
           <div className='col-sm-2'>
             <MainWrapper styles={'tagWrapper'}>
               <p className='text-left font-bold mb-1'>Tags</p>
-              <Sidebar id="tagUl" pose={isOpen ? 'open' : 'closed'}>
                 {this.state.tags.sort().map(tag => (
                   <li className='tagLink rounded tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
                   {tag}
                   </li>
                 ))}
-              </Sidebar>
             </MainWrapper>
           </div>
 

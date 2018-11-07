@@ -8,7 +8,7 @@ import colourStyles from './colourStyles';
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import guidelinesImage from '../../assets/images/guidelines.png';
-import { PageBody, Row, Input, TextArea, MainWrapper, Form, Paragraph, Button, Header } from '../../components/Widgets';
+import { PageBody, Row, Input, TextArea, MainWrapper, Form, Button } from '../../components/Widgets';
 
 // React Select docs: https://react-select.com/home
 
@@ -254,7 +254,7 @@ class CreatePost extends Component {
                   name='teaser'
                   value={this.state.teaser}
                 />
-                <Paragraph>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</Paragraph>
+                <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
                 <RichTextEditor
                   value={this.state.value}
                   onChange={this.onEditorChange}
@@ -293,8 +293,10 @@ class CreatePost extends Component {
             </div>
             <div className="col-md-3">
               <MainWrapper styles={'min-width150px'}>
-                <img className="img-fluid" src={guidelinesImage} alt="Listoka Guidelines"></img>
-                <Header styles={'text-lg mt-3 text-center font-bold'}>Posting Guidelines</Header>
+                <div className='text-center'>
+                  <img className="img-fluid text-center" src={guidelinesImage} alt="Listoka Guidelines"></img>
+                </div>
+                <h2 className='mt-3 text-center font-bold'>Posting Guidelines</h2>
                 <hr/>
                 <ul>
                   <li>Guideline 1</li>

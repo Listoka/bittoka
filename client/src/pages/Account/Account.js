@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 import { PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
-import { EditButton, PageBody, Row, CancelIcon, Button, TextArea, Input, Container, DraftContainer } from '../../components/Widgets';
+import { EditButton, PageBody, Row, CancelIcon, Button, TextArea, Input, Container, MainWrapper } from '../../components/Widgets';
 import API from '../../utils/API';
 
 class Account extends Component {
@@ -211,9 +211,9 @@ class Account extends Component {
             </Container>
           </div>
           <div className='col-lg-3'>
-            <DraftContainer>
+            <MainWrapper>
               <Container>
-                <h5 className='font-header'>Pending Drafts</h5>
+                <h4 className='font-header'>Pending Drafts</h4>
                 <hr></hr>
                 {this.state.drafts.map((drafts, index) => (
                   <DraftListItem
@@ -228,7 +228,7 @@ class Account extends Component {
                   />
                 ))}
               </Container>
-            </DraftContainer>
+            </MainWrapper>
           </div>
         </Row>
       </PageBody>

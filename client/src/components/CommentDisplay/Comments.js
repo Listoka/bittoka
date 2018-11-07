@@ -4,7 +4,7 @@ import { NestedComments } from '../CommentDisplay/NestedComments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import AuthUserContext from "../AuthUserSession/AuthUserContext";
-import { Button, TextArea, CommentContainer, Paragraph, CalendarIcon, BitcoinIcon } from '../Widgets';
+import { Button, TextArea, CommentContainer, CalendarIcon, BitcoinIcon } from '../Widgets';
 
 export class Comments extends Component {
   constructor(props) {
@@ -37,16 +37,17 @@ export class Comments extends Component {
       <React.Fragment>
         <hr/>
         <CommentContainer styles={''}>
-          <Paragraph styles={'text-sm'}><Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link>
-            <span className='mr-2'></span><CalendarIcon />
-            <span className='mr-1'></span><Moment fromNow>{this.props.createdAt}</Moment>
-            <span className='mr-2'></span><BitcoinIcon />
-            <span className='mr-1'></span>[earned $x.xx]
-          </Paragraph>
+          <p className='text-sm'>
+            <Link className='mr-2' to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link>
+            <CalendarIcon/>
+            <Moment fromNow className='mr-2'>{this.props.createdAt}</Moment>
+            <BitcoinIcon/>
+            [earned $x.xx]
+          </p>
           <br></br>
-          <Paragraph styles={'text-base'}> {this.props.body}</Paragraph>
-          <Paragraph styles={'text-sm'}>[#Upvotes][Upvote MoneyButton Component]</Paragraph>
-          <Paragraph styles={'text-sm'}>
+          <p className='text-base'> {this.props.body}</p>
+          <p className='text-sm'>[#Upvotes][Upvote MoneyButton Component]</p>
+          <p className='text-sm'>
             <AuthUserContext.Consumer>
               {authUser =>
                 authUser
@@ -55,7 +56,7 @@ export class Comments extends Component {
               }
             </AuthUserContext.Consumer>
             <a onClick={this.toggleComments.bind(this)} href={`/comments/${this.props._id}`}>[View Replies {this.props.comments.length}]</a>
-          </Paragraph>
+          </p>
           {/* <button className="btn btn-secondary btn-sm" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button><span className='mr-2'></span> */}
           {/* <button type="button" className="btn btn-secondary btn-sm" onClick={this.toggleComments.bind(this)}>[View Replies <i className="far fa-comment">]</i></button> */}
           {!this.state.commentBoxIsHidden && <CommentBox id={this.props._id} toggleCommentBox={this.toggleCommentBox} />}
