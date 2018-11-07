@@ -1,5 +1,4 @@
 import React from "react";
-import './flexContainer.css';
 
 const subNav = ({children}) => (
 

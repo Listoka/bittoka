@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ModalWrapper from './GistModalWrapper';
-import gistImage from '../../assets/images/gistImg-600x404.jpg'
-
+import gistImage from '../../assets/images/gistImg-600x404.jpg';
+import { Row } from '../Widgets';
 
 const GistModal = props => {
 
@@ -16,7 +16,7 @@ const GistModal = props => {
         >
             <h2 className="header">Listoka's Gist</h2>
             <hr className="hrModals"></hr>
-            <div className='row'>
+            <Row>
                 <div className="col-lg-7">
                     <p className='gist'>Listoka is a writing and entertainment based platform where 
                     users will also be able to find and contribute to information that benefits people's lives. 
@@ -30,7 +30,7 @@ const GistModal = props => {
                 <div className="col-lg-5">
                     <img className="gistImg img-fluid" src={gistImage} alt="Young people working"></img>
                 </div>
-            </div>
+            </Row>
         </ModalWrapper >
     )
 }

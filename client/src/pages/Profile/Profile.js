@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
-import { Input, FormBtn } from "../../components/PostComponents/PostForm";
+import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import API from '../../utils/API';
-import './profile.css';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
 import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
-
+import { PageBody, Row, Input, Button, MainWrapper, Container } from '../../components/Widgets';
 
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
@@ -102,14 +100,14 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className='pagebody'>
-        <div className='row'>
+      <PageBody>
+        <Row>
           <div className='col-md-2'>
-            <div className='profileWrapper rounded'>
+            <MainWrapper styles={'profileWrapper'}>
               <img className="img-fluid" src="/images/tipjar.png " alt="tip jar"></img>
-              <h6 className='profileSidebarHeader'>Leave {this.state.authorName} a tip!</h6>
+              <h6 className='uppercase font-bold pt-2'>Leave {this.state.authorName} a tip!</h6>
               <hr></hr>
-              <div className='profileSidebarWrapper'>
+              <div className='text-left'>
                 Custom Tip Amount
                 <Input
                   onChange={this.handleTipChange}
@@ -122,11 +120,8 @@ class Profile extends Component {
                   placeholder='.00'
                   name='tipAmt'
                 />
-                <FormBtn
-                  onClick={this.handleTipSubmit}
-                  className='customTipButton'
-                >Update Tip Amount</FormBtn>
-                <div className='tipButton'>
+                <Button onClick={this.handleTipSubmit} text='Update Tip' styles={'text-sm'}/>
+                <div className='mt-4'>
                   <AuthUserContext.Consumer>
                     {authUser => {
                       if (authUser) {
@@ -147,19 +142,17 @@ class Profile extends Component {
                   </AuthUserContext.Consumer>
                 </div>
               </div>
-            </div>
+            </MainWrapper>
           </div>
 
           <div className='col-lg-8'>
-            <div className='profileContainer rounded'>
-              <div className='bioContainer'>
-                  <div className='profileHeader'>
-                    <h2>{this.state.authorName}</h2>
-                    <p>{this.state.displayedBio}</p>
-                  </div>
-                  <hr></hr>
-              </div>
-              <PostList>
+            <MainWrapper>
+              <Container styles={'m-2 px-2 pb-2'}>
+                <h2>{this.state.authorName}</h2>
+                <p>{this.state.displayedBio}</p>
+                <hr/>
+              </Container>
+              <Container>
                 {this.state.userPosts.map(userPosts => (
                   <PostListItem
                     key={userPosts._id}
@@ -177,14 +170,12 @@ class Profile extends Component {
                     voters={userPosts.voters}
                   />
                 ))}
-              </PostList>
-            </div>
+              </Container>
+            </MainWrapper>
           </div>
-
           <div className='col-lg-2'></div>
-
-        </div>
-      </div>
+        </Row>
+      </PageBody>
 
     );
   };

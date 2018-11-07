@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import API from '../../utils/API';
 import { PostDetail } from '../../components/PostComponents/PostDetail/PostDetail';
 import { Comments, CommentList } from '../../components/CommentDisplay';
-// import withAuthorization from '../../components/AuthUserSession/withAuthorization'
+// import withAuthorization from '../../components/AuthUserSession/withAuthorization';
 /*import TipButton from '../../components/TipButton';*/
-import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
-import { TextArea, FormBtn } from "../../components/PostComponents/PostForm";
-import './content.css';
+import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
+import { PageBody, Row, Button, TextArea, MainWrapper } from '../../components/Widgets';
 
 class Content extends Component {
   constructor(props) {
@@ -25,9 +24,8 @@ class Content extends Component {
   getPostWithComments = () => {
     API.getPostWithComments(this.props.match.params.id)
       .then(res => this.setState({ post: res.data, comments: res.data.comments, commentBody: "" }))
-       .then (res=> console.log(res.data))
       .catch(err => console.log(err));
-  }
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -53,13 +51,13 @@ class Content extends Component {
 
   render() {
     return (
-      <div className="pagebody">
-        <React.Fragment>
-          <div className="container-fluid">
-            <div className="row displayForm">
-              <div className="col-xl-2"></div>
-              <div className="col-xl-8 formBody rounded">
-                <PostDetail className="containerHeader" key={this.state.post._id} {...this.state.post} />
+      <React.Fragment>
+      <PageBody>
+            <Row>
+              <div className="col-md-2"></div>
+              <div className="col-md-8">
+              <MainWrapper>
+                <PostDetail key={this.state.post._id} {...this.state.post} />
                 <AuthUserContext.Consumer>
                   {authUser => 
                     authUser
@@ -71,8 +69,12 @@ class Content extends Component {
                             name="commentBody"
                             placeholder="Share your comment here"
                           />
-                          <FormBtn disabled={!(this.state.commentBody.length > 4)} onClick={this.handleFormSubmit}>Submit Comment</FormBtn>
-                           <hr />
+                          <Button 
+                            disabled={!(this.state.commentBody.length > 4)} 
+                            onClick={this.handleFormSubmit}
+                            text='Submit'
+                          />
+                           <hr/>
                         </div>
                       ) : null
                   }
@@ -82,12 +84,12 @@ class Content extends Component {
                     <Comments key={comment._id} {...comment} />
                   ))}
                 </CommentList>
+                </MainWrapper>
                 </div>
-              </div>
-              <div className="col-xl-2"></div>
-            </div>
-        </React.Fragment>
-      </div>
+                <div className="col-md-2"></div>
+              </Row>
+      </PageBody>
+      </React.Fragment>
     );
   };
 };

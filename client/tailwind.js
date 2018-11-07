@@ -44,6 +44,14 @@ let defaultConfig = require('tailwindcss/defaultConfig')()
 */
 
 let colors = {
+  'link-color': '#007bff',
+  'brand-green': '#2BA228',
+  'dark-green': '#195D1D',
+  'light-gray': '#D8D8D8',
+  'medium-gray': '#5E5E5E',
+  'darkest-gray': '#1B1B1B',
+  'soft-black': '#030303',
+
   'transparent': 'transparent',
 
   'black': '#22292f',
@@ -227,6 +235,8 @@ module.exports = {
       'Courier New',
       'monospace',
     ],
+    'header': 'Roboto',
+    'normal': 'Montserrat'
   },
 
 
@@ -470,6 +480,7 @@ module.exports = {
   width: {
     'auto': 'auto',
     'px': '1px',
+    '10px': '10px',
     '1': '0.25rem',
     '2': '0.5rem',
     '3': '0.75rem',
@@ -518,6 +529,7 @@ module.exports = {
   height: {
     'auto': 'auto',
     'px': '1px',
+    '10px': '10px',
     '1': '0.25rem',
     '2': '0.5rem',
     '3': '0.75rem',
@@ -644,6 +656,7 @@ module.exports = {
 
   padding: {
     'px': '1px',
+    '10px': '10px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
@@ -679,6 +692,7 @@ module.exports = {
   margin: {
     'auto': 'auto',
     'px': '1px',
+    '10px': '10px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
@@ -713,6 +727,7 @@ module.exports = {
 
   negativeMargin: {
     'px': '1px',
+    '10px': '10px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
@@ -928,7 +943,7 @@ module.exports = {
 
   plugins: [
     require('tailwindcss/plugins/container')({
-      // center: true,
+      center: true,
       // padding: '1rem',
     }),
   ],

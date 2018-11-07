@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { TextArea, FormBtn } from "../PostComponents/PostForm";
 import API from '../../utils/API';
 import { NestedComments } from '../CommentDisplay/NestedComments';
 import Moment from 'react-moment';
-import './Comments.css';
 import { Link } from 'react-router-dom';
 import AuthUserContext from "../AuthUserSession/AuthUserContext";
+import { Button, TextArea, CommentContainer, CalendarIcon, BitcoinIcon } from '../Widgets';
 
 export class Comments extends Component {
   constructor(props) {
@@ -34,16 +33,21 @@ export class Comments extends Component {
   };
 
   render() {
-  
     return (
       <React.Fragment>
-        <hr />
-        <div className='comment'>
-          <p className='smallPostCommentText'><Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link>&nbsp;&nbsp;<i className="fas fa-calendar-alt"></i>&nbsp;&nbsp;<Moment fromNow>{this.props.createdAt}</Moment>&nbsp;&nbsp;<i className="fab fa-bitcoin"></i>&nbsp;&nbsp;[earned $x.xx]</p>
+        <hr/>
+        <CommentContainer styles={''}>
+          <p className='text-sm'>
+            <Link className='mr-2' to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}</Link>
+            <CalendarIcon/>
+            <Moment fromNow className='mr-2'>{this.props.createdAt}</Moment>
+            <BitcoinIcon/>
+            [earned $x.xx]
+          </p>
           <br></br>
-          <p className='mediumPostText'> {this.props.body}</p>
-          <p>[#Upvotes][Upvote MoneyButton Component]</p>
-          <p>
+          <p className='text-base'> {this.props.body}</p>
+          <p className='text-sm'>[#Upvotes][Upvote MoneyButton Component]</p>
+          <p className='text-sm'>
             <AuthUserContext.Consumer>
               {authUser =>
                 authUser
@@ -53,11 +57,11 @@ export class Comments extends Component {
             </AuthUserContext.Consumer>
             <a onClick={this.toggleComments.bind(this)} href={`/comments/${this.props._id}`}>[View Replies {this.props.comments.length}]</a>
           </p>
-          {/* <button className="btn btn-secondary btn-sm" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button>&nbsp;&nbsp; */}
+          {/* <button className="btn btn-secondary btn-sm" onClick={this.toggleCommentBox.bind(this)}>[Reply]</button><span className='mr-2'></span> */}
           {/* <button type="button" className="btn btn-secondary btn-sm" onClick={this.toggleComments.bind(this)}>[View Replies <i className="far fa-comment">]</i></button> */}
           {!this.state.commentBoxIsHidden && <CommentBox id={this.props._id} toggleCommentBox={this.toggleCommentBox} />}
           {!this.state.commentsAreHidden && <LayeredComments commentID={this.props._id} />}
-        </div>
+        </CommentContainer>
       </React.Fragment>
     );
   };
@@ -86,7 +90,6 @@ class LayeredComments extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
           {this.state.layeredComments.map(comments => (
             <NestedComments
               key={comments._id}
@@ -96,7 +99,6 @@ class LayeredComments extends Component {
               createdAt={comments.createdAt}
             />
           ))}
-        </div>
       </React.Fragment>
     );
   };
@@ -138,19 +140,17 @@ class CommentBox extends Component {
   render() {
     return (
       <React.Fragment>
-
         <TextArea
           value={this.state.layeredBody}
           onChange={this.handleInputChange}
           name="layeredBody"
           placeholder="Share your comment here"
         />
-        <FormBtn
+        <Button
           disabled={!(this.state.layeredBody.length > 4)}
           onClick={this.handleFormSubmit}
-        >
-          Submit Comment
-            </FormBtn>
+          text='Submit'
+        />
       </React.Fragment>
     );
   };

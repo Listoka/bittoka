@@ -1,2 +1,1 @@
-export * from "./Tags";
-export * from './TagWrapper'
+export * from './TagColor';

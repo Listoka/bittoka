@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import { PostList, PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
-import { TextArea, FormBtn, Input } from "../../components/PostComponents/PostForm";
+import { PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
+import { EditButton, PageBody, Row, CancelIcon, Button, TextArea, Input, Container, MainWrapper } from '../../components/Widgets';
 import API from '../../utils/API';
-import './account.css';
 
 class Account extends Component {
   constructor(props) {
@@ -118,98 +117,78 @@ class Account extends Component {
 
   render() {
     return (
-      <div className='pagebody'>
-        <div className='row'>
+      <PageBody>
+        <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-7'>
-            <div className="categoryDetail rounded">
-              <div className='bioContainer'>
-                <div className='row'>
+          {/* This could be added to another type of its own container */}
+            <Container styles={"mt-10px py-2 rounded min-h-full bg-white"}>
+              <Container styles={'m-2 px-2 pb-2'}>
+                <Row>
                   <div className='col-md-6'>
-                    <h2 className='bioHeader'>{this.state.userName}'s Bio 
+                    <h2 className='font-header'>{this.state.userName}'s Bio 
                     {this.state.showBio
-                    ? <i className="far fa-edit btn" onClick={this.editBio}></i>
+                    ? <EditButton onClick={this.editBio} />
                     : null
                     }
                     </h2>
                   </div>
-                  <div className='col-md-6'>
-                    <div className='moneyBtnIdContainer'>
-                      {this.state.showMoneyBtnId
-                        ? <p id='mbEdit'>Your MoneyButton User Number: {this.state.moneyBtnId}
-                           <i className="far fa-edit btn"
-                            onClick={this.editmoneyBtnId}></i>
-                        </p>
-                        : <form>
-                          <i className="fas fa-undo btn" onClick={this.editmoneyBtnId}>Cancel</i>
-                          <Input
-                            value={this.state.moneyBtnId}
-                            onChange={this.handleInputChange}
-                            name="moneyBtnId"
-                            style={{ width: 125 + 'px' }}
-                          />
-                          <FormBtn
-                            disabled={!(this.state.moneyBtnId)}
-                            onClick={this.handleMoneyBtnIdSubmit}
-                          >
-                            Update
-                    </FormBtn>
-                        </form>
-                      }
-                    </div>
-                  </div>
-                </div>
+                  <div className='col-md-6'></div>
+                </Row>
                 
                 {this.state.showBio
-                  ? <div className='bioTextWrapper'>
-                    {this.state.bio}
-                    <hr></hr>
-                  </div>
+                  ? <div>
+                      {this.state.bio}
+                      <hr/>
+                    </div>
                   : <form>
-                    <i className="fas fa-undo btn" onClick={this.editBio}>Cancel</i>
                     <TextArea
                       value={this.state.bio}
                       onChange={this.handleInputChange}
                       name="bio"
                       placeholder="Enter bio here"
                     />
-                    <FormBtn
+                    <Button
                       disabled={!(this.state.bio)}
                       onClick={this.handleFormSubmit}
-                    >
-                      Update Bio
-                  </FormBtn>
+                      text='Update Bio'
+                    />
+                  <CancelIcon onClick={this.editBio} text='Cancel'/>
                   </form>
                 }
-              </div>
+              </Container>
 
-              <div className='container'>
-                <div className='moneyBtnIdContainer'>
+              <Container>
                   {this.state.showMoneyBtnId
-                    ? <div>Your MoneyButton User Number: {this.state.moneyBtnId} <i className="far fa-edit btn"
-                      onClick={this.editmoneyBtnId}>Edit</i>
+                    ? <div>Your MoneyButton User Number: {this.state.moneyBtnId} 
+                      <EditButton 
+                        text='Edit'
+                        onClick={this.editmoneyBtnId}
+                        onChange={this.handleInputChange}
+                      />
                     </div>
                     : <form>
-                      <i className="fas fa-undo btn" onClick={this.editmoneyBtnId}>Cancel</i>
                       <Input
                         value={this.state.moneyBtnId}
                         onChange={this.handleInputChange}
                         name="moneyBtnId"
-                        style={{ width: 125 + 'px' }}
+                        styles={{ width: 125 + 'px' }}
                       />
-                      <FormBtn
+                      <Button
                         disabled={!(this.state.moneyBtnId)}
                         onClick={this.handleMoneyBtnIdSubmit}
+                        text='Update'
                       >
-                        Update
-                    </FormBtn>
+                      </Button>
+                      <CancelIcon onClick={this.editmoneyBtnId} text='Cancel'/>
                     </form>
                   }
+                <div>
+                  <p>Total paid to other users to date: ${this.state.amtPaid}<br></br>Total earned from other users to date: ${this.state.amtEarned}</p>
                 </div>
-                <p>Total paid to other users to date: ${this.state.amtPaid}<br></br>Total earned from other users to date: ${this.state.amtEarned}</p>
-              </div>
+              </Container>
 
-              <PostList>
+              <Container>
                 {this.state.userPosts.map(userPosts => (
                   <PostListItem
                     key={userPosts._id}
@@ -227,14 +206,14 @@ class Account extends Component {
                     voters={userPosts.voters}
                   />
                 ))}
-              </PostList>
+              </Container>
               <hr></hr>
-            </div>
+            </Container>
           </div>
           <div className='col-lg-3'>
-            <div className='draftDetail rounded'>
-              <PostList>
-                <h5>Pending Drafts</h5>
+            <MainWrapper>
+              <Container>
+                <h4 className='font-header'>Pending Drafts</h4>
                 <hr></hr>
                 {this.state.drafts.map((drafts, index) => (
                   <DraftListItem
@@ -248,11 +227,11 @@ class Account extends Component {
                     removeDraft={this.removeDraft}
                   />
                 ))}
-              </PostList>
-            </div>
+              </Container>
+            </MainWrapper>
           </div>
-        </div>
-      </div>
+        </Row>
+      </PageBody>
     );
   };
 };

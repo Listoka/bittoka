@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
-import { PostList, PostListItem } from '../../components/PostComponents/PostListDisplay';
-import './Home.css';
-import Stickybar from '../../components/Stickybar/Stickybar';
+import { CategoryDescription } from '../../components/CategoryInfoDisplay';
+import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import sidebarImage from '../../assets/images/sidebar-400x400.jpg'
+import { PageBody, Row, MainWrapper, Container } from '../../components/Widgets';
 
 class Home extends Component {
   constructor(props) {
@@ -30,43 +29,36 @@ class Home extends Component {
 
   render() {
     return (
-      <div className='pagebody'>
+      <React.Fragment>
+      <PageBody>
       {/*Will need to find an alternate side bar solution with advertisements */}
-      <Stickybar categoryName={this.state.categoryName}></Stickybar>
-        <div className='row'>
+        <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
-            {/* <CreatePostButton
-              categoryName={this.state.categoryName}
-            /> */}
           </div>
           <div className='col-lg-2'>
           </div>
-        </div>
+        </Row>
         
-        <div className='row'>
+        <Row>
           <div className='col-sm-2'>
-            <div className='homeTagWrapper rounded'>
-              <div className='homeSidebarWrapper'>
-                <img className="img-fluid" src={sidebarImage} alt="Welcome to Listoka"></img>
-                <div className="homeSideBar rounded">
-                  <h6>Welcome to Listoka</h6>
-                  <p className='homeSidebarContent'><strong>Write something, earn Bitcoin.  It's that simple.</strong></p>
-                    <p className='para'>Share a story, create a DIY project, or post your travelog.  Get paid to make Listoka a better place.  
-                        Upvote content you like and give the poster or commenter a $0.02 tip.  If you're really impressed, visit the author's profile page and leave a custom tip.
-                        Good content deserves support.  So get to to it!  </p>
-                </div>
-              </div>
-            </div>
+            <MainWrapper styles={'homeTagWrapper'}>
+              <img className="img-fluid" src={sidebarImage} alt="Welcome to Listoka"></img>
+                <h6 className='m-10px p-10px font-bold text-base' >Welcome to Listoka</h6>
+                <p className='my-2 text-sm'><strong>Write something, earn Bitcoin.  It's that simple.</strong></p>
+                <p className='text-left text-sm'>Share a story, create a DIY project, or post your travelog.  Get paid to make Listoka a better place.  
+                  Upvote content you like and give the poster or commenter a $0.02 tip.  If you're really impressed, visit the author's profile page and leave a custom tip.
+                  Good content deserves support.  So get to to it!  </p>
+            </MainWrapper> 
           </div>
 
           <div className='col-md-8'>
-            <CategoryDetail>
+            <MainWrapper>
               <CategoryDescription
                 displayName={this.state.displayName}
                 description={this.state.description}
               />
-              <PostList>
+              <Container>
                 {this.state.homePosts.map(homePosts => (
                   <PostListItem
                     key={homePosts._id}
@@ -85,14 +77,15 @@ class Home extends Component {
                     voters={homePosts.voters}
                   />
                 ))}
-              </PostList>
-            </CategoryDetail>
+              </Container>
+            </MainWrapper>
           </div>
           <div className='col-sm-2'>
             {/* Advertisements would go here */}
           </div>
-        </div>
-      </div>
+        </Row>
+      </PageBody>
+      </React.Fragment>
     );
   };
 };

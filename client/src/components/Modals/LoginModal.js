@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '../../firebase'
-
 import ModalWrapper from './ModalWrapper';
+import { Row } from '../Widgets';
 
 class LoginModal extends React.Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class LoginModal extends React.Component {
 
                 <h2 className="header">Login</h2>
                 <hr className="hrModals"></hr>
-                <div className='row'>
+                <Row>
                     <div className="col-sm-1"></div>
                     <div className="col-sm-10">
                         <form onSubmit={this.handleSubmit}>
@@ -76,7 +76,7 @@ class LoginModal extends React.Component {
                         </form>
                     </div>
                     <div className="col-sm-1"></div>
-                </div>
+                </Row>
 
             </ModalWrapper >
         )

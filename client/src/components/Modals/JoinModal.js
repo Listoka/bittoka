@@ -1,6 +1,7 @@
 import React from 'react';
 import { firebase, auth } from '../../firebase'
 import axios from 'axios'
+import { Row } from '../Widgets';
 
 import ModalWrapper from './ModalWrapper';
 
@@ -77,7 +78,7 @@ class JoinModal extends React.Component {
 
                 <h2 className="header">Join Listoka</h2>
                 <hr className="hrModals"></hr>
-                <div className='row'>
+                <Row>
                     <div className="col-sm-1"></div>
                     <div className="col-sm-10">
                         <form onSubmit={this.handleSubmit}>
@@ -143,7 +144,7 @@ class JoinModal extends React.Component {
                         </form>
                     </div>
                     <div className="col-sm-1"></div>
-                </div>
+                </Row>
 
 
 

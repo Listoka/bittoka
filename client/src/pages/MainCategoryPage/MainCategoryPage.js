@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import { CategoryDescription, CategoryDetail } from '../../components/CategoryInfoDisplay';
+import { Link } from 'react-router-dom';
+import { CategoryDescription } from '../../components/CategoryInfoDisplay';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
-import { CreatePostButton } from '../../components/ButtonComponents/CreatePostButton';
-import Stickybar from '../../components/Stickybar/Stickybar';
-import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
+import { Button } from '../../components/Widgets/Button';
+import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
+import { PageBody, Row, MainWrapper } from '../../components/Widgets';
 
 class MainCategoryPage extends Component {
 
@@ -73,38 +74,36 @@ class MainCategoryPage extends Component {
   render() {
 
     return (
-      <div className='pagebody'>
-        <Stickybar categoryName={this.state.categoryName}></Stickybar>
-        <div className='row'>
+      <PageBody>
+        <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-8'>
             <AuthUserContext.Consumer>
               {
-                authUser => authUser ? <CreatePostButton categoryName={this.state.categoryName} /> : null
+                authUser => authUser ? 
+                <Link to={{pathname:`/categories/${this.state.categoryName}/posts/new`}}>
+                  <Button text='Create Post' />
+                </Link> : null
               }
             </AuthUserContext.Consumer>
           </div>
           <div className='col-lg-2'></div>
-        </div>
+        </Row>
 
-        <div className='row'>
+        <Row>
           <div className='col-sm-2'>
-            <div className='tagWrapper rounded'>
-              <div className='headWrapper'>
-                <p>Tags</p>
-              </div>
-              <ul id='tagUl'>
+            <MainWrapper styles={'tagWrapper'}>
+              <p className='text-left font-bold mb-1'>Tags</p>
                 {this.state.tags.sort().map(tag => (
                   <li className='tagLink rounded tagLinkInactive' key={tag} onClick={(event) => this.toggleSelectTag(event, tag)}>
                   {tag}
                   </li>
                 ))}
-              </ul>
-            </div>
+            </MainWrapper>
           </div>
 
           <div className='col-md-8'>
-            <CategoryDetail>
+            <MainWrapper>
               <CategoryDescription
                 displayName={this.state.categoryDisplayName}
                 description={this.state.categoryDescription}
@@ -129,13 +128,13 @@ class MainCategoryPage extends Component {
                       />
                   ))}
               </div>
-            </CategoryDetail>
+            </MainWrapper>
           </div>
           <div className='col-sm-2'>
             {/* Advertisements would go here */}
           </div>
-        </div>
-      </div>
+        </Row>
+      </PageBody>
     );
   };
 };
