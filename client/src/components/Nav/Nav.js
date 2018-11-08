@@ -4,7 +4,6 @@ import {NavLoggedIn, NavNotLoggedIn} from "../Nav";
 // import NavNotLoggedIn from "../NavNotLoggedIn";
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
-import Typwriter from '../Typwriter';
 
 //Will need to update a logged in / logged out state
 export class Nav extends Component {
@@ -29,15 +28,6 @@ export class Nav extends Component {
           <span> </span>
           <span> </span>
         </button>
-        <Typwriter
-          cursor={{
-            show: true,
-            blink: true,
-            element: '|',
-            hideWhenDone: true,
-            hideWhenDoneDelay: 500,
-          }}
-        ></Typwriter>
         <div className="collapse navbar-collapse justify-content-end" id="collapsingNavbar">
           <AuthUserContext.Consumer>
             {
