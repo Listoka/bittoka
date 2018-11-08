@@ -8,13 +8,13 @@ import SubNav from './components/subNav';
 import FlexContainer from './components/flexContainer';
 // import API from './utils/API';
 //Routes
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import Editor from './pages/Editor'
 import Content from './pages/Content';
 import NoMatch from './pages/NoMatch';
 // import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
-import MainCategoryPage from './pages/MainCategoryPage';
+// import MainCategoryPage from './pages/MainCategoryPage';
 import Profile from './pages/Profile';
 
 import authTest from './pages/AUTH-TEST';
@@ -61,7 +61,7 @@ class App extends Component {
           <Switch>
             {/* <Route exact path='/' component={Home} /> */}
             <Route exact path='/' component={MainPageContainer} />
-            <Route exact path='/home' component={Home} />
+            {/* <Route exact path='/home' component={Home} /> */}
             {/* <Route exact path='/categories/:categoryName' component={MainCategoryPage} /> */}
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName/posts/new' component={Editor} />

@@ -31,6 +31,28 @@ class MainPageContainer extends React.Component {
     }
   }
 
+  toggleSelectTag = (event, tag) => {
+    event.target.classList.toggle('tagLinkInactive');
+    event.target.classList.toggle('tagLinkActive');
+
+    let selectedTags, filteredPosts
+    if (this.state.selectedTags.includes(tag)) {
+      selectedTags = this.state.selectedTags.filter(t => t !== tag)
+    } else {
+      selectedTags = this.state.selectedTags.concat(tag).sort()
+    }
+
+    if (selectedTags.length === 0) {
+      filteredPosts = this.state.posts
+    } else {
+      filteredPosts = this.state.posts.filter(post => {
+        return post.tags.some(t => selectedTags.includes(t))
+      })
+    }
+
+    this.setState({ selectedTags, filteredPosts })
+  }
+
   fetchData() {
     const p = this.props
     const categoryName = (p.match && p.match.params.categoryName) || null
@@ -50,7 +72,8 @@ class MainPageContainer extends React.Component {
           categoryDisplayName: category.displayName,
           categoryDescription: category.description,
           categoryTags: category.tags,
-          posts: posts
+          posts: posts,
+          filteredPosts: posts
         })
       })
       .catch(err => console.log('fetchCategoryAndPosts Err: ', err))
@@ -59,12 +82,12 @@ class MainPageContainer extends React.Component {
   fetchDefault() {
     return API.getAllPosts()
       .then(result => result.data)
-      .then(posts => this.setState({ ...nullCategory, posts }))
+      .then(posts => this.setState({ filteredPosts: posts, ...nullCategory, posts }))
       .catch(err => console.log('fetchDefault Err: ', err))
   }
 
   render() {
-    return <MainPage {...this.state} />
+    return <MainPage toggleSelectTag={this.toggleSelectTag} {...this.state} />
   }
 }
 

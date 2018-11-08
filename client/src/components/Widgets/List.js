@@ -1,7 +1,6 @@
 import React from 'react'
 
 const List = props => {
-  console.log('List props: ', props)
   // default List styles
   let classes = 'm-1 p-1 bg-white border-medium-gray rounded '
 

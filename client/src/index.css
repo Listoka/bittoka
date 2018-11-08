@@ -11,7 +11,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: #333333;
   padding-top: 70px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0;
 }
 /* Need to keep */
