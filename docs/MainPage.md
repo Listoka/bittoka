@@ -1,16 +1,13 @@
-# Index
+# Main Page
 This is the primary content discovery view for Listoka.  It shows a list of
 posts and a sidebar with context aware content.
 
-## Index Page
+## Main Page Component
 - 'Dumb' component, this does not maintain its own state
-- Receives ReactRouter props
-- Renders the view by passing a render function into the `IndexContainer`
-  component
-- Sets structure and styles for page inside the render function passed into
-  `IndexContainer`
+- Is rendered by `MainPageContainer`
+- Sets structure and styles for page 
 
-## Index Container
+## Main Page Container
 - 'Smart' Component
 - Makes network request and stores state for:
     - Category Info (if applicable)
@@ -19,8 +16,8 @@ posts and a sidebar with context aware content.
 - Defines functions for interacting with page (including but not limited to):
     - Filter posts by tags
     - Pagination for loaded posts
-- Does *not* determine any structure or styles.  Instead, it receives a function
-  on its 'render prop' and uses that to determine what to actually render.
+- Renders `MainPage` component
+- Does *not* determine any structure or styles.
 
 ## Post List
 - 'Dumb' Component

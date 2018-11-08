@@ -22,6 +22,7 @@ import authTest from './pages/AUTH-TEST';
 // Auth Helper
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import ModalConductor from './components/Modals/ModalConductor'
+import MainPageContainer from './pages/Main/MainPageContainer';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -58,9 +59,11 @@ class App extends Component {
             closeModal={this.closeModal}
           />
           <Switch>
-            <Route exact path='/' component={Home} />
+            {/* <Route exact path='/' component={Home} /> */}
+            <Route exact path='/' component={MainPageContainer} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/categories/:categoryName' component={MainCategoryPage} />
+            {/* <Route exact path='/categories/:categoryName' component={MainCategoryPage} /> */}
+            <Route exact path='/categories/:categoryName' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName/posts/new' component={Editor} />
             <Route exact path='/posts/:id' component={Content} />
             <Route exact path='/posts/:postId/edit' component={Editor} />
