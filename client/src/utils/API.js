@@ -36,6 +36,11 @@ export default {
     //console.log(categoryName)
     return axios.get(`/api/categories/${categoryName}/posts`);
   },
+
+  getCategoryAndPosts: (categoryName) => {
+    return axios.get(`/api/categories/${categoryName}/posts`)
+  },
+  
   getCategoryInfo: (categoryName) => {
     console.log("getting Category Info")
     return axios.get(`/api/categories/info/${categoryName}`, {
