@@ -19,7 +19,6 @@
     "react-rte": "^0.16.1",
     "react-scripts": "1.1.5",
     "react-select": "^2.1.0",
-    "react-typist": "^2.0.4",
     "reactstrap": "^6.5.0",
     "tailwindcss": "^0.7.0"
   },
