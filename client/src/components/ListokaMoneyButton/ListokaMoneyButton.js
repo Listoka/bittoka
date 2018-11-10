@@ -7,13 +7,16 @@ const listokaCut = .01
 const listokaAcctNum = '783' // FIXME: Put in secure place (read from db?)
 
 class ListokaMoneyButton extends Component {
-  state = {
-    payeeMbId: 0
+  constructor(props) {
+    super(props)
+    this.state = {
+      payeeMbId: 0
+    }
   }
-    
+
   componentDidMount = () => {
     if (!this.props.payeeId) return
-  
+
     axios.get(`/api/users/id/${this.props.payeeId}`).then(result => {
       console.log('payee:' + this.props.payeeId)
       console.log('payee mb id: ' + result.data.moneyBtnId)
@@ -50,7 +53,7 @@ class ListokaMoneyButton extends Component {
     return (
       <div>
         {(this.state.payeeMbId) ?
-          <MoneyButton 
+          <MoneyButton
             outputs={[{
               to: this.state.payeeMbId,
               amount: this.props.payVal - listokaCut,

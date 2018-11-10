@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const List = props => {
   // default List styles
@@ -12,7 +13,7 @@ const List = props => {
   }
 
   // allow overwriting of styles
-  if (!props.mergeClasses && props.className && typeof(props.className === 'string')) {
+  if (!props.mergeClasses && props.className && typeof (props.className === 'string')) {
     classes = props.className
   }
 
@@ -23,6 +24,13 @@ const List = props => {
       })}
     </div>
   )
+}
+
+List.propTypes = {
+  data: PropTypes.array.isRequired,
+  keyProp: PropTypes.string.isRequired,
+  component: PropTypes.func.isRequired,
+  className: PropTypes.string
 }
 
 export default List

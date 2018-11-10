@@ -10,39 +10,39 @@ import { EditButton, Row, Container, UpArrowIcon } from '../../Widgets';
 export class PostDetail extends Component {
 
   state = {
-      body: this.props.body,
-      _id: this.props._id,
-      title: this.props.title,
-      teaser: this.props.teaser,
-      authorName: this.props.authorName,
-      categoryName: this.props.categoryName,
-      author: this.props.author,
-      upvotes: this.props.voters ? this.props.voters.length : 0,
-      upvoteList: this.props.voters || [],
-      purchasers: this.props.purchasers || []
+    body: this.props.body,
+    _id: this.props._id,
+    title: this.props.title,
+    teaser: this.props.teaser,
+    authorName: this.props.authorName,
+    categoryName: this.props.categoryName,
+    author: this.props.author,
+    upvotes: this.props.voters ? this.props.voters.length : 0,
+    upvoteList: this.props.voters || [],
+    purchasers: this.props.purchasers || []
   };
 
   afterUpvotePayment = (trans) => {
-      console.log('Last transaction' + JSON.stringify(trans))
-      API.upvotePost(this.state._id).then(result => {
-          console.log('After upvote: ' + JSON.stringify(result))
-          let voteNames = []
-          result.data.voters.map(voterRec => voteNames.push(voterRec))
-          this.setState({
-              upvotes: result.data.voters.length,
-              upvoteList: voteNames
-          })
+    console.log('Last transaction' + JSON.stringify(trans))
+    API.upvotePost(this.state._id).then(result => {
+      console.log('After upvote: ' + JSON.stringify(result))
+      let voteNames = []
+      result.data.voters.map(voterRec => voteNames.push(voterRec))
+      this.setState({
+        upvotes: result.data.voters.length,
+        upvoteList: voteNames
       })
+    })
   };
 
   afterPurchasePayment = (trans) => {
-      console.log('purchase trans: ' + JSON.stringify(trans))
-      API.purchasePost(this.state._id).then(result => {
-          console.log('After purchase success: ' + JSON.stringify(result))
-          this.setState({
-              purchasers: result.data.purchasers
-          });
+    console.log('purchase trans: ' + JSON.stringify(trans))
+    API.purchasePost(this.state._id).then(result => {
+      console.log('After purchase success: ' + JSON.stringify(result))
+      this.setState({
+        purchasers: result.data.purchasers
       });
+    });
   };
 
   render() {
@@ -50,43 +50,43 @@ export class PostDetail extends Component {
       <React.Fragment>
         <Row>
           <div className='col-lg-12'>
-          {/* TODO: refactor edit button into its own component using withAuthorization */}
-          <AuthUserContext.Consumer>
-            {
-              authUser => {
-                if (authUser && authUser.dbUser._id === this.props.author) {
-                  return (
-                    <p className='float-right inline'> 
-                    <Link to={{ pathname: `/posts/${this.props._id}/edit` }}>
-                      <EditButton 
-                        text='Edit Post'
-                      />
-                    </Link>
-                    </p>
-                  )
+            {/* TODO: refactor edit button into its own component using withAuthorization */}
+            <AuthUserContext.Consumer>
+              {
+                authUser => {
+                  if (authUser && authUser.dbUser._id === this.props.author) {
+                    return (
+                      <p className='float-right inline'>
+                        <Link to={{ pathname: `/posts/${this.props._id}/edit` }}>
+                          <EditButton
+                            text='Edit Post'
+                          />
+                        </Link>
+                      </p>
+                    )
+                  }
                 }
               }
-            }
-          </AuthUserContext.Consumer>
+            </AuthUserContext.Consumer>
 
             <h2>{this.props.title}</h2>
             <p className='my-2'>By: <Link to={{ pathname: `/users/${this.props.author}` }}>{this.props.authorName}
-              </Link> in <Link to={`/categories/${this.props.categoryName}`}>
+            </Link> in <Link to={`/categories/${this.props.categoryName}`}>
                 <span className={`${this.props.categoryName}Flair flair`}>{this.props.categoryName}</span>
-              </Link> <UpArrowIcon/> {this.state.upvotes}
+              </Link> <UpArrowIcon /> {this.state.upvotes}
             </p>
 
-          <AuthUserContext.Consumer>
-            {authUser => {
-              if (authUser) {
-                // Don't allow user to upvote more than once
-                if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
-                  return (
-                    <p className='float-right inline col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
-                  )
-                } else {
-                  return (
-                    <ListokaMoneyButton
+            <AuthUserContext.Consumer>
+              {authUser => {
+                if (authUser) {
+                  // Don't allow user to upvote more than once
+                  if (this.state.upvoteList.find(voter => voter._id === authUser.dbUser._id)) {
+                    return (
+                      <p className='float-right inline col-lg-3 col-md-4 col-sm-6 col-xs-6'>You have already upvoted this article.  You may only upvote once.</p>
+                    )
+                  } else {
+                    return (
+                      <ListokaMoneyButton
                         payVal='.03'
                         paymentSuccessCbk={this.afterUpvotePayment}
                         label='Upvote'
@@ -94,16 +94,16 @@ export class PostDetail extends Component {
                         userId={authUser.dbUser._id}
                         txType='post-vote'
                         postId={this.state._id}
-                    />
+                      />
+                    )
+                  }
+                } else {
+                  return (
+                    <p className='float-right inline col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
                   )
                 }
-              } else {
-                return (
-                  <p className='float-right inline col-lg-3 col-md-4 col-sm-6 col-xs-6'>You must be logged in to upvote.</p>
-                )
-              }
-            }}
-          </AuthUserContext.Consumer>
+              }}
+            </AuthUserContext.Consumer>
           </div>
         </Row>
         <AuthUserContext.Consumer>
@@ -139,7 +139,7 @@ export class PostDetail extends Component {
               } else {
                 // If no one is logged in, just return the teaser
                 return (
-                    <p>{this.props.teaser || null}</p>
+                  <p>{this.props.teaser || null}</p>
                 )
               }
             }

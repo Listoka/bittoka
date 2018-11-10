@@ -52,30 +52,30 @@ class Content extends Component {
   render() {
     return (
       <React.Fragment>
-      <div className='absolute w-full'>
-            <Row>
-              <div className="col-md-2"></div>
-              <div className="col-md-8">
+        <div className='absolute w-full'>
+          <Row>
+            <div className="col-md-2"></div>
+            <div className="col-md-8">
               <MainWrapper>
                 <PostDetail key={this.state.post._id} {...this.state.post} />
                 <AuthUserContext.Consumer>
-                  {authUser => 
+                  {authUser =>
                     authUser
-                      ? ( <div>
-                          <hr />
-                          <TextArea
-                            value={this.state.commentBody}
-                            onChange={this.handleInputChange}
-                            name="commentBody"
-                            placeholder="Share your comment here"
-                          />
-                          <Button 
-                            disabled={!(this.state.commentBody.length > 4)} 
-                            onClick={this.handleFormSubmit}
-                            text='Submit'
-                          />
-                           <hr/>
-                        </div>
+                      ? (<div>
+                        <hr />
+                        <TextArea
+                          value={this.state.commentBody}
+                          onChange={this.handleInputChange}
+                          name="commentBody"
+                          placeholder="Share your comment here"
+                        />
+                        <Button
+                          disabled={!(this.state.commentBody.length > 4)}
+                          onClick={this.handleFormSubmit}
+                          text='Submit'
+                        />
+                        <hr />
+                      </div>
                       ) : null
                   }
                 </AuthUserContext.Consumer>
@@ -84,11 +84,11 @@ class Content extends Component {
                     <Comments key={comment._id} {...comment} />
                   ))}
                 </CommentList>
-                </MainWrapper>
-                </div>
-                <div className="col-md-2"></div>
-              </Row>
-      </div>
+              </MainWrapper>
+            </div>
+            <div className="col-md-2"></div>
+          </Row>
+        </div>
       </React.Fragment>
     );
   };

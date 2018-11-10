@@ -23,6 +23,7 @@ import authTest from './pages/AUTH-TEST';
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import ModalConductor from './components/Modals/ModalConductor'
 import MainPageContainer from './pages/Main/MainPageContainer';
+import PostDetailPage from './pages/Content/PostDetailPage';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -65,7 +66,8 @@ class App extends Component {
             {/* <Route exact path='/categories/:categoryName' component={MainCategoryPage} /> */}
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName/posts/new' component={Editor} />
-            <Route exact path='/posts/:id' component={Content} />
+            {/* <Route exact path='/posts/:id' component={Content} /> */}
+            <Route exact path='/posts/:postId' component={PostDetailPage} />
             <Route exact path='/posts/:postId/edit' component={Editor} />
             <Route exact path='/account' component={AccountPage} />
             <Route exact path='/users/:id' component={Profile} />
