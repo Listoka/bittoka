@@ -16,15 +16,26 @@ class ListokaMoneyButton extends Component {
 
   componentDidMount = () => {
     if (!this.props.payeeId) return
+    this.getPayeeMoneyBtnId(this.props.payeeId)
+  }
 
-    axios.get(`/api/users/id/${this.props.payeeId}`).then(result => {
-      console.log('payee:' + this.props.payeeId)
+  componentDidUpdate(prevProps) {
+    if (prevProps.payeeId !== this.props.payeeId) {
+      this.getPayeeMoneyBtnId(this.props.payeeId)
+    }
+  }
+
+  getPayeeMoneyBtnId = payeeId => {
+    axios.get(`/api/users/id/${payeeId}`).then(result => {
+      console.log('payee:' + payeeId)
       console.log('payee mb id: ' + result.data.moneyBtnId)
       console.log(result)
       this.setState({
         payeeMbId: result.data.moneyBtnId
       })
     })
+      .catch(err => console.log('getPayeeMoneyBtnId Err: ', err))
+
   }
 
   handleError = err => {

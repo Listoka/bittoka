@@ -17,6 +17,7 @@ const Paywall = props => {
           )
         }
 
+        // TODO: Figure out a way to generalize this authorized check
         let purchasers = props.purchasers || []
         let authorized = (authUser.dbUser._id === props.author) || purchasers.includes(authUser.dbUser._id)
 

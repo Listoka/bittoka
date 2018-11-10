@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { UpArrowIcon } from '../../components/Widgets/UpArrowIcon'
 import Paywall from './Paywall';
 import renderHTML from 'react-render-html';
-import UpvoteMoneyButton from './UpvoteMoneyButton';
+import UpvoteMoneyButton from '../../components/ListokaMoneyButton/UpvoteMoneyButton';
 import CategoryFlair from '../../components/Widgets/CategoryFlair';
 import { EditButton } from '../../components/Widgets';
 
@@ -15,7 +15,8 @@ const ContentDetail = props => {
         <span className='mr-1'>By: <Link to={{ pathname: `/users/${props.author}` }}>{props.authorName}</Link></span>
         <span className='mr-1'>in <CategoryFlair categoryName={props.categoryName} /></span>
         <span className='mr-1'><UpArrowIcon /> {props.voters ? props.voters.length : 0}</span>
-        <span className='float-right'><EditButton postId={props._id} authorId={props.author} /></span>
+        {props._id &&
+          <span className='float-right'><EditButton postId={props._id} authorId={props.author} /></span>}
       </p>
 
       <Paywall {...props}>

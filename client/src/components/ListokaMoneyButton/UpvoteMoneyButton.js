@@ -1,6 +1,6 @@
 import React from 'react'
-import ListokaMoneyButton from '../../components/ListokaMoneyButton'
-import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
+import ListokaMoneyButton from '.'
+import AuthUserContext from '../AuthUserSession/AuthUserContext';
 
 const UpvoteMoneyButton = props => {
 

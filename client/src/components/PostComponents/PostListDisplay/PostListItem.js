@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AuthUserContext from '../../AuthUserSession/AuthUserContext';
 import Moment from 'react-moment';
 import { EditButton, BitcoinIcon, CalendarIcon, CommentsDollarIcon, UpArrowIcon, Card } from '../../Widgets';
 
