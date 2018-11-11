@@ -373,29 +373,8 @@ ul.navbar-nav a:hover::before, a:focus::before {
   list-style: none;
 }
 
-.flair {
-  padding: 0px 5px 0px 5px;
-  text-transform: capitalize;
+a:link{
   text-decoration: none;
-}
-
-.flair a:hover, a:link{
-  text-decoration: none;
-}
-
-.listokaFlair{
-  color: snow;
-  background-color: darkcyan;
-}
-
-.bitcoin-storyFlair{
-  color: snow;
-  background-color: royalblue;
-}
-
-.storiesFlair{
-  color: snow;
-  background-color: orangered;
 }
 
 /* SubNav Component */

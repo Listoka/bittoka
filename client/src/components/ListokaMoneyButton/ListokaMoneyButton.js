@@ -62,7 +62,7 @@ class ListokaMoneyButton extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {(this.state.payeeMbId) ?
           <MoneyButton
             outputs={[{
@@ -83,7 +83,7 @@ class ListokaMoneyButton extends Component {
           :
           <p>MoneyButton loading...</p>
         }
-      </div>
+      </React.Fragment>
     )
   }
 }

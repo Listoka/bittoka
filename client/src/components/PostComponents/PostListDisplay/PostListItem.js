@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { EditButton, BitcoinIcon, CalendarIcon, CommentsDollarIcon, UpArrowIcon, Card } from '../../Widgets';
+import CategoryFlair from '../../Widgets/CategoryFlair';
 
 export const PostListItem = props => {
   return (
@@ -21,9 +22,7 @@ export const PostListItem = props => {
             </div>
             <p className='text-sm mb-10px text-grey' text={'Posted by'}>
               <Link to={{ pathname: `/users/${props.author}` }}> {props.authorName} </Link>
-              in <Link to={`/categories/${props.categoryName}`}>
-                <span className={`${props.categoryName}Flair flair`}>{props.categoryName}</span>
-              </Link>
+              in <CategoryFlair categoryName={props.categoryName} />
             </p>
             <p className='mb-10px'>{props.teaser}</p>
           </span>
