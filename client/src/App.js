@@ -1,17 +1,15 @@
 //React
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 //JSON file and navigation
 import { Nav } from './components/Nav';
 import categories from './categories.json';
 import SubNav from './components/subNav';
-import FlexContainer from './components/flexContainer';
-// import API from './utils/API';
 
 //Routes
 import Editor from './pages/Editor'
 import NoMatch from './pages/NoMatch';
-// import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
 import Profile from './pages/Profile';
 import authTest from './pages/AUTH-TEST';
@@ -43,7 +41,7 @@ class App extends Component {
       <Router>
         <div>
           <Nav openModal={this.openModal} />
-          <FlexContainer>
+          <div className='flex justify-center mt-1'>
             {this.state.categories.map(category => (
               <SubNav
                 id={category.id}
@@ -52,7 +50,7 @@ class App extends Component {
                 name={category.name}
               />
             ))}
-          </FlexContainer>
+          </div>
           <ModalConductor
             currentModal={this.state.currentModal}
             closeModal={this.closeModal}
