@@ -5,15 +5,15 @@ import PropTypes from 'prop-types'
 const styles = {
   'bitcoin-story': {
     'color': 'snow',
-    'background-color': 'royalblue'
+    'backgroundColor': 'royalblue'
   },
   'listoka': {
     'color': 'snow',
-    'background-color': 'darkcyan'
+    'backgroundColor': 'darkcyan'
   },
   'stories': {
     'color': 'snow',
-    'background-color': 'orangered'
+    'backgroundColor': 'orangered'
   },
 }
 
