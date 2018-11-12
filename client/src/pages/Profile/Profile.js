@@ -8,7 +8,7 @@ import {  Row, Input, Button, MainWrapper, Container } from '../../components/Wi
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
 
-class Profile extends Component {
+export class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -180,5 +180,3 @@ class Profile extends Component {
     );
   };
 };
-
-export default Profile;

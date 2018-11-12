@@ -15,7 +15,8 @@ import NoMatch from './pages/NoMatch';
 // import * as routes from './constants/routes';
 import AccountPage from './pages/Account';
 // import MainCategoryPage from './pages/MainCategoryPage';
-import Profile from './pages/Profile';
+// import { Profile } from './pages/Profile';
+import { ProfileContainer } from './pages/Profile';
 
 import authTest from './pages/AUTH-TEST';
 
@@ -23,6 +24,7 @@ import authTest from './pages/AUTH-TEST';
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import ModalConductor from './components/Modals/ModalConductor'
 import MainPageContainer from './pages/Main/MainPageContainer';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -68,7 +70,8 @@ class App extends Component {
             <Route exact path='/posts/:id' component={Content} />
             <Route exact path='/posts/:postId/edit' component={Editor} />
             <Route exact path='/account' component={AccountPage} />
-            <Route exact path='/users/:id' component={Profile} />
+            {/* <Route exact path='/users/:id' component={Profile} /> */}
+            <Route exact path='/users/:id' component={ProfileContainer} />
             <Route exact path='/editor' component={Editor} />
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
