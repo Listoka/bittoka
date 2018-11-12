@@ -7,21 +7,35 @@ const listokaCut = .01
 const listokaAcctNum = '783' // FIXME: Put in secure place (read from db?)
 
 class ListokaMoneyButton extends Component {
-  state = {
-    payeeMbId: 0
+  constructor(props) {
+    super(props)
+    this.state = {
+      payeeMbId: 0
+    }
   }
-    
+
   componentDidMount = () => {
     if (!this.props.payeeId) return
-  
-    axios.get(`/api/users/id/${this.props.payeeId}`).then(result => {
-      console.log('payee:' + this.props.payeeId)
+    this.getPayeeMoneyBtnId(this.props.payeeId)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.payeeId !== this.props.payeeId) {
+      this.getPayeeMoneyBtnId(this.props.payeeId)
+    }
+  }
+
+  getPayeeMoneyBtnId = payeeId => {
+    axios.get(`/api/users/id/${payeeId}`).then(result => {
+      console.log('payee:' + payeeId)
       console.log('payee mb id: ' + result.data.moneyBtnId)
       console.log(result)
       this.setState({
         payeeMbId: result.data.moneyBtnId
       })
     })
+      .catch(err => console.log('getPayeeMoneyBtnId Err: ', err))
+
   }
 
   handleError = err => {
@@ -48,9 +62,9 @@ class ListokaMoneyButton extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {(this.state.payeeMbId) ?
-          <MoneyButton 
+          <MoneyButton
             outputs={[{
               to: this.state.payeeMbId,
               amount: this.props.payVal - listokaCut,
@@ -69,7 +83,7 @@ class ListokaMoneyButton extends Component {
           :
           <p>MoneyButton loading...</p>
         }
-      </div>
+      </React.Fragment>
     )
   }
 }

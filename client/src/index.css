@@ -92,20 +92,6 @@ body {
   .homeTagWrapper { display: none; } 
 }
 
-.commentContainer{
-  margin-top:0px;
-}
-
-.commentHeader {
-  background-color:#007bff;
-  color: snow;
-  padding: 5px;
-}
-
-.commentBtn{
-  margin: 10px 0px 20px 0px;
-}
-
 /* CreatePostButton Component */
 .postBtn {
   background-color: #009688;
@@ -134,15 +120,6 @@ body {
   padding: 5px 10px 5px 10px;
   border-left: solid 1px;
   border-color: darkcyan;
-}
-
-/* FlexContainer Component */
-
-.flex-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-  align-content: center;
 }
 
 /* Modal Component */
@@ -396,29 +373,8 @@ ul.navbar-nav a:hover::before, a:focus::before {
   list-style: none;
 }
 
-.flair {
-  padding: 0px 5px 0px 5px;
-  text-transform: capitalize;
+a:link{
   text-decoration: none;
-}
-
-.flair a:hover, a:link{
-  text-decoration: none;
-}
-
-.listokaFlair{
-  color: snow;
-  background-color: darkcyan;
-}
-
-.bitcoin-storyFlair{
-  color: snow;
-  background-color: royalblue;
-}
-
-.storiesFlair{
-  color: snow;
-  background-color: orangered;
 }
 
 /* SubNav Component */
@@ -527,45 +483,6 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
   margin: 0;
   padding: 0;
 }
-
-/* TipButton Component */
-
-.tipAmount {
-  margin-right: 10px;
-}
-
-.tipBtnCard {
-  box-shadow: 0 6px 10px 0px #333; 
-  background-color: #009688;
-  margin-bottom: 40px;
-}
-
-/* TypeWriter Component */
-
-.Typist {
-  margin-left: 10px;
-  color: ghostwhite;
-  font-size: 26px;
-  font-family: 'arial';
-  font-weight: 500;
-  text-align: center;
-  padding-top: 3px;
-}
-
-.Typist .Cursor {
-  display: inline-block; }
-  .Typist .Cursor--blinking {
-    opacity: 1;
-    animation: blink 1s linear infinite; 
-  }
-
-@keyframes blink {
-  0% {
-    opacity: 1; }
-  50% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
 
 /* Account Page */
 

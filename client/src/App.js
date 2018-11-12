@@ -1,28 +1,25 @@
 //React
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 //JSON file and navigation
 import { Nav } from './components/Nav';
 import categories from './categories.json';
 import SubNav from './components/subNav';
-import FlexContainer from './components/flexContainer';
-// import API from './utils/API';
-//Routes
-// import Home from './pages/Home';
-import Editor from './pages/Editor'
-import Content from './pages/Content';
-import NoMatch from './pages/NoMatch';
-// import * as routes from './constants/routes';
-import AccountPage from './pages/Account';
-// import MainCategoryPage from './pages/MainCategoryPage';
-import Profile from './pages/Profile';
 
+//Routes
+import Editor from './pages/Editor'
+import NoMatch from './pages/NoMatch';
+import AccountPage from './pages/Account';
+import Profile from './pages/Profile';
 import authTest from './pages/AUTH-TEST';
 
 // Auth Helper
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import ModalConductor from './components/Modals/ModalConductor'
 import MainPageContainer from './pages/Main/MainPageContainer';
+import PostDetailPage from './pages/Content/PostDetailPage';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +41,7 @@ class App extends Component {
       <Router>
         <div>
           <Nav openModal={this.openModal} />
-          <FlexContainer>
+          <div className='flex justify-center mt-1'>
             {this.state.categories.map(category => (
               <SubNav
                 id={category.id}
@@ -53,19 +50,16 @@ class App extends Component {
                 name={category.name}
               />
             ))}
-          </FlexContainer>
+          </div>
           <ModalConductor
             currentModal={this.state.currentModal}
             closeModal={this.closeModal}
           />
           <Switch>
-            {/* <Route exact path='/' component={Home} /> */}
             <Route exact path='/' component={MainPageContainer} />
-            {/* <Route exact path='/home' component={Home} /> */}
-            {/* <Route exact path='/categories/:categoryName' component={MainCategoryPage} /> */}
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName/posts/new' component={Editor} />
-            <Route exact path='/posts/:id' component={Content} />
+            <Route exact path='/posts/:postId' component={PostDetailPage} />
             <Route exact path='/posts/:postId/edit' component={Editor} />
             <Route exact path='/account' component={AccountPage} />
             <Route exact path='/users/:id' component={Profile} />

@@ -3,7 +3,7 @@
 This page contains components that display the content of the post or a paywall,
 the comments associated with that post, and the purchasing / upvote mechanic.
 
-## Content Detail Page
+## Post Detail Page
 - stateless component
 - takes ReactRouter props
 - renders `ContentDetailContainer` and `CommentListContainer`
@@ -25,6 +25,20 @@ the comments associated with that post, and the purchasing / upvote mechanic.
 - displays either the teaser or content body based on props
 - sets the structure and style to display information like post title, author,
   cost, votes, body, teaser, etc.
+
+## Paywall
+- stateless component
+- receives post data and paywall cost via props
+- Has 3 render outputs
+  - if user is not logged in, display message 'must log in to purchase'
+  - if user is logged in, but hasn't purchased, show purchase money button
+  - if already purchased, render children
+
+## UpvoteMoneyButton
+- stateless component
+- simple wrapper around the Listoka Money button that sets some container styles
+- also sets some props for the MoneyButton 
+- TODO: make a more general money button wrapper for styles and to display info/error messages
  
 ## MoneyButton
 - Does some money button magic to allow purchasing of content, then lets the
