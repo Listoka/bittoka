@@ -15,3 +15,5 @@ function makeTreeList(data, idProp = 'id', parentProp = 'parent', childrenProp =
 
   return treeList
 }
+
+export default makeTreeList

@@ -45,7 +45,7 @@ router.route('/comments/:id/vote')
 router.route('/posts/:postId/comments')
   .post((req, res) => {
     if (res.locals.post.isDraft) {
-      return res.status(403).json({message: 'Cannot add comments to draft posts.'})
+      return res.status(403).json({ message: 'Cannot add comments to draft posts.' })
     }
     const dbUser = res.locals.user.dbUser
     const { body } = req.body
@@ -76,6 +76,7 @@ router.route('/comments/:commentId/comments')
       body: body,
       parentPost: res.locals.comment.parentPost,
       commentPath: res.locals.comment.commentPath + res.locals.comment._id + '/',
+      ancestors: [...res.locals.comment.ancestors, res.locals.comment._id],
       author: dbUser._id,
       authorName: dbUser.username
     }

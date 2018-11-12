@@ -30,7 +30,8 @@ const PostSchema = new Schema({
     timestamps: true
   })
 
-PostSchema.virtual('votes').get(() => this.voters.length)
+// PostSchema.virtual('votes').get(() => this.voters.length)
+PostSchema.set('toJSON', { virtuals: true })
 
 const Post = mongoose.model('Post', PostSchema)
 

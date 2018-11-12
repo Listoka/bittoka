@@ -7,9 +7,12 @@ require('./paramHelpers')(router)
 router.route('/posts')
   .get((req, res) => {
     db.Post
-      .find({isDraft: false})
+      .find({ isDraft: false })
       .then(posts => res.json(posts))
-      .catch(err => res.status(500).json(err))
+      .catch(err => {
+        console.log('\n>>>>> GET /posts ERROR:\n', err)
+        res.status(500).json(err)
+      })
   })
 
 router.route('/posts/:id')

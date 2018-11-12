@@ -19,6 +19,7 @@ class CommentListContainer extends React.Component {
 
   componentDidMount() {
     this.fetchComments()
+      .then(() => this.sortComments())
   }
 
   fetchComments() {
@@ -32,12 +33,29 @@ class CommentListContainer extends React.Component {
 
   sortComments() {
     const treeList = makeTreeList(this.comments, '_id', 'parentComment', 'replies', this.commentMap)
-    // const sortedComments = flatten(treeList)
-    // this.setState({ sortedComments })
+    console.log('treeList: ', treeList)
+    const sortedComments = []
+    flatten(treeList, 'replies', sortedComments, compareVotersDesc)
+    this.setState({ sortedComments })
   }
 
   render() {
-    return <CommentList {...this.state} />
+    return <CommentList comments={this.state.sortedComments} />
+  }
+}
+
+// desc order by num voters
+function compareVotersDesc(node1, node2) {
+  return node2.voters.length - node1.voters.length
+}
+
+// where treeList is an array of trees
+function flatten(treeList, childrenKey, collection, compareFunc) {
+  if (!treeList || treeList.length === 0) return
+  treeList.sort(compareFunc)
+  for (let node of treeList) {
+    collection.push(node)
+    flatten(node[childrenKey], childrenKey, collection)
   }
 }
 
