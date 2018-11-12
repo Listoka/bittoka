@@ -32,8 +32,8 @@ class CommentListContainer extends React.Component {
 
   sortComments() {
     const treeList = makeTreeList(this.comments, '_id', 'parentComment', 'replies', this.commentMap)
-    const sortedComments = flatten(treeList)
-    this.setState({ sortedComments })
+    // const sortedComments = flatten(treeList)
+    // this.setState({ sortedComments })
   }
 
   render() {
