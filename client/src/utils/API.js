@@ -32,6 +32,11 @@ export default {
         console.log(error);
       });
   },
+
+  getAllPostComments: (postId) => {
+    return axios.get(`/api/posts/${postId}/comments/all`)
+  },
+
   getPostings: (categoryName) => {
     //console.log(categoryName)
     return axios.get(`/api/categories/${categoryName}/posts`);
@@ -40,7 +45,7 @@ export default {
   getCategoryAndPosts: (categoryName) => {
     return axios.get(`/api/categories/${categoryName}/posts`)
   },
-  
+
   getCategoryInfo: (categoryName) => {
     console.log("getting Category Info")
     return axios.get(`/api/categories/info/${categoryName}`, {
@@ -130,7 +135,7 @@ export default {
 
   getMoneyButton: (id) => {
     return axios.get(`/api/users/id/${id}/profile`)//May need to change. Wherever we can publicly grab the MB id from
-  }, 
+  },
 
   createTransaction: (tx) => {
     console.log('createTransaction: tx: ' + JSON.stringify(tx))
@@ -138,10 +143,10 @@ export default {
   },
 
   getTotalPaidFromUser: (id) => {
-      return axios.get(`/api/transactions/paid/userId/${id}`)
+    return axios.get(`/api/transactions/paid/userId/${id}`)
   },
 
   getTotalPaidToUser: (id) => {
-      return axios.get(`/api/transactions/paid/paidUserId/${id}`)
+    return axios.get(`/api/transactions/paid/paidUserId/${id}`)
   }
 };
