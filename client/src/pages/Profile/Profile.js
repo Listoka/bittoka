@@ -99,6 +99,8 @@ export class Profile extends Component {
   };
 
   render() {
+    
+
     return (
       <div className='absolute w-full'>
         <Row>

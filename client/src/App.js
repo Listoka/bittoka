@@ -11,24 +11,15 @@ import SubNav from './components/subNav';
 import Editor from './pages/Editor'
 import NoMatch from './pages/NoMatch';
 import AccountPage from './pages/Account';
-<<<<<<< HEAD
-// import MainCategoryPage from './pages/MainCategoryPage';
-// import { Profile } from './pages/Profile';
-import { ProfileContainer } from './pages/Profile';
-
-=======
 import Profile from './pages/Profile';
->>>>>>> master
 import authTest from './pages/AUTH-TEST';
 
 // Auth Helper
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import ModalConductor from './components/Modals/ModalConductor'
 import MainPageContainer from './pages/Main/MainPageContainer';
-<<<<<<< HEAD
-=======
 import PostDetailPage from './pages/Content/PostDetailPage';
->>>>>>> master
+import { ProfileContainer } from './pages/Profile/ProfileContainer';
 
 class App extends Component {
   constructor(props) {

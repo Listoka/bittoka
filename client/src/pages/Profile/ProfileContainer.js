@@ -11,7 +11,7 @@ export class ProfileContainer extends React.Component {
     this.state = {
       author: this.props.match.params.id,
       userPosts: [],
-      toggleView: true,
+      currentView: 'POSTS',
       userComments: [],
       payees: [{
         to: listokaAcctNum,
@@ -76,8 +76,9 @@ export class ProfileContainer extends React.Component {
     this.setState({ tipAmt: event.target.value, labelAmount: event.target.value })
   };
 
-  switchView = () => {
-    this.setState(prevState => ({ toggleView: !prevState.toggleView }))
+  switchView = (event, viewType) => {
+    event.preventDefault();
+    this.setState({ currentView: viewType })
   }
 
   render(){
