@@ -4,6 +4,7 @@ import { NavLoggedIn, NavNotLoggedIn } from "../Nav";
 // import NavNotLoggedIn from "../NavNotLoggedIn";
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
+import ModalLaunchContext from '../Modals/ModalLaunchContext';
 
 //Will need to update a logged in / logged out state
 export class Nav extends Component {
@@ -30,12 +31,16 @@ export class Nav extends Component {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="collapsingNavbar">
           <ul className="nav navbar-nav navbar-right">
-            <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-              <div className="nav-link">
-                <a style={{ color: 'snow' }} onClick={(e) => this.props.openModal(e, 'GIST')} href="/">Gist</a>
-                <span className="sr-only">Gist</span>
-              </div>
-            </li>
+            <ModalLaunchContext.Consumer>
+              {openModal => (
+                <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+                  <div className="nav-link">
+                    <a style={{ color: 'snow' }} onClick={(e) => openModal(e, 'GIST')} href="/">Gist</a>
+                    <span className="sr-only">Gist</span>
+                  </div>
+                </li>
+              )}
+            </ModalLaunchContext.Consumer>
             <AuthUserContext.Consumer>
               {
                 authUser =>

@@ -126,13 +126,14 @@ body {
 
 .Modal, .GistModal {
   background: white;
-  margin:auto;
+  /* margin:auto; */
   margin-left: auto;
   margin-right: auto;
-  margin-top: -60px;
+  /* margin-top: -60px; */
   padding: 20px;
   z-index: 3;
   position: absolute;
+  top: 100px;
   left:0;
   right: 0;
   border-radius: 10px;
