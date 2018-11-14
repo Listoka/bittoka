@@ -7,34 +7,26 @@ import { Nav } from './components/Nav';
 import categories from './categories.json';
 import SubNav from './components/subNav';
 
-//Routes
+// "Pages"
 import Editor from './pages/Editor'
 import NoMatch from './pages/NoMatch';
 import AccountPage from './pages/Account';
-import Profile from './pages/Profile';
-import authTest from './pages/AUTH-TEST';
-
-// Auth Helper
-import withAuthentication from './components/AuthUserSession/withAuthentication';
-import ModalConductor from './components/Modals/ModalConductor'
 import MainPageContainer from './pages/Main/MainPageContainer';
 import PostDetailPage from './pages/Content/PostDetailPage';
+import { ProfileContainer } from './pages/Profile/ProfileContainer';
+import authTest from './pages/AUTH-TEST';
+
+// Higher Order Components
+import withAuthentication from './components/AuthUserSession/withAuthentication';
+import withModals from './components/Modals/withModals'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categories: categories,
-      currentModal: '',
     };
   };
-
-  openModal = (event, modalName) => {
-    event.preventDefault()
-    this.setState({ currentModal: modalName })
-  }
-
-  closeModal = () => this.setState({ currentModal: '' })
 
   render() {
     return (
@@ -51,10 +43,6 @@ class App extends Component {
               />
             ))}
           </div>
-          <ModalConductor
-            currentModal={this.state.currentModal}
-            closeModal={this.closeModal}
-          />
           <Switch>
             <Route exact path='/' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />
@@ -62,7 +50,7 @@ class App extends Component {
             <Route exact path='/posts/:postId' component={PostDetailPage} />
             <Route exact path='/posts/:postId/edit' component={Editor} />
             <Route exact path='/account' component={AccountPage} />
-            <Route exact path='/users/:id' component={Profile} />
+            <Route exact path='/users/:id' component={ProfileContainer} />
             <Route exact path='/editor' component={Editor} />
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
@@ -73,4 +61,4 @@ class App extends Component {
   }
 };
 
-export default withAuthentication(App);
+export default withAuthentication(withModals(App));
