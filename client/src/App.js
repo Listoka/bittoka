@@ -19,6 +19,7 @@ import withAuthentication from './components/AuthUserSession/withAuthentication'
 import ModalConductor from './components/Modals/ModalConductor'
 import MainPageContainer from './pages/Main/MainPageContainer';
 import PostDetailPage from './pages/Content/PostDetailPage';
+import { ProfileContainer } from './pages/Profile/ProfileContainer';
 
 class App extends Component {
   constructor(props) {
@@ -62,7 +63,8 @@ class App extends Component {
             <Route exact path='/posts/:postId' component={PostDetailPage} />
             <Route exact path='/posts/:postId/edit' component={Editor} />
             <Route exact path='/account' component={AccountPage} />
-            <Route exact path='/users/:id' component={Profile} />
+            {/* <Route exact path='/users/:id' component={Profile} /> */}
+            <Route exact path='/users/:id' component={ProfileContainer} />
             <Route exact path='/editor' component={Editor} />
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
