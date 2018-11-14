@@ -7,19 +7,17 @@ import { Nav } from './components/Nav';
 import categories from './categories.json';
 import SubNav from './components/subNav';
 
-//Routes
+// "Pages"
 import Editor from './pages/Editor'
 import NoMatch from './pages/NoMatch';
 import AccountPage from './pages/Account';
-// import Profile from './pages/Profile';
-import authTest from './pages/AUTH-TEST';
-
-// Auth Helper
-import withAuthentication from './components/AuthUserSession/withAuthentication';
-// import ModalConductor from './components/Modals/ModalConductor'
 import MainPageContainer from './pages/Main/MainPageContainer';
 import PostDetailPage from './pages/Content/PostDetailPage';
 import { ProfileContainer } from './pages/Profile/ProfileContainer';
+import authTest from './pages/AUTH-TEST';
+
+// Higher Order Components
+import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
 
 class App extends Component {
