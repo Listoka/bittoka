@@ -13,7 +13,7 @@ const List = props => {
     classes += className
   }
 
-  // allow overwriting of styles
+  // allow overwriting of styles... a string like 'none' or 'n/a' works too
   if (!mergeClasses && className && typeof (className === 'string')) {
     classes = className
   }

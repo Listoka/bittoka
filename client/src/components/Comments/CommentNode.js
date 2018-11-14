@@ -4,7 +4,21 @@ import CommentReplyForm from './CommentReplyForm'
 
 const CommentNode = props => {
   const { _id, authorName, body, voters, replies, isCollapsed } = props
-  const numVotes = voters.length
+  const numVotes = (voters && voters.length) || 0
+
+  if (!_id) {
+    return (
+      <div>
+        <a href='/reply' onClick={props.toggleShowForm}>[reply]</a>
+        {props.showForm &&
+          <CommentReplyForm
+            parentComment={_id}
+            submitComment={props.submitComment}
+            toggleShowForm={props.toggleShowForm}
+          />}
+      </div>
+    )
+  }
 
   if (isCollapsed) {
     return (

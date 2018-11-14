@@ -1,30 +1,33 @@
 import React from 'react'
 import List from '../Widgets/List'
-import CommentListItem from './CommentListItem'
 import CommentNodeContainer from './CommentNodeContainer'
 
 const CommentList = props => {
   const comments = props.comments.sort(compareVotersDesc)
+  let classes = 'bg-white border-l border-grey ml-3'
+
+  // this component is used in 2 different, but very similar ways.
+  // if it is the 'root' or base container, we want a different set 
+  // of styles than if it is an 'embedded' instance of the list
+  if (props.root) {
+    classes = 'w-4/5 bg-white p1 rounded mx-auto mt-3'
+  }
+
   return (
-    // props.data &&
-    // <div className='bg-white rounded w-4/5 mx-auto my-4'>
-    <List
-      data={comments}
-      keyProp='_id'
-      component={CommentNodeContainer}
-      className='bg-white border-l border-grey ml-3'
-      submitComment={props.submitComment}
-    // 'w-4/5 bg-white p1 rounded mx-auto mt-3'
-    />
-    // </div>
-    // <div className='bg-white rounded w-4/5 mx-auto my-4'>
-    //   <List
-    //     data={props.comments}
-    //     keyProp='_id'
-    //     component={CommentListItem}
-    //     handleCollapse={props.handleCollapse}
-    //   />
-    // </div>
+    <div className={classes}>
+      {props.root &&
+        <CommentNodeContainer
+          submitComment={props.submitComment}
+          parentPost={props.parentPost}
+        />}
+      <List
+        data={comments}
+        keyProp='_id'
+        component={CommentNodeContainer}
+        className='none'
+        submitComment={props.submitComment}
+      />
+    </div>
   )
 }
 

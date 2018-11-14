@@ -9,8 +9,8 @@ const CommentSchema = new Schema({
   parentPost: { type: ObjectId, ref: 'Post' },
   parentComment: { type: ObjectId, ref: 'Comment' },
   voters: [{ type: ObjectId, ref: 'User' }],
-  comments: [{ type: ObjectId, ref: 'Comment' }],
-  commentPath: { type: String, default: '/' },
+  // comments: [{ type: ObjectId, ref: 'Comment' }],
+  // commentPath: { type: String, default: '/' },
   ancestors: [{ type: ObjectId, ref: 'Comment' }]
 },
   {

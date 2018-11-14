@@ -10,14 +10,11 @@ class CommentListContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // sortedComments: [],
-      // displayedComments: [],
       treeList: []
     }
   }
 
   comments = []
-  commentMap = {}
 
   componentDidMount() {
     this.fetchComments()
@@ -26,20 +23,13 @@ class CommentListContainer extends React.Component {
 
   fetchComments() {
     return API.getAllPostComments(this.props.postId)
-      .then(response => {
-        console.log('fetchComments response: ', response)
-        this.comments = response.data
-      })
+      .then(response => this.comments = response.data)
       .catch(err => console.log('fetchComments Err: ', err))
   }
 
   sortComments() {
-    const treeList = makeTreeList(this.comments, '_id', 'parentComment', 'replies', this.commentMap)
+    const treeList = makeTreeList(this.comments, '_id', 'parentComment', 'replies')
     this.setState({ treeList })
-    // const sortedComments = []
-    // flatten(treeList, 'replies', sortedComments, compareVotersDesc)
-    // this.comments = sortedComments
-    // this.setState({ displayedComments: sortedComments })
   }
 
   collapseComment = (commentId, depth) => {
@@ -51,6 +41,8 @@ class CommentListContainer extends React.Component {
     this.setState({ displayedComments: comments })
   }
 
+  // a better way to handle this might be to not actually fetch and sort right away
+  // instead, we could just add the comment directly to the list and submit the comment in the background
   submitComment = data => {
     API.createComment(this.props.postId, data)
       .then(result => console.log('submitComment result: ', result))
@@ -60,38 +52,31 @@ class CommentListContainer extends React.Component {
 
   render() {
     return (
-      <div className='w-4/5 bg-white p1 rounded mx-auto mt-3'>
-        <CommentList
-          comments={this.state.treeList}
-          submitComment={this.submitComment}
-        />
-      </div>
+      <CommentList
+        comments={this.state.treeList}
+        submitComment={this.submitComment}
+        root
+      />
     )
   }
-
-  // render() {
-  //   return (
-  //     <CommentList
-  //       handleCollapse={this.collapseComment}
-  //       comments={this.state.displayedComments}
-  //     />
-  //   )
-  // }
 }
 
-// desc order by num voters
-function compareVotersDesc(node1, node2) {
-  return node2.voters.length - node1.voters.length
-}
+// another option would be to build a tree to sort the comments then flatten it to make
+// rendering a lot of comments faster..
 
-// where treeList is an array of trees
-function flatten(treeList, childrenKey, collection, compareFunc) {
-  if (!treeList || treeList.length === 0) return
-  treeList.sort(compareFunc)
-  for (let node of treeList) {
-    collection.push(node)
-    flatten(node[childrenKey], childrenKey, collection)
-  }
-}
+// // desc order by num voters
+// function compareVotersDesc(node1, node2) {
+//   return node2.voters.length - node1.voters.length
+// }
+
+// // where treeList is an array of trees
+// function flatten(treeList, childrenKey, collection, compareFunc) {
+//   if (!treeList || treeList.length === 0) return
+//   treeList.sort(compareFunc)
+//   for (let node of treeList) {
+//     collection.push(node)
+//     flatten(node[childrenKey], childrenKey, collection)
+//   }
+// }
 
 export default CommentListContainer
