@@ -6,6 +6,10 @@ import makeTreeList from '../../utils/makeTreeList'
 // do the thing and grab all the comments for the associated post.
 // we get the the post id passed in as a prop, then make hte network requests.
 
+// TODO: Limit comment rendering to a maximum depth
+// TODO: Limit maximum number of comments fetched somehow..
+// TODO: Determine whether it's better to build the comment tree client or server-side
+
 class CommentListContainer extends React.Component {
   constructor(props) {
     super(props)
