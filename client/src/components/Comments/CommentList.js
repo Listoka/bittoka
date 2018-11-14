@@ -15,11 +15,7 @@ const CommentList = props => {
 
   return (
     <div className={classes}>
-      {props.root &&
-        <CommentNodeContainer
-          submitComment={props.submitComment}
-          parentPost={props.parentPost}
-        />}
+      {props.root && <CommentNodeContainer submitComment={props.submitComment} />}
       <List
         data={comments}
         keyProp='_id'
