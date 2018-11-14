@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const mockData = require('./mock-comment-data.json')
+const asyncForEach = require('./helpers').asyncForEach
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 
@@ -15,7 +17,12 @@ const commentData = [
   { body: "Insert Inspirational Story Here" },
 ];
 
-db.Comment.deleteMany()
+// this is a mess, but basically we
+//  1. make 9 top-level comments on a post
+//  2. loop through a mock data file (currently 100 fake comment bodies)
+//  3. for each comment body, randomly select a previously made comment, and
+//  4. add a new comment as a reply to that comment
+let initCommentPromises = db.Comment.deleteMany()
   .then(() => {
     return Promise.all([db.User.find(), db.Post.findOne()])
   })
@@ -26,6 +33,7 @@ db.Comment.deleteMany()
       x.author = author._id
       x.authorName = author.username
       x.parentPost = dbPost._id
+      x.voters = fakeVoters(21, author._id)
       return x
     })
     return Promise.all([db.Comment.insertMany(data), dbPost])
@@ -37,9 +45,50 @@ db.Comment.deleteMany()
   })
   .then(([dbComments, dbPost]) => {
     console.log('\n>>>>> Added Comments:\n', dbComments)
-    process.exit(0)
   })
   .catch(err => {
     console.log(err)
     process.exit(1)
   })
+
+const doIt = async () => {
+  await initCommentPromises
+  await asyncForEach(mockData, item => {
+    return db.Comment.find()
+      .then(comments => {
+        const comment = comments[Math.floor(Math.random() * comments.length)]
+        return Promise.all([comment, db.User.find()])
+      })
+      .then(([parentComment, users]) => {
+        const user = users[Math.floor(Math.random() * users.length)]
+        const newCommentData = {
+          body: item.body,
+          author: user._id,
+          authorName: user.username,
+          ancestors: [...parentComment.ancestors, parentComment._id],
+          parentPost: parentComment.parentPost,
+          parentComment: parentComment._id,
+          voters: fakeVoters(21, user._id)
+        }
+        return db.Comment.create(newCommentData)
+      })
+      .then(dbComment => {
+        return db.Post.findByIdAndUpdate(dbComment.parentPost, { $push: { comments: dbComment._id } })
+      })
+      .catch(err => {
+        console.log(err)
+        process.exit(1)
+      })
+  })
+
+  console.log('\n>>>>> Added a bunch more comments..')
+  process.exit(0)
+}
+
+function fakeVoters(num, id) {
+  let arr = new Array(Math.floor(Math.random() * num))
+  arr.fill(id)
+  return arr
+}
+
+doIt()

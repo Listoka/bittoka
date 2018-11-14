@@ -2,25 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const List = props => {
+  const { data, keyProp, component, className, mergeClasses, ...other } = props
   // default List styles
   let classes = 'm-1 p-1 bg-white border-medium-gray rounded '
 
   // allow adding style classes to end of default class string
   // note that this does not always work as expected... 
   // e.g. adding 'bg-blue' on props.className will not overwrite 'bg-white'
-  if (props.mergeClasses) {
-    classes += props.className
+  if (mergeClasses) {
+    classes += className
   }
 
-  // allow overwriting of styles
-  if (!props.mergeClasses && props.className && typeof (props.className === 'string')) {
-    classes = props.className
+  // allow overwriting of styles... a string like 'none' or 'n/a' works too
+  if (!mergeClasses && className && typeof (className === 'string')) {
+    classes = className
   }
 
   return (
     <div className={classes}>
-      {props.data.map(itemProps => {
-        return React.createElement(props.component, { key: itemProps[props.keyProp], ...itemProps }, null)
+      {data.map(itemProps => {
+        return React.createElement(component, { key: itemProps[keyProp], ...itemProps, ...other }, null)
       })}
     </div>
   )
