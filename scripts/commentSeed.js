@@ -33,6 +33,7 @@ let initCommentPromises = db.Comment.deleteMany()
       x.author = author._id
       x.authorName = author.username
       x.parentPost = dbPost._id
+      x.voters = fakeVoters(21, author._id)
       return x
     })
     return Promise.all([db.Comment.insertMany(data), dbPost])
@@ -66,7 +67,8 @@ const doIt = async () => {
           authorName: user.username,
           ancestors: [...parentComment.ancestors, parentComment._id],
           parentPost: parentComment.parentPost,
-          parentComment: parentComment._id
+          parentComment: parentComment._id,
+          voters: fakeVoters(21, user._id)
         }
         return db.Comment.create(newCommentData)
       })
@@ -81,6 +83,12 @@ const doIt = async () => {
 
   console.log('\n>>>>> Added a bunch more comments..')
   process.exit(0)
+}
+
+function fakeVoters(num, id) {
+  let arr = new Array(Math.floor(Math.random() * num))
+  arr.fill(id)
+  return arr
 }
 
 doIt()

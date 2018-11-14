@@ -10,7 +10,9 @@ class CommentListContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      sortedComments: []
+      // sortedComments: [],
+      // displayedComments: [],
+      treeList: []
     }
   }
 
@@ -33,15 +35,48 @@ class CommentListContainer extends React.Component {
 
   sortComments() {
     const treeList = makeTreeList(this.comments, '_id', 'parentComment', 'replies', this.commentMap)
-    console.log('treeList: ', treeList)
-    const sortedComments = []
-    flatten(treeList, 'replies', sortedComments, compareVotersDesc)
-    this.setState({ sortedComments })
+    this.setState({ treeList })
+    // const sortedComments = []
+    // flatten(treeList, 'replies', sortedComments, compareVotersDesc)
+    // this.comments = sortedComments
+    // this.setState({ displayedComments: sortedComments })
+  }
+
+  collapseComment = (commentId, depth) => {
+    const comments = this.state.displayedComments.filter(comment => {
+      if (comment.ancestors.length <= depth) return true
+      if (!comment.ancestors.includes(commentId)) return true
+    })
+
+    this.setState({ displayedComments: comments })
+  }
+
+  submitComment = data => {
+    API.createComment(this.props.postId, data)
+      .then(result => console.log('submitComment result: ', result))
+      .then(() => this.fetchComments())
+      .then(() => this.sortComments())
   }
 
   render() {
-    return <CommentList comments={this.state.sortedComments} />
+    return (
+      <div className='w-4/5 bg-white p1 rounded mx-auto mt-3'>
+        <CommentList
+          comments={this.state.treeList}
+          submitComment={this.submitComment}
+        />
+      </div>
+    )
   }
+
+  // render() {
+  //   return (
+  //     <CommentList
+  //       handleCollapse={this.collapseComment}
+  //       comments={this.state.displayedComments}
+  //     />
+  //   )
+  // }
 }
 
 // desc order by num voters

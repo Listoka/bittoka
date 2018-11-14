@@ -58,19 +58,9 @@ export default {
     //console.log("getting Category Info")
     return axios.get(`/api/categories`)
   },
-  createComment: (id, commentData) => {
-    console.log(commentData.body)
-    console.log(id)
-    return axios.post(`/api/posts/${id}/comments`, {
-      body: commentData.body
-    })
-      .then(response => {
-        console.log(response);
-        return response;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  createComment: (postId, commentData) => {
+    return axios.post(`/api/posts/${postId}/comments`, commentData)
+      .catch(error => console.log('API.createComment Err: ', error));
   },
   createLayeredComment: (id, commentData) => {
     console.log(commentData.body)
