@@ -1,2 +1,1 @@
-export * from './TransactionsContainer';
-export * from './TransactionItemList';
+export * from './Transactions';
