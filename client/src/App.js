@@ -10,7 +10,7 @@ import SubNav from './components/subNav';
 // "Pages"
 import Editor from './pages/Editor'
 import NoMatch from './pages/NoMatch';
-import AccountPage from './pages/Account';
+import AccountContainer from './pages/Account';
 import MainPageContainer from './pages/Main/MainPageContainer';
 import PostDetailPage from './pages/Content/PostDetailPage';
 import { ProfileContainer } from './pages/Profile/ProfileContainer';
@@ -49,7 +49,7 @@ class App extends Component {
             <Route exact path='/categories/:categoryName/posts/new' component={Editor} />
             <Route exact path='/posts/:postId' component={PostDetailPage} />
             <Route exact path='/posts/:postId/edit' component={Editor} />
-            <Route exact path='/account' component={AccountPage} />
+            <Route exact path='/account' component={AccountContainer} />
             <Route exact path='/users/:id' component={ProfileContainer} />
             <Route exact path='/editor' component={Editor} />
             <Route exact path='/(authtest|postman)' component={authTest} />

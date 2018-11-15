@@ -37,11 +37,6 @@ export default {
     return axios.get(`/api/posts/${postId}/comments/all`)
   },
 
-  getPostings: (categoryName) => {
-    //console.log(categoryName)
-    return axios.get(`/api/categories/${categoryName}/posts`);
-  },
-
   getCategoryAndPosts: (categoryName) => {
     return axios.get(`/api/categories/${categoryName}/posts`)
   },

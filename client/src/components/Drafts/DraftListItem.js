@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
-import { EditButton, DeleteIcon } from '../../Widgets';
+import { EditButton, DeleteIcon } from '../Widgets';
 
 export const DraftListItem = props => {
     return (
@@ -13,17 +13,17 @@ export const DraftListItem = props => {
               </Link>
             </p>
             <br></br>
-            <p className='mb-8'>
+            <div className='mb-8'>
               <span className="float-right">
-                <Link className='mr-2' to={{ pathname: `/posts/${props.postId}/edit` }}>
-                  <EditButton text='Edit Post'/>
-                </Link>
+                <span className='mr-2'>
+                  <EditButton text='Edit Post' authorId={props.author} postId={props.id}/>
+                </span>
                   |
-                <a className='ml-2' onClick={(event) => props.removeDraft(event, props.index, props.postId)}>
+                <a className='ml-2' onClick={(event) => props.removeDraft(event, props.index, props.id)}>
                   <DeleteIcon text='Delete'/>
                 </a>
               </span>
-            </p>
+            </div>
             <hr/>
         </React.Fragment>
     );
