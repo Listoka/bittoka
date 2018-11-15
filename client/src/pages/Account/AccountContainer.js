@@ -13,8 +13,8 @@ class AccountContainer extends React.Component {
       id: this.props.authUser.dbUser._id,
       bio: '',
       moneyBtnId: '',
-      amtEarned: '',
-      amtPaid: '',
+      amtEarned: 0,
+      amtPaid: 0,
       showBio: true,
       showMoneyBtnId: true
     }
@@ -27,6 +27,8 @@ class AccountContainer extends React.Component {
       .then(results => {
         const drafts = results[1].filter(post => post.isDraft)
         const userPosts = results[1].filter(post => !post.isDraft)
+        const amtEarned = (results[2] && results[2].totalPaid.toFixed(2)) || 0
+        const amtPaid = (results[3] && results[3].totalPaid.toFixed(2)) || 0
         console.log(results)
         this.setState({
           drafts: drafts,
@@ -34,8 +36,8 @@ class AccountContainer extends React.Component {
           bio: results[0].user.bio,
           userName: results[0].user.username,
           moneyBtnId: results[0].user.moneyBtnId,
-          amtEarned: results[2].totalPaid.toFixed(2),
-          amtPaid: results[3].totalPaid.toFixed(2)
+          amtEarned: amtEarned,
+          amtPaid: amtPaid
         });
       })
   };
