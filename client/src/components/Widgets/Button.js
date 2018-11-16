@@ -13,6 +13,7 @@ export const Button = props => {
 // Note that this is just a sample or proposal to make it easier to collect all the button styles in one place
 const B = props => {
   const { className, children, btnType, ...other } = props
+  let classes
   // if we get a 'type' prop, use that to determine which styles to apply
   // otherwise, if we pass in className use that
   // otherwise, use the default styles
