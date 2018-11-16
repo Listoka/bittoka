@@ -21,23 +21,17 @@ class AccountContainer extends React.Component {
   }
   
   componentDidMount(){
-    console.log(this.props)
     let promises = [this.getPostsAndBio(this.state.id), this.getPostsAndDrafts(this.state.id), this.getTotalPaidToUser(this.state.id), this.getTotalPaidFromUser(this.state.id)]
     Promise.all(promises)
       .then(results => {
-        const drafts = results[1].filter(post => post.isDraft)
-        const userPosts = results[1].filter(post => !post.isDraft)
-        const amtEarned = (results[2] && results[2].totalPaid.toFixed(2)) || 0
-        const amtPaid = (results[3] && results[3].totalPaid.toFixed(2)) || 0
-        console.log(results)
         this.setState({
-          drafts: drafts,
-          userPosts: userPosts,
+          drafts: results[1].filter(post => post.isDraft),
+          userPosts: results[1].filter(post => !post.isDraft),
           bio: results[0].user.bio,
           userName: results[0].user.username,
           moneyBtnId: results[0].user.moneyBtnId,
-          amtEarned: amtEarned,
-          amtPaid: amtPaid
+          amtEarned: (results[2] && results[2].totalPaid.toFixed(2)) || 0,
+          amtPaid: (results[3] && results[3].totalPaid.toFixed(2)) || 0
         });
       })
   };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PostListItem } from '../../components/PostComponents/PostListDisplay';
 import List from '../../components/Widgets/List';
-import { Settings } from '../../components/AccountSettings';
+import  Settings  from './Settings';
 import { Transactions } from '../../components/Transactions';
 
 const AccountViewConductor = props => {

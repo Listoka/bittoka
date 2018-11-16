@@ -1,7 +1,7 @@
 import React from "react";
-import { EditIcon, CancelIcon, TextArea, Button, Input } from '../Widgets';
+import { EditIcon, CancelIcon, TextArea, Button, Input } from '../../components/Widgets';
 
-export const Settings = props => (
+const Settings = props => (
   <React.Fragment>
     {console.log(props)}
     Password Reset to be included
@@ -62,3 +62,5 @@ export const Settings = props => (
     
   </React.Fragment>
 );
+
+export default Settings;
