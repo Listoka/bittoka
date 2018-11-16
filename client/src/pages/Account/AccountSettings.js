@@ -3,7 +3,6 @@ import { EditIcon, CancelIcon, TextArea, Button, Input } from '../../components/
 
 const AccountSettings = props => (
   <React.Fragment>
-    {console.log(props)}
     Password Reset to be included
     <hr />
     <div className='flex'>

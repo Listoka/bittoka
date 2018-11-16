@@ -33,12 +33,10 @@ export class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props)
     this.getPayees(this.props.match.params.id)
     let promises = [this.getPostsAndBio(this.props.match.params.id)]
     Promise.all(promises)
       .then(results => {
-        console.log(results)
         this.setState({
           userPosts: results[0].posts,
           displayedBio: results[0].user.bio,
@@ -64,7 +62,6 @@ export class Profile extends Component {
 
   getPayees = (id) => {
     API.getMoneyButton(id).then(results => {
-      console.log(results)
       this.setState({
         payees: [{
           to: results.data.user.moneyBtnId,
