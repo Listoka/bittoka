@@ -14,3 +14,4 @@ export * from './CommentsDollarIcon';
 export * from './UpArrowIcon';
 export * from './Card';
 export * from './Form';
+export * from './EditIcon';

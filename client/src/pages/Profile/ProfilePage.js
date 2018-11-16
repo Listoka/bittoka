@@ -1,6 +1,5 @@
 import React from "react";
 import { MainWrapper, Button, BitcoinIcon, Input } from '../../components/Widgets/index';
-import List from '../../components/Widgets/List';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { ProfileViewConductor } from './';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
