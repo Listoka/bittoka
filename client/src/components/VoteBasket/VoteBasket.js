@@ -1,8 +1,12 @@
 import React from 'react'
-import List from '../Widgets/List';
+import { List } from '../List';
+// import ListokaMoneyButton from '../ListokaMoneyButton'
 
 const VoteBasket = props => {
-  const numPendingVotes = (props.pendingVotes && props.pendingVotes.length) || 0
+  const { pendingVotes } = props
+  const numPendingVotes = (pendingVotes && pendingVotes.length) || 0
+  const totalCost = pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0) || 0
+
   return (
     <div className='absolute pin-b pin-r w-1/4 mr-4 border'>
       <div onClick={props.toggleIsCollapsed} className='bg-grey-darker'>
@@ -10,19 +14,39 @@ const VoteBasket = props => {
       </div>
       {!props.isCollapsed &&
         <div className='bg-white'>
-          <p>pending vote list</p>
+          <PendingVoteList {...props} />
+          <div className='bg-grey-lighter text-sm'>
+            {/* TODO: use props.submitVotes to finalize and purchase */}
+            Cost: ${totalCost.toFixed(2)}
+          </div>
         </div>}
     </div>
   )
 }
 
 const PendingVoteList = props => {
+  const { pendingVotes, ...other } = props
   return (
     <List
-      data={props.pendingVotes}
+      data={pendingVotes}
       keyProp='commentId'
       component={PendingVoteListItem}
+      className='none'
+      {...other}
     />
+  )
+}
+
+const PendingVoteListItem = props => {
+  return (
+    <div className='p-1 text-sm hover:bg-grey-lighter'>
+      {props.authorName}
+      <span
+        className='text-xs text-red float-right cursor-pointer'
+        onClick={() => props.removePendingVote(props.commentId)}>
+        [remove]
+      </span>
+    </div>
   )
 }
 

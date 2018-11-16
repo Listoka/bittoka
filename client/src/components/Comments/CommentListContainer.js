@@ -58,6 +58,10 @@ class CommentListContainer extends React.Component {
     this.setState({ pendingVotes })
   }
 
+  submitVotes = () => {
+    // TODO: make the API call to submit the votes, then grab the comment list again
+  }
+
   // a better way to handle this might be to not actually fetch and sort right away
   // instead, we could just add the comment directly to the list and submit the comment in the background
   submitComment = data => {
@@ -72,10 +76,16 @@ class CommentListContainer extends React.Component {
       <React.Fragment>
         <VoteBasketContainer
           pendingVotes={this.state.pendingVotes}
+          addPendingVote={this.addPendingVote}
+          removePendingVote={this.removePendingVote}
+          submitVotes={this.submitVotes}
         />
         <CommentList
           comments={this.state.treeList}
+          pendingVotes={this.state.pendingVotes}
           submitComment={this.submitComment}
+          removePendingVote={this.removePendingVote}
+          addPendingVote={this.addPendingVote}
           root
         />
       </React.Fragment>

@@ -3,7 +3,9 @@ import { List } from '../List'
 import CommentNodeContainer from './CommentNodeContainer'
 
 const CommentList = props => {
-  const comments = props.comments.sort(compareVotersDesc)
+  const { comments, ...rest } = props
+  comments.sort(compareVotersDesc)
+
   let classes = 'bg-white border-l border-grey ml-3'
 
   // this component is used in 2 different, but very similar ways.
@@ -21,7 +23,7 @@ const CommentList = props => {
         keyProp='_id'
         component={CommentNodeContainer}
         className='none'
-        submitComment={props.submitComment}
+        {...rest}
       />
     </div>
   )

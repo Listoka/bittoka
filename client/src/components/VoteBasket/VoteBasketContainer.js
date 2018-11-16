@@ -15,7 +15,7 @@ class VoteBasketContainer extends React.Component {
     return (
       <VoteBasket
         toggleIsCollapsed={this.toggleIsCollapsed}
-        pendingVotes={this.props.pendingVotes}
+        {...this.props}
         {...this.state}
       />
     )
