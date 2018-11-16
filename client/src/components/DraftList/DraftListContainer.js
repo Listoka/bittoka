@@ -1,9 +1,9 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { DraftListItem } from './DraftListItem';
 import API from '../../utils/API';
-import List from '../Widgets/List';
+import { List } from '../List';
 
-export class DraftsContainer extends Component {
+export class DraftListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +13,7 @@ export class DraftsContainer extends Component {
     };
   };
 
-  componentDidMount(){
+  componentDidMount() {
     let promises = [this.getPostsAndDrafts(this.props.id)]
     Promise.all(promises)
       .then(results => {

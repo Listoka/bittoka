@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { PostListItem } from '../../components/List';
 import API from '../../utils/API';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
 import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
-import {  Row, Input, Button, MainWrapper, Container } from '../../components/Widgets';
+import { Row, Input, Button, MainWrapper, Container } from '../../components/Widgets';
 
 const listokaCut = .01
 const listokaAcctNum = '588' // FIXME: Put in secure place (read from db?)
@@ -33,12 +33,10 @@ export class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props)
     this.getPayees(this.props.match.params.id)
     let promises = [this.getPostsAndBio(this.props.match.params.id)]
     Promise.all(promises)
       .then(results => {
-        console.log(results)
         this.setState({
           userPosts: results[0].posts,
           displayedBio: results[0].user.bio,
@@ -64,7 +62,6 @@ export class Profile extends Component {
 
   getPayees = (id) => {
     API.getMoneyButton(id).then(results => {
-      console.log(results)
       this.setState({
         payees: [{
           to: results.data.user.moneyBtnId,
@@ -99,7 +96,7 @@ export class Profile extends Component {
   };
 
   render() {
-    
+
 
     return (
       <div className='absolute w-full'>
@@ -122,7 +119,7 @@ export class Profile extends Component {
                   placeholder='.00'
                   name='tipAmt'
                 />
-                <Button onClick={this.handleTipSubmit} text='Update Tip' styles={'text-sm'}/>
+                <Button onClick={this.handleTipSubmit} text='Update Tip' styles={'text-sm'} />
                 <div className='mt-4'>
                   <AuthUserContext.Consumer>
                     {authUser => {
@@ -152,7 +149,7 @@ export class Profile extends Component {
               <Container styles={'m-2 px-2 pb-2'}>
                 <h2>{this.state.authorName}</h2>
                 <p>{this.state.displayedBio}</p>
-                <hr/>
+                <hr />
               </Container>
               <Container>
                 {this.state.userPosts.map(userPosts => (

@@ -1,5 +1,5 @@
 import React from 'react'
-import List from '../Widgets/List'
+import { List } from '../List'
 import CommentNodeContainer from './CommentNodeContainer'
 
 const CommentList = props => {
