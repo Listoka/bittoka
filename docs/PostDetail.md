@@ -25,6 +25,7 @@ the comments associated with that post, and the purchasing / upvote mechanic.
 - displays either the teaser or content body based on props
 - sets the structure and style to display information like post title, author,
   cost, votes, body, teaser, etc.
+- renders the Paywall component
 
 ## Paywall
 - stateless component
@@ -33,6 +34,7 @@ the comments associated with that post, and the purchasing / upvote mechanic.
   - if user is not logged in, display message 'must log in to purchase'
   - if user is logged in, but hasn't purchased, show purchase money button
   - if already purchased, render children
+- children of the Paywall component if the content has been purchased, otherwise it displays the appropriate paywall message
 
 ## UpvoteMoneyButton
 - stateless component
@@ -52,16 +54,29 @@ the comments associated with that post, and the purchasing / upvote mechanic.
 - defines functions to handle upvotes and add new comments
  
 ## Comment List
-- (mostly) dumb component, might have state only to determine whether it is
-  collapsed or not
+- dumb component wrapper around the general `List` component
 - renders a root comment node and another `CommentList` containing children
   comments
 
-## Comment 
+## CommentNodeContainer
+- stateful container component
+- renders a CommentNode
+- Maintains state for whether or not a comment node is collapsed
+- Maintains state for whether or not the reply form is visible
+- passes through comment data to CommentNode
+
+## CommentNode
 - Dumb component
 - Takes a func to cast vote
 - displays comment body, author, date-time, etc
-- also renders a vote button
+- renders a vote button
+- renders a CommentList with this comment's replies
+- Has 3 render states based on props
+  - Default is the expanded comment body and its replies container
+  - collapsed view is the minified version that only shows the author and it's number of votes
+    - (and number of replies?)
+  - 'root' view where there is no comment data
+    - this view is used only at the top level in order to get the reply functionality to respond directly to the post
 
 ## Vote Button
 - takes a prop to determine which comment the vote is for

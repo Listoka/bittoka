@@ -44,10 +44,8 @@ posts and a sidebar with context aware content.
 
 ## Sidebar Section Container (dynamic)
 - 'Smart' Component
-- Makes network requests and holds state for sidebar sections that need to
-  update their content dynamically, but do not share state with the
-  `IndexContainer` component
-    - E.g. this would be used for a 'user info' section or an advertisement
+- Makes network requests and holds state for sidebar sections that need to update their content dynamically, but do not share state with the `IndexContainer` component
+  - E.g. this would be used for a 'user info' section or an advertisement
       section
 - Takes a render prop function that should render a (static) Sidebar Section
   component. Does *not* determine its own structure or styles
