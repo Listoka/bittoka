@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
-import { EditButton, BitcoinIcon, CalendarIcon, CommentsDollarIcon, UpArrowIcon, Card } from '../../Widgets';
-import CategoryFlair from '../../Widgets/CategoryFlair';
+import { EditButton, BitcoinIcon, CalendarIcon, DollarIcon, UpArrowIcon, Card } from '../Widgets';
+import CategoryFlair from '../Widgets/CategoryFlair';
 
 export const PostListItem = props => {
   return (
@@ -31,7 +31,7 @@ export const PostListItem = props => {
         <div className='clearfix'>
           <p className='inline mr-2'>
             <Link to={{ pathname: `/posts/${props._id}` }}>
-              <CommentsDollarIcon />{props.comments.length}
+              <DollarIcon />{props.comments.length}
             </Link>
           </p>
           <p className='inline mr-2'>

@@ -1,23 +1,23 @@
 import React from "react";
 import { EditIcon, CancelIcon, TextArea, Button, Input } from '../../components/Widgets';
 
-const Settings = props => (
+const AccountSettings = props => (
   <React.Fragment>
     {console.log(props)}
     Password Reset to be included
-    <hr/>
+    <hr />
     <div className='flex'>
       <h4 className='font-header -mt-px -mr-1'>Bio</h4>
       {props.showBio
-        ? <EditIcon onClick={props.editBio}/>
+        ? <EditIcon onClick={props.editBio} />
         : null
       }
     </div>
-    <hr/>
+    <hr />
     {props.showBio
       ? <div>
-          {props.bio}
-        </div>
+        {props.bio}
+      </div>
       : <form>
         <TextArea
           value={props.bio}
@@ -30,14 +30,14 @@ const Settings = props => (
           onClick={props.handleFormSubmit}
           text='Update Bio'
         />
-      <CancelIcon onClick={props.editBio} text='Cancel'/>
+        <CancelIcon onClick={props.editBio} text='Cancel' />
       </form>
     }
-    <hr/>
+    <hr />
     {props.showMoneyBtnId
       ? <div className='flex'>
-          <h4 className=' font-header -mt-2px -mr-1'>MoneyButton User Number: {props.moneyBtnId}</h4>
-        <EditIcon 
+        <h4 className=' font-header -mt-2px -mr-1'>MoneyButton User Number: {props.moneyBtnId}</h4>
+        <EditIcon
           onClick={props.editmoneyBtnId}
           onChange={props.onChange}
         />
@@ -55,12 +55,12 @@ const Settings = props => (
           text='Update'
         >
         </Button>
-        <CancelIcon onClick={props.editmoneyBtnId} text='Cancel'/>
+        <CancelIcon onClick={props.editmoneyBtnId} text='Cancel' />
       </form>
     }
-    <hr/>
-    
+    <hr />
+
   </React.Fragment>
 );
 
-export default Settings;
+export default AccountSettings;

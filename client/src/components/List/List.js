@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const List = props => {
+export const List = props => {
   const { data, keyProp, component, className, mergeClasses, ...other } = props
   // default List styles
   let classes = 'm-1 p-1 bg-white border-medium-gray rounded '

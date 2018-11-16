@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { PostListItem } from '../../components/PostComponents/PostListDisplay';
+import { List, PostListItem } from '../../components/List';
 import { Button } from '../../components/Widgets/Button'
-import List from '../../components/Widgets/List';
 import Sidebar from '../../components/Sidebar/Sidebar'
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
 import SBTagFilter from '../../components/Sidebar/SBTagFilter';
