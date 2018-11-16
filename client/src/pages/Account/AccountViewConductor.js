@@ -1,7 +1,6 @@
 import React from 'react';
-import { PostListItem } from '../../components/PostComponents/PostListDisplay';
-import List from '../../components/Widgets/List';
-import  Settings  from './Settings';
+import { List, PostListItem } from '../../components/List';
+import AccountSettings from './AccountSettings';
 import { Transactions } from '../../components/Transactions';
 
 const AccountViewConductor = props => {
@@ -10,11 +9,11 @@ const AccountViewConductor = props => {
       return <PostList data={props.userPosts} />;
     case 'SETTINGS':
       return (
-        <Settings 
-          bio={props.bio} 
-          moneyBtnId={props.moneyBtnId} 
-          editmoneyBtnId={props.editmoneyBtnId} 
-          editBio={props.editBio} 
+        <AccountSettings
+          bio={props.bio}
+          moneyBtnId={props.moneyBtnId}
+          editmoneyBtnId={props.editmoneyBtnId}
+          editBio={props.editBio}
           showBio={props.showBio}
           onChange={props.onChange}
           handleFormSubmit={props.handleFormSubmit}
@@ -24,8 +23,8 @@ const AccountViewConductor = props => {
       )
     case 'TRANSACTIONS':
       return (
-        <Transactions 
-          amtEarned={props.amtEarned} 
+        <Transactions
+          amtEarned={props.amtEarned}
           amtPaid={props.amtPaid}
         />
       )

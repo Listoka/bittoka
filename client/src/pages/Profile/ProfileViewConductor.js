@@ -1,6 +1,5 @@
 import React from 'react';
-import { PostListItem, CommentListItem } from '../../components/PostComponents/PostListDisplay';
-import List from '../../components/Widgets/List';
+import { List, PostListItem, CommentListItem } from '../../components/List';
 
 export const ProfileViewConductor = props => {
   switch (props.currentView) {

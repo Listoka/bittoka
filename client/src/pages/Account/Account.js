@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withAuthorization from '../../components/AuthUserSession/withAuthorization';
-import { PostListItem, DraftListItem } from '../../components/PostComponents/PostListDisplay';
+import { PostListItem, DraftListItem } from '../../components/List';
 import { EditButton, Row, CancelIcon, Button, TextArea, Input, Container, MainWrapper } from '../../components/Widgets';
 import API from '../../utils/API';
 
@@ -121,26 +121,26 @@ class Account extends Component {
         <Row>
           <div className='col-lg-2'></div>
           <div className='col-lg-7'>
-          {/* This could be added to another type of its own container */}
+            {/* This could be added to another type of its own container */}
             <Container styles={"mt-10px py-2 rounded min-h-full bg-white"}>
               <Container styles={'m-2 px-2 pb-2'}>
                 <Row>
                   <div className='col-md-6'>
-                    <h2 className='font-header'>{this.state.userName}'s Bio 
+                    <h2 className='font-header'>{this.state.userName}'s Bio
                     {this.state.showBio
-                    ? <EditButton onClick={this.editBio} />
-                    : null
-                    }
+                        ? <EditButton onClick={this.editBio} />
+                        : null
+                      }
                     </h2>
                   </div>
                   <div className='col-md-6'></div>
                 </Row>
-                
+
                 {this.state.showBio
                   ? <div>
-                      {this.state.bio}
-                      <hr/>
-                    </div>
+                    {this.state.bio}
+                    <hr />
+                  </div>
                   : <form>
                     <TextArea
                       value={this.state.bio}
@@ -153,36 +153,36 @@ class Account extends Component {
                       onClick={this.handleFormSubmit}
                       text='Update Bio'
                     />
-                  <CancelIcon onClick={this.editBio} text='Cancel'/>
+                    <CancelIcon onClick={this.editBio} text='Cancel' />
                   </form>
                 }
               </Container>
 
               <Container>
-                  {this.state.showMoneyBtnId
-                    ? <div>Your MoneyButton User Number: {this.state.moneyBtnId} 
-                      <EditButton 
-                        text='Edit'
-                        onClick={this.editmoneyBtnId}
-                        onChange={this.handleInputChange}
-                      />
-                    </div>
-                    : <form>
-                      <Input
-                        value={this.state.moneyBtnId}
-                        onChange={this.handleInputChange}
-                        name="moneyBtnId"
-                        styles={{ width: 125 + 'px' }}
-                      />
-                      <Button
-                        disabled={!(this.state.moneyBtnId)}
-                        onClick={this.handleMoneyBtnIdSubmit}
-                        text='Update'
-                      >
-                      </Button>
-                      <CancelIcon onClick={this.editmoneyBtnId} text='Cancel'/>
-                    </form>
-                  }
+                {this.state.showMoneyBtnId
+                  ? <div>Your MoneyButton User Number: {this.state.moneyBtnId}
+                    <EditButton
+                      text='Edit'
+                      onClick={this.editmoneyBtnId}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                  : <form>
+                    <Input
+                      value={this.state.moneyBtnId}
+                      onChange={this.handleInputChange}
+                      name="moneyBtnId"
+                      styles={{ width: 125 + 'px' }}
+                    />
+                    <Button
+                      disabled={!(this.state.moneyBtnId)}
+                      onClick={this.handleMoneyBtnIdSubmit}
+                      text='Update'
+                    >
+                    </Button>
+                    <CancelIcon onClick={this.editmoneyBtnId} text='Cancel' />
+                  </form>
+                }
                 <div>
                   <p>Total paid to other users to date: ${this.state.amtPaid}<br></br>Total earned from other users to date: ${this.state.amtEarned}</p>
                 </div>

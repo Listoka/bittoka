@@ -29,12 +29,10 @@ export class ProfileContainer extends React.Component {
     }
   }
 
-  componentDidMount(){
-    console.log(this.props)
+  componentDidMount() {
     let promises = [this.getPostsAndBio(this.props.match.params.id)]
     Promise.all(promises)
       .then(results => {
-        console.log(results)
         this.setState({
           userPosts: results[0].posts,
           displayedBio: results[0].user.bio,
@@ -81,16 +79,16 @@ export class ProfileContainer extends React.Component {
     this.setState({ currentView: viewType })
   }
 
-  render(){
-    return(
-        <ProfilePage 
-          {...this.state} 
-          handleTipChange={this.handleTipChange}
-          handleTipSubmit={this.handleTipSubmit}
-          handleError={this.handleError}
-          afterPayment={this.afterPayment}
-          switchView={this.switchView}
-        />
+  render() {
+    return (
+      <ProfilePage
+        {...this.state}
+        handleTipChange={this.handleTipChange}
+        handleTipSubmit={this.handleTipSubmit}
+        handleError={this.handleError}
+        afterPayment={this.afterPayment}
+        switchView={this.switchView}
+      />
     )
   }
 }
