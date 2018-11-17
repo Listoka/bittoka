@@ -2,6 +2,7 @@ import React from 'react'
 import API from '../../utils/API'
 import CommentList from './CommentList';
 import makeTreeList from '../../utils/makeTreeList'
+import VoteBasketContainer from '../VoteBasket/VoteBasketContainer';
 
 // do the thing and grab all the comments for the associated post.
 // we get the the post id passed in as a prop, then make hte network requests.
@@ -14,7 +15,8 @@ class CommentListContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      treeList: []
+      treeList: [],
+      pendingVotes: [],
     }
   }
 
@@ -45,6 +47,21 @@ class CommentListContainer extends React.Component {
     this.setState({ displayedComments: comments })
   }
 
+  addPendingVote = (commentId, authorName, cost) => {
+    const newVote = { commentId, authorName, cost }
+    const pendingVotes = [...this.state.pendingVotes, newVote]
+    this.setState({ pendingVotes })
+  }
+
+  removePendingVote = commentId => {
+    const pendingVotes = this.state.pendingVotes.filter(v => v.commentId !== commentId)
+    this.setState({ pendingVotes })
+  }
+
+  submitVotes = () => {
+    // TODO: make the API call to submit the votes, then grab the comment list again
+  }
+
   // a better way to handle this might be to not actually fetch and sort right away
   // instead, we could just add the comment directly to the list and submit the comment in the background
   submitComment = data => {
@@ -56,11 +73,22 @@ class CommentListContainer extends React.Component {
 
   render() {
     return (
-      <CommentList
-        comments={this.state.treeList}
-        submitComment={this.submitComment}
-        root
-      />
+      <React.Fragment>
+        <VoteBasketContainer
+          pendingVotes={this.state.pendingVotes}
+          addPendingVote={this.addPendingVote}
+          removePendingVote={this.removePendingVote}
+          submitVotes={this.submitVotes}
+        />
+        <CommentList
+          comments={this.state.treeList}
+          pendingVotes={this.state.pendingVotes}
+          submitComment={this.submitComment}
+          removePendingVote={this.removePendingVote}
+          addPendingVote={this.addPendingVote}
+          root
+        />
+      </React.Fragment>
     )
   }
 }
