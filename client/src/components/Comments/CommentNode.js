@@ -36,9 +36,8 @@ const CommentNode = props => {
               />
             </div>
             <div className='p-1'>
-              <p>_id: {_id}</p>
-              <p>AuthorName: {authorName}</p>
-              <p>body: {body}</p>
+              <p className='text-xs font-bold'>{authorName}</p>
+              <p>{body}</p>
               <p>
                 {authUser && <TextButton text='[reply]' size='sm' onClick={props.toggleShowForm} />}
                 <TextButton text='[collapse]' size='sm' onClick={props.toggleCollapse} />
