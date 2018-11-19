@@ -3,37 +3,21 @@ import CommentList from './CommentList'
 import CommentReplyForm from './CommentReplyForm'
 import AuthUserContext from '../AuthUserSession/AuthUserContext'
 import CommentVoteButton from './CommentVoteButton';
+import TextButton from '../Widgets/TextButton';
+import { Link } from 'react-router-dom'
 
 const CommentNode = props => {
-  const { _id, authorName, body, voters, replies, isCollapsed } = props
+  const { _id, authorName, body, voters, replies, isCollapsed, author } = props
   const numVotes = (voters && voters.length) || 0
-
-  // if we don't get _id, then we're just using this component for its reply form
-  // functionality at the 'root' CommentList. 
-  if (!_id) {
-    return (
-      <AuthUserContext.Consumer>
-        {authUser => (
-          authUser &&
-          <div>
-            <a href='/reply' onClick={props.toggleShowForm}>[reply]</a>
-            {props.showForm &&
-              <CommentReplyForm
-                parentComment={_id}
-                submitComment={props.submitComment}
-                toggleShowForm={props.toggleShowForm}
-              />}
-          </div>
-        )}
-      </AuthUserContext.Consumer>
-    )
-  }
 
   // if we're collapsed, show the minified version of the comment and no children
   if (isCollapsed) {
     return (
-      <div className='text-sm bg-grey-lighter border-grey border-2 p-1 m-1'>
-        <p>{numVotes} {authorName} <a href='/collapse' onClick={props.toggleCollapse}>[expand]</a></p>
+      <div
+        onClick={props.toggleCollapse}
+        className='text-sm bg-grey-lighter border-grey border-2 p-1 m-1 cursor-pointer'
+      >
+        <p>{numVotes} {authorName}</p>
       </div>
     )
   }
@@ -56,13 +40,12 @@ const CommentNode = props => {
               />
             </div>
             <div className='p-1'>
-              <p>_id: {_id}</p>
-              <p>votes: {numVotes}</p>
-              <p>AuthorName: {authorName}</p>
-              <p>body: {body}</p>
+              {/* <p className='text-xs font-bold'>{authorName}</p> */}
+              <p><NameLink authorName={authorName} userId={author} /></p>
+              <p>{body}</p>
               <p>
-                {authUser && <a href='/reply' onClick={props.toggleShowForm}>[reply]</a>}
-                <a href='/collapse' onClick={props.toggleCollapse}>[collapse]</a>
+                {authUser && <TextButton text='[reply]' size='sm' onClick={props.toggleShowForm} />}
+                <TextButton text='[collapse]' size='sm' onClick={props.toggleCollapse} />
               </p>
             </div>
           </div>
@@ -71,11 +54,13 @@ const CommentNode = props => {
       </AuthUserContext.Consumer>
 
       {props.showForm &&
-        <CommentReplyForm
-          parentComment={_id}
-          submitComment={props.submitComment}
-          toggleShowForm={props.toggleShowForm}
-        />}
+        <div className='mx-2 mb-2'>
+          <CommentReplyForm
+            parentComment={_id}
+            submitComment={props.submitComment}
+            toggleShowForm={props.toggleShowForm}
+          />
+        </div>}
 
       {replies &&
         <CommentList
@@ -88,5 +73,14 @@ const CommentNode = props => {
     </div>
   )
 }
+
+const NameLink = props => (
+  <Link
+    to={`/users/${props.userId}`}
+    className='no-underline hover:no-underline font-bold text-xs'
+  >
+    {props.authorName}
+  </Link>
+)
 
 export default CommentNode

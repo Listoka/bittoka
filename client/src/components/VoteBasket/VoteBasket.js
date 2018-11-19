@@ -5,7 +5,7 @@ import { List } from '../List';
 const VoteBasket = props => {
   const { pendingVotes } = props
   const numPendingVotes = (pendingVotes && pendingVotes.length) || 0
-  const totalCost = pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0) || 0
+  const totalCost = (pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0)) || 0
 
   return (
     <div className='absolute pin-b pin-r w-1/4 mr-4 border'>
@@ -17,7 +17,7 @@ const VoteBasket = props => {
           <PendingVoteList {...props} />
           <div className='bg-grey-lighter text-sm'>
             {/* TODO: use props.submitVotes to finalize and purchase */}
-            Cost: ${totalCost.toFixed(2)}
+            <p className='p-1'>Cost: ${totalCost.toFixed(2)}</p>
           </div>
         </div>}
     </div>

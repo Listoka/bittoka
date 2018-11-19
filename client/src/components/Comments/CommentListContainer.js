@@ -38,15 +38,6 @@ class CommentListContainer extends React.Component {
     this.setState({ treeList })
   }
 
-  collapseComment = (commentId, depth) => {
-    const comments = this.state.displayedComments.filter(comment => {
-      if (comment.ancestors.length <= depth) return true
-      if (!comment.ancestors.includes(commentId)) return true
-    })
-
-    this.setState({ displayedComments: comments })
-  }
-
   addPendingVote = (commentId, authorName, cost) => {
     const newVote = { commentId, authorName, cost }
     const pendingVotes = [...this.state.pendingVotes, newVote]
@@ -69,6 +60,7 @@ class CommentListContainer extends React.Component {
       .then(result => console.log('submitComment result: ', result))
       .then(() => this.fetchComments())
       .then(() => this.sortComments())
+      .catch(err => console.log('submitComment Err: ', err))
   }
 
   render() {
@@ -109,6 +101,17 @@ class CommentListContainer extends React.Component {
 //     collection.push(node)
 //     flatten(node[childrenKey], childrenKey, collection)
 //   }
+// }
+
+// but the difficulty here is that it is much less straightforward to do 
+// operations like collapsing all the children if it's not a nested dom.
+// collapseComment = (commentId, depth) => {
+//   const comments = this.state.displayedComments.filter(comment => {
+//     if (comment.ancestors.length <= depth) return true
+//     if (!comment.ancestors.includes(commentId)) return true
+//   })
+
+//   this.setState({ displayedComments: comments })
 // }
 
 export default CommentListContainer

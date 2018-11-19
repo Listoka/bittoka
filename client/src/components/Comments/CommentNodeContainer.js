@@ -10,15 +10,8 @@ class CommentNodeContainer extends React.Component {
     }
   }
 
-  toggleCollapse = e => {
-    e.preventDefault()
-    this.setState({ isCollapsed: !this.state.isCollapsed })
-  }
-
-  toggleShowForm = e => {
-    e.preventDefault()
-    this.setState({ showForm: !this.state.showForm })
-  }
+  toggleCollapse = () => this.setState({ isCollapsed: !this.state.isCollapsed })
+  toggleShowForm = () => this.setState({ showForm: !this.state.showForm })
 
   render() {
     return (
