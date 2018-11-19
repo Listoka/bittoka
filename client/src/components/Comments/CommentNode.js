@@ -57,7 +57,6 @@ const CommentNode = props => {
             </div>
             <div className='p-1'>
               <p>_id: {_id}</p>
-              <p>votes: {numVotes}</p>
               <p>AuthorName: {authorName}</p>
               <p>body: {body}</p>
               <p>
