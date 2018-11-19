@@ -1,6 +1,7 @@
 import React from 'react'
 import { List } from '../List'
 import CommentNodeContainer from './CommentNodeContainer'
+import CommentListHeader from './CommentListHeader';
 
 const CommentList = props => {
   const { comments, ...rest } = props
@@ -17,7 +18,8 @@ const CommentList = props => {
 
   return (
     <div className={classes}>
-      {props.root && <CommentNodeContainer submitComment={props.submitComment} />}
+      {/* {props.root && <CommentNodeContainer submitComment={props.submitComment} />} */}
+      {props.root && <CommentListHeader submitComment={props.submitComment} />}
       <List
         data={comments}
         keyProp='_id'

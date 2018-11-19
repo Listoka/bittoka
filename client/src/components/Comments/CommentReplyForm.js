@@ -11,7 +11,7 @@ class CommentReplyForm extends React.Component {
   handleChange = e => this.setState({ value: e.target.value })
   handleSubmit = e => {
     e.preventDefault()
-    this.props.toggleShowForm(e)
+    this.props.toggleShowForm()
     this.props.submitComment({
       parentComment: this.props.parentComment,
       body: this.state.value,

@@ -5,7 +5,7 @@ import { List } from '../List';
 const VoteBasket = props => {
   const { pendingVotes } = props
   const numPendingVotes = (pendingVotes && pendingVotes.length) || 0
-  const totalCost = pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0) || 0
+  const totalCost = (pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0)) || 0
 
   return (
     <div className='absolute pin-b pin-r w-1/4 mr-4 border'>
