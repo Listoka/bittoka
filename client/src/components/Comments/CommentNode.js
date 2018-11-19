@@ -4,16 +4,20 @@ import CommentReplyForm from './CommentReplyForm'
 import AuthUserContext from '../AuthUserSession/AuthUserContext'
 import CommentVoteButton from './CommentVoteButton';
 import TextButton from '../Widgets/TextButton';
+import { Link } from 'react-router-dom'
 
 const CommentNode = props => {
-  const { _id, authorName, body, voters, replies, isCollapsed } = props
+  const { _id, authorName, body, voters, replies, isCollapsed, author } = props
   const numVotes = (voters && voters.length) || 0
 
   // if we're collapsed, show the minified version of the comment and no children
   if (isCollapsed) {
     return (
-      <div className='text-sm bg-grey-lighter border-grey border-2 p-1 m-1'>
-        <p>{numVotes} {authorName} <TextButton text='[expand]' size='sm' onClick={props.toggleCollapse} /></p>
+      <div
+        onClick={props.toggleCollapse}
+        className='text-sm bg-grey-lighter border-grey border-2 p-1 m-1 cursor-pointer'
+      >
+        <p>{numVotes} {authorName}</p>
       </div>
     )
   }
@@ -36,7 +40,8 @@ const CommentNode = props => {
               />
             </div>
             <div className='p-1'>
-              <p className='text-xs font-bold'>{authorName}</p>
+              {/* <p className='text-xs font-bold'>{authorName}</p> */}
+              <p><NameLink authorName={authorName} userId={author} /></p>
               <p>{body}</p>
               <p>
                 {authUser && <TextButton text='[reply]' size='sm' onClick={props.toggleShowForm} />}
@@ -68,5 +73,14 @@ const CommentNode = props => {
     </div>
   )
 }
+
+const NameLink = props => (
+  <Link
+    to={`/users/${props.userId}`}
+    className='no-underline hover:no-underline font-bold text-xs'
+  >
+    {props.authorName}
+  </Link>
+)
 
 export default CommentNode
