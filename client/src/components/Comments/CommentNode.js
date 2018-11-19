@@ -50,11 +50,13 @@ const CommentNode = props => {
       </AuthUserContext.Consumer>
 
       {props.showForm &&
-        <CommentReplyForm
-          parentComment={_id}
-          submitComment={props.submitComment}
-          toggleShowForm={props.toggleShowForm}
-        />}
+        <div className='mx-2 mb-2'>
+          <CommentReplyForm
+            parentComment={_id}
+            submitComment={props.submitComment}
+            toggleShowForm={props.toggleShowForm}
+          />
+        </div>}
 
       {replies &&
         <CommentList

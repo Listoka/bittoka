@@ -20,13 +20,22 @@ class CommentReplyForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className='bg-grey-lighter'>
-        <textarea onChange={this.handleChange} rows='5' className='mx-3 my-1 border-grey border-1'>
-        </textarea>
-        <input type='submit' />
+      <form onSubmit={this.handleSubmit} className='flex bg-grey-lighter'>
+        <ReplyTextArea onChange={this.handleChange} />
+        <input className='bg-blue hover:bg-blue-dark ml-0 mr-1 my-1 text-white cursor-pointer' type='submit' />
       </form>
     )
   }
+}
+
+const ReplyTextArea = props => {
+  return (
+    <textarea
+      onChange={props.onChange}
+      rows={props.rows || '5'}
+      className='w-full border-grey m-1 p-3'
+    />
+  )
 }
 
 export default CommentReplyForm
