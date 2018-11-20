@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthUserContext from '../AuthUserSession/AuthUserContext'
 
-// this is just a placeholder for now
+// TODO: this is just a placeholder for now
 
 const IntroHeader = props => {
   return (
