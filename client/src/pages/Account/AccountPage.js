@@ -2,7 +2,7 @@ import React from "react";
 import { MainWrapper, Button } from '../../components/Widgets';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import AccountViewConductor from './AccountViewConductor';
-import { DraftListItem } from '../../components/Drafts/DraftListItem';
+import { DraftListItem } from '../../components/DraftList/DraftListItem';
 import { List } from '../../components/List';
 
 const AccountPage = props => {

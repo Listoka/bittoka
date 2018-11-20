@@ -3371,6 +3371,10 @@ table {
   height: 1px;
 }
 
+.h-5px {
+  height: 5px;
+}
+
 .h-10px {
   height: 10px;
 }
@@ -3461,6 +3465,10 @@ table {
 
 .m-px {
   margin: 1px;
+}
+
+.m-5px {
+  margin: 5px;
 }
 
 .m-10px {
@@ -3625,6 +3633,16 @@ table {
 .mx-px {
   margin-left: 1px;
   margin-right: 1px;
+}
+
+.my-5px {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.mx-5px {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .my-10px {
@@ -3893,6 +3911,22 @@ table {
   margin-left: 1px;
 }
 
+.mt-5px {
+  margin-top: 5px;
+}
+
+.mr-5px {
+  margin-right: 5px;
+}
+
+.mb-5px {
+  margin-bottom: 5px;
+}
+
+.ml-5px {
+  margin-left: 5px;
+}
+
 .mt-10px {
   margin-top: 10px;
 }
@@ -4035,6 +4069,10 @@ table {
 
 .-m-px {
   margin: -1px;
+}
+
+.-m-5px {
+  margin: -5px;
 }
 
 .-m-10px {
@@ -4189,6 +4227,16 @@ table {
 .-mx-px {
   margin-left: -1px;
   margin-right: -1px;
+}
+
+.-my-5px {
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+.-mx-5px {
+  margin-left: -5px;
+  margin-right: -5px;
 }
 
 .-my-10px {
@@ -4441,6 +4489,22 @@ table {
   margin-left: -1px;
 }
 
+.-mt-5px {
+  margin-top: -5px;
+}
+
+.-mr-5px {
+  margin-right: -5px;
+}
+
+.-mb-5px {
+  margin-bottom: -5px;
+}
+
+.-ml-5px {
+  margin-left: -5px;
+}
+
 .-mt-10px {
   margin-top: -10px;
 }
@@ -4601,6 +4665,10 @@ table {
   padding: 1px;
 }
 
+.p-5px {
+  padding: 5px;
+}
+
 .p-10px {
   padding: 10px;
 }
@@ -4753,6 +4821,16 @@ table {
 .px-px {
   padding-left: 1px;
   padding-right: 1px;
+}
+
+.py-5px {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.px-5px {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .py-10px {
@@ -5003,6 +5081,22 @@ table {
 
 .pl-px {
   padding-left: 1px;
+}
+
+.pt-5px {
+  padding-top: 5px;
+}
+
+.pr-5px {
+  padding-right: 5px;
+}
+
+.pb-5px {
+  padding-bottom: 5px;
+}
+
+.pl-5px {
+  padding-left: 5px;
 }
 
 .pt-10px {
@@ -6516,6 +6610,10 @@ table {
 
 .w-px {
   width: 1px;
+}
+
+.w-5px {
+  width: 5px;
 }
 
 .w-10px {
@@ -9413,6 +9511,10 @@ table {
     height: 1px;
   }
 
+  .sm\:h-5px {
+    height: 5px;
+  }
+
   .sm\:h-10px {
     height: 10px;
   }
@@ -9503,6 +9605,10 @@ table {
 
   .sm\:m-px {
     margin: 1px;
+  }
+
+  .sm\:m-5px {
+    margin: 5px;
   }
 
   .sm\:m-10px {
@@ -9667,6 +9773,16 @@ table {
   .sm\:mx-px {
     margin-left: 1px;
     margin-right: 1px;
+  }
+
+  .sm\:my-5px {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .sm\:mx-5px {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .sm\:my-10px {
@@ -9935,6 +10051,22 @@ table {
     margin-left: 1px;
   }
 
+  .sm\:mt-5px {
+    margin-top: 5px;
+  }
+
+  .sm\:mr-5px {
+    margin-right: 5px;
+  }
+
+  .sm\:mb-5px {
+    margin-bottom: 5px;
+  }
+
+  .sm\:ml-5px {
+    margin-left: 5px;
+  }
+
   .sm\:mt-10px {
     margin-top: 10px;
   }
@@ -10077,6 +10209,10 @@ table {
 
   .sm\:-m-px {
     margin: -1px;
+  }
+
+  .sm\:-m-5px {
+    margin: -5px;
   }
 
   .sm\:-m-10px {
@@ -10231,6 +10367,16 @@ table {
   .sm\:-mx-px {
     margin-left: -1px;
     margin-right: -1px;
+  }
+
+  .sm\:-my-5px {
+    margin-top: -5px;
+    margin-bottom: -5px;
+  }
+
+  .sm\:-mx-5px {
+    margin-left: -5px;
+    margin-right: -5px;
   }
 
   .sm\:-my-10px {
@@ -10483,6 +10629,22 @@ table {
     margin-left: -1px;
   }
 
+  .sm\:-mt-5px {
+    margin-top: -5px;
+  }
+
+  .sm\:-mr-5px {
+    margin-right: -5px;
+  }
+
+  .sm\:-mb-5px {
+    margin-bottom: -5px;
+  }
+
+  .sm\:-ml-5px {
+    margin-left: -5px;
+  }
+
   .sm\:-mt-10px {
     margin-top: -10px;
   }
@@ -10633,6 +10795,10 @@ table {
 
   .sm\:p-px {
     padding: 1px;
+  }
+
+  .sm\:p-5px {
+    padding: 5px;
   }
 
   .sm\:p-10px {
@@ -10787,6 +10953,16 @@ table {
   .sm\:px-px {
     padding-left: 1px;
     padding-right: 1px;
+  }
+
+  .sm\:py-5px {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .sm\:px-5px {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .sm\:py-10px {
@@ -11037,6 +11213,22 @@ table {
 
   .sm\:pl-px {
     padding-left: 1px;
+  }
+
+  .sm\:pt-5px {
+    padding-top: 5px;
+  }
+
+  .sm\:pr-5px {
+    padding-right: 5px;
+  }
+
+  .sm\:pb-5px {
+    padding-bottom: 5px;
+  }
+
+  .sm\:pl-5px {
+    padding-left: 5px;
   }
 
   .sm\:pt-10px {
@@ -12542,6 +12734,10 @@ table {
 
   .sm\:w-px {
     width: 1px;
+  }
+
+  .sm\:w-5px {
+    width: 5px;
   }
 
   .sm\:w-10px {
@@ -15425,6 +15621,10 @@ table {
     height: 1px;
   }
 
+  .md\:h-5px {
+    height: 5px;
+  }
+
   .md\:h-10px {
     height: 10px;
   }
@@ -15515,6 +15715,10 @@ table {
 
   .md\:m-px {
     margin: 1px;
+  }
+
+  .md\:m-5px {
+    margin: 5px;
   }
 
   .md\:m-10px {
@@ -15679,6 +15883,16 @@ table {
   .md\:mx-px {
     margin-left: 1px;
     margin-right: 1px;
+  }
+
+  .md\:my-5px {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .md\:mx-5px {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .md\:my-10px {
@@ -15947,6 +16161,22 @@ table {
     margin-left: 1px;
   }
 
+  .md\:mt-5px {
+    margin-top: 5px;
+  }
+
+  .md\:mr-5px {
+    margin-right: 5px;
+  }
+
+  .md\:mb-5px {
+    margin-bottom: 5px;
+  }
+
+  .md\:ml-5px {
+    margin-left: 5px;
+  }
+
   .md\:mt-10px {
     margin-top: 10px;
   }
@@ -16089,6 +16319,10 @@ table {
 
   .md\:-m-px {
     margin: -1px;
+  }
+
+  .md\:-m-5px {
+    margin: -5px;
   }
 
   .md\:-m-10px {
@@ -16243,6 +16477,16 @@ table {
   .md\:-mx-px {
     margin-left: -1px;
     margin-right: -1px;
+  }
+
+  .md\:-my-5px {
+    margin-top: -5px;
+    margin-bottom: -5px;
+  }
+
+  .md\:-mx-5px {
+    margin-left: -5px;
+    margin-right: -5px;
   }
 
   .md\:-my-10px {
@@ -16495,6 +16739,22 @@ table {
     margin-left: -1px;
   }
 
+  .md\:-mt-5px {
+    margin-top: -5px;
+  }
+
+  .md\:-mr-5px {
+    margin-right: -5px;
+  }
+
+  .md\:-mb-5px {
+    margin-bottom: -5px;
+  }
+
+  .md\:-ml-5px {
+    margin-left: -5px;
+  }
+
   .md\:-mt-10px {
     margin-top: -10px;
   }
@@ -16645,6 +16905,10 @@ table {
 
   .md\:p-px {
     padding: 1px;
+  }
+
+  .md\:p-5px {
+    padding: 5px;
   }
 
   .md\:p-10px {
@@ -16799,6 +17063,16 @@ table {
   .md\:px-px {
     padding-left: 1px;
     padding-right: 1px;
+  }
+
+  .md\:py-5px {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .md\:px-5px {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .md\:py-10px {
@@ -17049,6 +17323,22 @@ table {
 
   .md\:pl-px {
     padding-left: 1px;
+  }
+
+  .md\:pt-5px {
+    padding-top: 5px;
+  }
+
+  .md\:pr-5px {
+    padding-right: 5px;
+  }
+
+  .md\:pb-5px {
+    padding-bottom: 5px;
+  }
+
+  .md\:pl-5px {
+    padding-left: 5px;
   }
 
   .md\:pt-10px {
@@ -18554,6 +18844,10 @@ table {
 
   .md\:w-px {
     width: 1px;
+  }
+
+  .md\:w-5px {
+    width: 5px;
   }
 
   .md\:w-10px {
@@ -21437,6 +21731,10 @@ table {
     height: 1px;
   }
 
+  .lg\:h-5px {
+    height: 5px;
+  }
+
   .lg\:h-10px {
     height: 10px;
   }
@@ -21527,6 +21825,10 @@ table {
 
   .lg\:m-px {
     margin: 1px;
+  }
+
+  .lg\:m-5px {
+    margin: 5px;
   }
 
   .lg\:m-10px {
@@ -21691,6 +21993,16 @@ table {
   .lg\:mx-px {
     margin-left: 1px;
     margin-right: 1px;
+  }
+
+  .lg\:my-5px {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .lg\:mx-5px {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .lg\:my-10px {
@@ -21959,6 +22271,22 @@ table {
     margin-left: 1px;
   }
 
+  .lg\:mt-5px {
+    margin-top: 5px;
+  }
+
+  .lg\:mr-5px {
+    margin-right: 5px;
+  }
+
+  .lg\:mb-5px {
+    margin-bottom: 5px;
+  }
+
+  .lg\:ml-5px {
+    margin-left: 5px;
+  }
+
   .lg\:mt-10px {
     margin-top: 10px;
   }
@@ -22101,6 +22429,10 @@ table {
 
   .lg\:-m-px {
     margin: -1px;
+  }
+
+  .lg\:-m-5px {
+    margin: -5px;
   }
 
   .lg\:-m-10px {
@@ -22255,6 +22587,16 @@ table {
   .lg\:-mx-px {
     margin-left: -1px;
     margin-right: -1px;
+  }
+
+  .lg\:-my-5px {
+    margin-top: -5px;
+    margin-bottom: -5px;
+  }
+
+  .lg\:-mx-5px {
+    margin-left: -5px;
+    margin-right: -5px;
   }
 
   .lg\:-my-10px {
@@ -22507,6 +22849,22 @@ table {
     margin-left: -1px;
   }
 
+  .lg\:-mt-5px {
+    margin-top: -5px;
+  }
+
+  .lg\:-mr-5px {
+    margin-right: -5px;
+  }
+
+  .lg\:-mb-5px {
+    margin-bottom: -5px;
+  }
+
+  .lg\:-ml-5px {
+    margin-left: -5px;
+  }
+
   .lg\:-mt-10px {
     margin-top: -10px;
   }
@@ -22657,6 +23015,10 @@ table {
 
   .lg\:p-px {
     padding: 1px;
+  }
+
+  .lg\:p-5px {
+    padding: 5px;
   }
 
   .lg\:p-10px {
@@ -22811,6 +23173,16 @@ table {
   .lg\:px-px {
     padding-left: 1px;
     padding-right: 1px;
+  }
+
+  .lg\:py-5px {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .lg\:px-5px {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .lg\:py-10px {
@@ -23061,6 +23433,22 @@ table {
 
   .lg\:pl-px {
     padding-left: 1px;
+  }
+
+  .lg\:pt-5px {
+    padding-top: 5px;
+  }
+
+  .lg\:pr-5px {
+    padding-right: 5px;
+  }
+
+  .lg\:pb-5px {
+    padding-bottom: 5px;
+  }
+
+  .lg\:pl-5px {
+    padding-left: 5px;
   }
 
   .lg\:pt-10px {
@@ -24566,6 +24954,10 @@ table {
 
   .lg\:w-px {
     width: 1px;
+  }
+
+  .lg\:w-5px {
+    width: 5px;
   }
 
   .lg\:w-10px {
@@ -27449,6 +27841,10 @@ table {
     height: 1px;
   }
 
+  .xl\:h-5px {
+    height: 5px;
+  }
+
   .xl\:h-10px {
     height: 10px;
   }
@@ -27539,6 +27935,10 @@ table {
 
   .xl\:m-px {
     margin: 1px;
+  }
+
+  .xl\:m-5px {
+    margin: 5px;
   }
 
   .xl\:m-10px {
@@ -27703,6 +28103,16 @@ table {
   .xl\:mx-px {
     margin-left: 1px;
     margin-right: 1px;
+  }
+
+  .xl\:my-5px {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .xl\:mx-5px {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .xl\:my-10px {
@@ -27971,6 +28381,22 @@ table {
     margin-left: 1px;
   }
 
+  .xl\:mt-5px {
+    margin-top: 5px;
+  }
+
+  .xl\:mr-5px {
+    margin-right: 5px;
+  }
+
+  .xl\:mb-5px {
+    margin-bottom: 5px;
+  }
+
+  .xl\:ml-5px {
+    margin-left: 5px;
+  }
+
   .xl\:mt-10px {
     margin-top: 10px;
   }
@@ -28113,6 +28539,10 @@ table {
 
   .xl\:-m-px {
     margin: -1px;
+  }
+
+  .xl\:-m-5px {
+    margin: -5px;
   }
 
   .xl\:-m-10px {
@@ -28267,6 +28697,16 @@ table {
   .xl\:-mx-px {
     margin-left: -1px;
     margin-right: -1px;
+  }
+
+  .xl\:-my-5px {
+    margin-top: -5px;
+    margin-bottom: -5px;
+  }
+
+  .xl\:-mx-5px {
+    margin-left: -5px;
+    margin-right: -5px;
   }
 
   .xl\:-my-10px {
@@ -28519,6 +28959,22 @@ table {
     margin-left: -1px;
   }
 
+  .xl\:-mt-5px {
+    margin-top: -5px;
+  }
+
+  .xl\:-mr-5px {
+    margin-right: -5px;
+  }
+
+  .xl\:-mb-5px {
+    margin-bottom: -5px;
+  }
+
+  .xl\:-ml-5px {
+    margin-left: -5px;
+  }
+
   .xl\:-mt-10px {
     margin-top: -10px;
   }
@@ -28669,6 +29125,10 @@ table {
 
   .xl\:p-px {
     padding: 1px;
+  }
+
+  .xl\:p-5px {
+    padding: 5px;
   }
 
   .xl\:p-10px {
@@ -28823,6 +29283,16 @@ table {
   .xl\:px-px {
     padding-left: 1px;
     padding-right: 1px;
+  }
+
+  .xl\:py-5px {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .xl\:px-5px {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .xl\:py-10px {
@@ -29073,6 +29543,22 @@ table {
 
   .xl\:pl-px {
     padding-left: 1px;
+  }
+
+  .xl\:pt-5px {
+    padding-top: 5px;
+  }
+
+  .xl\:pr-5px {
+    padding-right: 5px;
+  }
+
+  .xl\:pb-5px {
+    padding-bottom: 5px;
+  }
+
+  .xl\:pl-5px {
+    padding-left: 5px;
   }
 
   .xl\:pt-10px {
@@ -30578,6 +31064,10 @@ table {
 
   .xl\:w-px {
     width: 1px;
+  }
+
+  .xl\:w-5px {
+    width: 5px;
   }
 
   .xl\:w-10px {

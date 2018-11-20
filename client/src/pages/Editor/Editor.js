@@ -9,6 +9,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import guidelinesImage from '../../assets/images/guidelines.png';
 import { Row, Input, TextArea, MainWrapper, Form, Button } from '../../components/Widgets';
+import TextEditor from '../../components/Draft-js-Editor/TextEditor'
 
 // React Select docs: https://react-select.com/home
 
@@ -255,10 +256,13 @@ class CreatePost extends Component {
                   value={this.state.teaser}
                 />
                 <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
-                <RichTextEditor
+                {/* <RichTextEditor
                   value={this.state.value}
                   onChange={this.onEditorChange}
-                />
+                /> */}
+                <div className='my-10 mx-10'>
+                <TextEditor />
+                </div>
                 <br/>
                 <Select
                   id="tagField"

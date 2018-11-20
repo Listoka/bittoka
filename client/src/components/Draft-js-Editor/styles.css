@@ -1,0 +1,319 @@
+.addImage {
+  background: #FFF;
+  display: inline-block;
+}
+
+.addImagePopover {
+  margin-top: 10px;
+  background: #FFF;
+  position: absolute;
+  height: 54px;
+  width: 300px;
+  border-radius: 2px;
+  padding: 10px;
+  box-shadow: 0px 4px 30px 0px rgba(220,220,220,1);
+  z-index: 1000;
+}
+
+.addImageClosedPopover {
+  display: none;
+}
+
+.addImageButton {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0;
+  color: #888;
+  margin: 0;
+  border-radius: 1.5em;
+  cursor: pointer;
+  height: 1.5em;
+  width: 2.5em;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+.addImageButton:focus {
+  outline: 0; /* reset for :focus */
+}
+
+.addImageButton:hover {
+  background: #f3f3f3;
+}
+
+.addImageButton:active {
+  background: #e6e6e6;
+}
+
+.addImagePressedButton {
+  background: #ededed;
+}
+
+.addImageBottomGradient {
+  width: 100%;
+  height: 1em;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: white;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+.addImageInput {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  cursor: text;
+  padding: 4px;
+  width: 78%;
+  border-radius: 2px;
+  margin-bottom: 1em;
+  box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  background: #fefefe;
+}
+
+.addImageConfirmButton {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0;
+  color: #888;
+  margin: 0;
+  border-radius: 2.1em;
+  cursor: pointer;
+  height: 2.1em;
+  width: 18%;
+  font-size: 1em;
+  line-height: 2.1em;
+  margin: 0;
+  margin-left: 4%;
+}
+
+.addImageConfirmButton:focus {
+  outline: 0; /* reset for :focus */
+}
+
+.addImageConfirmButton:hover {
+  background: #f3f3f3;
+}
+
+.addImageConfirmButton:active {
+  background: #e6e6e6;
+}
+
+/* Below is for the side-toolbar */
+
+.wrapper {
+  position: absolute;
+}
+
+.buttonWrapper {
+  display: inline-block;
+}
+
+.button {
+  background: #333;
+  color: #ddd;
+  font-size: 18px;
+  border: 0;
+  padding-top: 5px;
+  vertical-align: bottom;
+  height: 34px;
+  width: 36px;
+  border-radius: 4px;
+}
+
+.button svg {
+  fill: #ddd;
+}
+
+.button:hover, .button:focus {
+  background: #444;
+  outline: 0; /* reset for :focus */
+}
+
+.active {
+  color: #6a9cc9;
+}
+
+.active svg {
+  fill: #6a9cc9;
+}
+
+.wrapper {
+  position: absolute;
+}
+.blockType {
+  box-sizing: border-box;
+  border: 1px solid #111;
+  background: #333;
+  padding: 5px;
+  margin: 0;
+  border-radius: 18px;
+  cursor: pointer;
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.blockType svg {
+  fill: #ddd;
+}
+
+.spacer {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 74px;
+  height: 8px;
+}
+
+.popup {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border: 1px solid #111;
+  background: #333;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
+  z-index: 3;
+  box-sizing: border-box;
+  width: 74px;
+  margin-top: 8px;
+}
+
+.popup:after, .popup:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.popup:after {
+  border-color: rgba(251, 251, 251, 0);
+  border-bottom-color: #333;
+  border-width: 4px;
+  margin-left: -4px;
+}
+.popup:before {
+  border-color: rgba(221, 221, 221, 0);
+  border-bottom-color: #111;
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+/* Video styles */
+.addVideo {
+  background: #FFF;
+  display: inline-block;
+}
+
+.addVideoPopover {
+  margin-top: 10px;
+  background: #FFF;
+  position: absolute;
+  height: 54px;
+  width: 300px;
+  border-radius: 2px;
+  padding: 10px;
+  box-shadow: 0px 4px 30px 0px rgba(220, 220, 220, 1);
+  z-index: 1000;
+}
+
+.addVideoClosedPopover {
+  display: none;
+}
+
+.addVideoButton {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0;
+  color: #888;
+  margin: 0;
+  border-radius: 1.5em;
+  cursor: pointer;
+  height: 1.5em;
+  width: 2.5em;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+.addVideoButton:focus {
+  outline: 0; /* reset for :focus */
+}
+
+.addVideoButton:hover {
+  background: #f3f3f3;
+}
+
+.addVideoButton:active {
+  background: #e6e6e6;
+}
+
+.addVideoPressedButton {
+  /* composes: addVideoButton; */
+  background: #ededed;
+}
+
+.addVideoBottomGradient {
+  width: 100%;
+  height: 1em;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: white;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.addVideoInput {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  cursor: text;
+  padding: 4px;
+  width: 78%;
+  border-radius: 2px;
+  margin-bottom: 1em;
+  box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  background: #fefefe;
+}
+
+.addVideoConfirmButton {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0;
+  color: #888;
+  margin: 0;
+  border-radius: 2.1em;
+  cursor: pointer;
+  height: 2.1em;
+  width: 18%;
+  font-size: 1em;
+  line-height: 2.1em;
+  margin: 0;
+  margin-left: 4%;
+}
+
+.addVideoConfirmButton:focus {
+  outline: 0; /* reset for :focus */
+}
+
+.addVideoConfirmButton:hover {
+  background: #f3f3f3;
+}
+
+.addVideoConfirmButton:active {
+  background: #e6e6e6;
+}
