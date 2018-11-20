@@ -16,6 +16,8 @@ import TextEditor from '../../components/Draft-js-Editor/TextEditor'
 // FIXME: Any logged in user can open up the editor view by putting /edit after a post url
 //          Actually updating it is blocked serverside.
 
+// TODO: Implement a check on componentWillUnmount to determine whether we can discard the draft or not
+
 class CreatePost extends Component {
   constructor(props) {
     super(props);

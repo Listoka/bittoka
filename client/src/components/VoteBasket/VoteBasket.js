@@ -9,7 +9,7 @@ const VoteBasket = props => {
 
   return (
     <div className='absolute pin-b pin-r w-1/4 mr-4 border'>
-      <div onClick={props.toggleIsCollapsed} className='bg-grey-darker'>
+      <div onClick={props.toggleIsCollapsed} className='bg-grey-darker cursor-pointer'>
         <h5 className='text-base text-center text-grey-lighter p-2'>Pending Votes ({numPendingVotes})</h5>
       </div>
       {!props.isCollapsed &&
