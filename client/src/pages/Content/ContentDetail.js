@@ -9,7 +9,7 @@ import { EditButton } from '../../components/Widgets';
 
 const ContentDetail = props => {
   return (
-    <div className='w-2/3 mx-auto mt-3 p-2 rounded bg-white'>
+    <div className='max-w-lg md:w-5/6 mx-auto mt-3 p-2 rounded bg-white'>
       <h2>{props.title}</h2>
       <p className='ml-2 mt-2 mb-3'>
         <span className='mr-1'>By: <Link to={{ pathname: `/users/${props.author}` }}>{props.authorName}</Link></span>

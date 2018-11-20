@@ -2,8 +2,10 @@ import React from "react";
 import { MainWrapper, Button } from '../../components/Widgets';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import AccountViewConductor from './AccountViewConductor';
-import { DraftListItem } from '../../components/Drafts/DraftListItem';
+import { DraftListItem } from '../../components/List/DraftListItem';
 import { List } from '../../components/List';
+
+// TODO: Add a comments section to view the comments you have made
 
 const AccountPage = props => {
 
@@ -14,9 +16,9 @@ const AccountPage = props => {
       <div className='w-full flex mx-0'>
         <MainWrapper styles='w-4/5'>
           <div className='w-full flex mx-0'>
-            <Button text={'Settings'} onClick={(e) => switchView(e, 'SETTINGS')} />
-            <Button text={'Posts'} onClick={(e) => switchView(e, 'POSTS')} />
-            <Button text={'Transactions'} onClick={(e) => switchView(e, 'TRANSACTIONS')} />
+            <Button text='Settings' onClick={(e) => switchView(e, 'SETTINGS')} />
+            <Button text='Posts' onClick={(e) => switchView(e, 'POSTS')} />
+            <Button text='Transactions' onClick={(e) => switchView(e, 'TRANSACTIONS')} />
           </div>
           <hr />
           <AccountViewConductor {...conductorProps} />
