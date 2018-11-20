@@ -14,8 +14,10 @@ import {
   HeadlineThreeButton, UnorderedListButton, OrderedListButton, BlockquoteButton, CodeBlockButton,
 } from 'draft-js-buttons';
 import "draft-js-inline-toolbar-plugin/lib/plugin.css";
+import '../../../node_modules/draft-js-side-toolbar-plugin/lib/plugin.css'
 import ImageAdd from './AddImage.js';
 import VideoAdd from './VideoAdd.js';
+import './styles.css';
 
 // Adding the plugins
 const inlineToolbarPlugin = createInlineToolbarPlugin();
@@ -37,6 +39,15 @@ const plugins = [
   inlineToolbarPlugin, undoPlugin, imagePlugin, sideToolbarPlugin,
   linkPlugin, dividerPlugin, counterPlugin, videoPlugin
 ];
+
+const styleMap = {
+  CODE: {
+    backgroundColor: 'blue',
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 32,
+    padding: 2,
+  },
+};
 
 class TextEditor extends Component {
 
@@ -70,12 +81,13 @@ class TextEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
+          customStyleMap={styleMap}
           ref={(element) => { this.editor = element; }}
         />
         <SideToolbar>
           {externalProps => (
             <React.Fragment>
-              <BlockquoteButton {...externalProps} />
+              <DividerButton {...externalProps} />
             </React.Fragment>
           )}
         </SideToolbar>
@@ -93,7 +105,7 @@ class TextEditor extends Component {
                 <OrderedListButton {...externalProps} />
                 <BlockquoteButton {...externalProps} />
                 <linkPlugin.LinkButton {...externalProps} />
-                <DividerButton {...externalProps} />
+                
                 {/* <VideoAdd
                   editorState={this.state.editorState}
                   onChange={this.onChange}
