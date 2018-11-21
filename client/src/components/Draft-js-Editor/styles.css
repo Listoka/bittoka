@@ -335,10 +335,11 @@
 
 /* SideToolbar CSS */
 
+/* This manipulates the actual circle sidebar */
 .draftJsToolbar__blockType__27Jwn {
   box-sizing: border-box;
-  border: 1px solid #ddd;
-  background: #fff;
+  border: 1px solid #1B1B1B;
+  background: #1B1B1B;
   padding: 5px;
   margin: 0;
   border-radius: 18px;
@@ -350,16 +351,7 @@
 }
 
 .draftJsToolbar__blockType__27Jwn svg {
-  fill: #888;
-}
-
-.draftJsToolbar__spacer__2Os2z {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  width: 74px;
-  height: 8px;
+  fill: #D8D8D8;
 }
 
 .draftJsToolbar__popup__GHzbY {
@@ -368,8 +360,8 @@
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
   background: #efefef;
-  border: 1px solid #ddd;
-  background: #fff;
+  border: 1px solid #1B1B1B;
+  background: #1B1B1B;
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
   z-index: 3;
@@ -378,36 +370,25 @@
   margin-top: 8px;
 }
 
-.draftJsToolbar__popup__GHzbY:after, .draftJsToolbar__popup__GHzbY:before {
-  bottom: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
 .draftJsToolbar__popup__GHzbY:after {
   border-color: rgba(251, 251, 251, 0);
-  border-bottom-color: #fbfbfb;
+  border-bottom-color: #1B1B1B;
   border-width: 4px;
   margin-left: -4px;
 }
 .draftJsToolbar__popup__GHzbY:before {
   border-color: rgba(221, 221, 221, 0);
-  border-bottom-color: #ddd;
+  border-bottom-color: #1B1B1B;
   border-width: 6px;
   margin-left: -6px;
 }
-.draftJsToolbar__buttonWrapper__1Dmqh {
-  display: inline-block;
-}
 
+/* Inline Toolbar */
+
+/* This controls the background of the buttons */
 .draftJsToolbar__button__qi1gf {
-  background: #fbfbfb;
-  color: #888;
+  background: #1B1B1B;
+  color: #D8D8D8;
   font-size: 18px;
   border: 0;
   padding-top: 5px;
@@ -417,29 +398,108 @@
 }
 
 .draftJsToolbar__button__qi1gf svg {
-  fill: #888;
+  fill: #D8D8D8;
 }
 
 .draftJsToolbar__button__qi1gf:hover, .draftJsToolbar__button__qi1gf:focus {
-  background: #f3f3f3;
+  background: #195D1D;
   outline: 0; /* reset for :focus */
 }
 
-.draftJsToolbar__active__3qcpF {
-  background: #efefef;
-  color: #444;
-}
-
-.draftJsToolbar__active__3qcpF svg {
-  fill: #444;
-}
-
-.draftJsToolbar__separator__3M3L7 {
+.draftJsToolbar__separator__3U7qt {
   display: inline-block;
-  border-right: 1px solid #ddd;
-  height: 24px;
+  border-right: 1px solid #D8D8D8;
+  height: 21px;
   margin: 0 0.5em;
 }
-.draftJsToolbar__wrapper__9NZgg {
+
+.draftJsToolbar__toolbar__dNtBH {
+  left: 50%;
+  -webkit-transform: translate(-50%) scale(0);
+          transform: translate(-50%) scale(0);
   position: absolute;
+  border: 1px solid #1B1B1B;
+  background: #1B1B1B;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+
+.draftJsToolbar__toolbar__dNtBH:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #1B1B1B;
+  border-width: 4px;
+  margin-left: -4px;
+}
+.draftJsToolbar__toolbar__dNtBH:before {
+  border-color: rgba(221, 221, 221, 0);
+  border-top-color: #1B1B1B;
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+/* Undo Plugin */
+
+/* Divider Plugin */
+
+.draftJsDividerPlugin__dividerBlock__4VxnL {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 32px 0;
+  border: none; /* strip default hr styling */
+  text-align: center;
+}
+
+.draftJsDividerPlugin__dividerBlock__4VxnL::after {
+  margin-left: 48px;
+  color: rgba(0, 0, 0, 0.26); /* pick a color */
+  font-size: 2.125rem;
+  letter-spacing: 48px; /* increase space between dots */
+  content: '\2022\2022\2022';
+}
+
+/* Anchor plugin */
+
+.draftJsMentionPlugin__input__1Wxng {
+  height: 34px;
+  width: 220px;
+  padding: 0 12px;
+  font-size: 15px;
+  font-family: 'Roboto';
+  background-color: transparent;
+  border: none;
+  color: #D8D8D8;
+}
+
+.draftJsMentionPlugin__input__1Wxng:focus {
+  outline: none;
+}
+
+.draftJsMentionPlugin__input__1Wxng::-webkit-input-placeholder {
+  color: #D8D8D8;
+}
+
+.draftJsMentionPlugin__input__1Wxng:-ms-input-placeholder {
+  color: #D8D8D8;
+}
+
+.draftJsMentionPlugin__input__1Wxng::placeholder {
+  color: #D8D8D8;
+}
+
+.draftJsMentionPlugin__inputInvalid__X9hHv {
+  color: #e65757;
+}
+
+.draftJsMentionPlugin__link__TQHAX {
+  color: #2996da;
+  text-decoration: underline;
 }

@@ -40,14 +40,14 @@ const plugins = [
   linkPlugin, dividerPlugin, counterPlugin, videoPlugin
 ];
 
-const styleMap = {
-  CODE: {
-    backgroundColor: 'blue',
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 32,
-    padding: 2,
-  },
-};
+// const styleMap = {
+//   CODE: {
+//     backgroundColor: 'blue',
+//     fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+//     fontSize: 32,
+//     padding: 2,
+//   },
+// };
 
 class TextEditor extends Component {
 
@@ -81,7 +81,7 @@ class TextEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          customStyleMap={styleMap}
+          // customStyleMap={styleMap}
           ref={(element) => { this.editor = element; }}
         />
         <SideToolbar>
@@ -115,11 +115,7 @@ class TextEditor extends Component {
           )}
         </InlineToolbar>
       </div>
-        <VideoAdd
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            modifier={videoPlugin.addVideo}
-          />
+       
         <ImageAdd
             editorState={this.state.editorState}
             onChange={this.onChange}
