@@ -34,6 +34,7 @@ const { UndoButton } = undoPlugin;
 const { SideToolbar } = sideToolbarPlugin;
 const { DividerButton } = dividerPlugin;
 const { WordCounter } = counterPlugin;
+const { VideoPlugin } = videoPlugin
 
 const plugins = [
   inlineToolbarPlugin, undoPlugin, imagePlugin, sideToolbarPlugin,
@@ -70,29 +71,31 @@ class TextEditor extends Component {
 
   render() {
     return (
-    <React.Fragment>
-      {/* Should we even have an undo/redo button? */}
-      <div className='float-right mr-2'>
-        <UndoButton />
-      </div>
-      
-      <div className='editor' onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          // customStyleMap={styleMap}
-          ref={(element) => { this.editor = element; }}
-        />
-        <SideToolbar>
-          {externalProps => (
-            <React.Fragment>
-              <DividerButton {...externalProps} />
-            </React.Fragment>
-          )}
-        </SideToolbar>
-        <InlineToolbar>
-          {externalProps => (
+      <React.Fragment>
+        {/* Should we even have an undo/redo button? */}
+        <div className='float-right mr-2'>
+          <UndoButton />
+        </div>
+
+        <div className='editor' onClick={this.focus}>
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            plugins={plugins}
+            // customStyleMap={styleMap}
+            ref={(element) => { this.editor = element; }}
+          />
+          <SideToolbar>
+            {externalProps => (
+              <React.Fragment>
+                <VideoAdd {...externalProps} />
+                <ImageAdd {...externalProps} />
+                <DividerButton {...externalProps} />
+              </React.Fragment>
+            )}
+          </SideToolbar>
+          <InlineToolbar>
+            {externalProps => (
               <React.Fragment>
                 {console.log(externalProps)}
                 <BoldButton {...externalProps} />
@@ -105,24 +108,24 @@ class TextEditor extends Component {
                 <OrderedListButton {...externalProps} />
                 <BlockquoteButton {...externalProps} />
                 <linkPlugin.LinkButton {...externalProps} />
-                
+
                 {/* <VideoAdd
                   editorState={this.state.editorState}
                   onChange={this.onChange}
                   modifier={videoPlugin.addVideo}
                 /> */}
               </React.Fragment>
-          )}
-        </InlineToolbar>
-      </div>
-       
-        <ImageAdd
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            modifier={imagePlugin.addImage}
-        />
-      <div className='float-right -mt-5'><WordCounter /> words</div>
-    </React.Fragment>
+            )}
+          </InlineToolbar>
+        </div>
+
+        {/* <ImageAdd
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+          modifier={imagePlugin.addImage}
+        /> */}
+        <div className='float-right -mt-5'><WordCounter /> words</div>
+      </React.Fragment>
     )
   }
 }
