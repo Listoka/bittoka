@@ -614,3 +614,54 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 .moneybutton {
   padding-left: 50px;
 }
+
+h1 {
+  font-family: Roboto-Regular;
+  font-size: 56px;
+  color: #FFFFFF;
+  text-align: left;
+ }
+ 
+ h2 {
+  font-family: Roboto-Bold;
+  font-size: 40px;
+  color: #FFFFFF;
+  text-align: left;
+  line-height: 60px;
+ }
+ 
+ h3 {
+  font-family: Roboto-Bold;
+  font-size: 32px;
+  color: #FFFFFF;
+  text-align: left;
+ }
+ 
+ h4 {
+  font-family: Roboto-Regular;
+  font-size: 32px;
+  color: #FFFFFF;
+  text-align: left;
+ }
+ 
+ h5 {
+  font-family: Roboto-Medium;
+  font-size: 24px;
+  color: #FFFFFF;
+  text-align: left;
+ }
+ 
+ h6 {
+  font-family: Roboto-Bold;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: left;
+ }
+ 
+ p {
+  font-family: Montserrat-Regular;
+  font-size: 24px;
+  color: #FFFFFF;
+  text-align: left;
+  line-height: 34px;
+ }

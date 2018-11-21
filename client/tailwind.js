@@ -49,8 +49,13 @@ let colors = {
   'dark-green': '#195D1D',
   'light-gray': '#D8D8D8',
   'medium-gray': '#5E5E5E',
+  'medium-gray-darker': '#2d2d2d',
   'darkest-gray': '#1B1B1B',
+  'body-background': '#121212',
   'soft-black': '#030303',
+  'input-active': '#979797',
+  'input-disabled': '#515356',
+  'alert-success': '#FF3608',
 
   'transparent': 'transparent',
 
@@ -316,6 +321,7 @@ module.exports = {
     'tight': 1.25,
     'normal': 1.5,
     'loose': 2,
+    '34px': '34px'
   },
 
 
@@ -407,6 +413,7 @@ module.exports = {
     default: '1px',
     '0': '0',
     '2': '2px',
+    '3': '3px',
     '4': '4px',
     '8': '8px',
   },
@@ -454,6 +461,8 @@ module.exports = {
     default: '.25rem',
     'lg': '.5rem',
     'full': '9999px',
+    '4px': '4px',
+    '20px': '20px'
   },
 
 
@@ -660,6 +669,7 @@ module.exports = {
     'px': '1px',
     '5px': '5px',
     '10px': '10px',
+    '20px': '20px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
@@ -697,6 +707,7 @@ module.exports = {
     'px': '1px',
     '5px': '5px',
     '10px': '10px',
+    '20px': '20px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
@@ -733,6 +744,7 @@ module.exports = {
     'px': '1px',
     '5px': '5px',
     '10px': '10px',
+    '20px': '20px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
