@@ -603,6 +603,24 @@ h6 {
   font-size: 16pt;
 }
 
+input {
+  background-color: #39393a;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.input-active {
+  border-width: 3px;
+  border-color: #979797;
+  color: #979797;
+}
+
+.input-disabled {
+  border-width: 0;
+  border-color: #515356;
+  color: #515356;
+}
+
 /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
@@ -677,6 +695,10 @@ h6 {
 
 .bg-input-disabled {
   background-color: #515356;
+}
+
+.bg-input-background {
+  background-color: #39393a;
 }
 
 .bg-alert-success {
@@ -1019,6 +1041,10 @@ h6 {
   background-color: #515356;
 }
 
+.hover\:bg-input-background:hover {
+  background-color: #39393a;
+}
+
 .hover\:bg-alert-success:hover {
   background-color: #ff3608;
 }
@@ -1357,6 +1383,10 @@ h6 {
 
 .focus\:bg-input-disabled:focus {
   background-color: #515356;
+}
+
+.focus\:bg-input-background:focus {
+  background-color: #39393a;
 }
 
 .focus\:bg-alert-success:focus {
@@ -1771,6 +1801,10 @@ h6 {
   border-color: #515356;
 }
 
+.border-input-background {
+  border-color: #39393a;
+}
+
 .border-alert-success {
   border-color: #ff3608;
 }
@@ -2111,6 +2145,10 @@ h6 {
   border-color: #515356;
 }
 
+.hover\:border-input-background:hover {
+  border-color: #39393a;
+}
+
 .hover\:border-alert-success:hover {
   border-color: #ff3608;
 }
@@ -2449,6 +2487,10 @@ h6 {
 
 .focus\:border-input-disabled:focus {
   border-color: #515356;
+}
+
+.focus\:border-input-background:focus {
+  border-color: #39393a;
 }
 
 .focus\:border-alert-success:focus {
@@ -3444,7 +3486,7 @@ h6 {
 }
 
 .font-sans {
-  font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Montserrat, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 .font-serif {
@@ -5720,6 +5762,10 @@ h6 {
   color: #515356;
 }
 
+.text-input-background {
+  color: #39393a;
+}
+
 .text-alert-success {
   color: #ff3608;
 }
@@ -6060,6 +6106,10 @@ h6 {
   color: #515356;
 }
 
+.hover\:text-input-background:hover {
+  color: #39393a;
+}
+
 .hover\:text-alert-success:hover {
   color: #ff3608;
 }
@@ -6398,6 +6448,10 @@ h6 {
 
 .focus\:text-input-disabled:focus {
   color: #515356;
+}
+
+.focus\:text-input-background:focus {
+  color: #39393a;
 }
 
 .focus\:text-alert-success:focus {
@@ -7221,6 +7275,10 @@ h6 {
     background-color: #515356;
   }
 
+  .sm\:bg-input-background {
+    background-color: #39393a;
+  }
+
   .sm\:bg-alert-success {
     background-color: #ff3608;
   }
@@ -7561,6 +7619,10 @@ h6 {
     background-color: #515356;
   }
 
+  .sm\:hover\:bg-input-background:hover {
+    background-color: #39393a;
+  }
+
   .sm\:hover\:bg-alert-success:hover {
     background-color: #ff3608;
   }
@@ -7899,6 +7961,10 @@ h6 {
 
   .sm\:focus\:bg-input-disabled:focus {
     background-color: #515356;
+  }
+
+  .sm\:focus\:bg-input-background:focus {
+    background-color: #39393a;
   }
 
   .sm\:focus\:bg-alert-success:focus {
@@ -8305,6 +8371,10 @@ h6 {
     border-color: #515356;
   }
 
+  .sm\:border-input-background {
+    border-color: #39393a;
+  }
+
   .sm\:border-alert-success {
     border-color: #ff3608;
   }
@@ -8645,6 +8715,10 @@ h6 {
     border-color: #515356;
   }
 
+  .sm\:hover\:border-input-background:hover {
+    border-color: #39393a;
+  }
+
   .sm\:hover\:border-alert-success:hover {
     border-color: #ff3608;
   }
@@ -8983,6 +9057,10 @@ h6 {
 
   .sm\:focus\:border-input-disabled:focus {
     border-color: #515356;
+  }
+
+  .sm\:focus\:border-input-background:focus {
+    border-color: #39393a;
   }
 
   .sm\:focus\:border-alert-success:focus {
@@ -9978,7 +10056,7 @@ h6 {
   }
 
   .sm\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Montserrat, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .sm\:font-serif {
@@ -12238,6 +12316,10 @@ h6 {
     color: #515356;
   }
 
+  .sm\:text-input-background {
+    color: #39393a;
+  }
+
   .sm\:text-alert-success {
     color: #ff3608;
   }
@@ -12578,6 +12660,10 @@ h6 {
     color: #515356;
   }
 
+  .sm\:hover\:text-input-background:hover {
+    color: #39393a;
+  }
+
   .sm\:hover\:text-alert-success:hover {
     color: #ff3608;
   }
@@ -12916,6 +13002,10 @@ h6 {
 
   .sm\:focus\:text-input-disabled:focus {
     color: #515356;
+  }
+
+  .sm\:focus\:text-input-background:focus {
+    color: #39393a;
   }
 
   .sm\:focus\:text-alert-success:focus {
@@ -13725,6 +13815,10 @@ h6 {
     background-color: #515356;
   }
 
+  .md\:bg-input-background {
+    background-color: #39393a;
+  }
+
   .md\:bg-alert-success {
     background-color: #ff3608;
   }
@@ -14065,6 +14159,10 @@ h6 {
     background-color: #515356;
   }
 
+  .md\:hover\:bg-input-background:hover {
+    background-color: #39393a;
+  }
+
   .md\:hover\:bg-alert-success:hover {
     background-color: #ff3608;
   }
@@ -14403,6 +14501,10 @@ h6 {
 
   .md\:focus\:bg-input-disabled:focus {
     background-color: #515356;
+  }
+
+  .md\:focus\:bg-input-background:focus {
+    background-color: #39393a;
   }
 
   .md\:focus\:bg-alert-success:focus {
@@ -14809,6 +14911,10 @@ h6 {
     border-color: #515356;
   }
 
+  .md\:border-input-background {
+    border-color: #39393a;
+  }
+
   .md\:border-alert-success {
     border-color: #ff3608;
   }
@@ -15149,6 +15255,10 @@ h6 {
     border-color: #515356;
   }
 
+  .md\:hover\:border-input-background:hover {
+    border-color: #39393a;
+  }
+
   .md\:hover\:border-alert-success:hover {
     border-color: #ff3608;
   }
@@ -15487,6 +15597,10 @@ h6 {
 
   .md\:focus\:border-input-disabled:focus {
     border-color: #515356;
+  }
+
+  .md\:focus\:border-input-background:focus {
+    border-color: #39393a;
   }
 
   .md\:focus\:border-alert-success:focus {
@@ -16482,7 +16596,7 @@ h6 {
   }
 
   .md\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Montserrat, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .md\:font-serif {
@@ -18742,6 +18856,10 @@ h6 {
     color: #515356;
   }
 
+  .md\:text-input-background {
+    color: #39393a;
+  }
+
   .md\:text-alert-success {
     color: #ff3608;
   }
@@ -19082,6 +19200,10 @@ h6 {
     color: #515356;
   }
 
+  .md\:hover\:text-input-background:hover {
+    color: #39393a;
+  }
+
   .md\:hover\:text-alert-success:hover {
     color: #ff3608;
   }
@@ -19420,6 +19542,10 @@ h6 {
 
   .md\:focus\:text-input-disabled:focus {
     color: #515356;
+  }
+
+  .md\:focus\:text-input-background:focus {
+    color: #39393a;
   }
 
   .md\:focus\:text-alert-success:focus {
@@ -20229,6 +20355,10 @@ h6 {
     background-color: #515356;
   }
 
+  .lg\:bg-input-background {
+    background-color: #39393a;
+  }
+
   .lg\:bg-alert-success {
     background-color: #ff3608;
   }
@@ -20569,6 +20699,10 @@ h6 {
     background-color: #515356;
   }
 
+  .lg\:hover\:bg-input-background:hover {
+    background-color: #39393a;
+  }
+
   .lg\:hover\:bg-alert-success:hover {
     background-color: #ff3608;
   }
@@ -20907,6 +21041,10 @@ h6 {
 
   .lg\:focus\:bg-input-disabled:focus {
     background-color: #515356;
+  }
+
+  .lg\:focus\:bg-input-background:focus {
+    background-color: #39393a;
   }
 
   .lg\:focus\:bg-alert-success:focus {
@@ -21313,6 +21451,10 @@ h6 {
     border-color: #515356;
   }
 
+  .lg\:border-input-background {
+    border-color: #39393a;
+  }
+
   .lg\:border-alert-success {
     border-color: #ff3608;
   }
@@ -21653,6 +21795,10 @@ h6 {
     border-color: #515356;
   }
 
+  .lg\:hover\:border-input-background:hover {
+    border-color: #39393a;
+  }
+
   .lg\:hover\:border-alert-success:hover {
     border-color: #ff3608;
   }
@@ -21991,6 +22137,10 @@ h6 {
 
   .lg\:focus\:border-input-disabled:focus {
     border-color: #515356;
+  }
+
+  .lg\:focus\:border-input-background:focus {
+    border-color: #39393a;
   }
 
   .lg\:focus\:border-alert-success:focus {
@@ -22986,7 +23136,7 @@ h6 {
   }
 
   .lg\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Montserrat, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .lg\:font-serif {
@@ -25246,6 +25396,10 @@ h6 {
     color: #515356;
   }
 
+  .lg\:text-input-background {
+    color: #39393a;
+  }
+
   .lg\:text-alert-success {
     color: #ff3608;
   }
@@ -25586,6 +25740,10 @@ h6 {
     color: #515356;
   }
 
+  .lg\:hover\:text-input-background:hover {
+    color: #39393a;
+  }
+
   .lg\:hover\:text-alert-success:hover {
     color: #ff3608;
   }
@@ -25924,6 +26082,10 @@ h6 {
 
   .lg\:focus\:text-input-disabled:focus {
     color: #515356;
+  }
+
+  .lg\:focus\:text-input-background:focus {
+    color: #39393a;
   }
 
   .lg\:focus\:text-alert-success:focus {
@@ -26733,6 +26895,10 @@ h6 {
     background-color: #515356;
   }
 
+  .xl\:bg-input-background {
+    background-color: #39393a;
+  }
+
   .xl\:bg-alert-success {
     background-color: #ff3608;
   }
@@ -27073,6 +27239,10 @@ h6 {
     background-color: #515356;
   }
 
+  .xl\:hover\:bg-input-background:hover {
+    background-color: #39393a;
+  }
+
   .xl\:hover\:bg-alert-success:hover {
     background-color: #ff3608;
   }
@@ -27411,6 +27581,10 @@ h6 {
 
   .xl\:focus\:bg-input-disabled:focus {
     background-color: #515356;
+  }
+
+  .xl\:focus\:bg-input-background:focus {
+    background-color: #39393a;
   }
 
   .xl\:focus\:bg-alert-success:focus {
@@ -27817,6 +27991,10 @@ h6 {
     border-color: #515356;
   }
 
+  .xl\:border-input-background {
+    border-color: #39393a;
+  }
+
   .xl\:border-alert-success {
     border-color: #ff3608;
   }
@@ -28157,6 +28335,10 @@ h6 {
     border-color: #515356;
   }
 
+  .xl\:hover\:border-input-background:hover {
+    border-color: #39393a;
+  }
+
   .xl\:hover\:border-alert-success:hover {
     border-color: #ff3608;
   }
@@ -28495,6 +28677,10 @@ h6 {
 
   .xl\:focus\:border-input-disabled:focus {
     border-color: #515356;
+  }
+
+  .xl\:focus\:border-input-background:focus {
+    border-color: #39393a;
   }
 
   .xl\:focus\:border-alert-success:focus {
@@ -29490,7 +29676,7 @@ h6 {
   }
 
   .xl\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Montserrat, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .xl\:font-serif {
@@ -31750,6 +31936,10 @@ h6 {
     color: #515356;
   }
 
+  .xl\:text-input-background {
+    color: #39393a;
+  }
+
   .xl\:text-alert-success {
     color: #ff3608;
   }
@@ -32090,6 +32280,10 @@ h6 {
     color: #515356;
   }
 
+  .xl\:hover\:text-input-background:hover {
+    color: #39393a;
+  }
+
   .xl\:hover\:text-alert-success:hover {
     color: #ff3608;
   }
@@ -32428,6 +32622,10 @@ h6 {
 
   .xl\:focus\:text-input-disabled:focus {
     color: #515356;
+  }
+
+  .xl\:focus\:text-input-background:focus {
+    color: #39393a;
   }
 
   .xl\:focus\:text-alert-success:focus {

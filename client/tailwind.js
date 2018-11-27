@@ -55,6 +55,7 @@ let colors = {
   'soft-black': '#030303',
   'input-active': '#979797',
   'input-disabled': '#515356',
+  'input-background': '#39393A',
   'alert-success': '#FF3608',
 
   'transparent': 'transparent',
@@ -212,6 +213,7 @@ module.exports = {
       '-apple-system',
       'Segoe UI',
       'Roboto',
+      'Montserrat',
       'Oxygen',
       'Ubuntu',
       'Cantarell',

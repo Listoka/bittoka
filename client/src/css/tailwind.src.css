@@ -71,6 +71,18 @@
         @apply font-bold text-h6f;
     }
 
+    input {
+        @apply bg-input-background rounded-4px p-5px
+    }
+
+    .input-active {
+        @apply border-3 border-input-active text-input-active
+    }
+
+    .input-disabled {
+        @apply border-0 border-input-disabled text-input-disabled
+    }
+
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.

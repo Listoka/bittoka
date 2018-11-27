@@ -14,11 +14,20 @@ export const ProfilePage = props => (
         <div className={'m-2 px-2 pb-2'}>
           <h1>{props.authorName}</h1>
         </div> 
-        <div className={'m-2 px-2 pb-2 flex flex-wrap'}>
-          <h5 className='flex-1 text-left'>Money button number</h5> 
-          <h5 className='flex-1 text-bold rounded bg-brand-green p-5px text-center'>{props.payees[0].to}</h5>
-          <h5 className='flex-1 text-center'>Total paid {props.payees[0].to}</h5>
-          <h5 className='flex-1 text-center'>Total earned {props.payees[0].to}</h5>
+        <div className={'m-2 px-2 pb-2 flex'}>
+
+          <div className='w-2/5'>
+            <div className='w-2/3 mr-10px'>
+              <p className='inline-block text-white'>Money button number</p>
+            </div>
+            <div className='w-1/3'>
+              <input className='text-center text-white focus:input-active' id='moneybuttonID' type='text' placeholder={props.payees[0].to}></input>
+            </div>
+          </div>
+
+          <p className='w-2/5 text-left text-white'>Total paid {props.payees[0].to}</p>
+
+          <p className='w-1/5 text-left text-white'>Total earned {props.payees[0].to}</p>
         </div>
       </div>
         <Button text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
