@@ -19,6 +19,7 @@ import authTest from './pages/AUTH-TEST';
 // Higher Order Components
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
+import TestEditorPage from './components/EditorTest/TestEditorPage';
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
             <Route exact path='/account' component={AccountContainer} />
             <Route exact path='/users/:id' component={ProfileContainer} />
             <Route exact path='/editor' component={Editor} />
+            <Route exact path='/test-editor' component={TestEditorPage} />
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
           </Switch>

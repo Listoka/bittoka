@@ -13,17 +13,23 @@ import {
   ItalicButton, BoldButton, UnderlineButton, CodeButton, HeadlineTwoButton,
   HeadlineThreeButton, UnorderedListButton, OrderedListButton, BlockquoteButton, CodeBlockButton,
 } from 'draft-js-buttons';
-import "draft-js-inline-toolbar-plugin/lib/plugin.css";
-import '../../../node_modules/draft-js-side-toolbar-plugin/lib/plugin.css'
+// import "draft-js-inline-toolbar-plugin/lib/plugin.css";
+// import '../../../node_modules/draft-js-side-toolbar-plugin/lib/plugin.css'
 import ImageAdd from './AddImage.js';
 import VideoAdd from './VideoAdd.js';
-import './styles.css';
+// import stylesCss from './styles.css';
+// import stylesObj from './styles.js'
+import buttonStyles from './buttonStyles.module.css'
+import toolbarStyles from './toolbarStyles.module.css'
+import blockTypeSelectStyles from './blockTypeSelectStyles.module.css'
+
+const sidebarTheme = { buttonStyles, toolbarStyles, blockTypeSelectStyles }
 
 // Adding the plugins
 const inlineToolbarPlugin = createInlineToolbarPlugin();
 const undoPlugin = createUndoPlugin();
 const imagePlugin = createImagePlugin();
-const sideToolbarPlugin = createSideToolbarPlugin();
+const sideToolbarPlugin = createSideToolbarPlugin({ theme: sidebarTheme });
 const linkPlugin = createLinkPlugin();
 const dividerPlugin = createDividerPlugin();
 const counterPlugin = createCounterPlugin();
@@ -34,7 +40,6 @@ const { UndoButton } = undoPlugin;
 const { SideToolbar } = sideToolbarPlugin;
 const { DividerButton } = dividerPlugin;
 const { WordCounter } = counterPlugin;
-const { VideoPlugin } = videoPlugin
 
 const plugins = [
   inlineToolbarPlugin, undoPlugin, imagePlugin, sideToolbarPlugin,
@@ -70,6 +75,7 @@ class TextEditor extends Component {
   };
 
   render() {
+    console.log('sidebarTheme obj: ', sidebarTheme)
     return (
       <React.Fragment>
         {/* Should we even have an undo/redo button? */}
@@ -97,7 +103,7 @@ class TextEditor extends Component {
           <InlineToolbar>
             {externalProps => (
               <React.Fragment>
-                {console.log(externalProps)}
+                {console.log('InlineToolbar externalProps: ', externalProps)}
                 <BoldButton {...externalProps} />
                 <ItalicButton {...externalProps} />
                 <UnderlineButton {...externalProps} />
@@ -119,11 +125,11 @@ class TextEditor extends Component {
           </InlineToolbar>
         </div>
 
-        {/* <ImageAdd
+        <ImageAdd
           editorState={this.state.editorState}
           onChange={this.onChange}
           modifier={imagePlugin.addImage}
-        /> */}
+        />
         <div className='float-right -mt-5'><WordCounter /> words</div>
       </React.Fragment>
     )

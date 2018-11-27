@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles.css';
+// import './styles.css';
 
 export default class VideoAdd extends Component {
   // Start the popover closed
