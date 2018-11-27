@@ -12,11 +12,9 @@ export const ProfilePage = props => (
       <MainWrapper styles='w-2/3'>
         <div className={'m-2 px-2 pb-2'}>
           <h2>{props.authorName}</h2>
-        </div>
-        <hr />
+        </div> 
         <Button text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
         <Button text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
-        <hr />
         <ProfileViewConductor
           userPosts={props.userPosts}
           userComments={props.userComments}

@@ -274,6 +274,13 @@ module.exports = {
     '3xl': '1.875rem',  // 30px
     '4xl': '2.25rem',   // 36px
     '5xl': '3rem',      // 48px
+    'h1f': '56pt',      // 74px
+    'h2f': '40pt',      // 53px
+    'h3f': '32pt',      // 42px
+    'h4f': '32pt',      // 42px
+    'h5f': '24pt',      // 32px
+    'h6f': '16pt',      // 21px
+    'pf': '24pt',       // 32px
   },
 
 

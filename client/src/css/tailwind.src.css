@@ -35,7 +35,42 @@
   * @import "components/buttons";
   * @import "components/forms";
   */
+
+  /*
+  |-----------------------------------------------------------------------------
+  | Headings                                https://tailwindcss.com/docs/extracting-components/
+  |-----------------------------------------------------------------------------
+  |
+  */
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply text-white font-header;
+    }
+
+    h1 {
+        @apply text-h1f;
+    }
+
+    h2 {
+        @apply font-bold text-h2f;
+    }
  
+    h3 {
+        @apply font-bold text-h3f;
+    }
+
+    h4 {
+        @apply text-h4f;
+    }
+
+    h5 {
+        @apply text-h5f;
+    }
+
+    h6 {
+        @apply font-bold text-h6f;
+    }
+
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.

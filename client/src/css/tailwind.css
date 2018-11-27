@@ -559,6 +559,50 @@ table {
   * @import "components/forms";
   */
 
+/*
+  |-----------------------------------------------------------------------------
+  | Headings                                https://tailwindcss.com/docs/extracting-components/
+  |-----------------------------------------------------------------------------
+  |
+  */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fff;
+  font-family: Roboto;
+}
+
+h1 {
+  font-size: 56pt;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 40pt;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 32pt;
+}
+
+h4 {
+  font-size: 32pt;
+}
+
+h5 {
+  font-size: 24pt;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 16pt;
+}
+
 /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
@@ -6686,6 +6730,34 @@ table {
 
 .text-5xl {
   font-size: 3rem;
+}
+
+.text-h1f {
+  font-size: 56pt;
+}
+
+.text-h2f {
+  font-size: 40pt;
+}
+
+.text-h3f {
+  font-size: 32pt;
+}
+
+.text-h4f {
+  font-size: 32pt;
+}
+
+.text-h5f {
+  font-size: 24pt;
+}
+
+.text-h6f {
+  font-size: 16pt;
+}
+
+.text-pf {
+  font-size: 24pt;
 }
 
 .italic {
@@ -13178,6 +13250,34 @@ table {
     font-size: 3rem;
   }
 
+  .sm\:text-h1f {
+    font-size: 56pt;
+  }
+
+  .sm\:text-h2f {
+    font-size: 40pt;
+  }
+
+  .sm\:text-h3f {
+    font-size: 32pt;
+  }
+
+  .sm\:text-h4f {
+    font-size: 32pt;
+  }
+
+  .sm\:text-h5f {
+    font-size: 24pt;
+  }
+
+  .sm\:text-h6f {
+    font-size: 16pt;
+  }
+
+  .sm\:text-pf {
+    font-size: 24pt;
+  }
+
   .sm\:italic {
     font-style: italic;
   }
@@ -19652,6 +19752,34 @@ table {
 
   .md\:text-5xl {
     font-size: 3rem;
+  }
+
+  .md\:text-h1f {
+    font-size: 56pt;
+  }
+
+  .md\:text-h2f {
+    font-size: 40pt;
+  }
+
+  .md\:text-h3f {
+    font-size: 32pt;
+  }
+
+  .md\:text-h4f {
+    font-size: 32pt;
+  }
+
+  .md\:text-h5f {
+    font-size: 24pt;
+  }
+
+  .md\:text-h6f {
+    font-size: 16pt;
+  }
+
+  .md\:text-pf {
+    font-size: 24pt;
   }
 
   .md\:italic {
@@ -26130,6 +26258,34 @@ table {
     font-size: 3rem;
   }
 
+  .lg\:text-h1f {
+    font-size: 56pt;
+  }
+
+  .lg\:text-h2f {
+    font-size: 40pt;
+  }
+
+  .lg\:text-h3f {
+    font-size: 32pt;
+  }
+
+  .lg\:text-h4f {
+    font-size: 32pt;
+  }
+
+  .lg\:text-h5f {
+    font-size: 24pt;
+  }
+
+  .lg\:text-h6f {
+    font-size: 16pt;
+  }
+
+  .lg\:text-pf {
+    font-size: 24pt;
+  }
+
   .lg\:italic {
     font-style: italic;
   }
@@ -32604,6 +32760,34 @@ table {
 
   .xl\:text-5xl {
     font-size: 3rem;
+  }
+
+  .xl\:text-h1f {
+    font-size: 56pt;
+  }
+
+  .xl\:text-h2f {
+    font-size: 40pt;
+  }
+
+  .xl\:text-h3f {
+    font-size: 32pt;
+  }
+
+  .xl\:text-h4f {
+    font-size: 32pt;
+  }
+
+  .xl\:text-h5f {
+    font-size: 24pt;
+  }
+
+  .xl\:text-h6f {
+    font-size: 16pt;
+  }
+
+  .xl\:text-pf {
+    font-size: 24pt;
   }
 
   .xl\:italic {

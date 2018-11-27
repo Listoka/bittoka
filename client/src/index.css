@@ -7,11 +7,11 @@ html,body {
 }
 
 body {
-  background-image: url("./assets/images/brushedalu.png");
+  /* overflow: hidden; 
+  background-image: url("./assets/images/brushedalu.png");*/
   font-family: 'Montserrat', sans-serif;
-  color: #333333;
   padding-top: 70px;
-  /* overflow: hidden; */
+  
   margin: 0;
 }
 /* Need to keep */
@@ -614,8 +614,8 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 .moneybutton {
   padding-left: 50px;
 }
-
-h1 {
+/*
+ h1 {
   font-family: Roboto-Regular;
   font-size: 56px;
   color: #FFFFFF;
@@ -624,7 +624,7 @@ h1 {
  
  h2 {
   font-family: Roboto-Bold;
-  font-size: 40px;
+  font-size: 40pt;
   color: #FFFFFF;
   text-align: left;
   line-height: 60px;
@@ -656,7 +656,7 @@ h1 {
   font-size: 16px;
   color: #FFFFFF;
   text-align: left;
- }
+ }*/
  
  p {
   font-family: Montserrat-Regular;
