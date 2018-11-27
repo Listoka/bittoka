@@ -21,14 +21,14 @@
     "firebase": "^5.5.2",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
-    "react": "^16.5.2",
+    "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-moment": "^0.8.1",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^4.3.1",
     "react-rte": "^0.16.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.1.1",
     "react-select": "^2.1.0",
     "reactstrap": "^6.5.0",
     "tailwindcss": "^0.7.0"
@@ -39,5 +39,11 @@
     "build": "npm run tailwind:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
