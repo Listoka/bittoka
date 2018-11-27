@@ -10,9 +10,17 @@ export const ProfilePage = props => (
   <div className='absolute w-full'>
     <div className='w-full flex mx-0'>
       <MainWrapper styles='w-2/3'>
+      <div className= 'mb-20px rounded bg-darkest-gray'>
         <div className={'m-2 px-2 pb-2'}>
-          <h2>{props.authorName}</h2>
+          <h1>{props.authorName}</h1>
         </div> 
+        <div className={'m-2 px-2 pb-2 flex flex-wrap'}>
+          <h5 className='flex-1 text-left'>Money button number</h5> 
+          <h5 className='flex-1 text-bold rounded bg-brand-green p-5px text-center'>{props.payees[0].to}</h5>
+          <h5 className='flex-1 text-center'>Total paid {props.payees[0].to}</h5>
+          <h5 className='flex-1 text-center'>Total earned {props.payees[0].to}</h5>
+        </div>
+      </div>
         <Button text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
         <Button text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
         <ProfileViewConductor
