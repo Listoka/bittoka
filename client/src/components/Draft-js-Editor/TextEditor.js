@@ -18,7 +18,6 @@ import {
 import ImageAdd from './AddImage.js';
 import VideoAdd from './VideoAdd.js';
 // import stylesCss from './styles.css';
-// import stylesObj from './styles.js'
 import buttonStyles from './buttonStyles.module.css'
 import toolbarStyles from './toolbarStyles.module.css'
 import blockTypeSelectStyles from './blockTypeSelectStyles.module.css'
@@ -75,7 +74,6 @@ class TextEditor extends Component {
   };
 
   render() {
-    console.log('sidebarTheme obj: ', sidebarTheme)
     return (
       <React.Fragment>
         {/* Should we even have an undo/redo button? */}
@@ -94,13 +92,16 @@ class TextEditor extends Component {
           <SideToolbar>
             {externalProps => (
               <React.Fragment>
+                <BoldButton {...externalProps} />
+                <ItalicButton {...externalProps} />
+                <UnderlineButton {...externalProps} />
                 <VideoAdd {...externalProps} />
                 <ImageAdd {...externalProps} />
                 <DividerButton {...externalProps} />
               </React.Fragment>
             )}
           </SideToolbar>
-          <InlineToolbar>
+          {/* <InlineToolbar>
             {externalProps => (
               <React.Fragment>
                 {console.log('InlineToolbar externalProps: ', externalProps)}
@@ -115,14 +116,9 @@ class TextEditor extends Component {
                 <BlockquoteButton {...externalProps} />
                 <linkPlugin.LinkButton {...externalProps} />
 
-                {/* <VideoAdd
-                  editorState={this.state.editorState}
-                  onChange={this.onChange}
-                  modifier={videoPlugin.addVideo}
-                /> */}
               </React.Fragment>
             )}
-          </InlineToolbar>
+          </InlineToolbar> */}
         </div>
 
         <ImageAdd
@@ -130,6 +126,11 @@ class TextEditor extends Component {
           onChange={this.onChange}
           modifier={imagePlugin.addImage}
         />
+        {/* <VideoAdd
+                  editorState={this.state.editorState}
+                  onChange={this.onChange}
+                  modifier={videoPlugin.addVideo}
+                /> */}
         <div className='float-right -mt-5'><WordCounter /> words</div>
       </React.Fragment>
     )
