@@ -3,7 +3,6 @@ import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
-import createUndoPlugin from 'draft-js-undo-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createLinkPlugin from 'draft-js-anchor-plugin';
 import createDividerPlugin from 'draft-js-divider-plugin';
@@ -18,26 +17,24 @@ import {
 import ImageAdd from './AddImage.js';
 import VideoAdd from './VideoAdd.js';
 
-import { sideToolbarTheme, inlineToolbarTheme, linkTheme } from './themes'
+import { sideToolbarTheme, inlineToolbarTheme, linkTheme, editorTheme } from './themes'
 
 // Adding the plugins
 const inlineToolbarPlugin = createInlineToolbarPlugin({ theme: inlineToolbarTheme });
 const sideToolbarPlugin = createSideToolbarPlugin({ theme: sideToolbarTheme });
 const linkPlugin = createLinkPlugin({ theme: linkTheme, placeholder: 'http://' });
-const undoPlugin = createUndoPlugin();
 const imagePlugin = createImagePlugin();
 const dividerPlugin = createDividerPlugin();
 const counterPlugin = createCounterPlugin();
 const videoPlugin = createVideoPlugin();
 
 const { InlineToolbar } = inlineToolbarPlugin;
-const { UndoButton } = undoPlugin;
-const { SideToolbar } = sideToolbarPlugin;
 const { DividerButton } = dividerPlugin;
+const { SideToolbar } = sideToolbarPlugin;
 const { WordCounter } = counterPlugin;
 
 const plugins = [
-  inlineToolbarPlugin, undoPlugin, imagePlugin, sideToolbarPlugin,
+  inlineToolbarPlugin, imagePlugin, sideToolbarPlugin,
   linkPlugin, dividerPlugin, counterPlugin, videoPlugin
 ];
 
@@ -56,12 +53,7 @@ class TextEditor extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* Should we even have an undo/redo button? */}
-        <div className='float-right mr-2'>
-          <UndoButton />
-        </div>
-
-        <div className='editor' onClick={this.focus}>
+        <div className={editorTheme.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}

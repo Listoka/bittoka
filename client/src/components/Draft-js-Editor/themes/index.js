@@ -3,7 +3,8 @@ import blockTypeSelectStyles from './blockTypeSelectStyles.module.css'
 import inlineToolbarStyles from './inlineToolbarStyles.module.css'
 import inlineSeparatorStyles from './inlineSeparatorStyles.module.css'
 import sideToolbarStyles from './sideToolbarStyles.module.css'
-import linkStyles from './linkStyles.module.css'
+import linkTheme from './linkStyles.module.css'
+import editorTheme from './editorStyles.module.css'
 
 export const inlineToolbarTheme = {
   buttonStyles,
@@ -17,4 +18,4 @@ export const sideToolbarTheme = {
   toolbarStyles: sideToolbarStyles,
 }
 
-export const linkTheme = linkStyles
+export { linkTheme, editorTheme }
