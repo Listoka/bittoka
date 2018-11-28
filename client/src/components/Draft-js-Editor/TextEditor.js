@@ -9,27 +9,23 @@ import createLinkPlugin from 'draft-js-anchor-plugin';
 import createDividerPlugin from 'draft-js-divider-plugin';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import createVideoPlugin from 'draft-js-video-plugin';
+
 import {
   ItalicButton, BoldButton, UnderlineButton, CodeButton, HeadlineTwoButton,
   HeadlineThreeButton, UnorderedListButton, OrderedListButton, BlockquoteButton, CodeBlockButton,
 } from 'draft-js-buttons';
-// import "draft-js-inline-toolbar-plugin/lib/plugin.css";
-// import '../../../node_modules/draft-js-side-toolbar-plugin/lib/plugin.css'
+
 import ImageAdd from './AddImage.js';
 import VideoAdd from './VideoAdd.js';
-// import stylesCss from './styles.css';
-import buttonStyles from './buttonStyles.module.css'
-import toolbarStyles from './toolbarStyles.module.css'
-import blockTypeSelectStyles from './blockTypeSelectStyles.module.css'
 
-const sidebarTheme = { buttonStyles, toolbarStyles, blockTypeSelectStyles }
+import { sideToolbarTheme, inlineToolbarTheme, linkTheme } from './themes'
 
 // Adding the plugins
-const inlineToolbarPlugin = createInlineToolbarPlugin();
+const inlineToolbarPlugin = createInlineToolbarPlugin({ theme: inlineToolbarTheme });
+const sideToolbarPlugin = createSideToolbarPlugin({ theme: sideToolbarTheme });
+const linkPlugin = createLinkPlugin({ theme: linkTheme, placeholder: 'http://' });
 const undoPlugin = createUndoPlugin();
 const imagePlugin = createImagePlugin();
-const sideToolbarPlugin = createSideToolbarPlugin({ theme: sidebarTheme });
-const linkPlugin = createLinkPlugin();
 const dividerPlugin = createDividerPlugin();
 const counterPlugin = createCounterPlugin();
 const videoPlugin = createVideoPlugin();
@@ -45,15 +41,6 @@ const plugins = [
   linkPlugin, dividerPlugin, counterPlugin, videoPlugin
 ];
 
-// const styleMap = {
-//   CODE: {
-//     backgroundColor: 'blue',
-//     fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-//     fontSize: 32,
-//     padding: 2,
-//   },
-// };
-
 class TextEditor extends Component {
 
   constructor(props) {
@@ -63,15 +50,8 @@ class TextEditor extends Component {
     }
   }
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
-  }
-
-  focus = () => {
-    this.editor.focus();
-  };
+  onChange = (editorState) => this.setState({ editorState })
+  focus = () => this.editor.focus();
 
   render() {
     return (
@@ -101,24 +81,22 @@ class TextEditor extends Component {
               </React.Fragment>
             )}
           </SideToolbar>
-          {/* <InlineToolbar>
+          <InlineToolbar>
             {externalProps => (
               <React.Fragment>
-                {console.log('InlineToolbar externalProps: ', externalProps)}
                 <BoldButton {...externalProps} />
                 <ItalicButton {...externalProps} />
                 <UnderlineButton {...externalProps} />
                 <CodeButton {...externalProps} />
                 <HeadlineThreeButton {...externalProps} />
-                <Separator {...externalProps} />
+                {/* <Separator {...externalProps} /> */}
                 <UnorderedListButton {...externalProps} />
                 <OrderedListButton {...externalProps} />
                 <BlockquoteButton {...externalProps} />
                 <linkPlugin.LinkButton {...externalProps} />
-
               </React.Fragment>
             )}
-          </InlineToolbar> */}
+          </InlineToolbar>
         </div>
 
         <ImageAdd

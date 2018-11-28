@@ -3,8 +3,8 @@
 }
 
 .buttonWrapper {
-  /* display: inline-block; */
-  display: block;
+  display: inline-block;
+  /* display: block; */
 }
 
 .button {
