@@ -38,7 +38,7 @@
 
   /*
   |-----------------------------------------------------------------------------
-  | Headings                                https://tailwindcss.com/docs/extracting-components/
+  | Headings and Paragraphs            https://tailwindcss.com/docs/extracting-components/
   |-----------------------------------------------------------------------------
   |
   */
@@ -71,16 +71,46 @@
         @apply font-bold text-h6f;
     }
 
+    p {
+        @apply text-pf text-white text-left leading-34px
+    }
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Inputs                           https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */   
+
     input {
-        @apply bg-input-background rounded-4px p-5px
+        @apply bg-input-background border-3 border-transparent rounded-4px p-10px mb-10px text-light-gray
     }
 
-    .input-active {
-        @apply border-3 border-input-active text-input-active
+    .input:focus {
+        @apply border-light-gray text-input-active outline-none
     }
 
-    .input-disabled {
-        @apply border-0 border-input-disabled text-input-disabled
+    .input:disabled {
+        @apply border-brand-green text-input-disabled
+    }
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Buttons                                https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */
+
+    .btn {
+        @apply border-3 rounded-20px border-brand-green font-bold px-20px py-px ml-20px mt-10px font-header text-h6f
+    }
+
+    .btn-primary {
+        @apply bg-brand-green text-white
+    }
+
+    .btn-primary:hover {
+        @apply bg-transparent border-brand-green text-brand-green
     }
 
  /**

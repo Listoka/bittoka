@@ -1,5 +1,5 @@
 import React from "react";
-import { MainWrapper, Button, BitcoinIcon, Input } from '../../components/Widgets/index';
+import { MainWrapper, Button, Input } from '../../components/Widgets/index';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { ProfileViewConductor } from './';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
@@ -10,17 +10,17 @@ export const ProfilePage = props => (
   <div className='absolute w-full'>
     <div className='w-full flex mx-0'>
       <MainWrapper styles='w-2/3'>
-      <div className= 'mb-20px rounded bg-darkest-gray'>
+      <div className= 'mb-20px pl-40px py-40px rounded-8px bg-darkest-gray'>
         <div className={'m-2 px-2 pb-2'}>
           <h1>{props.authorName}</h1>
         </div> 
-        <div className={'m-2 px-2 pb-2 flex'}>
-          <p className='flex-1 text-left text-white'>Total paid {props.payees[0].to}</p>
-          <p className='flex-1 text-left text-white'>Total earned {props.payees[0].to}</p>
+        <div className={'m-2 px-2 pb-2 flex text-left'}>
+          <p className='flex-1/3 text-left text-white'>Total paid {props.payees[0].to}</p>
+          <p className='flex-1/3 ml-40px text-left text-white'>Total earned {props.payees[0].to}</p>
         </div>
+        <Button className='btn btn-primary btn-primary:hover' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
+        <Button className='btn btn-primary btn-primary:hover' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
       </div>
-        <Button text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
-        <Button text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
         <ProfileViewConductor
           userPosts={props.userPosts}
           userComments={props.userComments}
@@ -29,29 +29,28 @@ export const ProfilePage = props => (
       </MainWrapper>
       <MainWrapper styles='w-1/3'>
         <Sidebar>
-          <h2>Bio</h2>
-          <hr className='h-px' />
+          <h4 className='mb-10px'>Bio</h4>
           <p>{props.displayedBio}</p>
-          <hr />
+        </Sidebar>
+        <Sidebar>
           <div>
-            <h6 className='uppercase font-bold pb-3'>Leave {props.authorName} a tip! <BitcoinIcon /></h6>
-            <div className='flex'>
+            <h4 className='mb-20px'>Leave a tip</h4>
+            <div className='text-center'>
               <Input
                 onChange={props.handleTipChange}
                 type='number'
                 step='0.01'
                 min='0.10'
-                className='form-control customTipField'
-                style={{ width: 180 + 'px' }}
+                className='input input:focus input:disabled w-full text-h6f'
                 value={props.tipAmt}
                 placeholder='.00'
                 name='tipAmt'
               />
-              <div className='mb-10px mt-1'>
-                <Button onClick={props.handleTipSubmit} text='Update Tip' styles={'text-sm'} />
+              <div className='mb-20px mx-auto w-1/2'>
+                <Button className='btn btn-primary btn-primary:hover -ml-20px w-120' onClick={props.handleTipSubmit} text='Update tip'/>
               </div>
             </div>
-            <div className='mt-2'>
+            <div className='mt-2 mx-auto w-1/2'>
               <AuthUserContext.Consumer>
                 {authUser => {
                   if (authUser) {

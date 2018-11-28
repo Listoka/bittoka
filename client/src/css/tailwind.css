@@ -561,7 +561,7 @@ table {
 
 /*
   |-----------------------------------------------------------------------------
-  | Headings                                https://tailwindcss.com/docs/extracting-components/
+  | Headings and Paragraphs            https://tailwindcss.com/docs/extracting-components/
   |-----------------------------------------------------------------------------
   |
   */
@@ -577,48 +577,98 @@ h6 {
 }
 
 h1 {
-  font-size: 56pt;
+  font-size: 56px;
 }
 
 h2 {
   font-weight: 700;
-  font-size: 40pt;
+  font-size: 40px;
 }
 
 h3 {
   font-weight: 700;
-  font-size: 32pt;
+  font-size: 32px;
 }
 
 h4 {
-  font-size: 32pt;
+  font-size: 32px;
 }
 
 h5 {
-  font-size: 24pt;
+  font-size: 24px;
 }
 
 h6 {
   font-weight: 700;
-  font-size: 16pt;
+  font-size: 16px;
 }
+
+p {
+  font-size: 24px;
+  color: #fff;
+  text-align: left;
+  line-height: 34px;
+}
+
+/*
+    |-----------------------------------------------------------------------------
+    | Inputs                           https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */
 
 input {
   background-color: #39393a;
-  border-radius: 4px;
-  padding: 5px;
-}
-
-.input-active {
   border-width: 3px;
-  border-color: #979797;
-  color: #979797;
+  border-color: transparent;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #d8d8d8;
 }
 
-.input-disabled {
-  border-width: 0;
-  border-color: #515356;
+.input:focus {
+  border-color: #d8d8d8;
+  color: #979797;
+  outline: 0;
+}
+
+.input:disabled {
+  border-color: #2ba228;
   color: #515356;
+}
+
+/*
+    |-----------------------------------------------------------------------------
+    | Buttons                                https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */
+
+.btn {
+  border-width: 3px;
+  border-radius: 20px;
+  border-color: #2ba228;
+  font-weight: 700;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-left: 20px;
+  margin-top: 10px;
+  font-family: Roboto;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: #2ba228;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  border-color: #2ba228;
+  color: #2ba228;
 }
 
 /**
@@ -2813,6 +2863,10 @@ input {
   border-radius: 4px;
 }
 
+.rounded-8px {
+  border-radius: 8px;
+}
+
 .rounded-20px {
   border-radius: 20px;
 }
@@ -2937,6 +2991,26 @@ input {
   border-bottom-left-radius: 4px;
 }
 
+.rounded-t-8px {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.rounded-r-8px {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.rounded-b-8px {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.rounded-l-8px {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
 .rounded-t-20px {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -3051,6 +3125,22 @@ input {
 
 .rounded-bl-4px {
   border-bottom-left-radius: 4px;
+}
+
+.rounded-tl-8px {
+  border-top-left-radius: 8px;
+}
+
+.rounded-tr-8px {
+  border-top-right-radius: 8px;
+}
+
+.rounded-br-8px {
+  border-bottom-right-radius: 8px;
+}
+
+.rounded-bl-8px {
+  border-bottom-left-radius: 8px;
 }
 
 .rounded-tl-20px {
@@ -3785,6 +3875,14 @@ input {
   margin: 20px;
 }
 
+.m-40px {
+  margin: 40px;
+}
+
+.m-1\/2 {
+  margin: 50%;
+}
+
 .my-0 {
   margin-top: 0;
   margin-bottom: 0;
@@ -3973,6 +4071,26 @@ input {
 .mx-20px {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.my-40px {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.mx-40px {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.my-1\/2 {
+  margin-top: 50%;
+  margin-bottom: 50%;
+}
+
+.mx-1\/2 {
+  margin-left: 50%;
+  margin-right: 50%;
 }
 
 .mt-0 {
@@ -4279,6 +4397,38 @@ input {
   margin-left: 20px;
 }
 
+.mt-40px {
+  margin-top: 40px;
+}
+
+.mr-40px {
+  margin-right: 40px;
+}
+
+.mb-40px {
+  margin-bottom: 40px;
+}
+
+.ml-40px {
+  margin-left: 40px;
+}
+
+.mt-1\/2 {
+  margin-top: 50%;
+}
+
+.mr-1\/2 {
+  margin-right: 50%;
+}
+
+.mb-1\/2 {
+  margin-bottom: 50%;
+}
+
+.ml-1\/2 {
+  margin-left: 50%;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -4341,6 +4491,14 @@ input {
 
 .min-w-0 {
   min-width: 0;
+}
+
+.min-w-120 {
+  min-width: 120px;
+}
+
+.min-w-1\/2 {
+  min-width: 50%;
 }
 
 .min-w-full {
@@ -5031,6 +5189,10 @@ input {
   padding: 1px;
 }
 
+.p-2px {
+  padding: 2px;
+}
+
 .p-5px {
   padding: 5px;
 }
@@ -5041,6 +5203,10 @@ input {
 
 .p-20px {
   padding: 20px;
+}
+
+.p-40px {
+  padding: 40px;
 }
 
 .py-0 {
@@ -5193,6 +5359,16 @@ input {
   padding-right: 1px;
 }
 
+.py-2px {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.px-2px {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .py-5px {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -5221,6 +5397,16 @@ input {
 .px-20px {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.py-40px {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.px-40px {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .pt-0 {
@@ -5463,6 +5649,22 @@ input {
   padding-left: 1px;
 }
 
+.pt-2px {
+  padding-top: 2px;
+}
+
+.pr-2px {
+  padding-right: 2px;
+}
+
+.pb-2px {
+  padding-bottom: 2px;
+}
+
+.pl-2px {
+  padding-left: 2px;
+}
+
 .pt-5px {
   padding-top: 5px;
 }
@@ -5509,6 +5711,22 @@ input {
 
 .pl-20px {
   padding-left: 20px;
+}
+
+.pt-40px {
+  padding-top: 40px;
+}
+
+.pr-40px {
+  padding-right: 40px;
+}
+
+.pb-40px {
+  padding-bottom: 40px;
+}
+
+.pl-40px {
+  padding-left: 40px;
 }
 
 .pointer-events-none {
@@ -6787,31 +7005,31 @@ input {
 }
 
 .text-h1f {
-  font-size: 56pt;
+  font-size: 56px;
 }
 
 .text-h2f {
-  font-size: 40pt;
+  font-size: 40px;
 }
 
 .text-h3f {
-  font-size: 32pt;
+  font-size: 32px;
 }
 
 .text-h4f {
-  font-size: 32pt;
+  font-size: 32px;
 }
 
 .text-h5f {
-  font-size: 24pt;
+  font-size: 24px;
 }
 
 .text-h6f {
-  font-size: 16pt;
+  font-size: 16px;
 }
 
 .text-pf {
-  font-size: 24pt;
+  font-size: 24px;
 }
 
 .italic {
@@ -9383,6 +9601,10 @@ input {
     border-radius: 4px;
   }
 
+  .sm\:rounded-8px {
+    border-radius: 8px;
+  }
+
   .sm\:rounded-20px {
     border-radius: 20px;
   }
@@ -9507,6 +9729,26 @@ input {
     border-bottom-left-radius: 4px;
   }
 
+  .sm\:rounded-t-8px {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .sm\:rounded-r-8px {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .sm\:rounded-b-8px {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .sm\:rounded-l-8px {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
   .sm\:rounded-t-20px {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -9621,6 +9863,22 @@ input {
 
   .sm\:rounded-bl-4px {
     border-bottom-left-radius: 4px;
+  }
+
+  .sm\:rounded-tl-8px {
+    border-top-left-radius: 8px;
+  }
+
+  .sm\:rounded-tr-8px {
+    border-top-right-radius: 8px;
+  }
+
+  .sm\:rounded-br-8px {
+    border-bottom-right-radius: 8px;
+  }
+
+  .sm\:rounded-bl-8px {
+    border-bottom-left-radius: 8px;
   }
 
   .sm\:rounded-tl-20px {
@@ -10355,6 +10613,14 @@ input {
     margin: 20px;
   }
 
+  .sm\:m-40px {
+    margin: 40px;
+  }
+
+  .sm\:m-1\/2 {
+    margin: 50%;
+  }
+
   .sm\:my-0 {
     margin-top: 0;
     margin-bottom: 0;
@@ -10543,6 +10809,26 @@ input {
   .sm\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .sm\:my-40px {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .sm\:mx-40px {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .sm\:my-1\/2 {
+    margin-top: 50%;
+    margin-bottom: 50%;
+  }
+
+  .sm\:mx-1\/2 {
+    margin-left: 50%;
+    margin-right: 50%;
   }
 
   .sm\:mt-0 {
@@ -10849,6 +11135,38 @@ input {
     margin-left: 20px;
   }
 
+  .sm\:mt-40px {
+    margin-top: 40px;
+  }
+
+  .sm\:mr-40px {
+    margin-right: 40px;
+  }
+
+  .sm\:mb-40px {
+    margin-bottom: 40px;
+  }
+
+  .sm\:ml-40px {
+    margin-left: 40px;
+  }
+
+  .sm\:mt-1\/2 {
+    margin-top: 50%;
+  }
+
+  .sm\:mr-1\/2 {
+    margin-right: 50%;
+  }
+
+  .sm\:mb-1\/2 {
+    margin-bottom: 50%;
+  }
+
+  .sm\:ml-1\/2 {
+    margin-left: 50%;
+  }
+
   .sm\:max-h-full {
     max-height: 100%;
   }
@@ -10911,6 +11229,14 @@ input {
 
   .sm\:min-w-0 {
     min-width: 0;
+  }
+
+  .sm\:min-w-120 {
+    min-width: 120px;
+  }
+
+  .sm\:min-w-1\/2 {
+    min-width: 50%;
   }
 
   .sm\:min-w-full {
@@ -11593,6 +11919,10 @@ input {
     padding: 1px;
   }
 
+  .sm\:p-2px {
+    padding: 2px;
+  }
+
   .sm\:p-5px {
     padding: 5px;
   }
@@ -11603,6 +11933,10 @@ input {
 
   .sm\:p-20px {
     padding: 20px;
+  }
+
+  .sm\:p-40px {
+    padding: 40px;
   }
 
   .sm\:py-0 {
@@ -11755,6 +12089,16 @@ input {
     padding-right: 1px;
   }
 
+  .sm\:py-2px {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .sm\:px-2px {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
   .sm\:py-5px {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -11783,6 +12127,16 @@ input {
   .sm\:px-20px {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .sm\:py-40px {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .sm\:px-40px {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .sm\:pt-0 {
@@ -12025,6 +12379,22 @@ input {
     padding-left: 1px;
   }
 
+  .sm\:pt-2px {
+    padding-top: 2px;
+  }
+
+  .sm\:pr-2px {
+    padding-right: 2px;
+  }
+
+  .sm\:pb-2px {
+    padding-bottom: 2px;
+  }
+
+  .sm\:pl-2px {
+    padding-left: 2px;
+  }
+
   .sm\:pt-5px {
     padding-top: 5px;
   }
@@ -12071,6 +12441,22 @@ input {
 
   .sm\:pl-20px {
     padding-left: 20px;
+  }
+
+  .sm\:pt-40px {
+    padding-top: 40px;
+  }
+
+  .sm\:pr-40px {
+    padding-right: 40px;
+  }
+
+  .sm\:pb-40px {
+    padding-bottom: 40px;
+  }
+
+  .sm\:pl-40px {
+    padding-left: 40px;
   }
 
   .sm\:pointer-events-none {
@@ -13341,31 +13727,31 @@ input {
   }
 
   .sm\:text-h1f {
-    font-size: 56pt;
+    font-size: 56px;
   }
 
   .sm\:text-h2f {
-    font-size: 40pt;
+    font-size: 40px;
   }
 
   .sm\:text-h3f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .sm\:text-h4f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .sm\:text-h5f {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .sm\:text-h6f {
-    font-size: 16pt;
+    font-size: 16px;
   }
 
   .sm\:text-pf {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .sm\:italic {
@@ -15923,6 +16309,10 @@ input {
     border-radius: 4px;
   }
 
+  .md\:rounded-8px {
+    border-radius: 8px;
+  }
+
   .md\:rounded-20px {
     border-radius: 20px;
   }
@@ -16047,6 +16437,26 @@ input {
     border-bottom-left-radius: 4px;
   }
 
+  .md\:rounded-t-8px {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .md\:rounded-r-8px {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .md\:rounded-b-8px {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .md\:rounded-l-8px {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
   .md\:rounded-t-20px {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -16161,6 +16571,22 @@ input {
 
   .md\:rounded-bl-4px {
     border-bottom-left-radius: 4px;
+  }
+
+  .md\:rounded-tl-8px {
+    border-top-left-radius: 8px;
+  }
+
+  .md\:rounded-tr-8px {
+    border-top-right-radius: 8px;
+  }
+
+  .md\:rounded-br-8px {
+    border-bottom-right-radius: 8px;
+  }
+
+  .md\:rounded-bl-8px {
+    border-bottom-left-radius: 8px;
   }
 
   .md\:rounded-tl-20px {
@@ -16895,6 +17321,14 @@ input {
     margin: 20px;
   }
 
+  .md\:m-40px {
+    margin: 40px;
+  }
+
+  .md\:m-1\/2 {
+    margin: 50%;
+  }
+
   .md\:my-0 {
     margin-top: 0;
     margin-bottom: 0;
@@ -17083,6 +17517,26 @@ input {
   .md\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .md\:my-40px {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .md\:mx-40px {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .md\:my-1\/2 {
+    margin-top: 50%;
+    margin-bottom: 50%;
+  }
+
+  .md\:mx-1\/2 {
+    margin-left: 50%;
+    margin-right: 50%;
   }
 
   .md\:mt-0 {
@@ -17389,6 +17843,38 @@ input {
     margin-left: 20px;
   }
 
+  .md\:mt-40px {
+    margin-top: 40px;
+  }
+
+  .md\:mr-40px {
+    margin-right: 40px;
+  }
+
+  .md\:mb-40px {
+    margin-bottom: 40px;
+  }
+
+  .md\:ml-40px {
+    margin-left: 40px;
+  }
+
+  .md\:mt-1\/2 {
+    margin-top: 50%;
+  }
+
+  .md\:mr-1\/2 {
+    margin-right: 50%;
+  }
+
+  .md\:mb-1\/2 {
+    margin-bottom: 50%;
+  }
+
+  .md\:ml-1\/2 {
+    margin-left: 50%;
+  }
+
   .md\:max-h-full {
     max-height: 100%;
   }
@@ -17451,6 +17937,14 @@ input {
 
   .md\:min-w-0 {
     min-width: 0;
+  }
+
+  .md\:min-w-120 {
+    min-width: 120px;
+  }
+
+  .md\:min-w-1\/2 {
+    min-width: 50%;
   }
 
   .md\:min-w-full {
@@ -18133,6 +18627,10 @@ input {
     padding: 1px;
   }
 
+  .md\:p-2px {
+    padding: 2px;
+  }
+
   .md\:p-5px {
     padding: 5px;
   }
@@ -18143,6 +18641,10 @@ input {
 
   .md\:p-20px {
     padding: 20px;
+  }
+
+  .md\:p-40px {
+    padding: 40px;
   }
 
   .md\:py-0 {
@@ -18295,6 +18797,16 @@ input {
     padding-right: 1px;
   }
 
+  .md\:py-2px {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .md\:px-2px {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
   .md\:py-5px {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -18323,6 +18835,16 @@ input {
   .md\:px-20px {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .md\:py-40px {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .md\:px-40px {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .md\:pt-0 {
@@ -18565,6 +19087,22 @@ input {
     padding-left: 1px;
   }
 
+  .md\:pt-2px {
+    padding-top: 2px;
+  }
+
+  .md\:pr-2px {
+    padding-right: 2px;
+  }
+
+  .md\:pb-2px {
+    padding-bottom: 2px;
+  }
+
+  .md\:pl-2px {
+    padding-left: 2px;
+  }
+
   .md\:pt-5px {
     padding-top: 5px;
   }
@@ -18611,6 +19149,22 @@ input {
 
   .md\:pl-20px {
     padding-left: 20px;
+  }
+
+  .md\:pt-40px {
+    padding-top: 40px;
+  }
+
+  .md\:pr-40px {
+    padding-right: 40px;
+  }
+
+  .md\:pb-40px {
+    padding-bottom: 40px;
+  }
+
+  .md\:pl-40px {
+    padding-left: 40px;
   }
 
   .md\:pointer-events-none {
@@ -19881,31 +20435,31 @@ input {
   }
 
   .md\:text-h1f {
-    font-size: 56pt;
+    font-size: 56px;
   }
 
   .md\:text-h2f {
-    font-size: 40pt;
+    font-size: 40px;
   }
 
   .md\:text-h3f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .md\:text-h4f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .md\:text-h5f {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .md\:text-h6f {
-    font-size: 16pt;
+    font-size: 16px;
   }
 
   .md\:text-pf {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .md\:italic {
@@ -22463,6 +23017,10 @@ input {
     border-radius: 4px;
   }
 
+  .lg\:rounded-8px {
+    border-radius: 8px;
+  }
+
   .lg\:rounded-20px {
     border-radius: 20px;
   }
@@ -22587,6 +23145,26 @@ input {
     border-bottom-left-radius: 4px;
   }
 
+  .lg\:rounded-t-8px {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .lg\:rounded-r-8px {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .lg\:rounded-b-8px {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .lg\:rounded-l-8px {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
   .lg\:rounded-t-20px {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -22701,6 +23279,22 @@ input {
 
   .lg\:rounded-bl-4px {
     border-bottom-left-radius: 4px;
+  }
+
+  .lg\:rounded-tl-8px {
+    border-top-left-radius: 8px;
+  }
+
+  .lg\:rounded-tr-8px {
+    border-top-right-radius: 8px;
+  }
+
+  .lg\:rounded-br-8px {
+    border-bottom-right-radius: 8px;
+  }
+
+  .lg\:rounded-bl-8px {
+    border-bottom-left-radius: 8px;
   }
 
   .lg\:rounded-tl-20px {
@@ -23435,6 +24029,14 @@ input {
     margin: 20px;
   }
 
+  .lg\:m-40px {
+    margin: 40px;
+  }
+
+  .lg\:m-1\/2 {
+    margin: 50%;
+  }
+
   .lg\:my-0 {
     margin-top: 0;
     margin-bottom: 0;
@@ -23623,6 +24225,26 @@ input {
   .lg\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .lg\:my-40px {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .lg\:mx-40px {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .lg\:my-1\/2 {
+    margin-top: 50%;
+    margin-bottom: 50%;
+  }
+
+  .lg\:mx-1\/2 {
+    margin-left: 50%;
+    margin-right: 50%;
   }
 
   .lg\:mt-0 {
@@ -23929,6 +24551,38 @@ input {
     margin-left: 20px;
   }
 
+  .lg\:mt-40px {
+    margin-top: 40px;
+  }
+
+  .lg\:mr-40px {
+    margin-right: 40px;
+  }
+
+  .lg\:mb-40px {
+    margin-bottom: 40px;
+  }
+
+  .lg\:ml-40px {
+    margin-left: 40px;
+  }
+
+  .lg\:mt-1\/2 {
+    margin-top: 50%;
+  }
+
+  .lg\:mr-1\/2 {
+    margin-right: 50%;
+  }
+
+  .lg\:mb-1\/2 {
+    margin-bottom: 50%;
+  }
+
+  .lg\:ml-1\/2 {
+    margin-left: 50%;
+  }
+
   .lg\:max-h-full {
     max-height: 100%;
   }
@@ -23991,6 +24645,14 @@ input {
 
   .lg\:min-w-0 {
     min-width: 0;
+  }
+
+  .lg\:min-w-120 {
+    min-width: 120px;
+  }
+
+  .lg\:min-w-1\/2 {
+    min-width: 50%;
   }
 
   .lg\:min-w-full {
@@ -24673,6 +25335,10 @@ input {
     padding: 1px;
   }
 
+  .lg\:p-2px {
+    padding: 2px;
+  }
+
   .lg\:p-5px {
     padding: 5px;
   }
@@ -24683,6 +25349,10 @@ input {
 
   .lg\:p-20px {
     padding: 20px;
+  }
+
+  .lg\:p-40px {
+    padding: 40px;
   }
 
   .lg\:py-0 {
@@ -24835,6 +25505,16 @@ input {
     padding-right: 1px;
   }
 
+  .lg\:py-2px {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .lg\:px-2px {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
   .lg\:py-5px {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -24863,6 +25543,16 @@ input {
   .lg\:px-20px {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .lg\:py-40px {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .lg\:px-40px {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .lg\:pt-0 {
@@ -25105,6 +25795,22 @@ input {
     padding-left: 1px;
   }
 
+  .lg\:pt-2px {
+    padding-top: 2px;
+  }
+
+  .lg\:pr-2px {
+    padding-right: 2px;
+  }
+
+  .lg\:pb-2px {
+    padding-bottom: 2px;
+  }
+
+  .lg\:pl-2px {
+    padding-left: 2px;
+  }
+
   .lg\:pt-5px {
     padding-top: 5px;
   }
@@ -25151,6 +25857,22 @@ input {
 
   .lg\:pl-20px {
     padding-left: 20px;
+  }
+
+  .lg\:pt-40px {
+    padding-top: 40px;
+  }
+
+  .lg\:pr-40px {
+    padding-right: 40px;
+  }
+
+  .lg\:pb-40px {
+    padding-bottom: 40px;
+  }
+
+  .lg\:pl-40px {
+    padding-left: 40px;
   }
 
   .lg\:pointer-events-none {
@@ -26421,31 +27143,31 @@ input {
   }
 
   .lg\:text-h1f {
-    font-size: 56pt;
+    font-size: 56px;
   }
 
   .lg\:text-h2f {
-    font-size: 40pt;
+    font-size: 40px;
   }
 
   .lg\:text-h3f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .lg\:text-h4f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .lg\:text-h5f {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .lg\:text-h6f {
-    font-size: 16pt;
+    font-size: 16px;
   }
 
   .lg\:text-pf {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .lg\:italic {
@@ -29003,6 +29725,10 @@ input {
     border-radius: 4px;
   }
 
+  .xl\:rounded-8px {
+    border-radius: 8px;
+  }
+
   .xl\:rounded-20px {
     border-radius: 20px;
   }
@@ -29127,6 +29853,26 @@ input {
     border-bottom-left-radius: 4px;
   }
 
+  .xl\:rounded-t-8px {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .xl\:rounded-r-8px {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .xl\:rounded-b-8px {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .xl\:rounded-l-8px {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
   .xl\:rounded-t-20px {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -29241,6 +29987,22 @@ input {
 
   .xl\:rounded-bl-4px {
     border-bottom-left-radius: 4px;
+  }
+
+  .xl\:rounded-tl-8px {
+    border-top-left-radius: 8px;
+  }
+
+  .xl\:rounded-tr-8px {
+    border-top-right-radius: 8px;
+  }
+
+  .xl\:rounded-br-8px {
+    border-bottom-right-radius: 8px;
+  }
+
+  .xl\:rounded-bl-8px {
+    border-bottom-left-radius: 8px;
   }
 
   .xl\:rounded-tl-20px {
@@ -29975,6 +30737,14 @@ input {
     margin: 20px;
   }
 
+  .xl\:m-40px {
+    margin: 40px;
+  }
+
+  .xl\:m-1\/2 {
+    margin: 50%;
+  }
+
   .xl\:my-0 {
     margin-top: 0;
     margin-bottom: 0;
@@ -30163,6 +30933,26 @@ input {
   .xl\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .xl\:my-40px {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .xl\:mx-40px {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .xl\:my-1\/2 {
+    margin-top: 50%;
+    margin-bottom: 50%;
+  }
+
+  .xl\:mx-1\/2 {
+    margin-left: 50%;
+    margin-right: 50%;
   }
 
   .xl\:mt-0 {
@@ -30469,6 +31259,38 @@ input {
     margin-left: 20px;
   }
 
+  .xl\:mt-40px {
+    margin-top: 40px;
+  }
+
+  .xl\:mr-40px {
+    margin-right: 40px;
+  }
+
+  .xl\:mb-40px {
+    margin-bottom: 40px;
+  }
+
+  .xl\:ml-40px {
+    margin-left: 40px;
+  }
+
+  .xl\:mt-1\/2 {
+    margin-top: 50%;
+  }
+
+  .xl\:mr-1\/2 {
+    margin-right: 50%;
+  }
+
+  .xl\:mb-1\/2 {
+    margin-bottom: 50%;
+  }
+
+  .xl\:ml-1\/2 {
+    margin-left: 50%;
+  }
+
   .xl\:max-h-full {
     max-height: 100%;
   }
@@ -30531,6 +31353,14 @@ input {
 
   .xl\:min-w-0 {
     min-width: 0;
+  }
+
+  .xl\:min-w-120 {
+    min-width: 120px;
+  }
+
+  .xl\:min-w-1\/2 {
+    min-width: 50%;
   }
 
   .xl\:min-w-full {
@@ -31213,6 +32043,10 @@ input {
     padding: 1px;
   }
 
+  .xl\:p-2px {
+    padding: 2px;
+  }
+
   .xl\:p-5px {
     padding: 5px;
   }
@@ -31223,6 +32057,10 @@ input {
 
   .xl\:p-20px {
     padding: 20px;
+  }
+
+  .xl\:p-40px {
+    padding: 40px;
   }
 
   .xl\:py-0 {
@@ -31375,6 +32213,16 @@ input {
     padding-right: 1px;
   }
 
+  .xl\:py-2px {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .xl\:px-2px {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
   .xl\:py-5px {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -31403,6 +32251,16 @@ input {
   .xl\:px-20px {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .xl\:py-40px {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .xl\:px-40px {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .xl\:pt-0 {
@@ -31645,6 +32503,22 @@ input {
     padding-left: 1px;
   }
 
+  .xl\:pt-2px {
+    padding-top: 2px;
+  }
+
+  .xl\:pr-2px {
+    padding-right: 2px;
+  }
+
+  .xl\:pb-2px {
+    padding-bottom: 2px;
+  }
+
+  .xl\:pl-2px {
+    padding-left: 2px;
+  }
+
   .xl\:pt-5px {
     padding-top: 5px;
   }
@@ -31691,6 +32565,22 @@ input {
 
   .xl\:pl-20px {
     padding-left: 20px;
+  }
+
+  .xl\:pt-40px {
+    padding-top: 40px;
+  }
+
+  .xl\:pr-40px {
+    padding-right: 40px;
+  }
+
+  .xl\:pb-40px {
+    padding-bottom: 40px;
+  }
+
+  .xl\:pl-40px {
+    padding-left: 40px;
   }
 
   .xl\:pointer-events-none {
@@ -32961,31 +33851,31 @@ input {
   }
 
   .xl\:text-h1f {
-    font-size: 56pt;
+    font-size: 56px;
   }
 
   .xl\:text-h2f {
-    font-size: 40pt;
+    font-size: 40px;
   }
 
   .xl\:text-h3f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .xl\:text-h4f {
-    font-size: 32pt;
+    font-size: 32px;
   }
 
   .xl\:text-h5f {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .xl\:text-h6f {
-    font-size: 16pt;
+    font-size: 16px;
   }
 
   .xl\:text-pf {
-    font-size: 24pt;
+    font-size: 24px;
   }
 
   .xl\:italic {
