@@ -11,7 +11,7 @@ export const ProfilePage = props => (
     <div className='w-full flex mx-0'>   
 
       <MainWrapper styles='w-2/3'>
-      <div className= 'mb-20px pl-40px py-40px rounded-8px bg-darkest-gray'>
+      <div className= 'mb-20px ml-10px pl-40px py-40px rounded-8px bg-darkest-gray'>
         <div className={'m-2 px-2 pb-2'}>
           <h1>{props.authorName}</h1>
         </div> 
@@ -30,61 +30,62 @@ export const ProfilePage = props => (
       </MainWrapper>  
 
       <MainWrapper styles='w-1/3'>
-        <Sidebar>
-          <h4 className='mb-10px'>Bio</h4>
-          <p>{props.displayedBio}</p>
-        </Sidebar>
+        <div className='mr-10px'>
+          <Sidebar>
+            <h4 className='mb-10px'>Bio</h4>
+            <p>{props.displayedBio}</p>
+          </Sidebar>
 
-        <Sidebar>
-          <div>
-            <h4 className='mb-20px'>Leave a tip</h4>
-                <Input
-                  onChange={props.handleTipChange}
-                  type='number'
-                  step='0.01'
-                  min='0.10'
-                  className='input input:focus input:disabled w-full text-h6f'
-                  value={props.tipAmt}
-                  placeholder='.00'
-                  name='tipAmt'
-                />
+          <Sidebar>
+            <div>
+              <h4 className='mb-20px'>Leave a tip</h4>
+                  <Input
+                    onChange={props.handleTipChange}
+                    type='number'
+                    step='0.01'
+                    min='0.10'
+                    className='input input:focus input:disabled w-full text-h6f'
+                    value={props.tipAmt}
+                    placeholder='.00'
+                    name='tipAmt'
+                  />
 
-            <div className='flex justify-center mb-20px'>
-                <Button 
-                  className='btn btn-primary btn-primary:hover -ml-20px w-120' 
-                  onClick={props.handleTipSubmit} 
-                  text='Update tip'
-                />
-            </div>
+              <div className='flex justify-center mb-20px'>
+                  <Button 
+                    className='btn btn-primary btn-primary:hover -ml-20px w-120' 
+                    onClick={props.handleTipSubmit} 
+                    text='Update tip'
+                  />
+              </div>
 
-            <div className='flex justify-center'>
-              <div className='w-3/4 mx-auto'>
-                <AuthUserContext.Consumer>
-                  {authUser => {
-                    if (authUser) {
-                      return (
-                        <React.Fragment>
-                          <ListokaMoneyButton
-                            payVal={props.payVal}
-                            payeeId={props.author}
-                            userId={authUser.dbUser._id}
-                            txType='tip'
-                            label={`Tip`}
-                            paymentSuccessCbk={props.afterPayment}
-                            onError={props.handleError}
-                          />
-                        </React.Fragment>
-                      )
+              <div className='flex justify-center'>
+                <div className='w-3/4 mx-auto'>
+                  <AuthUserContext.Consumer>
+                    {authUser => {
+                      if (authUser) {
+                        return (
+                          <React.Fragment>
+                            <ListokaMoneyButton
+                              payVal={props.payVal}
+                              payeeId={props.author}
+                              userId={authUser.dbUser._id}
+                              txType='tip'
+                              label={`Tip`}
+                              paymentSuccessCbk={props.afterPayment}
+                              onError={props.handleError}
+                            />
+                          </React.Fragment>
+                        )
+                      }
                     }
-                  }
-                  }
-                </AuthUserContext.Consumer>
-                </div>
+                    }
+                  </AuthUserContext.Consumer>
+                  </div>
+              </div>
+
             </div>
-
-          </div>
-        </Sidebar>
-
+          </Sidebar>
+        </div>        
       </MainWrapper>
     </div>
   </div>
