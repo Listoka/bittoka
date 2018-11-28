@@ -8,7 +8,8 @@ import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
 export const ProfilePage = props => (
 
   <div className='absolute w-full'>
-    <div className='w-full flex mx-0'>
+    <div className='w-full flex mx-0'>   
+
       <MainWrapper styles='w-2/3'>
       <div className= 'mb-20px pl-40px py-40px rounded-8px bg-darkest-gray'>
         <div className={'m-2 px-2 pb-2'}>
@@ -26,57 +27,65 @@ export const ProfilePage = props => (
           userComments={props.userComments}
           currentView={props.currentView}
         />
-      </MainWrapper>
+      </MainWrapper>  
+
       <MainWrapper styles='w-1/3'>
         <Sidebar>
           <h4 className='mb-10px'>Bio</h4>
           <p>{props.displayedBio}</p>
         </Sidebar>
+
         <Sidebar>
           <div>
             <h4 className='mb-20px'>Leave a tip</h4>
-            <div className='text-center'>
-              <Input
-                onChange={props.handleTipChange}
-                type='number'
-                step='0.01'
-                min='0.10'
-                className='input input:focus input:disabled w-full text-h6f'
-                value={props.tipAmt}
-                placeholder='.00'
-                name='tipAmt'
-              />
-              <div className='mb-20px mx-auto w-1/2'>
-                <Button className='btn btn-primary btn-primary:hover -ml-20px w-120' onClick={props.handleTipSubmit} text='Update tip'/>
-              </div>
+                <Input
+                  onChange={props.handleTipChange}
+                  type='number'
+                  step='0.01'
+                  min='0.10'
+                  className='input input:focus input:disabled w-full text-h6f'
+                  value={props.tipAmt}
+                  placeholder='.00'
+                  name='tipAmt'
+                />
+
+            <div className='flex justify-center mb-20px'>
+                <Button 
+                  className='btn btn-primary btn-primary:hover -ml-20px w-120' 
+                  onClick={props.handleTipSubmit} 
+                  text='Update tip'
+                />
             </div>
-            <div className='mt-2 mx-auto w-1/2'>
-              <AuthUserContext.Consumer>
-                {authUser => {
-                  if (authUser) {
-                    return (
-                      <React.Fragment>
-                        <ListokaMoneyButton
-                          payVal={props.payVal}
-                          payeeId={props.author}
-                          userId={authUser.dbUser._id}
-                          txType='tip'
-                          label={`Tip`}
-                          paymentSuccessCbk={props.afterPayment}
-                          onError={props.handleError}
-                        />
-                        <hr />
-                      </React.Fragment>
-                    )
+
+            <div className='flex justify-center'>
+              <div className='w-3/4 mx-auto'>
+                <AuthUserContext.Consumer>
+                  {authUser => {
+                    if (authUser) {
+                      return (
+                        <React.Fragment>
+                          <ListokaMoneyButton
+                            payVal={props.payVal}
+                            payeeId={props.author}
+                            userId={authUser.dbUser._id}
+                            txType='tip'
+                            label={`Tip`}
+                            paymentSuccessCbk={props.afterPayment}
+                            onError={props.handleError}
+                          />
+                        </React.Fragment>
+                      )
+                    }
                   }
-                }
-                }
-              </AuthUserContext.Consumer>
+                  }
+                </AuthUserContext.Consumer>
+                </div>
             </div>
+
           </div>
         </Sidebar>
+
       </MainWrapper>
     </div>
   </div>
-
 );
