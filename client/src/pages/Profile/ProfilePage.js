@@ -11,7 +11,7 @@ export const ProfilePage = props => (
     <div className='w-full flex mx-0'>
 
       <MainWrapper styles='w-2/3'>
-        <div className='mb-20px ml-10px pl-40px py-40px rounded-8px bg-darkest-gray'>
+        <div className='mb-20px ml-10px p-40px rounded-8px bg-darkest-gray'>
           <div className={'m-2 px-2 pb-2'}>
             <h1>{props.authorName}</h1>
           </div>
@@ -22,11 +22,13 @@ export const ProfilePage = props => (
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
         </div>
-        <ProfileViewConductor
-          userPosts={props.userPosts}
-          userComments={props.userComments}
-          currentView={props.currentView}
-        />
+        <div className='flex flex-col'>
+          <ProfileViewConductor
+            userPosts={props.userPosts}
+            userComments={props.userComments}
+            currentView={props.currentView}
+          />
+        </div>
       </MainWrapper>
 
       <MainWrapper styles='w-1/3'>
