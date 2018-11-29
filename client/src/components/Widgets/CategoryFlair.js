@@ -20,7 +20,7 @@ const styles = {
 
 const CategoryFlair = props => (
   <Link className='no-underline hover:no-underline' to={`/categories/${props.categoryName}`}>
-    <span style={styles[props.categoryName]} className={`rounded-8px py-2px px-2`}>
+    <span style={styles[props.categoryName]} className={`rounded-8px py-2px px-2 capitalize`}>
       {props.categoryName}
     </span>
   </Link>

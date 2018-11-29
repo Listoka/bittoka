@@ -8,22 +8,21 @@ export const PostListItem = props => {
   return (
     <Card>
       <div className='w-full'>
-          <span>
-            <h2 className='inline'>
-              <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
-            </h2>
-            <div className="float-right">
-            <EditButton authorId={props.author} postId={props._id} text='Edit' />
-            </div>
-            <h5 className='my-10px text-white'>
-              Posted by 
-              <Link to={{ pathname: `/users/${props.author}` }} style={{color: '#FFF'}}> {props.authorName} </Link>
-              in <CategoryFlair categoryName={props.categoryName} />
-            </h5>
-            <p className='mb-10px'>{props.teaser}</p>
-          </span>
-          
-        </div>
+        <span>
+          <h2 className='inline'>
+            <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
+          </h2>
+          <div className="float-right">
+          <EditButton authorId={props.author} postId={props._id} text='Edit' />
+          </div>
+          <h6 className='mt-10px mb-20px font-normal text-white'>
+            Posted by 
+            <Link to={{ pathname: `/users/${props.author}` }} style={{color: '#FFF'}}> {props.authorName} </Link>
+            in <CategoryFlair categoryName={props.categoryName} />
+          </h6>
+          <p className='mb-10px'>{props.teaser}</p>
+        </span>
+      </div>
 
         <div className='clearfix'>
           <p className='inline mr-2'>
