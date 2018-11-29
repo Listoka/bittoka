@@ -351,9 +351,10 @@ ul.navbar-nav a:hover::before, a:focus::before {
   ;
 }
 
+/*
 .fa-arrow-up{
   color: darkcyan;
-}
+}*/
 
 /* PostList Component */
 
