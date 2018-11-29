@@ -15,10 +15,11 @@ export const PostListItem = props => {
             <div className="float-right">
             <EditButton authorId={props.author} postId={props._id} text='Edit' />
             </div>
-            <p className='text-sm mb-10px text-grey' text={'Posted by'}>
-              <Link to={{ pathname: `/users/${props.author}` }}> {props.authorName} </Link>
+            <h5 className='my-10px text-white'>
+              Posted by 
+              <Link to={{ pathname: `/users/${props.author}` }} style={{color: '#FFF'}}> {props.authorName} </Link>
               in <CategoryFlair categoryName={props.categoryName} />
-            </p>
+            </h5>
             <p className='mb-10px'>{props.teaser}</p>
           </span>
           
