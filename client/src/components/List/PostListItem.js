@@ -7,15 +7,14 @@ import CategoryFlair from '../Widgets/CategoryFlair';
 export const PostListItem = props => {
   return (
     <Card>
-      <div className='pt-10px pr-10px pl-15px w-full'>
-        <div className='clearfix'>
+      <div className='w-full'>
           <span>
-            <p className='inline font-header text-2xl'>
-              <Link to={{ pathname: `/posts/${props._id}` }}>{props.title}</Link>
-            </p>
+            <h2 className='inline'>
+              <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
+            </h2>
             <div className="float-right">
-            <EditButton authorId={props.author} postId={props._id} text='Edit Post' />
-          </div>
+            <EditButton authorId={props.author} postId={props._id} text='Edit' />
+            </div>
             <p className='text-sm mb-10px text-grey' text={'Posted by'}>
               <Link to={{ pathname: `/users/${props.author}` }}> {props.authorName} </Link>
               in <CategoryFlair categoryName={props.categoryName} />
@@ -49,7 +48,7 @@ export const PostListItem = props => {
               </ul>
             </div>
         </div>
-      </div>
+  
     </Card>
   );
 };
