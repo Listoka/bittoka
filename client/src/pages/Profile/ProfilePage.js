@@ -8,26 +8,26 @@ import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
 export const ProfilePage = props => (
 
   <div className='absolute w-full'>
-    <div className='w-full flex mx-0'>   
+    <div className='w-full flex mx-0'>
 
       <MainWrapper styles='w-2/3'>
-      <div className= 'mb-20px ml-10px pl-40px py-40px rounded-8px bg-darkest-gray'>
-        <div className={'m-2 px-2 pb-2'}>
-          <h1>{props.authorName}</h1>
-        </div> 
-        <div className={'m-2 px-2 pb-2 flex text-left'}>
-          <p className='flex-1/3 text-left text-white'>Total paid {props.payees[0].to}</p>
-          <p className='flex-1/3 ml-40px text-left text-white'>Total earned {props.payees[0].to}</p>
+        <div className='mb-20px ml-10px pl-40px py-40px rounded-8px bg-darkest-gray'>
+          <div className={'m-2 px-2 pb-2'}>
+            <h1>{props.authorName}</h1>
+          </div>
+          <div className={'m-2 px-2 pb-2 flex text-left'}>
+            <p className='flex-1/3 text-left text-white'>Total paid {props.payees[0].to}</p>
+            <p className='flex-1/3 ml-40px text-left text-white'>Total earned {props.payees[0].to}</p>
+          </div>
+          <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
+          <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
         </div>
-        <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
-        <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
-      </div>
         <ProfileViewConductor
           userPosts={props.userPosts}
           userComments={props.userComments}
           currentView={props.currentView}
         />
-      </MainWrapper>  
+      </MainWrapper>
 
       <MainWrapper styles='w-1/3'>
         <div className='mr-10px'>
@@ -39,27 +39,21 @@ export const ProfilePage = props => (
           <Sidebar>
             <div>
               <h4 className='mb-20px'>Leave a tip</h4>
-                  <Input
-                    onChange={props.handleTipChange}
-                    type='number'
-                    step='0.01'
-                    min='0.10'
-                    className='input input:focus input:disabled w-full text-h6f'
-                    value={props.tipAmt}
-                    placeholder='.00'
-                    name='tipAmt'
-                  />
-
-              <div className='flex justify-center mb-20px'>
-                  <Button 
-                    className='btn btn-primary btn-primary:hover -ml-20px w-120' 
-                    onClick={props.handleTipSubmit} 
-                    text='Update tip'
-                  />
+              <div class="flex items-stretch w-full mb-4 relative">
+                <Input
+                  onChange={props.handleTipChange}
+                  type='number'
+                  step='0.01'
+                  min='0.10'
+                  className='flex-1 w-full min-w-120 input input:focus input:disabled text-h6f rounded-r-none h-10 relative'
+                  value={props.tipAmt}
+                  placeholder='.00'
+                  name='tipAmt'
+                />
+                <div class="flex -mr-px">
+                  <span class="flex-none items-center p-5px whitespace-no-wrap btn btn-primary btn-primary:hover ml-0 mb-20px rounded-l-none rounded-r-4px mt-0">Update tip</span>
+                </div>
               </div>
-
-              <div className='flex justify-center'>
-                <div className='w-3/4 mx-auto'>
                   <AuthUserContext.Consumer>
                     {authUser => {
                       if (authUser) {
@@ -80,12 +74,9 @@ export const ProfilePage = props => (
                     }
                     }
                   </AuthUserContext.Consumer>
-                  </div>
-              </div>
-
             </div>
           </Sidebar>
-        </div>        
+        </div>
       </MainWrapper>
     </div>
   </div>
