@@ -53,7 +53,7 @@ export const ProfilePage = props => (
                   name='tipAmt'
                 />
                 <div class="flex -mr-px">
-                  <span class="flex-none items-center p-5px whitespace-no-wrap btn btn-primary btn-primary:hover ml-0 mb-20px rounded-l-none rounded-r-4px mt-0">Update tip</span>
+                  <span class="flex-none items-center p-5px whitespace-no-wrap btn btn-primary btn-primary:hover ml-0 mb-20px rounded-l-none rounded-r-4px mt-0" onClick={props.handleTipSubmit}>Update tip</span>
                 </div>
               </div>
                   <AuthUserContext.Consumer>
