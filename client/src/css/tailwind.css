@@ -24596,6 +24596,22 @@ table {
     padding-left: 20px;
   }
 
+  .lg\:pt-20px {
+    padding-top: 20px;
+  }
+
+  .lg\:pr-20px {
+    padding-right: 20px;
+  }
+
+  .lg\:pb-20px {
+    padding-bottom: 20px;
+  }
+
+  .lg\:pl-20px {
+    padding-left: 20px;
+  }
+
   .lg\:pointer-events-none {
     pointer-events: none;
   }
