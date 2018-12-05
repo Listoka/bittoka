@@ -48,31 +48,31 @@
     }
 
     h1 {
-        @apply text-h1f;
+        @apply text-4xl;
     }
 
     h2 {
-        @apply font-bold text-h2f;
+        @apply font-bold text-2xl;
     }
  
     h3 {
-        @apply font-bold text-h3f;
+        @apply font-bold text-xl;
     }
 
     h4 {
-        @apply text-h4f;
+        @apply text-lg;
     }
 
     h5 {
-        @apply text-h5f;
+        @apply text-base;
     }
 
     h6 {
-        @apply text-h6f;
+        @apply text-xs;
     }
 
     p {
-        @apply text-pf text-white text-left leading-34px
+        @apply text-sm text-white text-left
     }
 
     /*

@@ -12,10 +12,10 @@ export const PostListItem = props => {
           <h2 className='inline'>
             <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
           </h2>
-          <div className="float-right">
+          <div className="float-right text-lg">
           <EditButton authorId={props.author} postId={props._id} text='Edit' />
           </div>
-          <h6 className='mt-10px mb-20px font-normal text-white'>
+          <h6 className='mt-10px mb-20px font-normal text-white leading-normal'>
             Posted by 
             <Link to={{ pathname: `/users/${props.author}` }} style={{color: '#FFF'}}> {props.authorName} </Link>
             in <CategoryFlair categoryName={props.categoryName} />
@@ -45,7 +45,7 @@ export const PostListItem = props => {
         <div className='inline'>
             <ul className='flex list-reset text-grey'>
               {props.tags.sort().map(tags => (
-                <li className='mr-20px' key={tags}>— <span className='mr-px'></span>{tags}</li>
+                <li className='mr-20px text-xs' key={tags}>— <span className='mr-px'></span>{tags}</li>
               ))}
             </ul>
           </div>

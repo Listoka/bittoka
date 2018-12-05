@@ -47,7 +47,7 @@ export const ProfilePage = props => (
                   type='number'
                   step='0.01'
                   min='0.10'
-                  className='flex-1 w-full min-w-120 input input:focus input:disabled text-h6f rounded-r-none h-10 relative'
+                  className='flex-1 w-full min-w-120 input input:focus input:disabled text-xs rounded-r-none h-10 relative'
                   value={props.tipAmt}
                   placeholder='.00'
                   name='tipAmt'
