@@ -1,44 +1,49 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
-import createImagePlugin from 'draft-js-image-plugin';
+import createInlineToolbarPlugin /*, { Separator }*/ from 'draft-js-inline-toolbar-plugin';
 import createLinkPlugin from 'draft-js-anchor-plugin';
-import createDividerPlugin from 'draft-js-divider-plugin';
 import createCounterPlugin from 'draft-js-counter-plugin';
-import createVideoPlugin from 'draft-js-video-plugin';
+// import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+// import createImagePlugin from 'draft-js-image-plugin';
+// import createDividerPlugin from 'draft-js-divider-plugin';
+// import createVideoPlugin from 'draft-js-video-plugin';
 
 import {
   ItalicButton, BoldButton, UnderlineButton, CodeButton, HeadlineTwoButton,
-  HeadlineThreeButton, UnorderedListButton, OrderedListButton, BlockquoteButton, CodeBlockButton,
+  UnorderedListButton, OrderedListButton, BlockquoteButton, CodeBlockButton,
 } from 'draft-js-buttons';
 
-import ImageAdd from './AddImage.js';
-import VideoAdd from './VideoAdd.js';
+// import ImageAdd from './AddImage.js';
+// import VideoAdd from './VideoAdd.js';
 
-import { sideToolbarTheme, inlineToolbarTheme, linkTheme, editorTheme } from './themes'
+import { /*sideToolbarTheme,*/ inlineToolbarTheme, linkTheme, editorTheme } from './themes'
 
 // Adding the plugins
 const inlineToolbarPlugin = createInlineToolbarPlugin({ theme: inlineToolbarTheme });
-const sideToolbarPlugin = createSideToolbarPlugin({ theme: sideToolbarTheme });
 const linkPlugin = createLinkPlugin({ theme: linkTheme, placeholder: 'http://' });
-const imagePlugin = createImagePlugin();
-const dividerPlugin = createDividerPlugin();
 const counterPlugin = createCounterPlugin();
-const videoPlugin = createVideoPlugin();
+// const sideToolbarPlugin = createSideToolbarPlugin({ theme: sideToolbarTheme });
+// const imagePlugin = createImagePlugin();
+// const dividerPlugin = createDividerPlugin();
+// const videoPlugin = createVideoPlugin();
 
 const { InlineToolbar } = inlineToolbarPlugin;
-const { DividerButton } = dividerPlugin;
-const { SideToolbar } = sideToolbarPlugin;
 const { WordCounter } = counterPlugin;
+// const { DividerButton } = dividerPlugin;
+// const { SideToolbar } = sideToolbarPlugin;
 
 const plugins = [
-  inlineToolbarPlugin, imagePlugin, sideToolbarPlugin,
-  linkPlugin, dividerPlugin, counterPlugin, videoPlugin
+  inlineToolbarPlugin,
+  linkPlugin,
+  counterPlugin,
+  // imagePlugin,
+  // sideToolbarPlugin,
+  // dividerPlugin,
+  // videoPlugin
 ];
 
-class TextEditor extends Component {
+class PostEditor extends Component {
 
   constructor(props) {
     super(props);
@@ -51,17 +56,19 @@ class TextEditor extends Component {
   focus = () => this.editor.focus();
 
   render() {
+    const { editorState, onChange } = this.props
+
     return (
       <React.Fragment>
         <div className={editorTheme.editor} onClick={this.focus}>
           <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
+            editorState={editorState ? editorState : this.state.editorState}
+            onChange={onChange ? onChange : this.onChange}
             plugins={plugins}
-            // customStyleMap={styleMap}
             ref={(element) => { this.editor = element; }}
+          // customStyleMap={styleMap}
           />
-          <SideToolbar>
+          {/* <SideToolbar>
             {externalProps => (
               <React.Fragment>
                 <BoldButton {...externalProps} />
@@ -72,7 +79,7 @@ class TextEditor extends Component {
                 <DividerButton {...externalProps} />
               </React.Fragment>
             )}
-          </SideToolbar>
+          </SideToolbar> */}
           <InlineToolbar>
             {externalProps => (
               <React.Fragment>
@@ -80,22 +87,23 @@ class TextEditor extends Component {
                 <ItalicButton {...externalProps} />
                 <UnderlineButton {...externalProps} />
                 <CodeButton {...externalProps} />
-                <HeadlineThreeButton {...externalProps} />
+                <linkPlugin.LinkButton {...externalProps} />
+                <HeadlineTwoButton {...externalProps} />
                 {/* <Separator {...externalProps} /> */}
                 <UnorderedListButton {...externalProps} />
                 <OrderedListButton {...externalProps} />
                 <BlockquoteButton {...externalProps} />
-                <linkPlugin.LinkButton {...externalProps} />
+                <CodeBlockButton {...externalProps} />
               </React.Fragment>
             )}
           </InlineToolbar>
         </div>
 
-        <ImageAdd
+        {/* <ImageAdd
           editorState={this.state.editorState}
           onChange={this.onChange}
           modifier={imagePlugin.addImage}
-        />
+        /> */}
         {/* <VideoAdd
                   editorState={this.state.editorState}
                   onChange={this.onChange}
@@ -107,4 +115,4 @@ class TextEditor extends Component {
   }
 }
 
-export default TextEditor;
+export default PostEditor;

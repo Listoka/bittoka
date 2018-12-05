@@ -20,6 +20,7 @@ import authTest from './pages/AUTH-TEST';
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
 import TestEditorPage from './components/EditorTest/TestEditorPage';
+import EditorPageContainer from './pages/Editor/EditorPageContainer';
 
 class App extends Component {
   constructor(props) {
@@ -53,7 +54,8 @@ class App extends Component {
             <Route exact path='/account' component={AccountContainer} />
             <Route exact path='/users/:id' component={ProfileContainer} />
             <Route exact path='/editor' component={Editor} />
-            <Route exact path='/test-editor' component={TestEditorPage} />
+            <Route exact path='/test-editor' component={EditorPageContainer} />
+            <Route exact path='/test-editor/:postId' component={EditorPageContainer} /> 
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
           </Switch>

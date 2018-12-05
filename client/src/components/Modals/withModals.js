@@ -7,16 +7,25 @@ const withModals = Component =>
     constructor(props) {
       super(props)
       this.state = {
-        activeModal: null
+        activeModal: null,
+        modalProps: null,
       }
     }
 
-    openModal = (e, modalName) => {
+    openModal = (e, modalName, modalProps) => {
       e.preventDefault()
-      this.setState({ activeModal: modalName })
+      this.setState({
+        activeModal: modalName,
+        modalProps
+      })
     }
 
-    closeModal = () => this.setState({ activeModal: '' })
+    closeModal = () => {
+      this.setState({
+        activeModal: null,
+        modalProps: null
+      })
+    }
 
     render() {
       return (
@@ -25,6 +34,7 @@ const withModals = Component =>
           <ModalConductor
             currentModal={this.state.activeModal}
             closeModal={this.closeModal}
+            {...this.state.modalProps}
           />
         </ModalLaunchContext.Provider>
       )

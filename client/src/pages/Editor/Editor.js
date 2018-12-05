@@ -9,7 +9,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import guidelinesImage from '../../assets/images/guidelines.png';
 import { Row, Input, TextArea, MainWrapper, Form, Button } from '../../components/Widgets';
-import TextEditor from '../../components/Draft-js-Editor/TextEditor'
+import TextEditor from '../../components/PostEditor/PostEditor'
 
 // React Select docs: https://react-select.com/home
 
@@ -66,7 +66,7 @@ class CreatePost extends Component {
           title: postData.title,
           teaser: postData.teaser || '',
           isDraft: postData.isDraft,
-          // paywallCost: postData.paywallCost, // <--- TODO: react doesn't like this setting for some reason
+          // paywallCost: postData.paywallCost, // TODO: react doesn't like this setting for some reason
           postId: postData._id,
           categoryName: postData.categoryName,
           categoryDisplayName,
@@ -207,95 +207,95 @@ class CreatePost extends Component {
           <Row styles={"mt-12"}>
             <div className="col-md-1"></div>
             <div className="col-md-8" >
-            <MainWrapper styles={'px-3 pt-4'}>
-              <Form onSubmit={this.handleFormSubmit}>
-                <div className="form-group">
-                {this.props.match.params.postId
-                  ? <h2 className='mb-4'>EDIT POST</h2>
-                  : <h2 className='mb-4'>CREATE POST</h2>
-                }
-                {/* Will need to find the other z-index's before I change this ctaegorySelect z-index */}
-                  <Select className="categorySelect"
-                    onChange={this.dropdownChange}
-                    options={this.state.categories}
-                    theme={(theme) => ({ ...theme, borderRadius: 5, })}
-                    value={{
-                      value: this.state.categoryName,
-                      label: this.state.categoryDisplayName,
-                      color: 'darkcyan'
-                    }}
-                    isDisabled={!this.state.isDraft}
-                  />
+              <MainWrapper styles={'px-3 pt-4'}>
+                <Form onSubmit={this.handleFormSubmit}>
+                  <div className="form-group">
+                    {this.props.match.params.postId
+                      ? <h2 className='mb-4'>EDIT POST</h2>
+                      : <h2 className='mb-4'>CREATE POST</h2>
+                    }
+                    {/* Will need to find the other z-index's before I change this ctaegorySelect z-index */}
+                    <Select className="categorySelect"
+                      onChange={this.dropdownChange}
+                      options={this.state.categories}
+                      theme={(theme) => ({ ...theme, borderRadius: 5, })}
+                      value={{
+                        value: this.state.categoryName,
+                        label: this.state.categoryDisplayName,
+                        color: 'darkcyan'
+                      }}
+                      isDisabled={!this.state.isDraft}
+                    />
 
-                </div>
-                <div className='form-group'>
-                  <input
+                  </div>
+                  <div className='form-group'>
+                    <input
+                      className='form-control'
+                      type='text'
+                      onChange={this.handleInputChange}
+                      value={this.state.title}
+                      placeholder='Title'
+                      name='title'
+                      disabled={!this.state.isDraft}
+                    />
+                  </div>
+                  <Input
                     className='form-control'
-                    type='text'
+                    id='paywallField'
                     onChange={this.handleInputChange}
-                    value={this.state.title}
-                    placeholder='Title'
-                    name='title'
-                    disabled={!this.state.isDraft}
+                    type='number'
+                    step='0.01'
+                    min='0.00'
+                    style={{ width: 200 + 'px' }}
+                    placeholder='Paywall Cost (x.xx)'
+                    value={this.state.paywallCost}
+                    name='paywallCost'
                   />
-                </div>
-                <Input
-                  className='form-control'
-                  id= 'paywallField'
-                  onChange={this.handleInputChange}
-                  type='number'
-                  step='0.01'
-                  min='0.00'
-                  style={{ width: 200 + 'px' }}
-                  placeholder='Paywall Cost (x.xx)'
-                  value={this.state.paywallCost}
-                  name='paywallCost'
-                />
-                <TextArea
-                  placeholder='Teaser'
-                  onChange={this.handleInputChange}
-                  name='teaser'
-                  value={this.state.teaser}
-                />
-                <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
-                {/* <RichTextEditor
+                  <TextArea
+                    placeholder='Teaser'
+                    onChange={this.handleInputChange}
+                    name='teaser'
+                    value={this.state.teaser}
+                  />
+                  <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
+                  {/* <RichTextEditor
                   value={this.state.value}
                   onChange={this.onEditorChange}
                 /> */}
-                <div className='my-10 mx-10'>
-                <TextEditor />
-                </div>
-                <br/>
-                <Select
-                  id="tagField"
-                  className='react-select-container'
-                  classNamePrefix="rounded"
-                  value={selectedOptions}
-                  onChange={this.handleTagChange}
-                  options={this.state.tags}
-                  isMulti
-                  isClearable={true}
-                  placeholder="Tags"
-                  closeMenuOnSelect={false}
-                  components={makeAnimated()}
-                  styles={colourStyles}
-                  theme={(theme) => ({
-                    ...theme,
-                    borderRadius: 5,
-                  })}
-                />
-                <br/>
-                <Button
-                  type='submit'
-                  text='Submit'
-                />
-                {
-                  this.state.isDraft
-                    ? <Button  onClick={this.saveDraft} text='Save Draft'></Button>
-                    : null
-                }
-              </Form>
-            </MainWrapper>
+                  <div className='my-10 mx-10'>
+                    <TextEditor />
+                  </div>
+                  <br />
+                  <Select
+                    id="tagField"
+                    className='react-select-container'
+                    classNamePrefix="rounded"
+                    value={selectedOptions}
+                    onChange={this.handleTagChange}
+                    options={this.state.tags}
+                    isMulti
+                    isClearable={true}
+                    placeholder="Tags"
+                    closeMenuOnSelect={false}
+                    components={makeAnimated()}
+                    styles={colourStyles}
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 5,
+                    })}
+                  />
+                  <br />
+                  <Button
+                    type='submit'
+                    text='Submit'
+                  />
+                  {
+                    this.state.isDraft
+                      ? <Button onClick={this.saveDraft} text='Save Draft'></Button>
+                      : null
+                  }
+                </Form>
+              </MainWrapper>
             </div>
             <div className="col-md-3">
               <MainWrapper styles={'min-width150px'}>
@@ -303,7 +303,7 @@ class CreatePost extends Component {
                   <img className="img-fluid text-center" src={guidelinesImage} alt="Listoka Guidelines"></img>
                 </div>
                 <h2 className='mt-3 text-center font-bold'>Posting Guidelines</h2>
-                <hr/>
+                <hr />
                 <ul>
                   <li>Guideline 1</li>
                   <li>Guideline 2</li>
@@ -314,8 +314,8 @@ class CreatePost extends Component {
               </MainWrapper>
             </div>
           </Row>
-      </div>
-    </React.Fragment>
+        </div>
+      </React.Fragment>
     );
   };
 };
