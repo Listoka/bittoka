@@ -13,15 +13,14 @@ class EditorPageContainer extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       tags: [],
-      teaser: "",
-      title: "",
+      teaser: '',
+      title: '',
       categories: [],
       categoryName: initialCategoryName,
       categoryDisplayName: '',
       selectedCategoryName: '',
       selectedTags: [],
-      dropdownOpen: false,
-      selectedOptions: null,
+      selectedTagObjects: null,
       postId: null,
       author: props.authUser.dbUser._id,
       paywallCost: '',
@@ -32,25 +31,7 @@ class EditorPageContainer extends React.Component {
   onTitleChange = e => this.setState({ title: e.target.value })
   onTeaserChange = e => this.setState({ teaser: e.target.value })
 
-  onCategorySelectChange = (event) => {
-    console.log('dropdownChange event', event)
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
-      categoryName: event.value,
-      categoryDisplayName: this.state.categories.find(c => c.value === event.value).label,
-      tags: event.tags,
-      selectedOptions: null,
-      selectedTags: null,
-    })
-  };
-
-  onTagSelectChange = selectedTagObjects => {
-    this.setState({
-      selectedTagObjects,
-      selectedTags: selectedTagObjects.map(tag => tag.value)
-    });
-  };
-
+  setPostSettings = pubModalState => this.setState({ ...pubModalState })
 
   componentDidMount() {
     const isNewPost = !this.props.match.params.postId ? true : false
@@ -173,6 +154,8 @@ class EditorPageContainer extends React.Component {
   };
 
   render() {
+    const readyToPublish = !!this.state.categoryName
+
     return (
       <EditorPage
         onEditorChange={this.onEditorChange}
@@ -180,7 +163,10 @@ class EditorPageContainer extends React.Component {
         onTeaserChange={this.onTeaserChange}
         onCategorySelectChange={this.categorySelectChange}
         onTagSelectChange={this.onTagSelectChange}
+        setPostSettings={this.setPostSettings}
         saveDraft={this.saveDraft}
+        publishPost={this.publishPost}
+        readyToPublish={readyToPublish}
         {...this.state}
       />
     )

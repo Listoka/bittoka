@@ -3,7 +3,7 @@ import React from 'react';
 import GistModal from './GistModal';
 import JoinModal from './JoinModal';
 import LoginModal from './LoginModal';
-import PublishPostModal from './PublishPostModal';
+import PublishPostModalContainer from './PublishPostModalContainer';
 
 const ModalConductor = props => {
   switch (props.currentModal) {
@@ -17,7 +17,7 @@ const ModalConductor = props => {
       return <LoginModal {...props} />
 
     case 'PUBLISH-POST':
-      return <PublishPostModal {...props} />
+      return <PublishPostModalContainer {...props} />
 
     default:
       return null;

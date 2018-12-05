@@ -3,7 +3,7 @@ import ModalWrapper from './ModalWrapper';
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import colourStyles from './colourStyles';
-import { TextArea } from '../Widgets'
+import { TextArea, Button } from '../Widgets'
 
 class PublishPostModal extends React.Component {
 
@@ -12,11 +12,12 @@ class PublishPostModal extends React.Component {
       <ModalWrapper
         closeModal={this.props.closeModal}
       >
+        <h2>Publish Post Settings</h2>
         <br />
         <Select
           className="categorySelect"
           placeholder='Category'
-          onChange={this.props.categorySelectChange}
+          onChange={this.props.onCategorySelectChange}
           options={this.props.categories}
           theme={(theme) => ({ ...theme, borderRadius: 5, })}
           value={{
@@ -26,6 +27,7 @@ class PublishPostModal extends React.Component {
           }}
           isDisabled={!this.props.isDraft}
         />
+        <br />
         <Select
           id="tagField"
           className='react-select-container'
@@ -44,14 +46,16 @@ class PublishPostModal extends React.Component {
             borderRadius: 5,
           })}
         />
+        <br />
         <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
         <TextArea
           placeholder='Teaser'
-          onChange={this.onTeaserChange}
+          onChange={this.props.onTeaserChange}
           name='teaser'
-          value={this.state.teaser}
+          value={this.props.teaser}
         />
-
+        <br />
+        <Button onClick={this.props.closeModal} text='Ok'>Ok</Button>
       </ModalWrapper>
     )
   }

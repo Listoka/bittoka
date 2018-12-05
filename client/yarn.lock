@@ -3520,6 +3520,7 @@ dotenv@^5.0.1:
 draft-js-anchor-plugin@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/draft-js-anchor-plugin/-/draft-js-anchor-plugin-2.0.2.tgz#ffe05e52ffd58080a075a2ac741e3250dd46605e"
+  integrity sha512-e+15BdiCNdy0qCSwR9+yFZEdSnU8t8kxrB+Hv+AFrxDqyrVtRYd4jw5engFaGK+kwk6UbKZw4MDWZ0QAla+8bA==
   dependencies:
     decorate-component-with-props "^1.0.2"
     draft-js-plugins-utils "2.0.2"

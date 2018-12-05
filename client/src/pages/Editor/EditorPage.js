@@ -29,10 +29,17 @@ const EditorPage = props => {
               onClick={(e) => openModal(e, 'PUBLISH-POST', props)}
               className='bg-grey hover:bg-blue-light mb-1 mx-1 px-2 py-1'
             >
-              Publish
+              Settings
             </B>
           )}
         </ModalLaunchContext.Consumer>
+        <B
+          onClick={props.publishPost}
+          className='bg-grey hover:bg-blue-light mb-1 mx-1 px-2 py-1'
+          disabled={!props.readyToPublish}
+        >
+          Publish
+        </B>
       </div>
       <PostEditor
         onChange={props.onEditorChange}
