@@ -41,7 +41,7 @@ export const ProfilePage = props => (
           <Sidebar>
             <div>
               <h4 className='mb-20px'>Leave a tip</h4>
-              <div class="flex items-stretch w-full mb-4 relative">
+              <div className="flex items-stretch w-full mb-4 relative">
                 <Input
                   onChange={props.handleTipChange}
                   type='number'
@@ -52,8 +52,8 @@ export const ProfilePage = props => (
                   placeholder='.00'
                   name='tipAmt'
                 />
-                <div class="flex -mr-px">
-                  <span class="flex-none items-center p-5px whitespace-no-wrap btn btn-primary btn-primary:hover ml-0 mb-20px rounded-l-none rounded-r-4px mt-0" onClick={props.handleTipSubmit}>Update tip</span>
+                <div className="flex -mr-px">
+                  <span className="flex-none items-center p-5px whitespace-no-wrap btn btn-primary btn-primary:hover ml-0 mb-20px rounded-l-none rounded-r-4px mt-0" onClick={props.handleTipSubmit}>Update tip</span>
                 </div>
               </div>
                   <AuthUserContext.Consumer>
