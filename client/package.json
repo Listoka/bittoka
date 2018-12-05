@@ -21,7 +21,7 @@
     "react-scripts": "2.1.1",
     "react-select": "^2.1.0",
     "reactstrap": "^6.5.0",
-    "tailwindcss": "^0.7.0"
+    "tailwindcss": "^0.7.2"
   },
   "scripts": {
     "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
@@ -29,5 +29,11 @@
     "build": "npm run tailwind:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

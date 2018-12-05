@@ -35,7 +35,82 @@
   * @import "components/buttons";
   * @import "components/forms";
   */
- 
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Navigation                      https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */  
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Inputs                           https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */   
+
+    input {
+        @apply bg-input-background border-3 border-transparent rounded-4px p-10px mb-10px text-light-gray
+    }
+
+    .input:focus {
+        @apply border-light-gray text-input-active outline-none
+    }
+
+    .input:disabled {
+        @apply border-brand-green text-input-disabled
+    }
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Buttons                                https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */
+
+    .btn {
+        @apply border-3 rounded-20px border-brand-green font-bold px-10px py-px ml-20px mt-10px font-header text-xl
+    }
+
+    .btn-primary {
+        @apply bg-brand-green text-white
+    }
+
+    .btn-primary:hover {
+        @apply bg-transparent border-brand-green text-brand-green
+    }
+
+    .btn-primary:active {
+        @apply bg-brand-green text-white outline-none
+    }
+    
+    .btn-secondary {
+        @apply bg-soft-black text-brand-green
+    }
+
+    .btn-secondary:hover {
+        @apply bg-brand-green border-brand-green text-white 
+    }
+
+    .btn-secondary:active {
+        @apply bg-brand-green text-white outline-none
+    }
+
+    .btn-nav {
+      @apply bg-soft-black text-white
+    }
+
+    .btn-nav:hover {
+      @apply bg-brand-green border-brand-green text-white
+    }
+
+    .btn-nav:active {
+      @apply bg-brand-green text-white outline-none
+    }
+    
+   
+
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
@@ -60,4 +135,3 @@
   * @import "utilities/background-patterns";
   * @import "utilities/skew-transforms";
   */
- 

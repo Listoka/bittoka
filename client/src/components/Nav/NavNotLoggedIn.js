@@ -1,23 +1,22 @@
 import React from "react";
 import ModalLaunchContext from "../Modals/ModalLaunchContext";
+import { Button } from '../../components/Widgets';
 
 export const NavNotLoggedIn = (props) => {
   return (
     <ModalLaunchContext.Consumer>
       {openModal => (
         <React.Fragment>
-          <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-            <div className="nav-link hover">
-              <a style={{ color: 'snow' }} onClick={(e) => openModal(e, 'JOIN')} href='/'>Join</a>
-              <span className="sr-only">Join</span>
+          <div className='items-center'>
+            <div className="inline-flex" data-toggle="collapse" data-target="#navbar-collapse.in">
+                <a className='text-white text-xl font-header font-bold' onClick={(e) => openModal(e, 'LOGIN')} href='/'>Login</a>
+                <span className="sr-only">Login</span>
             </div>
-          </li>
-          <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-            <div className="nav-link">
-              <a style={{ color: 'snow' }} onClick={(e) => openModal(e, 'LOGIN')} href='/'>Login</a>
-              <span className="sr-only">Login</span>
+            <div className="inline-flex" data-toggle="collapse" data-target="#navbar-collapse.in">
+                <Button className='btn btn-nav btn-nav:hover btn-nav:active outline-none'text={'Get Started'} onClick={(e) => openModal(e, 'JOIN')} href='/'>Get Started</Button>
+                <span className="sr-only">Join</span>
             </div>
-          </li>
+            </div>
         </React.Fragment>
       )}
     </ModalLaunchContext.Consumer>

@@ -2,9 +2,8 @@ import React from 'react';
 
 export const Button = props => {
   return (
-    // The Bootstrap and postBtn will be changed once Lindsay themes the website. Left for now.
-    <button className='btn postBtn' {...props}>
-      <span className={`font-normal ${props.styles}`}>{props.text}</span>
+    <button className= 'btn' {...props}>
+      <span className={`${props.styles}`}>{props.text}</span>
     </button>
   );
 };
@@ -19,7 +18,7 @@ const B = props => {
   // otherwise, use the default styles
   switch (btnType) {
     case 'primary':
-      classes = ''
+      classes = 'bg-brand-green rounded-4px text-white'
       break;
     case 'secondary':
       classes = ''

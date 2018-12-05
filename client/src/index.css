@@ -10,7 +10,6 @@ body {
   background-image: url("./assets/images/brushedalu.png");
   font-family: 'Montserrat', sans-serif;
   color: #333333;
-  padding-top: 70px;
   /* overflow: hidden; */
   margin: 0;
 }
@@ -613,4 +612,3 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 .moneybutton {
   padding-left: 50px;
 }
-/* Unbroke master */

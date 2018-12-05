@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { NavLoggedIn, NavNotLoggedIn } from "../Nav";
-// import NavNotLoggedIn from "../NavNotLoggedIn";
 import AuthUserContext from '../AuthUserSession/AuthUserContext';
 import { auth } from '../../firebase';
 import ModalLaunchContext from '../Modals/ModalLaunchContext';
+import ListokaLogoWhite from '../../assets/images/ListokaLogoWhite.png';
+// import ListokaLogo from '../../assets/images/ListokaLogo.png';
 
-//Will need to update a logged in / logged out state
 export class Nav extends Component {
   constructor(props) {
     super(props);
@@ -22,36 +22,31 @@ export class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar fixed-top navbar-expand-lg navbar-light">
-        <span id="logoImage"><Link style={{ color: 'snow', textDecoration: 'none' }} to='/'>Listoka</Link></span>
-        <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span> </span>
-          <span> </span>
-          <span> </span>
-        </button>
-        <div className="collapse navbar-collapse justify-content-end" id="collapsingNavbar">
-          <ul className="nav navbar-nav navbar-right">
-            <ModalLaunchContext.Consumer>
-              {openModal => (
-                <li className="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-                  <div className="nav-link">
-                    <a style={{ color: 'snow' }} onClick={(e) => openModal(e, 'GIST')} href="/">Gist</a>
-                    <span className="sr-only">Gist</span>
-                  </div>
-                </li>
-              )}
-            </ModalLaunchContext.Consumer>
-            <AuthUserContext.Consumer>
-              {
-                authUser =>
-                  authUser
-                    ? <NavLoggedIn {...this.props} logOutHandler={this.logOutHandler} />
-                    : <NavNotLoggedIn {...this.props} />
-              }
-            </AuthUserContext.Consumer>
-          </ul>
+      <React.Fragment>
+      <nav className='flex bg-soft-black p-3 justify-between'>
+        <span className='inline-flex'><Link style={{ textDecoration: 'none' }} to='/'><img className='h-12'src={ListokaLogoWhite} alt='ListokaImage'></img></Link></span>
+        <div className='relative group'>
+          {/* <ModalLaunchContext.Consumer>
+            {openModal => (
+              <li className="inline-block" data-toggle="collapse" data-target="#navbar-collapse.in">
+                <div className="nav-link">
+                  <a className='text-white inline-block' onClick={(e) => openModal(e, 'GIST')} href="/">Gist</a>
+                  <span className="sr-only">Gist</span>
+                </div>
+              </li>
+            )}
+          </ModalLaunchContext.Consumer> */}
+          <AuthUserContext.Consumer>
+            {
+              authUser =>
+                authUser
+                  ? <NavLoggedIn {...this.props} logOutHandler={this.logOutHandler} />
+                  : <NavNotLoggedIn {...this.props} />
+            }
+          </AuthUserContext.Consumer>
         </div>
       </nav>
+    </React.Fragment>
     )
   }
 }
