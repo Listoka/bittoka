@@ -6,7 +6,7 @@ import { BitcoinIcon } from '../Widgets';
 export const CommentListItem = props => {
   return (
     <React.Fragment>
-      <div className='mb-20px p-40px rounded-8px bg-darkest-gray'>
+      <div className='mb-20px p-20px rounded-8px bg-darkest-gray'>
         <h4 className='mb-2'>
           <BitcoinIcon />
           <span>[$x.xx]</span>

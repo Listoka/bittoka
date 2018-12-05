@@ -12,10 +12,10 @@ export const ProfilePage = props => (
 
       <MainWrapper styles='block sm:block md:block lg:w-2/3 xl:w-2/3'>
         <div className='mb-20px p-20px rounded-8px bg-darkest-gray'>
-          <div className={''}>
+          <div className={'mb-10px capitalize'}>
             <h1>{props.authorName}</h1>
           </div>
-          <div className={' flex text-left'}>
+          <div className={'flex text-left'}>
             <p className='flex-1/3 text-left text-white'>Total paid {props.payees[0].to}</p>
             <p className='flex-1/3 ml-40px text-left text-white'>Total earned {props.payees[0].to}</p>
           </div>

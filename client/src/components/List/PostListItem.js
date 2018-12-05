@@ -9,13 +9,18 @@ export const PostListItem = props => {
     <Card>
       <div className='w-full'>
         <span>
-          <h2 className='inline'>
-            <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
-          </h2>
-          <div className="float-right text-lg">
-          <EditButton authorId={props.author} postId={props._id} text='Edit' />
-          </div>
-          <h6 className='mt-10px mb-20px font-normal text-white leading-normal'>
+          <section className='relative'>
+          <div className="hidden sm:hidden md:inline lg:inline xl:inline float-right text-lg pl-10px">
+              <EditButton authorId={props.author} postId={props._id} text='Edit' />
+            </div>
+            <div className="sm:inline md:hidden lg:hidden xl:hidden float-right text-lg pl-10px">
+              <EditButton authorId={props.author} postId={props._id} text='' />
+            </div>
+            <h2 className='inline'>
+              <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
+            </h2>
+          </section>
+          <h6 className='clearfix mt-10px mb-20px font-normal text-white leading-normal'>
             Posted by 
             <Link to={{ pathname: `/users/${props.author}` }} style={{color: '#FFF'}}> {props.authorName} </Link>
             in <CategoryFlair categoryName={props.categoryName} />
