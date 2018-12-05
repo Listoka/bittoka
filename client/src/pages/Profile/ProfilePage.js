@@ -8,7 +8,7 @@ import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
 export const ProfilePage = props => (
 
   <div className='absolute w-full'>
-    <div className='w-full flex mx-0 container mx-auto'>
+    <div className='w-full flex flex-wrap container mx-auto -mx-10px'>
 
       <MainWrapper styles='w-2/3'>
         <div className='mb-20px ml-10px p-40px rounded-8px bg-darkest-gray'>
@@ -32,7 +32,7 @@ export const ProfilePage = props => (
       </MainWrapper>
 
       <MainWrapper styles='w-1/3'>
-        <div className='mr-10px'>
+        <div className=''>
           <Sidebar>
             <h4 className='mb-10px'>Bio</h4>
             <p>{props.displayedBio}</p>
