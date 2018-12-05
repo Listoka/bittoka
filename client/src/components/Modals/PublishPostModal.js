@@ -6,22 +6,8 @@ import colourStyles from './colourStyles';
 import { TextArea } from '../Widgets'
 
 class PublishPostModal extends React.Component {
-  constructor(props) {
-    super(props)
-    const initialTeaser = this.props.teaser || ''
-    this.state = {
-      isValid: false,
-      teaser: initialTeaser
-    }
-  }
-
-  onTeaserChange = e => {
-    this.props.onTeaserChange(e)
-    this.setState({ teaser: e.target.value })
-  }
 
   render() {
-    console.log('PublishPostModal props: ', this.props)
     return (
       <ModalWrapper
         closeModal={this.props.closeModal}

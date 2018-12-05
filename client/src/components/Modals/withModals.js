@@ -27,6 +27,8 @@ const withModals = Component =>
       })
     }
 
+    // setModalState = 
+
     render() {
       return (
         <ModalLaunchContext.Provider value={this.openModal}>
