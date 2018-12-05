@@ -7,19 +7,19 @@ import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
 
 export const ProfilePage = props => (
 
-  <div className='absolute w-full'>
+  <div className='absolute w-full mt-10px'>
     <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto -mx-10px'>
 
       <MainWrapper styles='block sm:block md:block lg:w-2/3 xl:w-2/3'>
-        <div className='mb-20px ml-10px p-40px rounded-8px bg-darkest-gray'>
-          <div className={'m-2 px-2 pb-2'}>
+        <div className='mb-20px p-20px rounded-8px bg-darkest-gray'>
+          <div className={''}>
             <h1>{props.authorName}</h1>
           </div>
-          <div className={'m-2 px-2 pb-2 flex text-left'}>
+          <div className={' flex text-left'}>
             <p className='flex-1/3 text-left text-white'>Total paid {props.payees[0].to}</p>
             <p className='flex-1/3 ml-40px text-left text-white'>Total earned {props.payees[0].to}</p>
           </div>
-          <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
+          <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none ml-0' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
         </div>
         <div className='flex flex-col'>
@@ -32,7 +32,7 @@ export const ProfilePage = props => (
       </MainWrapper>
 
       <MainWrapper styles='block sm:block md:block lg:w-1/3 xl:w-1/3'>
-        <div className=''>
+
           <Sidebar>
             <h4 className='mb-10px'>Bio</h4>
             <p>{props.displayedBio}</p>
@@ -78,7 +78,7 @@ export const ProfilePage = props => (
                   </AuthUserContext.Consumer>
             </div>
           </Sidebar>
-        </div>
+
       </MainWrapper>
     </div>
   </div>
