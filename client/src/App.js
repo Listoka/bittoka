@@ -8,7 +8,7 @@ import categories from './categories.json';
 import SubNav from './components/subNav';
 
 // "Pages"
-import Editor from './pages/Editor'
+import EditorPageContainer from './pages/Editor/EditorPageContainer';
 import NoMatch from './pages/NoMatch';
 import AccountContainer from './pages/Account';
 import MainPageContainer from './pages/Main/MainPageContainer';
@@ -19,8 +19,6 @@ import authTest from './pages/AUTH-TEST';
 // Higher Order Components
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
-import TestEditorPage from './components/EditorTest/TestEditorPage';
-import EditorPageContainer from './pages/Editor/EditorPageContainer';
 
 class App extends Component {
   constructor(props) {
@@ -48,14 +46,13 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />
-            <Route exact path='/categories/:categoryName/posts/new' component={Editor} />
+            <Route exact path='/categories/:categoryName/posts/new' component={EditorPageContainer} />
             <Route exact path='/posts/:postId' component={PostDetailPage} />
-            <Route exact path='/posts/:postId/edit' component={Editor} />
+            <Route exact path='/posts/:postId/edit' component={EditorPageContainer} />
             <Route exact path='/account' component={AccountContainer} />
             <Route exact path='/users/:id' component={ProfileContainer} />
-            <Route exact path='/editor' component={Editor} />
-            <Route exact path='/test-editor' component={EditorPageContainer} />
-            <Route exact path='/test-editor/:postId' component={EditorPageContainer} /> 
+            <Route exact path='/editor' component={EditorPageContainer} />
+            <Route exact path='/editor/:postId' component={EditorPageContainer} />
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
           </Switch>
