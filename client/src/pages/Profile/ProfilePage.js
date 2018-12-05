@@ -8,7 +8,7 @@ import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
 export const ProfilePage = props => (
 
   <div className='absolute w-full'>
-    <div className='w-full flex mx-0'>
+    <div className='w-full flex mx-0 container mx-auto'>
 
       <MainWrapper styles='w-2/3'>
         <div className='mb-20px ml-10px p-40px rounded-8px bg-darkest-gray'>
@@ -47,7 +47,7 @@ export const ProfilePage = props => (
                   type='number'
                   step='0.01'
                   min='0.10'
-                  className='flex-1 w-full min-w-120 input input:focus input:disabled text-xs rounded-r-none h-10 relative'
+                  className='flex-1 w-full min-w-100px input input:focus input:disabled text-xs rounded-r-none h-10 relative'
                   value={props.tipAmt}
                   placeholder='.00'
                   name='tipAmt'
