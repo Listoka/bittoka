@@ -23,7 +23,8 @@ class EditorPageContainer extends React.Component {
       selectedTagObjects: null,
       postId: null,
       author: props.authUser.dbUser._id,
-      paywallCost: 0.05,
+      paywallCost: 0.00,
+      isPaywallActive: false
     }
   }
 

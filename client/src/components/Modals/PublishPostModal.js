@@ -7,6 +7,7 @@ import { TextArea, Button } from '../Widgets'
 
 class PublishPostModal extends React.Component {
   render() {
+    console.log('PublishPostModal props: ', this.props)
     return (
       <ModalWrapper
         closeModal={this.props.closeModal}
@@ -47,20 +48,36 @@ class PublishPostModal extends React.Component {
         />
         <br />
         <div className='mb-3 p-3 bg-grey-lighter'>
-          <label htmlFor='paywall-price'>Paywall Price $</label>
-          <input
-            className='border border-grey rounded ml-2 text-right py-1 px-2'
-            onChange={this.props.onPaywallCostChange}
-            value={this.props.paywallCost}
-            id='paywall-price' type='number' increment='0.01' />
+          <div className='m-2 mb-3 px-3 pt-1 border border-grey-darker'>
+            <label htmlFor='paywall-active-box' className='m-1'>Activate Paywall:</label>
+            <input
+              className='mx-3'
+              onChange={this.props.togglePaywall}
+              id='paywall-active-box'
+              type='checkbox'
+              checked={this.props.isPaywallActive}
+            />
+          </div>
+          {this.props.isPaywallActive &&
+            <div className='m-2 mb-3 px-1 pt-1'>
+              <label htmlFor='paywall-price'>Paywall Price $</label>
+              <input
+                className='border border-grey rounded ml-2 text-right py-1 px-2'
+                onChange={this.props.onPaywallCostChange}
+                value={this.props.paywallCost}
+                id='paywall-price' type='number' increment='0.01' />
+            </div>}
         </div>
-        <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
-        <TextArea
-          placeholder='Teaser'
-          onChange={this.props.onTeaserChange}
-          name='teaser'
-          value={this.props.teaser}
-        />
+        {this.props.isPaywallActive &&
+          <React.Fragment>
+            <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
+            <TextArea
+              placeholder='Teaser'
+              onChange={this.props.onTeaserChange}
+              name='teaser'
+              value={this.props.teaser}
+            />
+          </React.Fragment>}
         <br />
         <Button onClick={this.props.closeModal} text='Ok'>Ok</Button>
       </ModalWrapper>

@@ -21,6 +21,14 @@ class PublishPostModalContainer extends React.Component {
   onTeaserChange = e => this.setState({ teaser: e.target.value })
   onPaywallCostChange = e => this.setState({ paywallCost: e.target.value })
 
+  togglePaywall = e => {
+    const active = e.target.checked
+    this.setState({
+      isPaywallActive: active,
+      paywallCost: active ? 0.05 : 0
+    })
+  }
+
   closeAndUpdate = () => {
     this.props.setPostSettings(this.state)
     this.props.closeModal()
@@ -52,6 +60,7 @@ class PublishPostModalContainer extends React.Component {
         onCategorySelectChange={this.onCategorySelectChange}
         onTagSelectChange={this.onTagSelectChange}
         onPaywallCostChange={this.onPaywallCostChange}
+        togglePaywall={this.togglePaywall}
         closeModal={this.closeAndUpdate}
       />
     )
