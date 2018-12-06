@@ -8975,6 +8975,7 @@ react-router@^4.3.1:
 react-rte@^0.16.1:
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/react-rte/-/react-rte-0.16.1.tgz#e345664c87e992d15ec053b406f51ffac6e86622"
+  integrity sha512-CD5kf+6CHqOgJ1yB0i9tkMMch13wOXW5/FQx60gb7nzhXC1ZeFJjtW9dYfCVlfw1AvksHf+lMmKTjhIwyfZR7w==
   dependencies:
     babel-runtime "^6.23.0"
     class-autobind "^0.1.4"
