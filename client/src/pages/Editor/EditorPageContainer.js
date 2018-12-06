@@ -132,31 +132,7 @@ class EditorPageContainer extends React.Component {
       .catch(err => console.log('saveDraft Err: ', err))
   };
 
-  // publishPost = (event) => {
-  //   event.preventDefault();
-
-  //   const { title, editorState, teaser, paywallCost } = this.state
-  //   const body = stateToHTML(editorState.getCurrentContent())
-  //   if (title && body) {
-  //     const data = {
-  //       title: title,
-  //       teaser: teaser,
-  //       body: body,
-  //       paywallCost: paywallCost,
-  //       categoryName: this.state.categoryName,
-  //       isDraft: false,
-  //       tags: this.state.selectedTags || [],
-  //     };
-
-  //     API.updatePost(this.state.postId, data)
-  //       .then(result => this.props.history.push(`/posts/${result.data._id}`))
-  //       .catch(err => console.log('publishPost Err: ', err))
-  //   };
-  // };
-
   render() {
-    const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0
-
     return (
       <EditorPage
         onEditorChange={this.onEditorChange}
@@ -167,7 +143,6 @@ class EditorPageContainer extends React.Component {
         setPostSettings={this.setPostSettings}
         saveDraft={this.saveDraft}
         history={this.props.history}
-        // publishPost={this.publishPost}
         {...this.state}
       />
     )
