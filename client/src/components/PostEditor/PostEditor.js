@@ -5,6 +5,7 @@ import createInlineToolbarPlugin /*, { Separator }*/ from 'draft-js-inline-toolb
 import createLinkPlugin from 'draft-js-anchor-plugin';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import blockStyleFn from './blockStyleFn'
+// import { keyBindingFn, handleKeyCommand } from './keyBinds'
 // import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 // import createImagePlugin from 'draft-js-image-plugin';
 // import createDividerPlugin from 'draft-js-divider-plugin';
@@ -51,6 +52,9 @@ class PostEditor extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
     }
+
+    // this.keyBindingFn = keyBindingFn.bind(this)
+    // this.handleKeyCommand = handleKeyCommand.bind(this)
   }
 
   onChange = (editorState) => this.setState({ editorState })
@@ -67,6 +71,8 @@ class PostEditor extends Component {
             onChange={onChange ? onChange : this.onChange}
             plugins={plugins}
             blockStyleFn={blockStyleFn}
+            // handleKeyCommand={this.handleKeyCommand}
+            // keyBindingFn={this.handleKeyCommand}
             ref={(element) => { this.editor = element; }}
           // customStyleMap={styleMap}
           />
