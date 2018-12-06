@@ -27,6 +27,10 @@ class PublishPostModal extends React.Component {
           }}
           isDisabled={!this.props.isDraft}
         />
+        {!this.props.categoryName &&
+          <p className='text-xs text-red text-center mt-2'>
+            Please select a category for this post.
+        </p>}
         <br />
         <Select
           id='tagField'
@@ -79,7 +83,8 @@ class PublishPostModal extends React.Component {
             />
           </React.Fragment>}
         <br />
-        <Button onClick={this.props.closeModal} text='Ok'>Ok</Button>
+        <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button>
+        <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button>
       </ModalWrapper>
     )
   }

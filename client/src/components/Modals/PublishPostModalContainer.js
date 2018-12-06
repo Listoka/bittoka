@@ -1,5 +1,7 @@
 import React from 'react'
 import PublishPostModal from './PublishPostModal';
+import { stateToHTML } from 'draft-js-export-html'
+import API from '../../utils/API';
 
 // there's maybe a better way to do this, but the idea here is to copy
 // the relevant state from the editorPageContainer and keep it locally to
@@ -35,10 +37,13 @@ class PublishPostModalContainer extends React.Component {
   }
 
   onCategorySelectChange = (event) => {
+    const categoryObject = this.state.categories.find(c => c.value === event.value)
+    const categoryDisplayName = categoryObject ? categoryObject.label : null
+
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
       categoryName: event.value,
-      categoryDisplayName: this.state.categories.find(c => c.value === event.value).label,
+      categoryDisplayName: categoryDisplayName,
       tags: event.tags,
       selectedTagObjects: null,
       selectedTags: null,
@@ -52,7 +57,32 @@ class PublishPostModalContainer extends React.Component {
     });
   };
 
+  publishPost = (event) => {
+    event.preventDefault();
+
+    this.props.closeModal()
+
+    const { title, editorState, teaser, paywallCost } = this.state
+    const body = stateToHTML(editorState.getCurrentContent())
+    if (title && body) {
+      const data = {
+        title: title,
+        teaser: teaser,
+        body: body,
+        paywallCost: paywallCost,
+        categoryName: this.state.categoryName,
+        isDraft: false,
+        tags: this.state.selectedTags || [],
+      };
+
+      API.updatePost(this.state.postId, data)
+        .then(result => this.props.history.push(`/posts/${result.data._id}`))
+        .catch(err => console.log('publishPost Err: ', err))
+    };
+  };
+
   render() {
+    const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0
     return (
       <PublishPostModal
         {...this.state}
@@ -62,6 +92,8 @@ class PublishPostModalContainer extends React.Component {
         onPaywallCostChange={this.onPaywallCostChange}
         togglePaywall={this.togglePaywall}
         closeModal={this.closeAndUpdate}
+        readyToPublish={readyToPublish}
+        publishPost={this.publishPost}
       />
     )
   }

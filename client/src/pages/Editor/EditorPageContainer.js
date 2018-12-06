@@ -132,27 +132,27 @@ class EditorPageContainer extends React.Component {
       .catch(err => console.log('saveDraft Err: ', err))
   };
 
-  publishPost = (event) => {
-    event.preventDefault();
+  // publishPost = (event) => {
+  //   event.preventDefault();
 
-    const { title, editorState, teaser, paywallCost } = this.state
-    const body = stateToHTML(editorState.getCurrentContent())
-    if (title && body) {
-      const data = {
-        title: title,
-        teaser: teaser,
-        body: body,
-        paywallCost: paywallCost,
-        categoryName: this.state.categoryName,
-        isDraft: false,
-        tags: this.state.selectedTags || [],
-      };
+  //   const { title, editorState, teaser, paywallCost } = this.state
+  //   const body = stateToHTML(editorState.getCurrentContent())
+  //   if (title && body) {
+  //     const data = {
+  //       title: title,
+  //       teaser: teaser,
+  //       body: body,
+  //       paywallCost: paywallCost,
+  //       categoryName: this.state.categoryName,
+  //       isDraft: false,
+  //       tags: this.state.selectedTags || [],
+  //     };
 
-      API.updatePost(this.state.postId, data)
-        .then(result => this.props.history.push(`/posts/${result.data._id}`))
-        .catch(err => console.log('publishPost Err: ', err))
-    };
-  };
+  //     API.updatePost(this.state.postId, data)
+  //       .then(result => this.props.history.push(`/posts/${result.data._id}`))
+  //       .catch(err => console.log('publishPost Err: ', err))
+  //   };
+  // };
 
   render() {
     const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0
@@ -166,8 +166,8 @@ class EditorPageContainer extends React.Component {
         onTagSelectChange={this.onTagSelectChange}
         setPostSettings={this.setPostSettings}
         saveDraft={this.saveDraft}
-        publishPost={this.publishPost}
-        readyToPublish={readyToPublish}
+        history={this.props.history}
+        // publishPost={this.publishPost}
         {...this.state}
       />
     )
