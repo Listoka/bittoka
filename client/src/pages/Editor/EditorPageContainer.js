@@ -35,7 +35,7 @@ class EditorPageContainer extends React.Component {
   setPostSettings = pubModalState => this.setState({ ...pubModalState })
 
   componentDidMount() {
-    const isNewPost = !this.props.match.params.postId ? true : false
+    const isNewPost = !this.props.match.params.postId
     const categoryData = this.getCategoryMenuData();
     const postData = isNewPost ? this.initialSave() : this.loadPost()
 
@@ -43,9 +43,11 @@ class EditorPageContainer extends React.Component {
       .then(([categoryData, postData]) => {
         let categoryDisplayName = postData.categoryName ? categoryData.find(c => c.value === postData.categoryName).value : ''
         let tags = postData.categoryName ? categoryData.find(c => c.value === postData.categoryName).tags : []
-        let selectedOptions = (postData.tags < 1) ? [] : postData.tags.map(t => {
+        let selectedTagObjects = (postData.tags < 1) ? [] : postData.tags.map(t => {
           return { value: t, label: t, color: 'darkcyan' }
         })
+
+        let isPaywallActive = postData.paywallCost > 0
 
         this.setState({
           categories: categoryData,
@@ -59,7 +61,8 @@ class EditorPageContainer extends React.Component {
           categoryName: postData.categoryName,
           categoryDisplayName,
           tags,
-          selectedOptions,
+          selectedTagObjects,
+          isPaywallActive
         })
       })
       .catch(err => console.log('componentDidMount getData Error:', err))

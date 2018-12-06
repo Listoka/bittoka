@@ -7,7 +7,6 @@ import { TextArea, Button } from '../Widgets'
 
 class PublishPostModal extends React.Component {
   render() {
-    console.log('PublishPostModal props: ', this.props)
     return (
       <ModalWrapper
         closeModal={this.props.closeModal}
