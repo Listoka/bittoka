@@ -4,6 +4,7 @@ import Editor from 'draft-js-plugins-editor';
 import createInlineToolbarPlugin /*, { Separator }*/ from 'draft-js-inline-toolbar-plugin';
 import createLinkPlugin from 'draft-js-anchor-plugin';
 import createCounterPlugin from 'draft-js-counter-plugin';
+import blockStyleFn from './blockStyleFn'
 // import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 // import createImagePlugin from 'draft-js-image-plugin';
 // import createDividerPlugin from 'draft-js-divider-plugin';
@@ -65,6 +66,7 @@ class PostEditor extends Component {
             editorState={editorState ? editorState : this.state.editorState}
             onChange={onChange ? onChange : this.onChange}
             plugins={plugins}
+            blockStyleFn={blockStyleFn}
             ref={(element) => { this.editor = element; }}
           // customStyleMap={styleMap}
           />

@@ -13,7 +13,6 @@ class PublishPostModalContainer extends React.Component {
     super(props)
 
     this.state = {
-      isValid: false,
       dropdownOpen: false,
       ...this.props
     }
