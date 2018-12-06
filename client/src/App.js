@@ -33,7 +33,7 @@ class App extends Component {
       <Router>
         <div>
           <Nav openModal={this.openModal} />
-          <div className='flex justify-center mt-1'>
+          <div className='flex flex-wrap flex-row items-center justify-center'>
             {this.state.categories.map(category => (
               <SubNav
                 id={category.id}

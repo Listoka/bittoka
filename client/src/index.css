@@ -7,7 +7,7 @@ html,body {
 }
 
 body {
-  background-image: url("./assets/images/brushedalu.png");
+  background: #121212;
   font-family: 'Montserrat', sans-serif;
   color: #333333;
   /* overflow: hidden; */
