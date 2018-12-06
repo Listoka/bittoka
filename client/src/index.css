@@ -386,15 +386,6 @@ a:link{
 .subNavLink {
   color: rgb(0, 150, 136);
 }
-.flex-item {
-  flex: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 5px 7px;
-  font-weight: bold;
-}
 
 div.subNavItem {
   color: rgb(0, 150, 136)!important;

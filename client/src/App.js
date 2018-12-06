@@ -33,16 +33,6 @@ class App extends Component {
       <Router>
         <div>
           <Nav openModal={this.openModal} />
-          <div className='flex flex-wrap flex-row items-center justify-center'>
-            {this.state.categories.map(category => (
-              <SubNav
-                id={category.id}
-                key={category.id}
-                href={category.href}
-                name={category.name}
-              />
-            ))}
-          </div>
           <Switch>
             <Route exact path='/' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />

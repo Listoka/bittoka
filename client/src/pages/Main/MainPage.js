@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { List, PostListItem } from '../../components/List';
-import { Button } from '../../components/Widgets/Button'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import AuthUserContext from '../../components/AuthUserSession/AuthUserContext'
+import { Button } from '../../components/Widgets/Button';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
 import SBTagFilter from '../../components/Sidebar/SBTagFilter';
-import IntroHeader from '../../components/IntroHeader'
+import IntroHeader from '../../components/IntroHeader';
 
 const MainPage = props => (
   // introduction header goes here...
