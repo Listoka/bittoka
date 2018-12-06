@@ -54,7 +54,7 @@ class EditorPageContainer extends React.Component {
           title: postData.title,
           teaser: postData.teaser || '',
           isDraft: postData.isDraft,
-          paywallCost: postData.paywallCost || 0.05, // TODO: react doesn't like this setting for some reason
+          paywallCost: postData.paywallCost || 0.00,
           postId: postData._id,
           categoryName: postData.categoryName,
           categoryDisplayName,
@@ -93,6 +93,8 @@ class EditorPageContainer extends React.Component {
       })
   }
 
+  // TODO: Clean this up.  Maybe generate the select obj on the fly or
+  // at least closer to where it is actually used.
   getCategoryMenuData = () => {
     return API.getCategoriesTags()
       .then((result) => {

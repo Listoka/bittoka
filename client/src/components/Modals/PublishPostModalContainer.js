@@ -82,7 +82,9 @@ class PublishPostModalContainer extends React.Component {
   };
 
   render() {
-    const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0
+    const postLength = this.state.editorState.getCurrentContent().getPlainText().length
+    const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0 &&
+      this.state.title && postLength > 144
     return (
       <PublishPostModal
         {...this.state}
@@ -92,8 +94,9 @@ class PublishPostModalContainer extends React.Component {
         onPaywallCostChange={this.onPaywallCostChange}
         togglePaywall={this.togglePaywall}
         closeModal={this.closeAndUpdate}
-        readyToPublish={readyToPublish}
         publishPost={this.publishPost}
+        readyToPublish={readyToPublish}
+        postLength={postLength}
       />
     )
   }

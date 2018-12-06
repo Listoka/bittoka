@@ -81,10 +81,16 @@ class PublishPostModal extends React.Component {
               name='teaser'
               value={this.props.teaser}
             />
+            <br />
           </React.Fragment>}
-        <br />
         <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button>
         <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button>
+        <div className='mt-3'>
+          {!this.props.title &&
+            <p className='text-xs text-red text-center mt-2'>Your post must have a title in order to publish</p>}
+          {!(this.props.postLength > 144) &&
+            <p className='text-xs text-red text-center mt-2'>Your post is too short to publish!</p>}
+        </div>
       </ModalWrapper>
     )
   }
