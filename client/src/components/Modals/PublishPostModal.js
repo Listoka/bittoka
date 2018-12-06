@@ -6,7 +6,6 @@ import colourStyles from './colourStyles';
 import { TextArea, Button } from '../Widgets'
 
 class PublishPostModal extends React.Component {
-
   render() {
     return (
       <ModalWrapper
@@ -29,15 +28,15 @@ class PublishPostModal extends React.Component {
         />
         <br />
         <Select
-          id="tagField"
+          id='tagField'
           className='react-select-container'
-          classNamePrefix="rounded"
+          classNamePrefix='rounded'
           value={this.props.selectedTagObjects}
           onChange={this.props.onTagSelectChange}
           options={this.props.tags}
           isMulti
           isClearable={true}
-          placeholder="Tags"
+          placeholder='Tags'
           closeMenuOnSelect={false}
           components={makeAnimated()}
           styles={colourStyles}
@@ -47,6 +46,14 @@ class PublishPostModal extends React.Component {
           })}
         />
         <br />
+        <div className='mb-3 p-3 bg-grey-lighter'>
+          <label htmlFor='paywall-price'>Paywall Price $</label>
+          <input
+            className='border border-grey rounded ml-2 text-right py-1 px-2'
+            onChange={this.props.onPaywallCostChange}
+            value={this.props.paywallCost}
+            id='paywall-price' type='number' increment='0.01' />
+        </div>
         <p>Information in the teaser section is available to all Listoka visitors.  Use this field to interest readers in your content.</p>
         <TextArea
           placeholder='Teaser'

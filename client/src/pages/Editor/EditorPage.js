@@ -14,7 +14,7 @@ const EditorPage = props => {
           className='flex-1 min-w-0 rounded-sm border-none shadow-inner block text-5xl p-2'
           value={props.title}
           onChange={props.onTitleChange}
-        // disabled={!props.isDraft}
+          disabled={!props.isDraft}
         />
       </div>
       {/* TODO: Pull this into its own collapsing menu component */}

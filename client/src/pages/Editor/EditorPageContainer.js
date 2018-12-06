@@ -23,7 +23,7 @@ class EditorPageContainer extends React.Component {
       selectedTagObjects: null,
       postId: null,
       author: props.authUser.dbUser._id,
-      paywallCost: '',
+      paywallCost: 0.05,
     }
   }
 
@@ -53,7 +53,7 @@ class EditorPageContainer extends React.Component {
           title: postData.title,
           teaser: postData.teaser || '',
           isDraft: postData.isDraft,
-          paywallCost: postData.paywallCost, // TODO: react doesn't like this setting for some reason
+          paywallCost: postData.paywallCost || 0.05, // TODO: react doesn't like this setting for some reason
           postId: postData._id,
           categoryName: postData.categoryName,
           categoryDisplayName,
@@ -154,7 +154,7 @@ class EditorPageContainer extends React.Component {
   };
 
   render() {
-    const readyToPublish = !!this.state.categoryName
+    const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0
 
     return (
       <EditorPage

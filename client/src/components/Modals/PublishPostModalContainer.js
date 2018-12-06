@@ -18,10 +18,8 @@ class PublishPostModalContainer extends React.Component {
     }
   }
 
-  onTeaserChange = e => {
-    this.props.onTeaserChange(e)
-    this.setState({ teaser: e.target.value })
-  }
+  onTeaserChange = e => this.setState({ teaser: e.target.value })
+  onPaywallCostChange = e => this.setState({ paywallCost: e.target.value })
 
   closeAndUpdate = () => {
     this.props.setPostSettings(this.state)
@@ -29,7 +27,6 @@ class PublishPostModalContainer extends React.Component {
   }
 
   onCategorySelectChange = (event) => {
-    console.log('dropdownChange event', event)
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
       categoryName: event.value,
@@ -54,6 +51,7 @@ class PublishPostModalContainer extends React.Component {
         onTeaserChange={this.onTeaserChange}
         onCategorySelectChange={this.onCategorySelectChange}
         onTagSelectChange={this.onTagSelectChange}
+        onPaywallCostChange={this.onPaywallCostChange}
         closeModal={this.closeAndUpdate}
       />
     )
