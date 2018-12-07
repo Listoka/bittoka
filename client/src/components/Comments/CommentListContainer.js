@@ -40,11 +40,10 @@ class CommentListContainer extends React.Component {
     this.setState({ treeList })
   }
 
-  addPendingVote = async (commentId, authorName, authorId, cost) => {
+  addPendingVote = (commentId, authorName, authorId, cost) => {
     this.getMoneyBtnIdCached(authorId)
       .then(moneyBtnId => {
         const newVote = { commentId, authorName, authorId, moneyBtnId, cost }
-        console.log('addPendingVote:', newVote)
         const pendingVotes = [...this.state.pendingVotes, newVote]
         this.setState({ pendingVotes })
       })
@@ -102,6 +101,8 @@ class CommentListContainer extends React.Component {
   }
 
   render() {
+    console.log('cachedMoneyBtnIds: ', this.cachedMoneyBtnIds)
+    console.log('pendingVotes: ', this.state.pendingVotes)
     return (
       <React.Fragment>
         <VoteBasketContainer
