@@ -73,21 +73,13 @@ class CommentListContainer extends React.Component {
     this.setState({ pendingVotes })
   }
 
-  afterUpvotePayment = (trans) => {
-    console.log('Last transaction' + JSON.stringify(trans))
-    API.upvotePost(this.state._id).then(result => {
-      console.log('After upvote: ' + JSON.stringify(result))
-      let voteNames = []
-      result.data.voters.map(voterRec => voteNames.push(voterRec))
-      this.setState({
-        upvotes: result.data.voters.length,
-        upvoteList: voteNames
-      })
-    })
-  };
-
   submitVotes = () => {
-    // TODO: make the API call to submit the votes, then grab the comment list again
+    return axios.post('/api/votes', this.state.pendingVotes)
+      .then(result => console.log('submitVotes result:', result))
+      .then(() => this.setState({ pendingVotes: [] }))
+      .then(() => this.fetchComments())
+      .then(() => this.sortComments())
+      .catch(err => console.log('submitVotes err: ', err))
   }
 
   // a better way to handle this might be to not actually fetch and sort right away

@@ -28,6 +28,7 @@ const VoteBasket = props => {
                   payVal={0.03}
                   txType='comment-vote'
                   userId={authUser.dbUser._id}
+                  paymentSuccessCbk={props.submitAndCollapse}
                 />
               </div>
             </div>}
