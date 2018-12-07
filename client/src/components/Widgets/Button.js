@@ -10,7 +10,7 @@ export const Button = props => {
 
 // we'll probably want to move more in this direction for the little input/control type widgets
 // Note that this is just a sample or proposal to make it easier to collect all the button styles in one place
-const B = props => {
+export const B = props => {
   const { className, children, btnType, ...other } = props
   let classes
   // if we get a 'type' prop, use that to determine which styles to apply

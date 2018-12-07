@@ -4000,6 +4000,10 @@ input {
   height: 1px;
 }
 
+.h-5px {
+  height: 5px;
+}
+
 .h-10px {
   height: 10px;
 }
@@ -7391,6 +7395,10 @@ input {
 
 .w-px {
   width: 1px;
+}
+
+.w-5px {
+  width: 5px;
 }
 
 .w-10px {
@@ -10814,6 +10822,10 @@ input {
     height: 1px;
   }
 
+  .sm\:h-5px {
+    height: 5px;
+  }
+
   .sm\:h-10px {
     height: 10px;
   }
@@ -14189,6 +14201,10 @@ input {
 
   .sm\:w-px {
     width: 1px;
+  }
+
+  .sm\:w-5px {
+    width: 5px;
   }
 
   .sm\:w-10px {
@@ -17598,6 +17614,10 @@ input {
     height: 1px;
   }
 
+  .md\:h-5px {
+    height: 5px;
+  }
+
   .md\:h-10px {
     height: 10px;
   }
@@ -20973,6 +20993,10 @@ input {
 
   .md\:w-px {
     width: 1px;
+  }
+
+  .md\:w-5px {
+    width: 5px;
   }
 
   .md\:w-10px {
@@ -24382,6 +24406,10 @@ input {
     height: 1px;
   }
 
+  .lg\:h-5px {
+    height: 5px;
+  }
+
   .lg\:h-10px {
     height: 10px;
   }
@@ -27757,6 +27785,10 @@ input {
 
   .lg\:w-px {
     width: 1px;
+  }
+
+  .lg\:w-5px {
+    width: 5px;
   }
 
   .lg\:w-10px {
@@ -31166,6 +31198,10 @@ input {
     height: 1px;
   }
 
+  .xl\:h-5px {
+    height: 5px;
+  }
+
   .xl\:h-10px {
     height: 10px;
   }
@@ -34541,6 +34577,10 @@ input {
 
   .xl\:w-px {
     width: 1px;
+  }
+
+  .xl\:w-5px {
+    width: 5px;
   }
 
   .xl\:w-10px {
