@@ -1,7 +1,7 @@
 import React from 'react';
 import { firebase, auth } from '../../firebase'
 import axios from 'axios'
-import { Row, Button } from '../Widgets';
+import { B, Button } from '../Widgets';
 
 import ModalWrapper from './ModalWrapper';
 
@@ -149,7 +149,8 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <Button disabled={isInvalid} className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Sign Up</Button>
+          <B disabled={isInvalid} btnType={'primary'}>Sign Up</B>
+          {/* <Button disabled={isInvalid} className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Sign Up</Button> */}
           {error ? <p>Error: {error.message}</p> : null}
           </form>
           </div>

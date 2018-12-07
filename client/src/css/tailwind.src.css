@@ -70,7 +70,7 @@
     */
 
     .btn {
-        @apply border-3 rounded-20px border-brand-green font-bold px-10px py-px ml-20px mt-10px font-header text-xl
+        @apply border-3 rounded-20px border-brand-green px-10px py-px ml-20px mt-10px font-header text-xl
     }
 
     .btn-primary {

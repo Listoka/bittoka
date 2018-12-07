@@ -18,10 +18,13 @@ export const B = props => {
   // otherwise, use the default styles
   switch (btnType) {
     case 'primary':
-      classes = 'bg-brand-green rounded-4px text-white'
+      classes = 'btn btn-primary btn-primary:hover btn-primary:active outline-none ml-0'
       break;
     case 'secondary':
-      classes = ''
+      classes = 'btn btn-secondary btn-secondary:hover btn-secondary:active outline-none ml-0'
+      break;
+    case 'nav':
+      classes = 'btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0'
       break;
     default:
       classes = className || 'default button classes'

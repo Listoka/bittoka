@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '../../firebase'
 import ModalWrapper from './ModalWrapper';
-import { Button } from '../Widgets';
+import { B } from '../Widgets';
 
 class LoginModal extends React.Component {
   constructor(props) {
@@ -72,8 +72,8 @@ class LoginModal extends React.Component {
                 />
                 </div>
               </div>
-              
-              <Button className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Get Started</Button>
+              <B btnType={'primary'}>Submit</B>
+              {/* <Button className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}></Button> */}
               {error ? <p>{error.message}</p> : null}
             </form>
 
