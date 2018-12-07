@@ -3,6 +3,7 @@ import API from '../../utils/API'
 import CommentList from './CommentList';
 import makeTreeList from '../../utils/makeTreeList'
 import VoteBasketContainer from '../VoteBasket/VoteBasketContainer';
+import axios from '../../utils/authAxios'
 
 // do the thing and grab all the comments for the associated post.
 // we get the the post id passed in as a prop, then make hte network requests.
@@ -21,6 +22,7 @@ class CommentListContainer extends React.Component {
   }
 
   comments = []
+  cachedMoneyBtnIds = {}
 
   componentDidMount() {
     this.fetchComments()
@@ -38,16 +40,52 @@ class CommentListContainer extends React.Component {
     this.setState({ treeList })
   }
 
-  addPendingVote = (commentId, authorName, cost) => {
-    const newVote = { commentId, authorName, cost }
-    const pendingVotes = [...this.state.pendingVotes, newVote]
-    this.setState({ pendingVotes })
+  addPendingVote = async (commentId, authorName, authorId, cost) => {
+    this.getMoneyBtnIdCached(authorId)
+      .then(moneyBtnId => {
+        const newVote = { commentId, authorName, authorId, moneyBtnId, cost }
+        console.log('addPendingVote:', newVote)
+        const pendingVotes = [...this.state.pendingVotes, newVote]
+        this.setState({ pendingVotes })
+      })
+  }
+
+  getMoneyBtnIdCached = userId => {
+    if (this.cachedMoneyBtnIds[userId]) {
+      return new Promise(resolve => resolve(this.cachedMoneyBtnIds[userId]))
+    }
+    return this.getMoneyBtnId(userId).then(moneyBtnId => {
+      this.cachedMoneyBtnIds[userId] = moneyBtnId
+      return moneyBtnId
+    })
+  }
+
+  getMoneyBtnId = payeeId => {
+    return axios.get(`/api/users/id/${payeeId}`).then(result => {
+      const { moneyBtnId } = result.data
+      return moneyBtnId
+    })
+      .catch(err => console.log('getPayeeMoneyBtnId Err: ', err))
+
   }
 
   removePendingVote = commentId => {
     const pendingVotes = this.state.pendingVotes.filter(v => v.commentId !== commentId)
     this.setState({ pendingVotes })
   }
+
+  afterUpvotePayment = (trans) => {
+    console.log('Last transaction' + JSON.stringify(trans))
+    API.upvotePost(this.state._id).then(result => {
+      console.log('After upvote: ' + JSON.stringify(result))
+      let voteNames = []
+      result.data.voters.map(voterRec => voteNames.push(voterRec))
+      this.setState({
+        upvotes: result.data.voters.length,
+        upvoteList: voteNames
+      })
+    })
+  };
 
   submitVotes = () => {
     // TODO: make the API call to submit the votes, then grab the comment list again
