@@ -8,16 +8,17 @@ const VoteBasket = props => {
   const totalCost = (pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0)) || 0
 
   return (
-    <div className='absolute pin-b pin-r w-1/4 mr-4 border'>
-      <div onClick={props.toggleIsCollapsed} className='bg-grey-darker cursor-pointer'>
-        <h5 className='text-base text-center text-grey-lighter p-2'>Pending Votes ({numPendingVotes})</h5>
+    <div className='absolute pin-b pin-r w-1/4 mr-4 border-t border-r border-l border-white'>
+      <div onClick={props.toggleIsCollapsed} className='bg-soft-black cursor-pointer'>
+        <div className='text-base text-center text-white p-2'>Pending Votes ({numPendingVotes})</div>
       </div>
       {!props.isCollapsed &&
-        <div className='bg-white'>
+        <div className='bg-darkest-gray'>
           <PendingVoteList {...props} />
-          <div className='bg-grey-lighter text-sm'>
+          
+          <div className='bg-darkest-gray text-sm text-white border-t border-b border-white'>
             {/* TODO: use props.submitVotes to finalize and purchase */}
-            <p className='p-1'>Cost: ${totalCost.toFixed(2)}</p>
+            <p className='p-1'>Cost: <span className='text-brand-green'>${totalCost.toFixed(2)}</span></p>
           </div>
         </div>}
     </div>
@@ -39,7 +40,7 @@ const PendingVoteList = props => {
 
 const PendingVoteListItem = props => {
   return (
-    <div className='p-1 text-sm hover:bg-grey-lighter'>
+    <div className='text-white p-1 text-sm hover:bg-dark-green'>
       {props.authorName}
       <span
         className='text-xs text-red float-right cursor-pointer'

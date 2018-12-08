@@ -9,9 +9,10 @@ const Paywall = props => {
         if (!authUser) {
           return (
             <React.Fragment>
-              <p>{props.teaser}</p>
-              <div className='bg-grey-lighter m-4 p-2'>
-                <p className='text-xs text-center m-1'>You must log in to purchase the rest of this content.</p>
+              <p className='pl-1 my-4'>{props.teaser}</p>
+              <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
+              <div className='pl-1'>
+                <p className='text-xs'>You must log in to purchase the rest of this content.</p>
               </div>
             </React.Fragment>
           )
@@ -27,12 +28,13 @@ const Paywall = props => {
         }
 
         return (
-          <div className='m-2'>
-            <p>{props.teaser}</p>
-            <div className='bg-grey-lighter m-4 p-2'>
-              <p className='text-xs text-center m-1'>Complete Payment to unlock this content.</p>
+          <div className='font-body text-base'>
+            <p className='pl-1 my-4'>{props.teaser}</p>
+            <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
+            <div className='pl-1'>
+              <p className='text-xs mb-2'>Complete Payment to unlock this content.</p>
               {/* and purchase button */}
-              <div className='flex justify-center'>
+              <div className='flex'>
                 <ListokaMoneyButton
                   payVal={props.paywallCost}
                   paymentSuccessCbk={props.afterPurchasePayment}

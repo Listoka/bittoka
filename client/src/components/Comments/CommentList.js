@@ -13,7 +13,7 @@ const CommentList = props => {
   // if it is the 'root' or base container, we want a different set 
   // of styles than if it is an 'embedded' instance of the list
   if (props.root) {
-    classes = 'max-w-xl md:w-5/6 lg:w-4/5 bg-white p1 rounded mx-auto mt-3'
+    classes = 'max-w-2xl md:w-5/6 lg:w-4/5 bg-white p1 rounded mx-auto mt-3'
   }
 
   return (

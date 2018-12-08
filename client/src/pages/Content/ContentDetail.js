@@ -6,32 +6,47 @@ import renderHTML from 'react-render-html';
 import UpvoteMoneyButton from '../../components/ListokaMoneyButton/UpvoteMoneyButton';
 import CategoryFlair from '../../components/Widgets/CategoryFlair';
 import { EditButton } from '../../components/Widgets';
+import categories from '../../categories.json';
+import SubNav from '../../components/subNav';
 
 const ContentDetail = props => {
   return (
-    <div className='max-w-lg md:w-5/6 mx-auto mt-3 p-2 rounded bg-white'>
-      <h2>{props.title}</h2>
-      <p className='ml-2 mt-2 mb-3'>
-        <span className='mr-1'>By: <Link to={{ pathname: `/users/${props.author}` }}>{props.authorName}</Link></span>
-        <span className='mr-1'>in <CategoryFlair categoryName={props.categoryName} /></span>
-        <span className='mr-1'><UpArrowIcon /> {props.voters ? props.voters.length : 0}</span>
-        {props._id &&
-          <span className='float-right'><EditButton postId={props._id} authorId={props.author} /></span>}
-      </p>
+    <React.Fragment>
+      <div className='flex flex-wrap flex-row items-center justify-center'>
+        {categories.map(category => (
+          <SubNav
+            id={category.id}
+            key={category.id}
+            href={category.href}
+            name={category.name}
+          />
+        ))}
+      </div>
+      <div className='max-w-2xl md:w-5/6 lg:w-4/5 mx-auto mt-0 p-2 rounded bg-darkest-gray text-white border border-white'>
+        <div className='font-header text-3xl text-white pl-1'>{props.title}</div>
+        <p className='ml-0 mt-1 mb-2 text-xs pl-1'>
+          <span className='mr-1'>By: <Link className='text-brand-green no-underline' to={{ pathname: `/users/${props.author}` }}>{props.authorName}</Link></span>
+          <span className='mr-1'>in <CategoryFlair categoryName={props.categoryName} /></span>
+          <span className='mr-1'><UpArrowIcon /> {props.voters ? props.voters.length : 0}</span>
+          {props._id &&
+            <span className='float-right'><EditButton postId={props._id} authorId={props.author} /></span>}
+        </p>
+        <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
 
-      <Paywall {...props}>
-        <div className='mx-4'>
-          {props.body && renderHTML(props.body)}
-        </div>
-        <UpvoteMoneyButton
-          payeeId={props.author}
-          afterUpvotePayment={props.afterUpvotePayment}
-          postId={props._id}
-          voters={props.voters}
-        />
-      </Paywall>
+        <Paywall {...props}>
+          <div className=''>
+            {props.body && renderHTML(props.body)}
+          </div>
+          <UpvoteMoneyButton
+            payeeId={props.author}
+            afterUpvotePayment={props.afterUpvotePayment}
+            postId={props._id}
+            voters={props.voters}
+          />
+        </Paywall>
 
-    </div>
+      </div>
+    </React.Fragment>
   )
 }
 

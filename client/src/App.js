@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //JSON file and navigation
 import { Nav } from './components/Nav';
 import categories from './categories.json';
-import SubNav from './components/subNav';
 
 // "Pages"
 import EditorPageContainer from './pages/Editor/EditorPageContainer';
