@@ -1,27 +1,39 @@
 import React from 'react'
 import { List } from '../List';
-// import ListokaMoneyButton from '../ListokaMoneyButton'
+import ListokaMoneyButton from '../ListokaMoneyButton';
+import AuthUserContext from '../AuthUserSession/AuthUserContext';
 
 const VoteBasket = props => {
   const { pendingVotes } = props
   const numPendingVotes = (pendingVotes && pendingVotes.length) || 0
-  const totalCost = (pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0)) || 0
+  // const totalCost = (pendingVotes && pendingVotes.reduce((acc, v) => acc + v.cost, 0)) || 0
 
   return (
-    <div className='absolute pin-b pin-r w-1/4 mr-4 border-t border-r border-l border-white'>
-      <div onClick={props.toggleIsCollapsed} className='bg-soft-black cursor-pointer'>
-        <div className='text-base text-center text-white p-2'>Pending Votes ({numPendingVotes})</div>
-      </div>
-      {!props.isCollapsed &&
-        <div className='bg-darkest-gray'>
-          <PendingVoteList {...props} />
-          
-          <div className='bg-darkest-gray text-sm text-white border-t border-b border-white'>
-            {/* TODO: use props.submitVotes to finalize and purchase */}
-            <p className='p-1'>Cost: <span className='text-brand-green'>${totalCost.toFixed(2)}</span></p>
+    <AuthUserContext.Consumer>
+      {authUser =>
+        authUser &&
+        <div className='absolute pin-b pin-r w-1/4 mr-4 border-t border-r border-l border-white'>
+          <div onClick={props.toggleIsCollapsed} className='bg-soft-black cursor-pointer'>
+            <h5 className='text-base text-center text-white p-2'>Pending Votes ({numPendingVotes})</h5>
           </div>
+          {!props.isCollapsed &&
+            <div className='bg-darkest-gray'>
+              <PendingVoteList {...props} />
+              <div className='bg-darkest-gray text-sm text-white border-t border-b border-white'>
+                {/* TODO: use props.submitVotes to finalize and purchase */}
+                {/* <p className='p-1'>Cost: <span className='text-brand-green'>${totalCost.toFixed(2)}</span></p> */}
+                <ListokaMoneyButton
+                  payeeArray={pendingVotes}
+                  label='Vote!'
+                  payVal={0.03}
+                  txType='comment-vote'
+                  userId={authUser.dbUser._id}
+                  paymentSuccessCbk={props.submitAndCollapse}
+                />
+              </div>
+            </div>}
         </div>}
-    </div>
+    </AuthUserContext.Consumer>
   )
 }
 

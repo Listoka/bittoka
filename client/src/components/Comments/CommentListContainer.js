@@ -3,6 +3,7 @@ import API from '../../utils/API'
 import CommentList from './CommentList';
 import makeTreeList from '../../utils/makeTreeList'
 import VoteBasketContainer from '../VoteBasket/VoteBasketContainer';
+import axios from '../../utils/authAxios'
 
 // do the thing and grab all the comments for the associated post.
 // we get the the post id passed in as a prop, then make hte network requests.
@@ -21,6 +22,7 @@ class CommentListContainer extends React.Component {
   }
 
   comments = []
+  cachedMoneyBtnIds = {}
 
   componentDidMount() {
     this.fetchComments()
@@ -38,10 +40,32 @@ class CommentListContainer extends React.Component {
     this.setState({ treeList })
   }
 
-  addPendingVote = (commentId, authorName, cost) => {
-    const newVote = { commentId, authorName, cost }
-    const pendingVotes = [...this.state.pendingVotes, newVote]
-    this.setState({ pendingVotes })
+  addPendingVote = (commentId, authorName, authorId, cost) => {
+    this.getMoneyBtnIdCached(authorId)
+      .then(moneyBtnId => {
+        const newVote = { commentId, authorName, authorId, moneyBtnId, cost }
+        const pendingVotes = [...this.state.pendingVotes, newVote]
+        this.setState({ pendingVotes })
+      })
+  }
+
+  getMoneyBtnIdCached = userId => {
+    if (this.cachedMoneyBtnIds[userId]) {
+      return new Promise(resolve => resolve(this.cachedMoneyBtnIds[userId]))
+    }
+    return this.getMoneyBtnId(userId).then(moneyBtnId => {
+      this.cachedMoneyBtnIds[userId] = moneyBtnId
+      return moneyBtnId
+    })
+  }
+
+  getMoneyBtnId = payeeId => {
+    return axios.get(`/api/users/id/${payeeId}`).then(result => {
+      const { moneyBtnId } = result.data
+      return moneyBtnId
+    })
+      .catch(err => console.log('getPayeeMoneyBtnId Err: ', err))
+
   }
 
   removePendingVote = commentId => {
@@ -50,7 +74,12 @@ class CommentListContainer extends React.Component {
   }
 
   submitVotes = () => {
-    // TODO: make the API call to submit the votes, then grab the comment list again
+    return axios.post('/api/votes', this.state.pendingVotes)
+      .then(result => console.log('submitVotes result:', result))
+      .then(() => this.setState({ pendingVotes: [] }))
+      .then(() => this.fetchComments())
+      .then(() => this.sortComments())
+      .catch(err => console.log('submitVotes err: ', err))
   }
 
   // a better way to handle this might be to not actually fetch and sort right away
@@ -64,6 +93,8 @@ class CommentListContainer extends React.Component {
   }
 
   render() {
+    console.log('cachedMoneyBtnIds: ', this.cachedMoneyBtnIds)
+    console.log('pendingVotes: ', this.state.pendingVotes)
     return (
       <React.Fragment>
         <VoteBasketContainer

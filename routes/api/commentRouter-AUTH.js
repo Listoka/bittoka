@@ -42,6 +42,22 @@ router.route('/comments/:id/vote')
       .catch(err => res.status(500).json(err))
   })
 
+// TODO: currently just assumes that we receive a list of comment votes
+// of the form [{authorId, commentId, moneyBtnId, cost}]
+router.route('/votes')
+  .post((req, res) => {
+    console.log('>>>>> /votes req.body: ', req.body)
+    const dbUser = res.locals.user.dbUser
+    const votes = req.body
+    const promises = votes.map(v => {
+      return db.Comment.findByIdAndUpdate(v.commentId, { $push: { voters: dbUser._id } })
+    })
+
+    Promise.all(promises)
+      .then(result => res.json(result))
+      .catch(err => res.status(500).json(err))
+  })
+
 router.route('/posts/:postId/comments')
   .post((req, res) => {
     if (res.locals.post.isDraft) {
