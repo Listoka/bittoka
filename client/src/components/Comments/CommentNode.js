@@ -34,6 +34,7 @@ const CommentNode = props => {
                 removePendingVote={props.removePendingVote}
                 pendingVotes={props.pendingVotes}
                 authorName={authorName}
+                author={author}
                 _id={_id}
                 voters={voters}
                 numVotes={numVotes}

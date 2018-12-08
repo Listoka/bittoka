@@ -10,11 +10,16 @@ class VoteBasketContainer extends React.Component {
   }
 
   toggleIsCollapsed = () => this.setState({ isCollapsed: !this.state.isCollapsed })
+  submitAndCollapse = () => {
+    this.toggleIsCollapsed()
+    this.props.submitVotes()
+  }
 
   render() {
     return (
       <VoteBasket
         toggleIsCollapsed={this.toggleIsCollapsed}
+        submitAndCollapse={this.submitAndCollapse}
         {...this.props}
         {...this.state}
       />

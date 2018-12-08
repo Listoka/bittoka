@@ -50,10 +50,11 @@ const CommentVoteButton = props => {
         }
 
         // Logged in and haven't cast a vote yet
+        // TODO: Remove the hard-coded 0.03 cost
         return (
           <div
             className='h-full text-center text-grey-darker cursor-pointer p-1 hover:bg-blue-lighter'
-            onClick={() => props.addPendingVote(props._id, props.authorName, 0.03)}
+            onClick={() => props.addPendingVote(props._id, props.authorName, props.author, 0.03)}
           >
             <p className='text-base'>{props.numVotes}</p>
             <p className='text-xs'>[Vote]</p>
