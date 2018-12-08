@@ -419,6 +419,6 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=checkbox] {
   vertical-align: middle;
   position: relative;
-  bottom: -3px;
+  bottom: -5px;
   left: 4px;
 }

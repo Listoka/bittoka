@@ -54,7 +54,7 @@ class LoginModal extends React.Component {
                   placeholder='your@email.com'
                   value={email}
                   onChange={this.handleChange}
-                  className='bg-medium-gray ml-2 outline-none focus:border-white focus:border mt-2 w-full'
+                  className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
                   type='email'
                 />
                 </div>
@@ -67,7 +67,7 @@ class LoginModal extends React.Component {
                   placeholder='Password'
                   value={password}
                   onChange={this.handleChange}
-                  className='bg-medium-gray ml-2 outline-none focus:border-white focus:border mt-2 w-full'
+                  className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
                   type='password'
                 />
                 </div>

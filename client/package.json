@@ -10,6 +10,7 @@
     "chroma-js": "^1.4.0",
     "draft-js": "^0.10.5",
     "draft-js-anchor-plugin": "^2.0.2",
+    "draft-js-block-breakout-plugin": "^2.0.1",
     "draft-js-counter-plugin": "^2.0.1",
     "draft-js-divider-plugin": "^0.2.1",
     "draft-js-export-html": "^1.2.0",

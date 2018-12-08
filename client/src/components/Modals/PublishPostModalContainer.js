@@ -85,6 +85,14 @@ class PublishPostModalContainer extends React.Component {
     const postLength = this.state.editorState.getCurrentContent().getPlainText().length
     const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0 &&
       this.state.title && postLength > 144
+
+      const customStyles = {
+        control: (base) => ({
+          ...base,
+          background: "#1b1b1b",
+        })
+      };
+    
     return (
       <PublishPostModal
         {...this.state}
@@ -97,6 +105,7 @@ class PublishPostModalContainer extends React.Component {
         publishPost={this.publishPost}
         readyToPublish={readyToPublish}
         postLength={postLength}
+        styles={customStyles}
       />
     )
   }

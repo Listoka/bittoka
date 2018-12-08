@@ -8,8 +8,8 @@
 }
 
 .button {
-  background: #333;
-  color: #ddd;
+  background: #1b1b1b;
+  color: white;
   font-size: 18px;
   border: 0;
   padding-top: 5px;
@@ -24,14 +24,14 @@
 }
 
 .button:hover, .button:focus {
-  background: #444;
+  background: #5e5e5e;
   outline: 0; /* reset for :focus */
 }
 
 .active {
-  color: #6a9cc9;
+  background: #5e5e5e;
 }
 
 .active svg {
-  fill: #6a9cc9;
+  fill: #2ba228;
 }

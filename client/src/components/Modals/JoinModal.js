@@ -89,7 +89,7 @@ class JoinModal extends React.Component {
               name='username'
               onChange={this.handleChange}
               type='text'
-              className='bg-medium-gray ml-2 outline-none focus:border-white focus:border mt-2 w-full'
+              className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
               placeholder='Username'
             />
             </div>
@@ -102,7 +102,7 @@ class JoinModal extends React.Component {
               name='email'
               onChange={this.handleChange}
               type='email'
-              className='bg-medium-gray ml-2 outline-none focus:border-white focus:border mt-2 w-full'
+              className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
               placeholder='your@email.com'
             />
             </div>
@@ -115,7 +115,7 @@ class JoinModal extends React.Component {
               name='moneyBtnId'
               onChange={this.handleChange}
               type='moneyBtnId'
-              className='bg-medium-gray ml-2 outline-none focus:border-white focus:border mt-2 w-full'
+              className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
               placeholder='Example: 1111'
             />
             <div className='text-sm ml-2 mb-1'>No MoneyButton account? Click <a className='text-brand-green cursor-pointer no-underline' href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here </a>to create one</div>
@@ -131,7 +131,7 @@ class JoinModal extends React.Component {
               name='passwordOne'
               onChange={this.handleChange}
               type='password'
-              className='bg-medium-gray ml-2 outline-none focus:border-white focus:border mt-2 w-full'
+              className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
               placeholder='Password'
             />
             </div>
@@ -144,7 +144,7 @@ class JoinModal extends React.Component {
               name='passwordTwo'
               onChange={this.handleChange}
               type='password'
-              className='bg-medium-gray ml-2 outline-none focus:border-white focus:border mt-2 w-full'
+              className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
               placeholder='Confirm Password'
             />
             </div>
