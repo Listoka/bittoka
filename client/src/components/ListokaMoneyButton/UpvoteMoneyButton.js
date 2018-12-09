@@ -11,13 +11,15 @@ const UpvoteMoneyButton = props => {
         let voted = authUser && voters.includes(authUser.dbUser._id)
         return (
           authUser &&
-          <div className='bg-grey-lighter m-4 p-2'>
+          <React.Fragment>
+          <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
+          <div className=''>
             {voted
-              ? <p className='text-xs text-center m-1'>Thanks for voting!</p>
+              ? <p className='text-xs mx-1'>Thanks for voting!</p>
               : (
                 <React.Fragment>
-                  <p className='text-xs text-center m-1'>Upvote this content to help others find it!</p>
-                  <div className='flex justify-center'>
+                  <p className='text-xs mx-1 mb-2'>Upvote to support the author and help others find this content!</p>
+                  <div className='flex mx-1'>
                     <ListokaMoneyButton
                       payVal={props.upVoteCost || '0.03'}
                       paymentSuccessCbk={props.afterUpvotePayment}
@@ -32,6 +34,7 @@ const UpvoteMoneyButton = props => {
               )
             }
           </div>
+          </React.Fragment>
         )
       }}
     </AuthUserContext.Consumer>

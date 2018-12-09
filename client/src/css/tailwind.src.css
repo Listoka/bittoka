@@ -86,7 +86,7 @@
     }
     
     .btn-secondary {
-        @apply bg-soft-black text-brand-green
+        @apply bg-transparent text-brand-green
     }
 
     .btn-secondary:hover {
@@ -109,8 +109,6 @@
       @apply bg-brand-green text-white outline-none
     }
     
-   
-
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.

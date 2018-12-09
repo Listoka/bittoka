@@ -81,7 +81,7 @@ class JoinModal extends React.Component {
 
         <div className=''>
         <form onSubmit={this.handleSubmit}>
-          <div className='text-base font-body text-white'>
+          <div className='text-sm font-body text-white'>
             <label htmlFor='username'>Username</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -94,7 +94,7 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <div className='text-base font-body text-white'>
+          <div className='text-sm font-body text-white'>
             <label htmlFor='email'>Email</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -107,7 +107,7 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <div className='text-base font-body text-white'>
+          <div className='text-sm font-body text-white'>
             <label htmlFor='moneyBtnId'>MoneyButton User Number</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -118,12 +118,12 @@ class JoinModal extends React.Component {
               className='border bg-darkest-gray ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
               placeholder='Example: 1111'
             />
-            <div className='text-sm ml-2 mb-1'>No MoneyButton account? Click <a className='text-brand-green cursor-pointer no-underline' href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here </a>to create one</div>
+            <div className='text-xs ml-2 mb-2'>No MoneyButton account? Click <a className='text-brand-green cursor-pointer no-underline' href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here </a>to create one</div>
             {/* Todo: Add a tooltip that explains why we need them to create one */}
             </div>
             <hr className="border-brand-green border-2 hrModals"></hr>
           </div>
-          <div className='text-base font-body text-white'>
+          <div className='text-sm font-body text-white'>
             <label htmlFor='passwordOne'>Password</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -136,7 +136,7 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <div className='text-base font-body text-white'>
+          <div className='text-sm font-body text-white'>
             <label htmlFor='passwordTwo'>Confirm Password</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -149,6 +149,7 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
+          <div className='-mb-1'></div>
           <B disabled={isInvalid} btnType={'primary'}>Sign Up</B>
           {/* <Button disabled={isInvalid} className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Sign Up</Button> */}
           {error ? <p>Error: {error.message}</p> : null}

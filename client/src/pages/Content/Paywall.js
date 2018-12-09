@@ -11,9 +11,7 @@ const Paywall = props => {
             <React.Fragment>
               <p className='pl-1 my-4'>{props.teaser}</p>
               <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
-              <div className='pl-1'>
-                <p className='text-xs'>You must log in to purchase the rest of this content.</p>
-              </div>
+              <p className='text-xs px-1'>You must log in to purchase the rest of this content.</p>
             </React.Fragment>
           )
         }

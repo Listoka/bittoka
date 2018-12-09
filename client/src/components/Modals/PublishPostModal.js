@@ -54,7 +54,7 @@ class PublishPostModal extends React.Component {
           })}
         />
         <hr className="border-brand-green border-2 hrModals mb-3 mt-3"></hr>
-        <div className='border border-white mb-2 p-2 pt-3 text-white bg-darkest-gray text-base rounded'>
+        <div className='border border-white mb-2 p-2 pt-3 text-white bg-darkest-gray text-sm rounded'>
             <label htmlFor='paywall-active-box'>Activate Paywall: 
             <input
               onChange={this.props.togglePaywall}
@@ -66,7 +66,7 @@ class PublishPostModal extends React.Component {
             </label>
         </div>
           {this.props.isPaywallActive &&
-            <div className='w-full p-2 mb-2 rounded bg-darkest-gray text-white border border-white'>
+            <div className='w-full p-2 mb-2 text-sm rounded bg-darkest-gray text-white border border-white'>
               <label htmlFor='paywall-price'>Paywall Price:  $</label><span className='mr-0'></span>
               <input
                 className='bg-darkest-gray border border-brand-green outline-none rounded ml-2 text-right py-1 px-2 w-24 m-0 text-white'
@@ -78,7 +78,7 @@ class PublishPostModal extends React.Component {
         
         {this.props.isPaywallActive &&
           <React.Fragment>
-            <p className='text-body text-base text-white mb-2 text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
+            <p className='text-body text-sm text-white mb-2 text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
             
             <TextArea
               onChange={this.props.onTeaserChange}

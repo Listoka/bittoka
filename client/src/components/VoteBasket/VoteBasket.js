@@ -12,16 +12,18 @@ const VoteBasket = props => {
     <AuthUserContext.Consumer>
       {authUser =>
         authUser &&
-        <div className='absolute pin-b pin-r w-1/4 mr-4 border-t border-r border-l border-white'>
+        <div className='absolute pin-b pin-r w-1/5 mr-8 border-t border-r border-l border-white bg-darkest-gray'>
           <div onClick={props.toggleIsCollapsed} className='bg-soft-black cursor-pointer'>
-            <h5 className='text-base text-center text-white p-2'>Pending Votes ({numPendingVotes})</h5>
+            <div className='text-base text-center text-white p-2'>Pending Votes ({numPendingVotes})</div>
           </div>
           {!props.isCollapsed &&
-            <div className='bg-darkest-gray'>
+            <div className='bg-darkest-gray mt-1'>
               <PendingVoteList {...props} />
-              <div className='bg-darkest-gray text-sm text-white border-t border-b border-white'>
+              <div className='bg-darkest-gray text-sm text-white'>
+              <hr className="mb-2 mx-2 border-brand-green border-2 hrModals"></hr>
                 {/* TODO: use props.submitVotes to finalize and purchase */}
                 {/* <p className='p-1'>Cost: <span className='text-brand-green'>${totalCost.toFixed(2)}</span></p> */}
+                <div className='flex m-2'>
                 <ListokaMoneyButton
                   payeeArray={pendingVotes}
                   label='Vote!'
@@ -30,6 +32,7 @@ const VoteBasket = props => {
                   userId={authUser.dbUser._id}
                   paymentSuccessCbk={props.submitAndCollapse}
                 />
+                </div>
               </div>
             </div>}
         </div>}
@@ -52,7 +55,7 @@ const PendingVoteList = props => {
 
 const PendingVoteListItem = props => {
   return (
-    <div className='text-white p-1 text-sm hover:bg-dark-green'>
+    <div className='text-white p-1 px-2 text-sm hover:bg-dark-green'>
       {props.authorName}
       <span
         className='text-xs text-red float-right cursor-pointer'

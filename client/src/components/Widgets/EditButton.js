@@ -9,7 +9,7 @@ export const EditButton = props => {
       {authUser => (
         authUser && (authUser.dbUser._id === props.authorId) &&
         <Link to={{ pathname: `/posts/${props.postId}/edit` }}>
-          <i className="far fa-edit text-link-color btn text-base">
+          <i className="far fa-edit text-brand-green text-sm">
             <span className='font-normal text-base'>  {props.text}</span>
           </i>
         </Link>

@@ -138,7 +138,7 @@ body {
 }
 /* Need this for the modals. Unable to set top without it. */
 .modalTop {
-  top: .01rem;
+  top: -4rem;
 }
 
 /* Need this for modals */
@@ -367,6 +367,9 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 
 .categorySelect {
   z-index: 99;
+  font-size: 14px;
+  color: white;
+  background-color: #1b1b1b;
 }
 
 .createForm {

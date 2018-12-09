@@ -46,7 +46,7 @@ class LoginModal extends React.Component {
         <hr className="border-brand-green border-2 hrModals"></hr>
 
             <form onSubmit={this.handleSubmit}>
-              <div className='text-base font-body text-white'>
+              <div className='text-sm font-body text-white'>
                 <label htmlFor='username'>Email</label>
                 <div className='-ml-2 mr-2'>
                 <input
@@ -59,7 +59,7 @@ class LoginModal extends React.Component {
                 />
                 </div>
               </div>
-              <div className='text-base font-body text-white'>
+              <div className='text-sm font-body text-white'>
                 <label htmlFor='password'>Password</label>
                 <div className='-ml-2 mr-2'>
                 <input
@@ -72,7 +72,8 @@ class LoginModal extends React.Component {
                 />
                 </div>
               </div>
-              <B btnType={'primary'}>Submit</B>
+              <div className='-mb-1'></div>
+              <B btnType={'secondary'}>Submit</B>
               {/* <Button className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}></Button> */}
               {error ? <p>{error.message}</p> : null}
             </form>
