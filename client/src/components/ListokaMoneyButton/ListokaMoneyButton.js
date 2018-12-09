@@ -116,7 +116,6 @@ class ListokaMoneyButton extends Component {
     }
 
     outputs = [...outputs, listokaOutput]
-    console.log('ListokaMoneyButton outputs: ', outputs)
 
     return (
       <React.Fragment>
