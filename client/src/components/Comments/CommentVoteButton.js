@@ -15,10 +15,10 @@ const CommentVoteButton = props => {
               {openModal => (
                 <div
                   onClick={(e) => openModal(e, 'LOGIN')}
-                  className='h-full text-center text-grey p-1 cursor-pointer'
+                  className='h-full text-center text-light-gray p-1 cursor-pointer border-r border-light-gray'
                 >
                   <p className='text-base'>{props.numVotes}</p>
-                  <p className='text-xs'>[Login]</p>
+                  <p className='text-xs text-medium-gray'>[Login]</p>
                 </div>
               )}
             </ModalLaunchContext.Consumer>
@@ -30,10 +30,10 @@ const CommentVoteButton = props => {
           return (
             <div
               onClick={() => props.removePendingVote(props._id)}
-              className='h-full bg-blue-lighter text-center text-blue cursor-pointer p-1'
+              className='h-full bg-body-background text-brand-green text-center cursor-pointer pt-1 border-r border-light-gray'
             >
               <p className='text-base'>{props.numVotes}</p>
-              <p className='text-xs'>[...]</p>
+              <p className='text-xs mr-1 pl-px'><span className='pl-px'></span>[Pending]</p>
             </div>
           )
         }
@@ -42,9 +42,9 @@ const CommentVoteButton = props => {
         const voteIsComplete = props.voters.includes(authUser.dbUser._id)
         if (voteIsComplete) {
           return (
-            <div className='h-full text-center text-green p-1'>
-              <p className='text-base'>{props.numVotes}</p>
-              <p className='text-xs'>[Done!]</p>
+            <div className='h-full text-center p-1 border-r border-light-gray'>
+              <p className='text-base text-light-gray'>{props.numVotes}</p>
+              <p className='text-xs text-medium-gray'>[Voted]</p>
             </div>
           )
         }
@@ -53,7 +53,7 @@ const CommentVoteButton = props => {
         // TODO: Remove the hard-coded 0.03 cost
         return (
           <div
-            className='h-full text-center text-grey-darker cursor-pointer p-1 hover:bg-blue-lighter'
+            className='h-full text-center text-light-gray cursor-pointer p-1 hover:text-brand-green hover:bg-body-background border-r border-light-gray'
             onClick={() => props.addPendingVote(props._id, props.authorName, props.author, 0.03)}
           >
             <p className='text-base'>{props.numVotes}</p>

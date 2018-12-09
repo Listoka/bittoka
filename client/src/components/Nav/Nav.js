@@ -30,7 +30,7 @@ export class Nav extends Component {
             {openModal => (
               <li className="inline-block" data-toggle="collapse" data-target="#navbar-collapse.in">
                 <div className="nav-link">
-                  <a className='text-white inline-block' onClick={(e) => openModal(e, 'GIST')} href="/">Gist</a>
+                  <a className='text-light-gray inline-block' onClick={(e) => openModal(e, 'GIST')} href="/">Gist</a>
                   <span className="sr-only">Gist</span>
                 </div>
               </li>

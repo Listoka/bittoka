@@ -42,11 +42,11 @@ class LoginModal extends React.Component {
         width={'w-2/5'}
         {...this.props}
       >
-        <div className="text-white font-header text-2xl text-center">Login</div>
+        <div className="text-light-gray font-header text-2xl text-center">Login</div>
         <hr className="border-brand-green border-2 hrModals"></hr>
 
             <form onSubmit={this.handleSubmit}>
-              <div className='text-sm font-body text-white'>
+              <div className='text-sm font-body text-light-gray'>
                 <label htmlFor='username'>Email</label>
                 <div className='-ml-2 mr-2'>
                 <input
@@ -59,7 +59,7 @@ class LoginModal extends React.Component {
                 />
                 </div>
               </div>
-              <div className='text-sm font-body text-white'>
+              <div className='text-sm font-body text-light-gray'>
                 <label htmlFor='password'>Password</label>
                 <div className='-ml-2 mr-2'>
                 <input
@@ -75,7 +75,7 @@ class LoginModal extends React.Component {
               <div className='-mb-1'></div>
               <B btnType={'secondary'}>Submit</B>
               {/* <Button className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}></Button> */}
-              {error ? <p>{error.message}</p> : null}
+              {error ? <p className='mt-2 text-light-gray'>{error.message}</p> : null}
             </form>
 
       </ModalWrapper >

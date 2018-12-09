@@ -6,14 +6,14 @@ import CommentListHeader from './CommentListHeader';
 const CommentList = props => {
   const { comments, ...rest } = props
   comments.sort(compareVotersDesc)
-
-  let classes = 'bg-white border-l border-grey ml-3'
+// This is the subcomments styling.
+  let classes = 'bg-darkest-gray border-l border-medium-gray ml-3'
 
   // this component is used in 2 different, but very similar ways.
   // if it is the 'root' or base container, we want a different set 
   // of styles than if it is an 'embedded' instance of the list
   if (props.root) {
-    classes = 'max-w-2xl md:w-5/6 lg:w-4/5 bg-white p1 rounded mx-auto mt-3'
+    classes = 'max-w-2xl md:w-5/6 lg:w-4/5 bg-darkest-gray rounded mx-auto mt-3 pb-px'
   }
 
   return (

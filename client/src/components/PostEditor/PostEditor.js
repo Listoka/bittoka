@@ -120,7 +120,7 @@ class PostEditor extends Component {
                   onChange={this.onChange}
                   modifier={videoPlugin.addVideo}
                 /> */}
-        <div className='float-right text-xs -mt-6 mr-1 text-white'><WordCounter /> words</div>
+        <div className='float-right text-xs -mt-6 mr-1 text-light-gray'><WordCounter /> words</div>
       </React.Fragment>
     )
   }

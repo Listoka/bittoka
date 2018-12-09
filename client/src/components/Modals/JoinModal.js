@@ -76,12 +76,12 @@ class JoinModal extends React.Component {
         // width={400}
         showOk={false}
       >
-        <div className="text-white font-header text-2xl text-center">Join Listoka</div>
+        <div className="text-light-gray font-header text-2xl text-center">Join Listoka</div>
         <hr className="border-brand-green border-2 hrModals"></hr>
 
         <div className=''>
         <form onSubmit={this.handleSubmit}>
-          <div className='text-sm font-body text-white'>
+          <div className='text-sm font-body text-light-gray'>
             <label htmlFor='username'>Username</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -94,7 +94,7 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <div className='text-sm font-body text-white'>
+          <div className='text-sm font-body text-light-gray'>
             <label htmlFor='email'>Email</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -107,7 +107,7 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <div className='text-sm font-body text-white'>
+          <div className='text-sm font-body text-light-gray'>
             <label htmlFor='moneyBtnId'>MoneyButton User Number</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -123,7 +123,7 @@ class JoinModal extends React.Component {
             </div>
             <hr className="border-brand-green border-2 hrModals"></hr>
           </div>
-          <div className='text-sm font-body text-white'>
+          <div className='text-sm font-body text-light-gray'>
             <label htmlFor='passwordOne'>Password</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -136,7 +136,7 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <div className='text-sm font-body text-white'>
+          <div className='text-sm font-body text-light-gray'>
             <label htmlFor='passwordTwo'>Confirm Password</label>
             <div className='-ml-2 mr-2'>
             <input
@@ -150,7 +150,7 @@ class JoinModal extends React.Component {
             </div>
           </div>
           <div className='-mb-1'></div>
-          <B disabled={isInvalid} btnType={'primary'}>Sign Up</B>
+          <B disabled={isInvalid} btnType={'secondary'}>Sign Up</B>
           {/* <Button disabled={isInvalid} className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Sign Up</Button> */}
           {error ? <p>Error: {error.message}</p> : null}
           </form>

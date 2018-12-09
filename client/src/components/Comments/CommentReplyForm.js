@@ -20,9 +20,9 @@ class CommentReplyForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className='flex bg-grey-lighter'>
+      <form onSubmit={this.handleSubmit} className='flex bg-darkest-gray mt-2'>
         <ReplyTextArea onChange={this.handleChange} />
-        <input className='bg-blue hover:bg-blue-dark ml-0 mr-1 my-1 text-white cursor-pointer' type='submit' />
+        <input className='border border-light-gray bg-darkest-gray hover:bg-body-background hover:text-brand-green ml-0 mr-1 my-1 text-light-gray cursor-pointer' type='submit' />
       </form>
     )
   }
@@ -33,7 +33,7 @@ const ReplyTextArea = props => {
     <textarea
       onChange={props.onChange}
       rows={props.rows || '5'}
-      className='w-full border-grey m-1 p-3'
+      className='w-full outline-none bg-input-background border border-light-gray text-light-gray rounded text-sm m-1 p-3'
     />
   )
 }

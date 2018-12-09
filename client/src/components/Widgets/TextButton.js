@@ -10,7 +10,7 @@ const TextButton = props => {
   return (
     <span
       onClick={onClick}
-      className={`text-${size} text-blue hover:text-blue-dark mr-1 cursor-pointer select-none`}
+      className={`text-${size} text-medium-gray bg-transparent active:text-brand-green hover:text-brand-green cursor-pointer select-none`}
     >
       {text}
     </span>

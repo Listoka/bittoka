@@ -74,7 +74,7 @@
     }
 
     .btn-primary {
-        @apply bg-brand-green text-white
+        @apply bg-brand-green text-light-gray
     }
 
     .btn-primary:hover {
@@ -82,7 +82,7 @@
     }
 
     .btn-primary:active {
-        @apply bg-brand-green text-white outline-none
+        @apply bg-brand-green text-light-gray outline-none
     }
     
     .btn-secondary {
@@ -90,23 +90,23 @@
     }
 
     .btn-secondary:hover {
-        @apply bg-brand-green border-brand-green text-white 
+        @apply bg-brand-green border-brand-green text-light-gray 
     }
 
     .btn-secondary:active {
-        @apply bg-brand-green text-white outline-none
+        @apply bg-brand-green text-light-gray outline-none
     }
 
     .btn-nav {
-      @apply bg-soft-black text-white
+      @apply bg-soft-black text-light-gray
     }
 
     .btn-nav:hover {
-      @apply bg-brand-green border-brand-green text-white
+      @apply bg-brand-green border-brand-green text-light-gray
     }
 
     .btn-nav:active {
-      @apply bg-brand-green text-white outline-none
+      @apply bg-brand-green text-light-gray outline-none
     }
     
  /**

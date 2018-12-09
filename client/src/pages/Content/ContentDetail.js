@@ -22,8 +22,8 @@ const ContentDetail = props => {
           />
         ))}
       </div>
-      <div className='max-w-2xl md:w-5/6 lg:w-4/5 mx-auto mt-0 p-2 rounded bg-darkest-gray text-white border border-white'>
-        <div className='font-header text-3xl text-white px-1'>{props.title}
+      <div className='max-w-2xl md:w-5/6 lg:w-4/5 mx-auto mt-0 p-2 rounded bg-darkest-gray text-light-gray'>
+        <div className='font-header text-3xl text-light-gray px-1'>{props.title}
         
         </div>
         
