@@ -11,7 +11,6 @@ class PublishPostModal extends React.Component {
       <ModalWrapper
         closeModal={this.props.closeModal}
         width={'w-3/5'}
-        
       >
         <div className='font-header text-white text-2xl text-center'>Publish Post Settings</div>
         <hr className="border-brand-green border-2 hrModals mb-3"></hr>
@@ -53,17 +52,19 @@ class PublishPostModal extends React.Component {
             borderRadius: 5,
           })}
         />
-        <hr className="border-brand-green border-2 hrModals mb-3 mt-3"></hr>
-        <div className='border border-white mb-2 p-2 pt-3 text-white bg-darkest-gray text-sm rounded'>
-            <label htmlFor='paywall-active-box'>Activate Paywall: 
-            <input
-              onChange={this.props.togglePaywall}
-              id='paywall-active-box'
-              type='checkbox'
-              checked={this.props.isPaywallActive}
-              className='h-4 w-4'
-            />
-            </label>
+        {/* <hr className="border-brand-green border-2 hrModals mb-3 mt-3"></hr> */}
+
+        <div className='border border-white my-2 text-white bg-darkest-gray text-sm rounded pt-1 h-10 -pt-px pl-2'>
+        <div className='pt-px'></div><div className='pt-px'></div><div className='pt-px'></div>
+          <label htmlFor='paywall-active-box'>Activate Paywall: 
+          <input
+            onChange={this.props.togglePaywall}
+            id='paywall-active-box'
+            type='checkbox'
+            checked={this.props.isPaywallActive}
+            className='h-4 w-4'
+          />
+          </label>
         </div>
           {this.props.isPaywallActive &&
             <div className='w-full p-2 mb-2 text-sm rounded bg-darkest-gray text-white border border-white'>
@@ -87,8 +88,8 @@ class PublishPostModal extends React.Component {
             />
           </React.Fragment>}
         {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
-        <B className='mr-2' onClick={this.props.publishPost} btnType={'primary'} disabled={!this.props.readyToPublish}>Publish</B> <span className='mr-1'></span>
-        <B onClick={this.props.closeModal} btnType={'primary'}>Cancel</B>
+        <B className='mr-2' onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B> <span className='mr-1'></span>
+        <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
         {/* <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button> */}
         <div className='mt-1'>
           {!this.props.title &&

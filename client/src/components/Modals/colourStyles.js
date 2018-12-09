@@ -1,7 +1,7 @@
 import chroma from 'chroma-js';
 
 const colourStyles = {
-  control: styles => ({ ...styles, backgroundColor: '#1b1b1b' }),
+  control: styles => ({ ...styles, backgroundColor: '#39393A' }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma(data.color);
     return {

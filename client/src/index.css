@@ -287,26 +287,6 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 
 /* Account Page */
 
-.bioContainer {
-  margin: 10px;
-  padding: 0px 10px 10px 10px;
-}
-
-.bioHeader{
-  margin: 0px;
-}
-
-.draftTitle {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-
-.draftInfo {
-  font-size: 12px; 
-}
-
 .draftButtons{
   color: #007bff!important;
   margin-bottom: 10px;
@@ -329,32 +309,6 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 
 /* Editor Page */
 
-.public-DraftEditor-content {
-  min-height: 300px;
-}
-
-.guidelineWrapper {
-  min-width: 150px;
-}
-
-.guidelineHeader {
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding-top: 20px;
-}
-
-.guidelineSidebarWrapper {
-  background-color: white;
-  text-align: left;
-  font-size: 14px;
-  text-align: left;
-}
-
-#guidelineList{
-  text-align: left;
-}
-
 .formBody {
   background-color: white;
   margin-bottom: 40px;
@@ -368,13 +322,10 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
 .categorySelect {
   z-index: 99;
   font-size: 14px;
-  color: white;
-  background-color: #1b1b1b;
+  color: #d8d8d8;
+  background: #39393A;
 }
 
-.createForm {
-  margin-top: 50px;
-}
 
 .createBtn {
   background-color: white;

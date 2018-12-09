@@ -89,7 +89,7 @@ class PublishPostModalContainer extends React.Component {
       const customStyles = {
         control: (base) => ({
           ...base,
-          background: "#1b1b1b",
+          background: "#39393A",
         })
       };
     
