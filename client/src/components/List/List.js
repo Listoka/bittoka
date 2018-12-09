@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export const List = props => {
   const { data, keyProp, component, className, mergeClasses, ...other } = props
   // default List styles
-  let classes = 'm-1 p-1 bg-white border-medium-gray rounded '
+  let classes = ''
 
   // allow adding style classes to end of default class string
   // note that this does not always work as expected... 

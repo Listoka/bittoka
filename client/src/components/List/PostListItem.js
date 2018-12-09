@@ -7,48 +7,55 @@ import CategoryFlair from '../Widgets/CategoryFlair';
 export const PostListItem = props => {
   return (
     <Card>
-      <div className='pt-10px pr-10px pl-15px w-full'>
-        <div className='clearfix'>
-          <span>
-            <p className='inline font-header text-2xl'>
-              <Link to={{ pathname: `/posts/${props._id}` }}>{props.title}</Link>
-            </p>
-            <div className='inline'>
-              <ul className='text-grey float-right list-reset'>
-                {props.tags.sort().map(tags => (
-                  <li key={tags}>#<span className='mr-1'></span>{tags}</li>
-                ))}
-              </ul>
+      <div className='w-full'>
+        <span>
+          <section className='relative'>
+          <div className="hidden sm:hidden md:inline lg:inline xl:inline float-right text-lg pl-10px">
+              <EditButton authorId={props.author} postId={props._id} text='Edit' />
             </div>
-            <p className='text-sm mb-10px text-grey' text={'Posted by'}>
-              <Link to={{ pathname: `/users/${props.author}` }}> {props.authorName} </Link>
-              in <CategoryFlair categoryName={props.categoryName} />
-            </p>
-            <p className='mb-10px'>{props.teaser}</p>
-          </span>
-        </div>
-
-        <div className='clearfix'>
-          <p className='inline mr-2'>
-            <Link to={{ pathname: `/posts/${props._id}` }}>
-              <DollarIcon />{props.comments.length}
-            </Link>
-          </p>
-          <p className='inline mr-2'>
-            <UpArrowIcon />{props.voters.length}
-          </p>
-          <p className='inline mr-2'>
-            <BitcoinIcon />$0.75
-            </p>
-          <p className='inline mr-2'>
-            <CalendarIcon /><Moment fromNow>{props.createdAt}</Moment>
-          </p>
-
-          <div className="float-right">
-            <EditButton authorId={props.author} postId={props._id} text='Edit Post' />
-          </div>
-        </div>
+            <div className="sm:inline md:hidden lg:hidden xl:hidden float-right text-lg pl-10px">
+              <EditButton authorId={props.author} postId={props._id} text='' />
+            </div>
+            <h2 className='inline'>
+              <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
+            </h2>
+          </section>
+          <h6 className='clearfix mt-10px mb-20px font-normal text-white leading-normal'>
+            Posted by 
+            <Link to={{ pathname: `/users/${props.author}` }} style={{color: '#FFF'}}> {props.authorName} </Link>
+            in <CategoryFlair categoryName={props.categoryName} />
+          </h6>
+          <p className='mb-20px'>{props.teaser}</p>
+        </span>
       </div>
+
+      <div className='w-full'>
+        <h6 className='inline mx-5px'>
+          <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>
+            <DollarIcon />{props.comments.length}
+          </Link>
+        </h6>
+        <h6 className='inline mx-5px'>
+          <UpArrowIcon />{props.voters.length}
+        </h6>
+        <h6 className='inline mx-5px'>
+          <BitcoinIcon />$0.75
+        </h6>
+        <h6 className='inline mx-5px'>
+          <CalendarIcon /><Moment fromNow>{props.createdAt}</Moment>
+        </h6>
+
+        <hr className='border-light-gray border-2'></hr>
+
+        <div className='inline'>
+            <ul className='flex list-reset text-grey'>
+              {props.tags.sort().map(tags => (
+                <li className='mr-20px text-xs' key={tags}>— <span className='mr-px'></span>{tags}</li>
+              ))}
+            </ul>
+          </div>
+      </div>
+  
     </Card>
   );
 };
