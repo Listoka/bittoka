@@ -1,6 +1,6 @@
 .editor {
   box-sizing: border-box;
-  border: 1px solid white;
+  border: 1px solid #444;
   cursor: text;
   padding: 16px;
   border-radius: 4px;
@@ -8,7 +8,7 @@
   margin-left: 0;
   margin-right: 0;
   box-shadow: inset 0px 1px 8px -3px rgb(131, 121, 121);
-  background: #39393A;
+  background: #030303; /*#39393A;*/
   min-height: 400px;
   color: #d8d8d8;
   font-size: 14px;

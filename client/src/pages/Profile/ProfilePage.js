@@ -8,7 +8,7 @@ import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
 export const ProfilePage = props => (
 
   <div className='absolute w-full mt-10px'>
-    <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto -mx-10px'>
+    <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto '>
 
       <MainWrapper styles='block sm:block md:block lg:w-2/3 xl:w-2/3'>
         <div className='mb-20px p-20px rounded-8px bg-darkest-gray'>
@@ -16,8 +16,8 @@ export const ProfilePage = props => (
             <h1>{props.authorName}</h1>
           </div>
           <div className={'flex text-left'}>
-            <p className='flex-1/3 text-left text-white'>Total paid {props.payees[0].to}</p>
-            <p className='flex-1/3 ml-40px text-left text-white'>Total earned {props.payees[0].to}</p>
+            <p className='flex-1/3 text-left text-light-gray'>Total paid {props.payees[0].to}</p>
+            <p className='flex-1/3 ml-40px text-left text-light-gray'>Total earned {props.payees[0].to}</p>
           </div>
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none ml-0' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
@@ -47,13 +47,13 @@ export const ProfilePage = props => (
                   type='number'
                   step='0.01'
                   min='0.10'
-                  className='flex-1 w-full min-w-100px input input:focus input:disabled text-xs rounded-r-none h-10 relative'
+                  className='flex-1 w-full min-w-100px input input:focus input:disabled border text-xs rounded-r-none h-10 relative'
                   value={props.tipAmt}
                   placeholder='.00'
                   name='tipAmt'
                 />
                 <div className="flex -mr-px">
-                  <span className="flex-none items-center p-5px whitespace-no-wrap btn btn-primary btn-primary:hover ml-0 mb-20px rounded-l-none rounded-r-4px mt-0" onClick={props.handleTipSubmit}>Update tip</span>
+                  <span className="flex-none items-center p-5px whitespace-no-wrap btn btn-primary btn-primary:hover border-3 ml-0 mb-20px rounded-l-none rounded-r-4px mt-0" onClick={props.handleTipSubmit}>Update tip</span>
                 </div>
               </div>
                   <AuthUserContext.Consumer>

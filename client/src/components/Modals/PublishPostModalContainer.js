@@ -105,7 +105,6 @@ class PublishPostModalContainer extends React.Component {
         publishPost={this.publishPost}
         readyToPublish={readyToPublish}
         postLength={postLength}
-        styles={customStyles}
       />
     )
   }

@@ -83,7 +83,7 @@
     */   
 
     input {
-        @apply bg-input-background border-3 border-transparent rounded-4px p-10px mb-10px text-light-gray
+        @apply bg-input-background border-3 border-mack-the-knife rounded-4px p-10px mb-10px text-light-gray
     }
 
     .input:focus {

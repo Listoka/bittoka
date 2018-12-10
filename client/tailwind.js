@@ -57,6 +57,8 @@ let colors = {
   'input-disabled': '#515356',
   'input-background': '#39393A',
   'alert-success': '#FF3608',
+  'modal-border': '#444',
+  'mack-the-knife': '#444',
 
   'transparent': 'transparent',
 
@@ -723,6 +725,7 @@ module.exports = {
     '5px': '5px',
     '10px': '10px',
     '20px': '20px',
+    '30px': '30px',
     '40px': '40px',
     '0': '0',
     '1': '0.25rem',
@@ -826,6 +829,8 @@ module.exports = {
     '30': 30,
     '40': 40,
     '50': 50,
+    '90': 90,
+    '100': 100,
   },
 
 
