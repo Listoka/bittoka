@@ -21,7 +21,7 @@ const MainPage = props => (
             <AuthUserContext.Consumer>
               {authUser => authUser ?
                 <Link to={{ pathname: `/editor` }}>
-                  <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text='Create Post' />
+                  <Button className='btn btn-primary btn-primary:hover btn-primary:active -ml-0 outline-none' text='Create Post' />
                 </Link> : null}
             </AuthUserContext.Consumer>
           </div>
