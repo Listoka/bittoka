@@ -555,61 +555,11 @@ table {
   */
 
 /*
-<<<<<<< HEAD
     |-----------------------------------------------------------------------------
     | Navigation                      https://tailwindcss.com/docs/extracting-components/
     |-----------------------------------------------------------------------------
     |
     */
-=======
-  |-----------------------------------------------------------------------------
-  | Headings and Paragraphs            https://tailwindcss.com/docs/extracting-components/
-  |-----------------------------------------------------------------------------
-  |
-  */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #fff;
-  font-family: Roboto;
-}
-
-h1 {
-  font-size: 2.25rem;
-}
-
-h2 {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-h3 {
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-h4 {
-  font-size: 1.125rem;
-}
-
-h5 {
-  font-size: 1rem;
-}
-
-h6 {
-  font-size: .75rem;
-}
-
-p {
-  font-size: .875rem;
-  color: #fff;
-  text-align: left;
-}
->>>>>>> profilepage
 
 /*
     |-----------------------------------------------------------------------------
@@ -647,16 +597,9 @@ input {
     */
 
 .btn {
-<<<<<<< HEAD
   border-width: 2px;
   border-radius: 20px;
   border-color: #2ba228;
-=======
-  border-width: 3px;
-  border-radius: 20px;
-  border-color: #2ba228;
-  font-weight: 700;
->>>>>>> profilepage
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 1px;
@@ -664,16 +607,12 @@ input {
   margin-left: 20px;
   margin-top: 10px;
   font-family: Roboto;
-<<<<<<< HEAD
   font-size: 1.25rem;
-=======
-  font-size: 16px;
->>>>>>> profilepage
 }
 
 .btn-primary {
   background-color: #2ba228;
-  color: #fff;
+  color: #d8d8d8;
 }
 
 .btn-primary:hover {
@@ -684,11 +623,10 @@ input {
 
 .btn-primary:active {
   background-color: #2ba228;
-  color: #fff;
+  color: #d8d8d8;
   outline: 0;
 }
 
-<<<<<<< HEAD
 .btn-secondary {
   background-color: transparent;
   color: #2ba228;
@@ -697,34 +635,32 @@ input {
 .btn-secondary:hover {
   background-color: #2ba228;
   border-color: #2ba228;
-  color: #fff;
+  color: #d8d8d8;
 }
 
 .btn-secondary:active {
   background-color: #2ba228;
-  color: #fff;
+  color: #d8d8d8;
   outline: 0;
 }
 
 .btn-nav {
   background-color: #030303;
-  color: #fff;
+  color: #d8d8d8;
 }
 
 .btn-nav:hover {
   background-color: #2ba228;
   border-color: #2ba228;
-  color: #fff;
+  color: #d8d8d8;
 }
 
 .btn-nav:active {
   background-color: #2ba228;
-  color: #fff;
+  color: #d8d8d8;
   outline: 0;
 }
 
-=======
->>>>>>> profilepage
 /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
