@@ -16,7 +16,7 @@ class PublishPostModal extends React.Component {
         <hr className="border-brand-green border-2 hrModals mb-3"></hr>
         <div className='mb-2'>
         <Select
-          className="categorySelect"
+          className="z-99 text-sm text-light-gray bg-input-background"
           placeholder='Category'
           onChange={this.props.onCategorySelectChange}
           options={this.props.categories}
