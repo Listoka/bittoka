@@ -11,7 +11,7 @@ const MainPage = props => (
 
   <div className='absolute w-full mt-10px'>
 
-    <div className='container w-full'>
+    <div className='container w-full mb-20px'>
       <div className='flex'>
         <MainWrapper styles='w-full'>
 
@@ -21,7 +21,7 @@ const MainPage = props => (
             <AuthUserContext.Consumer>
               {authUser => authUser ?
                 <Link to={{ pathname: `/editor` }}>
-                  <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none mb-20px ml-0' text='Create Post' />
+                  <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text='Create Post' />
                 </Link> : null}
             </AuthUserContext.Consumer>
           </div>
@@ -33,7 +33,7 @@ const MainPage = props => (
     <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto '>
 
       <MainWrapper styles='block sm:block md:block lg:w-4/5 xl:w-4/5'>
-        <div className='mb-20px p-20px rounded-8px bg-darkest-gray'>
+        <div className='mb-20px rounded-8px'>
           {/* conditionally render the category display  */}
           {props.categoryDisplayName &&
             <div className='bg-white border-grey rounded m-1 p-3'>
@@ -46,7 +46,7 @@ const MainPage = props => (
 
       <MainWrapper styles='block sm:block md:block lg:w-1/5 xl:w-1/5'>
         {/* right column container, sidebar */}
-        <div className='w-1/5'>
+        <div className='w-1/5 w-full'>
           <Sidebar>
             <SBTagFilter
               toggleSelectTag={props.toggleSelectTag}
