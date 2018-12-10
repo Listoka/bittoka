@@ -13,9 +13,9 @@ class PublishPostModal extends React.Component {
         width={'w-3/5'}
       >
         <div className='font-header text-light-gray text-2xl text-center'>Publish Post Settings</div>
-        <hr className="border-mack-the-knife border hrModals mb-30px"></hr>
-        <div className='mb-20px'>
-          <p className='mb-5px text-sm text-light-gray text-text-center'>Category:</p>
+        <hr className="border-mack-the-knife border hrModals mb-5"></hr>
+        <div className='mb-5'>
+          <p className='mb-2 text-sm text-light-gray text-text-center'>Category:</p>
           <Select
             className="z-100 text-base"
             placeholder='Category'
@@ -31,14 +31,14 @@ class PublishPostModal extends React.Component {
             isDisabled={!this.props.isDraft}
           />
         </div>
-        <div className='mb-10px'>
+        <div className='mb-2'>
           {!this.props.categoryName &&
             <p className='text-xs text-red text-center my-2'>
               Please select a category for this post.
           </p>}
         </div>
-        <div className='mb-30px'>
-        <p className='mb-5px text-sm text-light-gray text-text-center'>Tags:</p>
+        <div className='mb-5'>
+        <p className='mb-2 text-sm text-light-gray text-text-center'>Tags:</p>
           <Select
             id='tagField'
             className='react-select-container'
@@ -56,7 +56,7 @@ class PublishPostModal extends React.Component {
           />
         </div>
 
-        <div className='mb-10px h-10 text-light-gray text-sm'>
+        <div className='h-10 text-light-gray text-sm'>
           <label htmlFor='paywall-active-box'>Enable Paywall:</label>
           <input
               onChange={this.props.togglePaywall}
@@ -68,7 +68,7 @@ class PublishPostModal extends React.Component {
           
         </div>
         {this.props.isPaywallActive &&
-          <div className='w-full mb-20px text-sm text-light-gray'>
+          <div className='w-full mb-5 text-sm text-light-gray'>
             <label htmlFor='paywall-price'>Paywall Price: $</label><span className='mr-0'></span>
             <input
               className='bg-darkest-gray border border-brand-green outline-none py-1 px-2 w-24 m-0 rounded ml-2 text-right text-light-gray'
@@ -80,25 +80,25 @@ class PublishPostModal extends React.Component {
 
         {this.props.isPaywallActive &&
           <React.Fragment>
-            <p className='mb-5px text-sm text-light-gray text-text-center'>Teaser:</p>
+            <p className='mb-2 text-sm text-light-gray text-text-center'>Teaser:</p>
             <TextArea
               onChange={this.props.onTeaserChange}
               name='teaser'
               value={this.props.teaser}
             />
-            <p className='mb-10 text-body text-sm text-light-gray text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
+            <p className='mb-5 mt-1 text-body text-sm text-light-gray text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
           </React.Fragment>}
 
-        <div className='mb-20px'>
+        <div className=''>
           {!this.props.title &&
-            <p className='text-xs text-red text-center'>Your post must have a title in order to publish</p>}
+            <p className='text-xs text-red text-center mb-5'>Your post must have a title in order to publish</p>}
           {!(this.props.postLength > 144) &&
             <p className='text-xs text-red text-center'>Your post is too short to publish!</p>}
         </div>
         {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
         <div className='text-right'>
           <B onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B> 
-          <span className='mr-10px'></span>
+          <span className='mr-2'></span>
           <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
           {/* <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button> */}
         </div>

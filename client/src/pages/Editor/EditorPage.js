@@ -22,7 +22,7 @@ const EditorPage = props => {
           />
         </div>
         {/* TODO: Pull this into its own collapsing menu component */}
-        <div className='flex flex-col bg-body-background absolute pin-r w-32 pt-1 rounded-l mt-3'>
+        <div className='flex flex-col absolute pin-r w-32 pt-1 rounded-l mt-3'>
           {props.isDraft &&
             <B onClick={props.saveDraft} className='bg-light-gray text-sm text-soft-black border-0 border-soft-black hover:bg-brand-green mb-1 mx-1 px-2 py-1 rounded'>
               Save Draft
