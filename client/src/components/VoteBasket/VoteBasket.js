@@ -20,7 +20,7 @@ const VoteBasket = props => {
             <div className='bg-darkest-gray mt-1'>
               <PendingVoteList {...props} />
               <div className='bg-darkest-gray text-sm text-light-gray'>
-              <hr className="mb-2 mx-2 border-brand-green border-2 hrModals"></hr>
+              <hr className="mb-2 mx-2 border-brand-green border hrModals"></hr>
                 {/* TODO: use props.submitVotes to finalize and purchase */}
                 {/* <p className='p-1'>Cost: <span className='text-brand-green'>${totalCost.toFixed(2)}</span></p> */}
                 <div className='flex m-2'>

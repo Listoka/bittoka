@@ -15,7 +15,7 @@ const CommentNode = props => {
     return (
       <div
         onClick={props.toggleCollapse}
-        className='text-light-gray text-sm bg-darkest-gray border-light-gray border-2 p-1 m-1 cursor-pointer hover:text-brand-green'
+        className='text-light-gray text-sm bg-darkest-gray border-body-background border-2 p-1 m-1 cursor-pointer hover:text-brand-green'
       >
         <p>{numVotes} {authorName}</p>
       </div>
@@ -27,8 +27,8 @@ const CommentNode = props => {
     <div>
       <AuthUserContext.Consumer>
         {authUser => (
-          <div className='flex text-sm border-light-gray border m-1'>
-            <div className='w-16 align-middle flex-none border-light-gray'>
+          <div className='flex text-sm border-body-background border m-1'>
+            <div className='w-16 align-middle flex-none border-body-background'>
               <CommentVoteButton
                 addPendingVote={props.addPendingVote}
                 removePendingVote={props.removePendingVote}
@@ -40,8 +40,7 @@ const CommentNode = props => {
                 numVotes={numVotes}
               />
             </div>
-            <div className='p-1'>
-              {/* <p className='text-xs font-bold'>{authorName}</p> */}
+            <div className='p-2'>
               <p><NameLink authorName={authorName} userId={author} /></p>
               <p className='text-sm text-light-gray my-2'>{body}</p>
               <p>

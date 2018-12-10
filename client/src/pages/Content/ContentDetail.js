@@ -34,7 +34,7 @@ const ContentDetail = props => {
           {props._id && <span className='pl-1'>
           <EditButton postId={props._id} authorId={props.author} /></span>}
         </p>
-        <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
+        <hr className="mx-1 border-brand-green border hrModals"></hr>
 
         <Paywall {...props}>
           <div className='text-sm px-1'>

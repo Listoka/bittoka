@@ -56,7 +56,7 @@ class PublishPostModal extends React.Component {
 
         <div className='border border-white my-2 text-light-gray bg-darkest-gray text-sm rounded pt-1 h-10 -pt-px pl-2'>
         <div className='pt-px'></div><div className='pt-px'></div><div className='pt-px'></div>
-          <label htmlFor='paywall-active-box'>Activate Paywall: 
+          <label htmlFor='paywall-active-box'>Enable Paywall: 
           <input
             onChange={this.props.togglePaywall}
             id='paywall-active-box'

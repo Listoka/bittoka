@@ -36,14 +36,6 @@
   * @import "components/forms";
   */
 
-<<<<<<< HEAD
-    /*
-    |-----------------------------------------------------------------------------
-    | Navigation                      https://tailwindcss.com/docs/extracting-components/
-    |-----------------------------------------------------------------------------
-    |
-    */  
-=======
   /*
   |-----------------------------------------------------------------------------
   | Headings and Paragraphs            https://tailwindcss.com/docs/extracting-components/
@@ -52,7 +44,7 @@
   */
 
     h1, h2, h3, h4, h5, h6 {
-        @apply text-white font-header;
+        @apply text-light-gray font-header;
     }
 
     h1 {
@@ -80,9 +72,8 @@
     }
 
     p {
-        @apply text-sm text-white text-left
+        @apply text-sm text-light-gray text-left
     }
->>>>>>> profilepage
 
     /*
     |-----------------------------------------------------------------------------
@@ -111,19 +102,11 @@
     */
 
     .btn {
-<<<<<<< HEAD
         @apply border-2 rounded-20px border-brand-green px-10px py-px ml-20px mt-10px font-header text-xl
     }
 
     .btn-primary {
         @apply bg-brand-green text-light-gray
-=======
-        @apply border-3 rounded-20px border-brand-green font-bold px-10px py-px ml-20px mt-10px font-header text-h6f
-    }
-
-    .btn-primary {
-        @apply bg-brand-green text-white
->>>>>>> profilepage
     }
 
     .btn-primary:hover {
@@ -131,7 +114,6 @@
     }
 
     .btn-primary:active {
-<<<<<<< HEAD
         @apply bg-brand-green text-light-gray outline-none
     }
     
@@ -159,11 +141,6 @@
       @apply bg-brand-green text-light-gray outline-none
     }
     
-=======
-        @apply bg-brand-green text-white outline-none
-    }
-
->>>>>>> profilepage
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
