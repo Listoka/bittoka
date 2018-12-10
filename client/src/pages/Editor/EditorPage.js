@@ -8,14 +8,14 @@ const EditorPage = props => {
     <React.Fragment>
       <div className='mb-8'>
       </div>
-      <div className='max-w-md mx-auto rounded h-full bg-body-background'>
+      <div className='max-w-md mx-auto rounded h-full'>
       <div className='mx-auto max-w-md h-full p-px px-1 rounded'>
         <div className='flex my-1'>
           <input
             type='text'
             name='title'
             placeholder='Title...'
-            className='flex-1 min-w-0 border border-white outline-none block text-3xl p-2 mb-0 rounded bg-input-background text-light-gray'
+            className='flex-1 block min-w-0 mb-10px p-2 mb-0 rounded border-0 border-b border-b-mack-the-knife outline-none bg-soft-black text-3xl text-light-gray'
             value={props.title}
             onChange={props.onTitleChange}
             disabled={!props.isDraft}
