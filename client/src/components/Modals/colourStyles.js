@@ -1,7 +1,7 @@
 import chroma from 'chroma-js';
 
 const colourStyles = {
-  control: styles => ({ ...styles, backgroundColor: '#39393A' }),
+  control: styles => ({ ...styles, backgroundColor: '#39393A', borderColor: '#444' }),
   menu: styles => ({ ...styles, backgroundColor: '#39393A'}),
   menuList: styles => ({ ...styles, backgroundColor: '#39393A' }),
   singleValue: (styles, {isDisabled, isFocused, isSelected }) => {

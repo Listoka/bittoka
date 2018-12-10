@@ -13,86 +13,96 @@ class PublishPostModal extends React.Component {
         width={'w-3/5'}
       >
         <div className='font-header text-light-gray text-2xl text-center'>Publish Post Settings</div>
-        <hr className="border-brand-green border-2 hrModals mb-3"></hr>
-        <div className='mb-2'>
-        <Select
-          className="z-100 text-base"
-          placeholder='Category'
-          onChange={this.props.onCategorySelectChange}
-          options={this.props.categories}
-          styles={colourStyles}
-          theme={(theme) => ({ ...theme, borderRadius: 5 })}
-          value={{
-            value: this.props.categoryName,
-            label: this.props.categoryDisplayName,
-            color: '#D8D8D8'
-          }}
-          isDisabled={!this.props.isDraft}
-        />
-        </div>
-        {!this.props.categoryName &&
-          <p className='text-xs text-red text-center my-2'>
-            Please select a category for this post.
-        </p>}
-        <Select
-          id='tagField'
-          className='react-select-container'
-          classNamePrefix='z-90 text-base'
-          value={this.props.selectedTagObjects}
-          onChange={this.props.onTagSelectChange}
-          options={this.props.tags}
-          isMulti={true}
-          isClearable={true}
-          placeholder='Tags'
-          closeMenuOnSelect={false}
-          components={makeAnimated()}
-          styles={colourStyles}
-          theme={(theme) => ({...theme, borderRadius: 5 })}
-        />
-
-        <div className='my-2 text-light-gray bg-darkest-gray text-sm rounded pt-1 h-10 -pt-px pl-2'>
-        <div className='pt-px'></div><div className='pt-px'></div><div className='pt-px'></div>
-          <label htmlFor='paywall-active-box'>Activate Paywall: 
-          <input
-            onChange={this.props.togglePaywall}
-            id='paywall-active-box'
-            type='checkbox'
-            checked={this.props.isPaywallActive}
-            className='h-4 w-4'
+        <hr className="border-mack-the-knife border hrModals mb-30px"></hr>
+        <div className='mb-20px'>
+          <p className='mb-5px text-sm text-light-gray text-text-center'>Category:</p>
+          <Select
+            className="z-100 text-base"
+            placeholder='Category'
+            onChange={this.props.onCategorySelectChange}
+            options={this.props.categories}
+            styles={colourStyles}
+            theme={(theme) => ({ ...theme, borderRadius: 5 })}
+            value={{
+              value: this.props.categoryName,
+              label: this.props.categoryDisplayName,
+              color: '#D8D8D8'
+            }}
+            isDisabled={!this.props.isDraft}
           />
-          </label>
         </div>
-          {this.props.isPaywallActive &&
-            <div className='w-full p-2 mb-2 text-sm rounded bg-darkest-gray text-light-gray'>
-              <label htmlFor='paywall-price'>Paywall Price:  $</label><span className='mr-0'></span>
-              <input
-                className='bg-darkest-gray border border-brand-green outline-none rounded ml-2 text-right py-1 px-2 w-24 m-0 text-light-gray'
-                onChange={this.props.onPaywallCostChange}
-                value={this.props.paywallCost}
-                id='paywall-price' type='number' step='0.01'/>
-            </div>
-          }
-        
+        <div className='mb-10px'>
+          {!this.props.categoryName &&
+            <p className='text-xs text-red text-center my-2'>
+              Please select a category for this post.
+          </p>}
+        </div>
+        <div className='mb-30px'>
+        <p className='mb-5px text-sm text-light-gray text-text-center'>Tags:</p>
+          <Select
+            id='tagField'
+            className='react-select-container'
+            classNamePrefix='z-90 text-base'
+            value={this.props.selectedTagObjects}
+            onChange={this.props.onTagSelectChange}
+            options={this.props.tags}
+            isMulti={true}
+            isClearable={true}
+            placeholder='Tags'
+            closeMenuOnSelect={false}
+            components={makeAnimated()}
+            styles={colourStyles}
+            theme={(theme) => ({ ...theme, borderRadius: 5 })}
+          />
+        </div>
+
+        <div className='mb-10px h-10 text-light-gray text-sm'>
+          <label htmlFor='paywall-active-box'>Enable Paywall:</label>
+          <input
+              onChange={this.props.togglePaywall}
+              id='paywall-active-box'
+              type='checkbox'
+              checked={this.props.isPaywallActive}
+              className='h-4 w-4'
+            />
+          
+        </div>
+        {this.props.isPaywallActive &&
+          <div className='w-full mb-20px text-sm text-light-gray'>
+            <label htmlFor='paywall-price'>Paywall Price: $</label><span className='mr-0'></span>
+            <input
+              className='bg-darkest-gray border border-brand-green outline-none py-1 px-2 w-24 m-0 rounded ml-2 text-right text-light-gray'
+              onChange={this.props.onPaywallCostChange}
+              value={this.props.paywallCost}
+              id='paywall-price' type='number' step='0.01' />
+          </div>
+        }
+
         {this.props.isPaywallActive &&
           <React.Fragment>
-            <p className='text-body text-sm text-light-gray mb-2 text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
-            
+            <p className='mb-5px text-sm text-light-gray text-text-center'>Teaser:</p>
             <TextArea
               onChange={this.props.onTeaserChange}
               name='teaser'
               value={this.props.teaser}
             />
+            <p className='mb-10 text-body text-sm text-light-gray text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
           </React.Fragment>}
-        {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
-        <B className='mr-2' onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B> <span className='mr-1'></span>
-        <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
-        {/* <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button> */}
-        <div className='mt-1'>
+
+        <div className='mb-20px'>
           {!this.props.title &&
-            <p className='text-xs text-red text-center mt-1'>Your post must have a title in order to publish</p>}
+            <p className='text-xs text-red text-center'>Your post must have a title in order to publish</p>}
           {!(this.props.postLength > 144) &&
-            <p className='text-xs text-red text-center mt-1'>Your post is too short to publish!</p>}
+            <p className='text-xs text-red text-center'>Your post is too short to publish!</p>}
         </div>
+        {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
+        <div className='text-right'>
+          <B onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B> 
+          <span className='mr-10px'></span>
+          <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
+          {/* <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button> */}
+        </div>
+
       </ModalWrapper>
     )
   }

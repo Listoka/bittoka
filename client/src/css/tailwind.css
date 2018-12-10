@@ -4207,6 +4207,10 @@ input {
   margin: 20px;
 }
 
+.m-30px {
+  margin: 30px;
+}
+
 .m-40px {
   margin: 40px;
 }
@@ -4403,6 +4407,16 @@ input {
 .mx-20px {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.my-30px {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.mx-30px {
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .my-40px {
@@ -4727,6 +4741,22 @@ input {
 
 .ml-20px {
   margin-left: 20px;
+}
+
+.mt-30px {
+  margin-top: 30px;
+}
+
+.mr-30px {
+  margin-right: 30px;
+}
+
+.mb-30px {
+  margin-bottom: 30px;
+}
+
+.ml-30px {
+  margin-left: 30px;
 }
 
 .mt-40px {
@@ -11317,6 +11347,10 @@ input {
     margin: 20px;
   }
 
+  .sm\:m-30px {
+    margin: 30px;
+  }
+
   .sm\:m-40px {
     margin: 40px;
   }
@@ -11513,6 +11547,16 @@ input {
   .sm\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .sm\:my-30px {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .sm\:mx-30px {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   .sm\:my-40px {
@@ -11837,6 +11881,22 @@ input {
 
   .sm\:ml-20px {
     margin-left: 20px;
+  }
+
+  .sm\:mt-30px {
+    margin-top: 30px;
+  }
+
+  .sm\:mr-30px {
+    margin-right: 30px;
+  }
+
+  .sm\:mb-30px {
+    margin-bottom: 30px;
+  }
+
+  .sm\:ml-30px {
+    margin-left: 30px;
   }
 
   .sm\:mt-40px {
@@ -18397,6 +18457,10 @@ input {
     margin: 20px;
   }
 
+  .md\:m-30px {
+    margin: 30px;
+  }
+
   .md\:m-40px {
     margin: 40px;
   }
@@ -18593,6 +18657,16 @@ input {
   .md\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .md\:my-30px {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .md\:mx-30px {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   .md\:my-40px {
@@ -18917,6 +18991,22 @@ input {
 
   .md\:ml-20px {
     margin-left: 20px;
+  }
+
+  .md\:mt-30px {
+    margin-top: 30px;
+  }
+
+  .md\:mr-30px {
+    margin-right: 30px;
+  }
+
+  .md\:mb-30px {
+    margin-bottom: 30px;
+  }
+
+  .md\:ml-30px {
+    margin-left: 30px;
   }
 
   .md\:mt-40px {
@@ -25477,6 +25567,10 @@ input {
     margin: 20px;
   }
 
+  .lg\:m-30px {
+    margin: 30px;
+  }
+
   .lg\:m-40px {
     margin: 40px;
   }
@@ -25673,6 +25767,16 @@ input {
   .lg\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .lg\:my-30px {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .lg\:mx-30px {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   .lg\:my-40px {
@@ -25997,6 +26101,22 @@ input {
 
   .lg\:ml-20px {
     margin-left: 20px;
+  }
+
+  .lg\:mt-30px {
+    margin-top: 30px;
+  }
+
+  .lg\:mr-30px {
+    margin-right: 30px;
+  }
+
+  .lg\:mb-30px {
+    margin-bottom: 30px;
+  }
+
+  .lg\:ml-30px {
+    margin-left: 30px;
   }
 
   .lg\:mt-40px {
@@ -32557,6 +32677,10 @@ input {
     margin: 20px;
   }
 
+  .xl\:m-30px {
+    margin: 30px;
+  }
+
   .xl\:m-40px {
     margin: 40px;
   }
@@ -32753,6 +32877,16 @@ input {
   .xl\:mx-20px {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .xl\:my-30px {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .xl\:mx-30px {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   .xl\:my-40px {
@@ -33077,6 +33211,22 @@ input {
 
   .xl\:ml-20px {
     margin-left: 20px;
+  }
+
+  .xl\:mt-30px {
+    margin-top: 30px;
+  }
+
+  .xl\:mr-30px {
+    margin-right: 30px;
+  }
+
+  .xl\:mb-30px {
+    margin-bottom: 30px;
+  }
+
+  .xl\:ml-30px {
+    margin-left: 30px;
   }
 
   .xl\:mt-40px {
