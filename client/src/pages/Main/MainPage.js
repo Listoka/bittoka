@@ -38,7 +38,7 @@ const MainPage = props => (
           {props.categoryDisplayName &&
             <div className='bg-darkest-gray rounded mb-20px p-20px'>
               <h2 className='mb-20px'>{props.categoryDisplayName}</h2>
-              <p>{props.categoryDescription}</p>
+              <p className='leading-normal'>{props.categoryDescription}</p>
             </div>}
           <PostList data={props.filteredPosts} />
         </div>
