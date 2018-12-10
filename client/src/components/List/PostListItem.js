@@ -20,7 +20,7 @@ export const PostListItem = props => {
               <Link to={{ pathname: `/posts/${props._id}` }} style={{color: '#FFF'}}>{props.title}</Link>
             </h2>
           </section>
-          <h6 className='clearfix mt-10px mb-20px font-normal text-white leading-normal'>
+          <h6 className='clearfix mt-10px mb-20px font-normal text-light-gray leading-normal'>
             Posted by 
             <Link to={{ pathname: `/users/${props.author}` }} style={{color: '#FFF'}}> {props.authorName} </Link>
             in <CategoryFlair categoryName={props.categoryName} />

@@ -16,8 +16,8 @@ export const ProfilePage = props => (
             <h1>{props.authorName}</h1>
           </div>
           <div className={'flex text-left'}>
-            <p className='flex-1/3 text-left text-white'>Total paid {props.payees[0].to}</p>
-            <p className='flex-1/3 ml-40px text-left text-white'>Total earned {props.payees[0].to}</p>
+            <p className='flex-1/3 text-left text-light-gray'>Total paid {props.payees[0].to}</p>
+            <p className='flex-1/3 ml-40px text-left text-light-gray'>Total earned {props.payees[0].to}</p>
           </div>
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none ml-0' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />

@@ -36,9 +36,9 @@ const MainPage = props => (
         <div className='mb-20px rounded-8px'>
           {/* conditionally render the category display  */}
           {props.categoryDisplayName &&
-            <div className='bg-white border-grey rounded m-1 p-3'>
-              <h3>{props.categoryDisplayName}</h3>
-              <p className='text-sm'>{props.categoryDescription}</p>
+            <div className='bg-darkest-gray rounded mb-20px p-20px'>
+              <h2 className='mb-20px'>{props.categoryDisplayName}</h2>
+              <p>{props.categoryDescription}</p>
             </div>}
           <PostList data={props.filteredPosts} />
         </div>
