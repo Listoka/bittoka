@@ -16,16 +16,16 @@ class PublishPostModal extends React.Component {
         <hr className="border-brand-green border-2 hrModals mb-3"></hr>
         <div className='mb-2'>
         <Select
-          className="z-99 text-sm text-light-gray bg-input-background"
+          className="z-100 text-base"
           placeholder='Category'
           onChange={this.props.onCategorySelectChange}
           options={this.props.categories}
-          styles={this.props.styles}
-          theme={(theme) => ({ ...theme, borderRadius: 5, })}
+          styles={colourStyles}
+          theme={(theme) => ({ ...theme, borderRadius: 5 })}
           value={{
             value: this.props.categoryName,
             label: this.props.categoryDisplayName,
-            color: 'darkcyan'
+            color: '#D8D8D8'
           }}
           isDisabled={!this.props.isDraft}
         />
@@ -37,24 +37,20 @@ class PublishPostModal extends React.Component {
         <Select
           id='tagField'
           className='react-select-container'
-          classNamePrefix='rounded'
+          classNamePrefix='z-90 text-base'
           value={this.props.selectedTagObjects}
           onChange={this.props.onTagSelectChange}
           options={this.props.tags}
-          isMulti
+          isMulti={true}
           isClearable={true}
           placeholder='Tags'
           closeMenuOnSelect={false}
           components={makeAnimated()}
           styles={colourStyles}
-          theme={(theme) => ({
-            ...theme,
-            borderRadius: 5,
-          })}
+          theme={(theme) => ({...theme, borderRadius: 5 })}
         />
-        {/* <hr className="border-brand-green border-2 hrModals mb-3 mt-3"></hr> */}
 
-        <div className='border border-white my-2 text-light-gray bg-darkest-gray text-sm rounded pt-1 h-10 -pt-px pl-2'>
+        <div className='my-2 text-light-gray bg-darkest-gray text-sm rounded pt-1 h-10 -pt-px pl-2'>
         <div className='pt-px'></div><div className='pt-px'></div><div className='pt-px'></div>
           <label htmlFor='paywall-active-box'>Activate Paywall: 
           <input
@@ -67,7 +63,7 @@ class PublishPostModal extends React.Component {
           </label>
         </div>
           {this.props.isPaywallActive &&
-            <div className='w-full p-2 mb-2 text-sm rounded bg-darkest-gray text-light-gray border border-white'>
+            <div className='w-full p-2 mb-2 text-sm rounded bg-darkest-gray text-light-gray'>
               <label htmlFor='paywall-price'>Paywall Price:  $</label><span className='mr-0'></span>
               <input
                 className='bg-darkest-gray border border-brand-green outline-none rounded ml-2 text-right py-1 px-2 w-24 m-0 text-light-gray'

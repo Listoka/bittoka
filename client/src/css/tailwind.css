@@ -571,7 +571,7 @@ table {
 input {
   background-color: #39393a;
   border-width: 3px;
-  border-color: transparent;
+  border-color: #444;
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 10px;
@@ -743,6 +743,14 @@ input {
 
 .bg-alert-success {
   background-color: #ff3608;
+}
+
+.bg-modal-border {
+  background-color: #444;
+}
+
+.bg-mack-the-knife {
+  background-color: #444;
 }
 
 .bg-transparent {
@@ -1089,6 +1097,14 @@ input {
   background-color: #ff3608;
 }
 
+.hover\:bg-modal-border:hover {
+  background-color: #444;
+}
+
+.hover\:bg-mack-the-knife:hover {
+  background-color: #444;
+}
+
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -1431,6 +1447,14 @@ input {
 
 .focus\:bg-alert-success:focus {
   background-color: #ff3608;
+}
+
+.focus\:bg-modal-border:focus {
+  background-color: #444;
+}
+
+.focus\:bg-mack-the-knife:focus {
+  background-color: #444;
 }
 
 .focus\:bg-transparent:focus {
@@ -1849,6 +1873,14 @@ input {
   border-color: #ff3608;
 }
 
+.border-modal-border {
+  border-color: #444;
+}
+
+.border-mack-the-knife {
+  border-color: #444;
+}
+
 .border-transparent {
   border-color: transparent;
 }
@@ -2191,6 +2223,14 @@ input {
 
 .hover\:border-alert-success:hover {
   border-color: #ff3608;
+}
+
+.hover\:border-modal-border:hover {
+  border-color: #444;
+}
+
+.hover\:border-mack-the-knife:hover {
+  border-color: #444;
 }
 
 .hover\:border-transparent:hover {
@@ -2537,6 +2577,14 @@ input {
   border-color: #ff3608;
 }
 
+.focus\:border-modal-border:focus {
+  border-color: #444;
+}
+
+.focus\:border-mack-the-knife:focus {
+  border-color: #444;
+}
+
 .focus\:border-transparent:focus {
   border-color: transparent;
 }
@@ -2879,6 +2927,14 @@ input {
 
 .group:hover .group-hover\:border-alert-success {
   border-color: #ff3608;
+}
+
+.group:hover .group-hover\:border-modal-border {
+  border-color: #444;
+}
+
+.group:hover .group-hover\:border-mack-the-knife {
+  border-color: #444;
 }
 
 .group:hover .group-hover\:border-transparent {
@@ -6246,6 +6302,14 @@ input {
   color: #ff3608;
 }
 
+.text-modal-border {
+  color: #444;
+}
+
+.text-mack-the-knife {
+  color: #444;
+}
+
 .text-transparent {
   color: transparent;
 }
@@ -6590,6 +6654,14 @@ input {
   color: #ff3608;
 }
 
+.hover\:text-modal-border:hover {
+  color: #444;
+}
+
+.hover\:text-mack-the-knife:hover {
+  color: #444;
+}
+
 .hover\:text-transparent:hover {
   color: transparent;
 }
@@ -6932,6 +7004,14 @@ input {
 
 .focus\:text-alert-success:focus {
   color: #ff3608;
+}
+
+.focus\:text-modal-border:focus {
+  color: #444;
+}
+
+.focus\:text-mack-the-knife:focus {
+  color: #444;
 }
 
 .focus\:text-transparent:focus {
@@ -7680,6 +7760,14 @@ input {
   z-index: 50;
 }
 
+.z-90 {
+  z-index: 90;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
 .z-auto {
   z-index: auto;
 }
@@ -7773,6 +7861,14 @@ input {
 
   .sm\:bg-alert-success {
     background-color: #ff3608;
+  }
+
+  .sm\:bg-modal-border {
+    background-color: #444;
+  }
+
+  .sm\:bg-mack-the-knife {
+    background-color: #444;
   }
 
   .sm\:bg-transparent {
@@ -8119,6 +8215,14 @@ input {
     background-color: #ff3608;
   }
 
+  .sm\:hover\:bg-modal-border:hover {
+    background-color: #444;
+  }
+
+  .sm\:hover\:bg-mack-the-knife:hover {
+    background-color: #444;
+  }
+
   .sm\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -8461,6 +8565,14 @@ input {
 
   .sm\:focus\:bg-alert-success:focus {
     background-color: #ff3608;
+  }
+
+  .sm\:focus\:bg-modal-border:focus {
+    background-color: #444;
+  }
+
+  .sm\:focus\:bg-mack-the-knife:focus {
+    background-color: #444;
   }
 
   .sm\:focus\:bg-transparent:focus {
@@ -8871,6 +8983,14 @@ input {
     border-color: #ff3608;
   }
 
+  .sm\:border-modal-border {
+    border-color: #444;
+  }
+
+  .sm\:border-mack-the-knife {
+    border-color: #444;
+  }
+
   .sm\:border-transparent {
     border-color: transparent;
   }
@@ -9213,6 +9333,14 @@ input {
 
   .sm\:hover\:border-alert-success:hover {
     border-color: #ff3608;
+  }
+
+  .sm\:hover\:border-modal-border:hover {
+    border-color: #444;
+  }
+
+  .sm\:hover\:border-mack-the-knife:hover {
+    border-color: #444;
   }
 
   .sm\:hover\:border-transparent:hover {
@@ -9559,6 +9687,14 @@ input {
     border-color: #ff3608;
   }
 
+  .sm\:focus\:border-modal-border:focus {
+    border-color: #444;
+  }
+
+  .sm\:focus\:border-mack-the-knife:focus {
+    border-color: #444;
+  }
+
   .sm\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -9901,6 +10037,14 @@ input {
 
   .group:hover .sm\:group-hover\:border-alert-success {
     border-color: #ff3608;
+  }
+
+  .group:hover .sm\:group-hover\:border-modal-border {
+    border-color: #444;
+  }
+
+  .group:hover .sm\:group-hover\:border-mack-the-knife {
+    border-color: #444;
   }
 
   .group:hover .sm\:group-hover\:border-transparent {
@@ -13252,6 +13396,14 @@ input {
     color: #ff3608;
   }
 
+  .sm\:text-modal-border {
+    color: #444;
+  }
+
+  .sm\:text-mack-the-knife {
+    color: #444;
+  }
+
   .sm\:text-transparent {
     color: transparent;
   }
@@ -13596,6 +13748,14 @@ input {
     color: #ff3608;
   }
 
+  .sm\:hover\:text-modal-border:hover {
+    color: #444;
+  }
+
+  .sm\:hover\:text-mack-the-knife:hover {
+    color: #444;
+  }
+
   .sm\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -13938,6 +14098,14 @@ input {
 
   .sm\:focus\:text-alert-success:focus {
     color: #ff3608;
+  }
+
+  .sm\:focus\:text-modal-border:focus {
+    color: #444;
+  }
+
+  .sm\:focus\:text-mack-the-knife:focus {
+    color: #444;
   }
 
   .sm\:focus\:text-transparent:focus {
@@ -14686,6 +14854,14 @@ input {
     z-index: 50;
   }
 
+  .sm\:z-90 {
+    z-index: 90;
+  }
+
+  .sm\:z-100 {
+    z-index: 100;
+  }
+
   .sm\:z-auto {
     z-index: auto;
   }
@@ -14765,6 +14941,14 @@ input {
 
   .md\:bg-alert-success {
     background-color: #ff3608;
+  }
+
+  .md\:bg-modal-border {
+    background-color: #444;
+  }
+
+  .md\:bg-mack-the-knife {
+    background-color: #444;
   }
 
   .md\:bg-transparent {
@@ -15111,6 +15295,14 @@ input {
     background-color: #ff3608;
   }
 
+  .md\:hover\:bg-modal-border:hover {
+    background-color: #444;
+  }
+
+  .md\:hover\:bg-mack-the-knife:hover {
+    background-color: #444;
+  }
+
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -15453,6 +15645,14 @@ input {
 
   .md\:focus\:bg-alert-success:focus {
     background-color: #ff3608;
+  }
+
+  .md\:focus\:bg-modal-border:focus {
+    background-color: #444;
+  }
+
+  .md\:focus\:bg-mack-the-knife:focus {
+    background-color: #444;
   }
 
   .md\:focus\:bg-transparent:focus {
@@ -15863,6 +16063,14 @@ input {
     border-color: #ff3608;
   }
 
+  .md\:border-modal-border {
+    border-color: #444;
+  }
+
+  .md\:border-mack-the-knife {
+    border-color: #444;
+  }
+
   .md\:border-transparent {
     border-color: transparent;
   }
@@ -16205,6 +16413,14 @@ input {
 
   .md\:hover\:border-alert-success:hover {
     border-color: #ff3608;
+  }
+
+  .md\:hover\:border-modal-border:hover {
+    border-color: #444;
+  }
+
+  .md\:hover\:border-mack-the-knife:hover {
+    border-color: #444;
   }
 
   .md\:hover\:border-transparent:hover {
@@ -16551,6 +16767,14 @@ input {
     border-color: #ff3608;
   }
 
+  .md\:focus\:border-modal-border:focus {
+    border-color: #444;
+  }
+
+  .md\:focus\:border-mack-the-knife:focus {
+    border-color: #444;
+  }
+
   .md\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -16893,6 +17117,14 @@ input {
 
   .group:hover .md\:group-hover\:border-alert-success {
     border-color: #ff3608;
+  }
+
+  .group:hover .md\:group-hover\:border-modal-border {
+    border-color: #444;
+  }
+
+  .group:hover .md\:group-hover\:border-mack-the-knife {
+    border-color: #444;
   }
 
   .group:hover .md\:group-hover\:border-transparent {
@@ -20244,6 +20476,14 @@ input {
     color: #ff3608;
   }
 
+  .md\:text-modal-border {
+    color: #444;
+  }
+
+  .md\:text-mack-the-knife {
+    color: #444;
+  }
+
   .md\:text-transparent {
     color: transparent;
   }
@@ -20588,6 +20828,14 @@ input {
     color: #ff3608;
   }
 
+  .md\:hover\:text-modal-border:hover {
+    color: #444;
+  }
+
+  .md\:hover\:text-mack-the-knife:hover {
+    color: #444;
+  }
+
   .md\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -20930,6 +21178,14 @@ input {
 
   .md\:focus\:text-alert-success:focus {
     color: #ff3608;
+  }
+
+  .md\:focus\:text-modal-border:focus {
+    color: #444;
+  }
+
+  .md\:focus\:text-mack-the-knife:focus {
+    color: #444;
   }
 
   .md\:focus\:text-transparent:focus {
@@ -21678,6 +21934,14 @@ input {
     z-index: 50;
   }
 
+  .md\:z-90 {
+    z-index: 90;
+  }
+
+  .md\:z-100 {
+    z-index: 100;
+  }
+
   .md\:z-auto {
     z-index: auto;
   }
@@ -21757,6 +22021,14 @@ input {
 
   .lg\:bg-alert-success {
     background-color: #ff3608;
+  }
+
+  .lg\:bg-modal-border {
+    background-color: #444;
+  }
+
+  .lg\:bg-mack-the-knife {
+    background-color: #444;
   }
 
   .lg\:bg-transparent {
@@ -22103,6 +22375,14 @@ input {
     background-color: #ff3608;
   }
 
+  .lg\:hover\:bg-modal-border:hover {
+    background-color: #444;
+  }
+
+  .lg\:hover\:bg-mack-the-knife:hover {
+    background-color: #444;
+  }
+
   .lg\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -22445,6 +22725,14 @@ input {
 
   .lg\:focus\:bg-alert-success:focus {
     background-color: #ff3608;
+  }
+
+  .lg\:focus\:bg-modal-border:focus {
+    background-color: #444;
+  }
+
+  .lg\:focus\:bg-mack-the-knife:focus {
+    background-color: #444;
   }
 
   .lg\:focus\:bg-transparent:focus {
@@ -22855,6 +23143,14 @@ input {
     border-color: #ff3608;
   }
 
+  .lg\:border-modal-border {
+    border-color: #444;
+  }
+
+  .lg\:border-mack-the-knife {
+    border-color: #444;
+  }
+
   .lg\:border-transparent {
     border-color: transparent;
   }
@@ -23197,6 +23493,14 @@ input {
 
   .lg\:hover\:border-alert-success:hover {
     border-color: #ff3608;
+  }
+
+  .lg\:hover\:border-modal-border:hover {
+    border-color: #444;
+  }
+
+  .lg\:hover\:border-mack-the-knife:hover {
+    border-color: #444;
   }
 
   .lg\:hover\:border-transparent:hover {
@@ -23543,6 +23847,14 @@ input {
     border-color: #ff3608;
   }
 
+  .lg\:focus\:border-modal-border:focus {
+    border-color: #444;
+  }
+
+  .lg\:focus\:border-mack-the-knife:focus {
+    border-color: #444;
+  }
+
   .lg\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -23885,6 +24197,14 @@ input {
 
   .group:hover .lg\:group-hover\:border-alert-success {
     border-color: #ff3608;
+  }
+
+  .group:hover .lg\:group-hover\:border-modal-border {
+    border-color: #444;
+  }
+
+  .group:hover .lg\:group-hover\:border-mack-the-knife {
+    border-color: #444;
   }
 
   .group:hover .lg\:group-hover\:border-transparent {
@@ -27236,6 +27556,14 @@ input {
     color: #ff3608;
   }
 
+  .lg\:text-modal-border {
+    color: #444;
+  }
+
+  .lg\:text-mack-the-knife {
+    color: #444;
+  }
+
   .lg\:text-transparent {
     color: transparent;
   }
@@ -27580,6 +27908,14 @@ input {
     color: #ff3608;
   }
 
+  .lg\:hover\:text-modal-border:hover {
+    color: #444;
+  }
+
+  .lg\:hover\:text-mack-the-knife:hover {
+    color: #444;
+  }
+
   .lg\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -27922,6 +28258,14 @@ input {
 
   .lg\:focus\:text-alert-success:focus {
     color: #ff3608;
+  }
+
+  .lg\:focus\:text-modal-border:focus {
+    color: #444;
+  }
+
+  .lg\:focus\:text-mack-the-knife:focus {
+    color: #444;
   }
 
   .lg\:focus\:text-transparent:focus {
@@ -28670,6 +29014,14 @@ input {
     z-index: 50;
   }
 
+  .lg\:z-90 {
+    z-index: 90;
+  }
+
+  .lg\:z-100 {
+    z-index: 100;
+  }
+
   .lg\:z-auto {
     z-index: auto;
   }
@@ -28749,6 +29101,14 @@ input {
 
   .xl\:bg-alert-success {
     background-color: #ff3608;
+  }
+
+  .xl\:bg-modal-border {
+    background-color: #444;
+  }
+
+  .xl\:bg-mack-the-knife {
+    background-color: #444;
   }
 
   .xl\:bg-transparent {
@@ -29095,6 +29455,14 @@ input {
     background-color: #ff3608;
   }
 
+  .xl\:hover\:bg-modal-border:hover {
+    background-color: #444;
+  }
+
+  .xl\:hover\:bg-mack-the-knife:hover {
+    background-color: #444;
+  }
+
   .xl\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -29437,6 +29805,14 @@ input {
 
   .xl\:focus\:bg-alert-success:focus {
     background-color: #ff3608;
+  }
+
+  .xl\:focus\:bg-modal-border:focus {
+    background-color: #444;
+  }
+
+  .xl\:focus\:bg-mack-the-knife:focus {
+    background-color: #444;
   }
 
   .xl\:focus\:bg-transparent:focus {
@@ -29847,6 +30223,14 @@ input {
     border-color: #ff3608;
   }
 
+  .xl\:border-modal-border {
+    border-color: #444;
+  }
+
+  .xl\:border-mack-the-knife {
+    border-color: #444;
+  }
+
   .xl\:border-transparent {
     border-color: transparent;
   }
@@ -30189,6 +30573,14 @@ input {
 
   .xl\:hover\:border-alert-success:hover {
     border-color: #ff3608;
+  }
+
+  .xl\:hover\:border-modal-border:hover {
+    border-color: #444;
+  }
+
+  .xl\:hover\:border-mack-the-knife:hover {
+    border-color: #444;
   }
 
   .xl\:hover\:border-transparent:hover {
@@ -30535,6 +30927,14 @@ input {
     border-color: #ff3608;
   }
 
+  .xl\:focus\:border-modal-border:focus {
+    border-color: #444;
+  }
+
+  .xl\:focus\:border-mack-the-knife:focus {
+    border-color: #444;
+  }
+
   .xl\:focus\:border-transparent:focus {
     border-color: transparent;
   }
@@ -30877,6 +31277,14 @@ input {
 
   .group:hover .xl\:group-hover\:border-alert-success {
     border-color: #ff3608;
+  }
+
+  .group:hover .xl\:group-hover\:border-modal-border {
+    border-color: #444;
+  }
+
+  .group:hover .xl\:group-hover\:border-mack-the-knife {
+    border-color: #444;
   }
 
   .group:hover .xl\:group-hover\:border-transparent {
@@ -34228,6 +34636,14 @@ input {
     color: #ff3608;
   }
 
+  .xl\:text-modal-border {
+    color: #444;
+  }
+
+  .xl\:text-mack-the-knife {
+    color: #444;
+  }
+
   .xl\:text-transparent {
     color: transparent;
   }
@@ -34572,6 +34988,14 @@ input {
     color: #ff3608;
   }
 
+  .xl\:hover\:text-modal-border:hover {
+    color: #444;
+  }
+
+  .xl\:hover\:text-mack-the-knife:hover {
+    color: #444;
+  }
+
   .xl\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -34914,6 +35338,14 @@ input {
 
   .xl\:focus\:text-alert-success:focus {
     color: #ff3608;
+  }
+
+  .xl\:focus\:text-modal-border:focus {
+    color: #444;
+  }
+
+  .xl\:focus\:text-mack-the-knife:focus {
+    color: #444;
   }
 
   .xl\:focus\:text-transparent:focus {
@@ -35660,6 +36092,14 @@ input {
 
   .xl\:z-50 {
     z-index: 50;
+  }
+
+  .xl\:z-90 {
+    z-index: 90;
+  }
+
+  .xl\:z-100 {
+    z-index: 100;
   }
 
   .xl\:z-auto {

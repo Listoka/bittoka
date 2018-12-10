@@ -9,8 +9,8 @@ html,body {
 body {
   background: #121212;
   font-family: 'Montserrat', sans-serif;
-  color: #333333;
-  /* overflow: hidden; */
+  /*color: #333333;
+   overflow: hidden; */
   margin: 0;
 }
 /* Need to keep */
@@ -318,12 +318,13 @@ div.borderXwidth:hover:before, div.borderXwidth:hover:after
   min-width: 180px;
 }
 
+/*
 .categorySelect {
   z-index: 99;
   font-size: 14px;
   color: #d8d8d8;
   background: #39393A;
-}
+}*/
 
 
 .createBtn {
