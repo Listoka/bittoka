@@ -11,13 +11,14 @@ const MainPage = props => (
 
   <div className='absolute w-full'>
 
-    <div className='container w-full'>
-      <div className='flex'>
-        <MainWrapper styles='w-full'>
-          <IntroHeader />
-        </MainWrapper>
-      </div>
-    </div>
+    {!props.categoryDisplayName &&
+      <div className='container w-full'>
+        <div className='flex'>
+          <MainWrapper styles='w-full'>
+            <IntroHeader />
+          </MainWrapper>
+        </div>
+      </div>}
 
     <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto '>
 
@@ -26,20 +27,20 @@ const MainPage = props => (
           {/* conditionally render the category display  */}
           {props.categoryDisplayName &&
             <React.Fragment>
-            <div className='bg-darkest-gray rounded mb-5 p-5'>
-              <div className='mb-2 text-header text-3xl'>{props.categoryDisplayName}</div>
-              <hr className="border-brand-green border hrModals"></hr>
-              <p className='leading-normal mb-2'>{props.categoryDescription}</p>
-              <div>
-                <AuthUserContext.Consumer>
-                  {authUser => authUser ?
-                    <Link to={{ pathname: `/editor` }}>
-                      <B btnType={'secondary'} >Create Post</B>
-                    </Link> : null}
-                </AuthUserContext.Consumer>
+              <div className='bg-darkest-gray rounded mb-5 p-5'>
+                <div className='mb-2 text-header text-3xl'>{props.categoryDisplayName}</div>
+                <hr className="border-brand-green border hrModals"></hr>
+                <p className='leading-normal mb-2'>{props.categoryDescription}</p>
+                <div>
+                  <AuthUserContext.Consumer>
+                    {authUser => authUser ?
+                      <Link to={{ pathname: `/editor` }}>
+                        <B btnType={'secondary'} >Create Post</B>
+                      </Link> : null}
+                  </AuthUserContext.Consumer>
+                </div>
               </div>
-            </div>
-            
+
             </React.Fragment>
           }
           <PostList data={props.filteredPosts} />
