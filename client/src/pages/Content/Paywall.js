@@ -10,7 +10,7 @@ const Paywall = props => {
           return (
             <React.Fragment>
               <p className='pl-1 my-4'>{props.teaser}</p>
-              <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
+              <hr className="mx-1 border-medium-gray border-2 hrModals"></hr>
               <p className='text-xs px-1'>You must log in to purchase the rest of this content.</p>
             </React.Fragment>
           )
@@ -28,7 +28,7 @@ const Paywall = props => {
         return (
           <div className='font-body text-base'>
             <p className='pl-1 my-4'>{props.teaser}</p>
-            <hr className="mx-1 border-brand-green border hrModals"></hr>
+            <hr className="mx-1 border-medium-gray border-2 hrModals"></hr>
             <div className='pl-1'>
               <p className='text-xs mb-2'>Complete Payment to unlock this content.</p>
               {/* and purchase button */}

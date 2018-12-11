@@ -77,7 +77,7 @@ class JoinModal extends React.Component {
         showOk={false}
       >
         <div className="text-light-gray font-header text-2xl text-center">Join Listoka</div>
-        <hr className="border-brand-green border-2 hrModals"></hr>
+        <hr className="border-brand-green border hrModals"></hr>
 
         <div className=''>
         <form onSubmit={this.handleSubmit}>
@@ -149,7 +149,6 @@ class JoinModal extends React.Component {
             />
             </div>
           </div>
-          <div className='-mb-1'></div>
           <B disabled={isInvalid} btnType={'secondary'}>Sign Up</B>
           {/* <Button disabled={isInvalid} className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Sign Up</Button> */}
           {error ? <p>Error: {error.message}</p> : null}

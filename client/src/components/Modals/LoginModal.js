@@ -43,7 +43,7 @@ class LoginModal extends React.Component {
         {...this.props}
       >
         <div className="text-light-gray font-header text-2xl text-center">Login</div>
-        <hr className="border-brand-green border-2 hrModals"></hr>
+        <hr className="border-brand-green border hrModals"></hr>
 
             <form onSubmit={this.handleSubmit}>
               <div className='text-sm font-body text-light-gray'>
@@ -72,7 +72,6 @@ class LoginModal extends React.Component {
                 />
                 </div>
               </div>
-              <div className='-mb-1'></div>
               <B btnType={'secondary'}>Submit</B>
               {/* <Button className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}></Button> */}
               {error ? <p className='mt-2 text-light-gray'>{error.message}</p> : null}

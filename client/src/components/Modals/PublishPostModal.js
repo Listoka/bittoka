@@ -3,7 +3,7 @@ import ModalWrapper from './ModalWrapper';
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import colourStyles from './colourStyles';
-import { TextArea, Button, B } from '../Widgets'
+import { TextArea, B } from '../Widgets'
 
 class PublishPostModal extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class PublishPostModal extends React.Component {
         width={'w-3/5'}
       >
         <div className='font-header text-light-gray text-2xl text-center'>Publish Post Settings</div>
-        <hr className="border-mack-the-knife border hrModals mb-5"></hr>
+        <hr className="border-brand-green border hrModals mb-5"></hr>
         <div className='mb-5'>
           <p className='mb-2 text-sm text-light-gray text-text-center'>Category:</p>
           <Select
@@ -93,7 +93,7 @@ class PublishPostModal extends React.Component {
           {!this.props.title &&
             <p className='text-xs text-red text-center mb-5'>Your post must have a title in order to publish</p>}
           {!(this.props.postLength > 144) &&
-            <p className='text-xs text-red text-center'>Your post is too short to publish!</p>}
+            <p className='text-xs text-red text-center mb-2'>Your post is too short to publish!</p>}
         </div>
         {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
         <div className='text-right'>

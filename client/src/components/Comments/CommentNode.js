@@ -15,9 +15,9 @@ const CommentNode = props => {
     return (
       <div
         onClick={props.toggleCollapse}
-        className='text-light-gray text-sm bg-darkest-gray border-body-background border-2 p-1 m-1 cursor-pointer hover:text-brand-green'
+        className='text-light-gray text-sm bg-darkest-gray border-body-background border-2 p-1 m-1 cursor-pointer'
       >
-        <p>{numVotes} {authorName}</p>
+        <p className='hover:text-brand-green'>{numVotes} {authorName}</p>
       </div>
     )
   }

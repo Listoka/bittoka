@@ -8,9 +8,10 @@ const SBTagFilter = props => {
 
   return (
     <SideBarSection>
-      <h3 className='text-left mb-20px'>Tags</h3>
+      <div className='text-left text-xl'>Tags</div>
+      <hr className="border-medium-gray border-2 hrModals"></hr>
       {props.tags.sort().map(tag => (
-        <li className='rounded-8px mb-10px py-2px list-reset overflow-hidden pl-10px cursor-pointer  tagLinkInactive' key={tag} onClick={(event) => props.toggleSelectTag(event, tag)}>
+        <li className='rounded-lg text-sm mb-2 py-2px list-reset overflow-hidden cursor-pointer tagLinkInactive' key={tag} onClick={(event) => props.toggleSelectTag(event, tag)}>
           {tag}
         </li>
       ))}

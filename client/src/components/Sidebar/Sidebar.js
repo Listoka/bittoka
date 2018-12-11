@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sidebar = props => {
   return (
-    <div className='rounded-8px bg-darkest-gray mb-20px p-20px'>
+    <div className='rounded-lg bg-darkest-gray mb-5 p-5'>
       {props.children}
     </div>
   )

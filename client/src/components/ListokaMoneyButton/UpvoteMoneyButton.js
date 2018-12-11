@@ -12,7 +12,7 @@ const UpvoteMoneyButton = props => {
         return (
           authUser &&
           <React.Fragment>
-          <hr className="mx-1 border-brand-green border-2 hrModals"></hr>
+          <hr className="mx-1 border-2 border-medium-gray hrModals"></hr>
           <div className=''>
             {voted
               ? <p className='text-xs mx-1'>Thanks for voting!</p>
