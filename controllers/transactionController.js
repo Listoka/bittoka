@@ -27,7 +27,7 @@ module.exports = {
 
   update: (req, res) => {
     db.Transaction
-      .findOneAndUpdate({_id: req.params.id}, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(result => res.json(result))
       .catch(err => res.status(418).json(err))
   },
@@ -41,14 +41,18 @@ module.exports = {
 
   totalAmtPaid: (req, res) => {
     db.Transaction
-      .aggregate( [{ $group: { _id: {[req.params.userFieldName]: mongoose.Types.ObjectId(req.params.uid) }, 
-        totalPaid: { $sum: {"$arrayElemAt": ["$txOutputs.amount", 1] }}}} // txOutputs[0]=listokaAcct, txOutputs[1]=userAcct
-        ])
+      .aggregate([{
+        $group: {
+          _id: { [req.params.userFieldName]: mongoose.Types.ObjectId(req.params.uid) },
+          totalPaid: { $sum: { "$arrayElemAt": ["$txOutputs.amount", 1] } }
+        }
+      } // txOutputs[0]=listokaAcct, txOutputs[1]=userAcct
+      ])
       .then(result => res.json(result))
       .catch(err => res.status(418).json(err))
   },
 
   totalReceivedByUser: (req, res) => {
-      
+
   }
 }
