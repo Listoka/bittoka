@@ -3,9 +3,9 @@ import React from "react";
 
 export const Transactions = props => (
   <React.Fragment>
-    <div className='pt-10px pr-10px pl-2'>
-      <p>Total paid to other users to date: ${props.amtPaid}
-      <br/>Total earned from other users to date: ${props.amtEarned}</p>
+    <div className='w-full bg-darkest-gray p-5'>
+      <p className='mb-2'>Total paid to other users: <span className='text-brand-green'>${props.amtPaid}</span></p>
+      <p>Total earned from other users: <span className='text-brand-green'>${props.amtEarned}</span></p>
     </div>
   </React.Fragment>
 );

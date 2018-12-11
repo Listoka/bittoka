@@ -6,25 +6,24 @@ import { EditButton, DeleteIcon } from '../Widgets';
 export const DraftListItem = props => {
     return (
         <React.Fragment>
-            <p className='font-normal mb-1 text-base font-bold'>Title: {props.title}</p>
-            <p className='font-normal mb-1 text-sm'><strong>Updated: </strong> 
-              <Moment fromNow>{props.updatedAt}</Moment> in <Link to={`/categories/${props.categoryName}`}>
+          <div className='border-b border-medium-gray mt-2'>
+            <p className='mb-1 text-base'>Title: {props.title}</p>
+            <p className='mb-3 text-xs'>Updated: <Moment fromNow>{props.updatedAt}</Moment> in 
+              <Link to={`/categories/${props.categoryName}`}>
                 <span className={`${props.categoryName}Flair flair`}> {props.categoryName}</span>
               </Link>
             </p>
-            <br></br>
-            <div className='mb-8'>
-              <span className="float-right">
+            <div className='mb-2'>
+              <span className="">
                 <span className='mr-2'>
-                  <EditButton text='Edit Post' authorId={props.author} postId={props.id}/>
+                  <EditButton styles={'hover:text-brand-green'}text='Edit Post' authorId={props.author} postId={props.id}/>
                 </span>
-                  |
-                <a className='ml-2' onClick={(event) => props.removeDraft(event, props.index, props.id)}>
-                  <DeleteIcon text='Delete'/>
-                </a>
+                <span className='ml-2' >
+                  <DeleteIcon styles={'hover:text-brand-green'} onClick={(event) => props.removeDraft(event, props.index, props.id)} text='Delete'/>
+                </span>
               </span>
             </div>
-            <hr/>
+            </div>
         </React.Fragment>
     );
 };

@@ -8,20 +8,20 @@ import AuthUserContext from "../../components/AuthUserSession/AuthUserContext";
 export const ProfilePage = props => (
 
   <div className='absolute w-full mt-5'>
-    <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto '>
+    <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto'>
 
       <MainWrapper styles='block sm:block md:block lg:w-2/3 xl:w-2/3'>
-        <div className='mb-5 p-5 rounded-8px bg-darkest-gray'>
+        <div className='mb-5 p-5 rounded-lg bg-darkest-gray'>
           <div className={'mb-2'}>
-            <div className='text-3xl font-header'>{props.authorName}</div>
+            <div className='text-3xl font-header'>{props.authorName}'s Profile</div>
           </div>
-          <hr className="border-brand-green border hrModals mb-2"></hr>
+          <hr className="border-brand-green border hrModals mb-3"></hr>
           <div className='flex text-left mb-2'>
             <p className='flex-1/3 text-left text-light-gray'>Total paid {props.payees[0].to}</p>
             <p className='flex-1/3 ml-8 text-left text-light-gray'>Total earned {props.payees[0].to}</p>
           </div>
           <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none ml-0 text-sm' text={'View Posts'} onClick={(e) => props.switchView(e, 'POSTS')} />
-          <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none text-sm' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
+          <Button className='btn btn-primary btn-primary:hover btn-primary:active outline-none text-sm ml-1' text={'View Comments'} onClick={(e) => props.switchView(e, 'COMMENTS')} />
         </div>
         <div className='flex flex-col'>
           <ProfileViewConductor

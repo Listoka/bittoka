@@ -1,5 +1,5 @@
 import React from "react";
-import { MainWrapper, Button } from '../../components/Widgets';
+import { B } from '../../components/Widgets';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import AccountViewConductor from './AccountViewConductor';
 import { DraftListItem } from '../../components/List/DraftListItem';
@@ -10,28 +10,37 @@ import { List } from '../../components/List';
 const AccountPage = props => {
 
   const { switchView, drafts, removeDraft, ...conductorProps } = props
+  
   return (
-
-    <div className='p-0 m-0 w-full frame'>
-      <div className='w-full flex mx-0'>
-        <MainWrapper styles='w-4/5'>
-          <div className='w-full flex mx-0'>
-            <Button text='Settings' onClick={(e) => switchView(e, 'SETTINGS')} />
-            <Button text='Posts' onClick={(e) => switchView(e, 'POSTS')} />
-            <Button text='Transactions' onClick={(e) => switchView(e, 'TRANSACTIONS')} />
+<div className='absolute w-full mt-5'>
+    <div className='container w-full flex mx-auto'>
+        <div className='w-2/3 px-10px'>
+          <div className='mx-0 mb-2 p-5 rounded-lg bg-darkest-gray'>
+            <div className='mb-3'>
+              <div className='text-3xl font-header'>{props.userName}</div>
+            </div>
+            <hr className="border-brand-green border hrModals mb-2"></hr>
+            <div className='w-full flex'>
+              <B btnType={'primary'} onClick={(e) => switchView(e, 'SETTINGS')}>Settings</B><span className='mr-1'/>
+              <B btnType={'primary'} onClick={(e) => switchView(e, 'POSTS')} >Posts</B><span className='mr-1'/>
+              <B btnType={'primary'} onClick={(e) => switchView(e, 'TRANSACTIONS')} >Transactions</B>
+            </div>
           </div>
-          <hr />
-          <AccountViewConductor {...conductorProps} />
-        </MainWrapper>
-        <MainWrapper styles='w-1/5'>
+          <div className='flex flex-col'>
+            <AccountViewConductor {...conductorProps} />
+          </div>
+        </div>
+        <div className='w-1/3 px-10px'>
           <Sidebar>
-            <h2 className='font-header text-center'>Your drafts</h2>
-            <hr className='h-px' />
+            <div className='mb-3'>
+              <div className='font-header text-3xl text-center'>Your drafts</div>
+            </div>
+            <hr className="border-brand-green border hrModals mb-3"></hr>
             <DraftsList data={drafts} removeDraft={removeDraft} />
           </Sidebar>
-        </MainWrapper>
+        </div>
       </div>
-    </div>
+      </div>
   )
 };
 

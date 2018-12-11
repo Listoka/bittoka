@@ -126,7 +126,7 @@
     }
 
     .btn-secondary:active {
-        @apply bg-brand-green text-light-gray outline-none
+        @apply bg-brand-green text-light-gray outline-none 
     }
 
     .btn-nav {
@@ -138,7 +138,7 @@
     }
 
     .btn-nav:active {
-      @apply bg-brand-green text-light-gray outline-none
+      @apply bg-brand-green text-light-gray outline-none rounded-20px
     }
     
  /**

@@ -30,9 +30,9 @@ const Paywall = props => {
             <p className='pl-1 my-4'>{props.teaser}</p>
             <hr className="mx-1 border-medium-gray border-2 hrModals"></hr>
             <div className='pl-1'>
-              <p className='text-xs mb-2'>Complete Payment to unlock this content.</p>
+              <p className='text-xs mb-3'>Complete Payment to unlock this content.</p>
               {/* and purchase button */}
-              <div className='flex'>
+              <div className='flex mb-1'>
                 <ListokaMoneyButton
                   payVal={props.paywallCost}
                   paymentSuccessCbk={props.afterPurchasePayment}

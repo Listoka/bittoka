@@ -21,6 +21,7 @@ const ModalWrapper = props => {
     ) : null;
   return (
     <React.Fragment>
+      <div>
       <div id="overlay"></div>
       <div className={`${props.width} modalTop bg-body-background ml-auto mr-auto p-5 border border-mack-the-knife pin-x absolute rounded-lg shadow-lg mt-32 z-10 mb-3`} onClick={handleBackgroundClick}>
         <div>
@@ -28,6 +29,7 @@ const ModalWrapper = props => {
         </div>
         {props.children}
         {okButton}
+      </div>
       </div>
     </React.Fragment>
   );
