@@ -19,4 +19,13 @@ router.route('/transactions/:id')
 router.route('/transactions/paid/:userFieldName/:uid')
   .get(transactionController.totalAmtPaid)
 
+router.route('/users/:userId/tx/from')
+  .get((req, res) => {
+    db.Transaction.find({ userId: req.params.userId })
+      .then(dbTxns => {
+        res.json(dbTxns)
+      })
+      .catch(err => res.status(500).json(err))
+  })
+
 module.exports = router
