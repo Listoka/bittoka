@@ -1,14 +1,14 @@
-import chroma from 'chroma-js';
+// import chroma from 'chroma-js';
 
 const colourStyles = {
   control: styles => ({ ...styles, backgroundColor: '#39393A', borderColor: '#444' }),
-  menu: styles => ({ ...styles, backgroundColor: '#39393A'}),
+  menu: styles => ({ ...styles, backgroundColor: '#39393A' }),
   menuList: styles => ({ ...styles, backgroundColor: '#39393A' }),
-  singleValue: (styles, {isDisabled, isFocused, isSelected }) => {
+  singleValue: (styles, { isDisabled, isFocused, isSelected }) => {
     return {
-    ...styles, 
-    backgroundColor: '#39393A', 
-    color: isDisabled
+      ...styles,
+      backgroundColor: '#39393A',
+      color: isDisabled
         ? '#515356'
         : isSelected
           ? '#D8D8D8'
@@ -18,14 +18,14 @@ const colourStyles = {
     };
   },
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    const color =  "#ccc"; //chroma(data.color);
+    // const color =  "#ccc"; //chroma(data.color);
     return {
       ...styles,
       backgroundColor: isDisabled
         ? '#39393A'
-        : isSelected 
+        : isSelected
           ? '#030303'
-          : isFocused 
+          : isFocused
             ? '#1B1B1B' //color.alpha(0.1).css() 
             : '#39393A',
       color: isDisabled
@@ -35,13 +35,13 @@ const colourStyles = {
           : isFocused
             ? '#D8D8D8'
             : '#D8D8D8',
-      cursor: isDisabled 
-        ? 'not-allowed' 
+      cursor: isDisabled
+        ? 'not-allowed'
         : 'default',
     };
   },
   multiValue: (styles, { data }) => {
-    const color = chroma(data.color);
+    // const color = chroma(data.color);
     return {
       ...styles,
       backgroundColor: 'color.alpha(0.1).css()',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { firebase, auth } from '../../firebase'
 import axios from 'axios'
-import { B, Button } from '../Widgets';
+import { B } from '../Widgets';
 
 import ModalWrapper from './ModalWrapper';
 
@@ -80,82 +80,82 @@ class JoinModal extends React.Component {
         <hr className="border-brand-green border hrModals"></hr>
 
         <div className=''>
-        <form onSubmit={this.handleSubmit}>
-          <div className='text-sm font-body text-light-gray'>
-            <label htmlFor='username'>Username</label>
-            <div className='-ml-2 mr-2'>
-            <input
-              value={username}
-              name='username'
-              onChange={this.handleChange}
-              type='text'
-              className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
-              placeholder='Username'
-            />
+          <form onSubmit={this.handleSubmit}>
+            <div className='text-sm font-body text-light-gray'>
+              <label htmlFor='username'>Username</label>
+              <div className='-ml-2 mr-2'>
+                <input
+                  value={username}
+                  name='username'
+                  onChange={this.handleChange}
+                  type='text'
+                  className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
+                  placeholder='Username'
+                />
+              </div>
             </div>
-          </div>
-          <div className='text-sm font-body text-light-gray'>
-            <label htmlFor='email'>Email</label>
-            <div className='-ml-2 mr-2'>
-            <input
-              value={email}
-              name='email'
-              onChange={this.handleChange}
-              type='email'
-              className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
-              placeholder='your@email.com'
-            />
+            <div className='text-sm font-body text-light-gray'>
+              <label htmlFor='email'>Email</label>
+              <div className='-ml-2 mr-2'>
+                <input
+                  value={email}
+                  name='email'
+                  onChange={this.handleChange}
+                  type='email'
+                  className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
+                  placeholder='your@email.com'
+                />
+              </div>
             </div>
-          </div>
-          <div className='text-sm font-body text-light-gray'>
-            <label htmlFor='moneyBtnId'>MoneyButton User Number</label>
-            <div className='-ml-2 mr-2'>
-            <input
-              value={moneyBtnId}
-              name='moneyBtnId'
-              onChange={this.handleChange}
-              type='moneyBtnId'
-              className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
-              placeholder='Example: 1111'
-            />
-            <div className='text-xs ml-2 mb-2'>No MoneyButton account? Click <a className='text-brand-green cursor-pointer no-underline' href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here </a>to create one</div>
-            {/* Todo: Add a tooltip that explains why we need them to create one */}
+            <div className='text-sm font-body text-light-gray'>
+              <label htmlFor='moneyBtnId'>MoneyButton User Number</label>
+              <div className='-ml-2 mr-2'>
+                <input
+                  value={moneyBtnId}
+                  name='moneyBtnId'
+                  onChange={this.handleChange}
+                  type='moneyBtnId'
+                  className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
+                  placeholder='Example: 1111'
+                />
+                <div className='text-xs ml-2 mb-2'>No MoneyButton account? Click <a className='text-brand-green cursor-pointer no-underline' href="https://www.moneybutton.com/register" target="_blank" rel="noopener noreferrer">here </a>to create one</div>
+                {/* Todo: Add a tooltip that explains why we need them to create one */}
+              </div>
+              <hr className="border-brand-green border-2 hrModals"></hr>
             </div>
-            <hr className="border-brand-green border-2 hrModals"></hr>
-          </div>
-          <div className='text-sm font-body text-light-gray'>
-            <label htmlFor='passwordOne'>Password</label>
-            <div className='-ml-2 mr-2'>
-            <input
-              value={passwordOne}
-              name='passwordOne'
-              onChange={this.handleChange}
-              type='password'
-              className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
-              placeholder='Password'
-            />
+            <div className='text-sm font-body text-light-gray'>
+              <label htmlFor='passwordOne'>Password</label>
+              <div className='-ml-2 mr-2'>
+                <input
+                  value={passwordOne}
+                  name='passwordOne'
+                  onChange={this.handleChange}
+                  type='password'
+                  className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
+                  placeholder='Password'
+                />
+              </div>
             </div>
-          </div>
-          <div className='text-sm font-body text-light-gray'>
-            <label htmlFor='passwordTwo'>Confirm Password</label>
-            <div className='-ml-2 mr-2'>
-            <input
-              value={passwordTwo}
-              name='passwordTwo'
-              onChange={this.handleChange}
-              type='password'
-              className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
-              placeholder='Confirm Password'
-            />
+            <div className='text-sm font-body text-light-gray'>
+              <label htmlFor='passwordTwo'>Confirm Password</label>
+              <div className='-ml-2 mr-2'>
+                <input
+                  value={passwordTwo}
+                  name='passwordTwo'
+                  onChange={this.handleChange}
+                  type='password'
+                  className='text-light-gray border bg-input-background ml-2 outline-none focus:border-brand-green focus:border-0 mt-2 w-full'
+                  placeholder='Confirm Password'
+                />
+              </div>
             </div>
-          </div>
-          <B disabled={isInvalid} btnType={'secondary'}>Sign Up</B>
-          {/* <Button disabled={isInvalid} className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Sign Up</Button> */}
-          {error ? <p>Error: {error.message}</p> : null}
+            <B disabled={isInvalid} btnType={'secondary'}>Sign Up</B>
+            {/* <Button disabled={isInvalid} className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}>Sign Up</Button> */}
+            {error ? <p>Error: {error.message}</p> : null}
           </form>
-          </div>
-        </ModalWrapper >
-      )
+        </div>
+      </ModalWrapper >
+    )
   }
 }
 export default JoinModal;

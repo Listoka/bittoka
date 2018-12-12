@@ -86,13 +86,13 @@ class PublishPostModalContainer extends React.Component {
     const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0 &&
       this.state.title && postLength > 144
 
-      const customStyles = {
-        control: (base) => ({
-          ...base,
-          background: "#39393A",
-        })
-      };
-    
+    // const customStyles = {
+    //   control: (base) => ({
+    //     ...base,
+    //     background: "#39393A",
+    //   })
+    // };
+
     return (
       <PublishPostModal
         {...this.state}
