@@ -1,5 +1,5 @@
 import React from "react";
-import { MainWrapper, Button, Input } from '../../components/Widgets/index';
+import { div, Button, Input } from '../../components/Widgets/index';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { ProfileViewConductor } from './';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
@@ -10,8 +10,8 @@ export const ProfilePage = props => (
   <div className='absolute w-full mt-5'>
     <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto'>
 
-      <MainWrapper styles='block sm:block md:block lg:w-2/3 xl:w-2/3'>
-        <div className='mb-5 p-5 rounded-lg bg-darkest-gray'>
+      <div className='mr-1 block sm:block md:block lg:w-2/3 xl:w-2/3'>
+        <div className='mb-2 p-4 rounded-lg bg-darkest-gray'>
           <div className={'mb-2'}>
             <div className='text-3xl font-header'>{props.authorName}'s Profile</div>
           </div>
@@ -30,9 +30,9 @@ export const ProfilePage = props => (
             currentView={props.currentView}
           />
         </div>
-      </MainWrapper>
+      </div>
 
-      <MainWrapper styles='block sm:block md:block lg:w-1/3 xl:w-1/3'>
+      <div className='block ml-1 sm:block md:block lg:w-1/3 xl:w-1/3'>
 
           <Sidebar>
             <h4 className='mb-2 font-normal'>Bio</h4>
@@ -81,7 +81,7 @@ export const ProfilePage = props => (
             </div>
           </Sidebar>
 
-      </MainWrapper>
+      </div>
     </div>
   </div>
 );

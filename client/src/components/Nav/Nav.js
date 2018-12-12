@@ -25,7 +25,7 @@ export class Nav extends Component {
       <React.Fragment>
       <nav className='flex bg-soft-black p-3 justify-between'>
         <span className='inline-flex'><Link className='inline-flex items-center no-underline' to='/'><img className='h-12'src={ListokaLogoWhite} alt='ListokaImage'></img></Link></span>
-        <div className='relative group'>
+        <div className='relative group mt-px'>
           {/* <ModalLaunchContext.Consumer>
             {openModal => (
               <li className="inline-block" data-toggle="collapse" data-target="#navbar-collapse.in">

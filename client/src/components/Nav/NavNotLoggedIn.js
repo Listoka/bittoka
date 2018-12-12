@@ -7,7 +7,7 @@ export const NavNotLoggedIn = (props) => {
     <ModalLaunchContext.Consumer>
       {openModal => (
         <React.Fragment>
-          <div className='items-center'>
+          <div className='items-center mt-px'>
             <div className="inline-flex" data-toggle="collapse" data-target="#navbar-collapse.in">
                 <a className='text-light-gray text-base font-header hover:text-brand-green' onClick={(e) => openModal(e, 'LOGIN')} href='/'>Login</a>
                 <span className="sr-only">Login</span>

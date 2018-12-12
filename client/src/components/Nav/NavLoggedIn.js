@@ -6,7 +6,7 @@ export const NavLoggedIn = (props) => {
   return (
     <React.Fragment>
       <div className='mt-2 mr-1'>
-      <div className='inline-flex cursor-pointer items-center group-hover:rounded-t-lg py-1 px-2' data-toggle="collapse" data-target="#navbar-collapse.in">
+      <div className='inline-flex cursor-pointer items-center group-hover:rounded-t-lg py-1 px-2 mt-px' data-toggle="collapse" data-target="#navbar-collapse.in">
         <div><Link className="text-light-gray text-base font-header hover:text-brand-green" to="/account">My Account</Link><span className="sr-only">My Account</span></div>
       </div>
       <hr className="border-t-2 mx-2 border-brand-green -mt-px"></hr>

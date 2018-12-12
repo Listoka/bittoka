@@ -20,7 +20,7 @@ class CommentListHeader extends React.Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <React.Fragment>
-          <div className='px-1 pt-3 pb-2 mx-1'>
+          <div className='px-3 pt-3 pb-2 mx-1'>
             {authUser &&
               <span className='pl-1'>
               <TextButton onClick={this.toggleShowForm} text='[ Comment ]' color='text-light-gray'/></span>}

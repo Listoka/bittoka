@@ -22,7 +22,8 @@ const ContentDetail = props => {
           />
         ))}
       </div>
-      <div className='max-w-2xl md:w-5/6 lg:w-4/5 mx-auto mt-0 p-3 rounded bg-darkest-gray text-light-gray'>
+
+      <div className='max-w-lg md:w-5/6 lg:w-4/5 mx-auto mt-0 p-4 rounded bg-darkest-gray text-light-gray'>
         <div className='font-header text-3xl text-light-gray px-1 mb-2'>{props.title}</div>
         <p className='ml-0 mt-1 mb-5 text-xs px-1'>
           <span className='mr-1'>By: <Link className='text-brand-green no-underline' to={{ pathname: `/users/${props.author}` }}>{props.authorName}</Link></span>

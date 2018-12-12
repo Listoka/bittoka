@@ -74,7 +74,7 @@ class LoginModal extends React.Component {
               </div>
               <B btnType={'secondary'}>Submit</B>
               {/* <Button className='btn btn-nav btn-nav:hover btn-nav:active outline-none ml-0' text={'Submit'}></Button> */}
-              {error ? <p className='mt-2 text-light-gray'>{error.message}</p> : null}
+              {error ? <p className='mt-2 text-red'>{error.message}</p> : null}
             </form>
 
       </ModalWrapper >

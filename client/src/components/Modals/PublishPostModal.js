@@ -13,8 +13,8 @@ class PublishPostModal extends React.Component {
         width={'w-3/5'}
       >
         <div className='font-header text-light-gray text-2xl text-center'>Publish Post Settings</div>
-        <hr className="border-brand-green border hrModals mb-5"></hr>
-        <div className='mb-5'>
+        <hr className="border-brand-green border hrModals mb-3"></hr>
+        <div className='mb-3'>
           <p className='mb-2 text-sm text-light-gray text-text-center'>Category:</p>
           <Select
             className="z-100 text-base"
@@ -33,11 +33,11 @@ class PublishPostModal extends React.Component {
         </div>
         <div className='mb-2'>
           {!this.props.categoryName &&
-            <p className='text-xs text-red text-center my-2'>
+            <p className='text-xs text-red text-center my-1'>
               Please select a category for this post.
           </p>}
         </div>
-        <div className='mb-5'>
+        <div className='mb-4'>
         <p className='mb-2 text-sm text-light-gray text-text-center'>Tags:</p>
           <Select
             id='tagField'
@@ -56,7 +56,7 @@ class PublishPostModal extends React.Component {
           />
         </div>
 
-        <div className='h-10 text-light-gray text-sm'>
+        <div className='h-8 text-light-gray text-sm'>
           <label htmlFor='paywall-active-box'>Enable Paywall:</label>
           <input
               onChange={this.props.togglePaywall}
@@ -68,7 +68,7 @@ class PublishPostModal extends React.Component {
           
         </div>
         {this.props.isPaywallActive &&
-          <div className='w-full mb-5 text-sm text-light-gray'>
+          <div className='w-full mb-3 text-sm text-light-gray'>
             <label htmlFor='paywall-price'>Paywall Price: $</label><span className='mr-0'></span>
             <input
               className='bg-darkest-gray border border-brand-green outline-none py-1 px-2 w-24 m-0 rounded ml-2 text-right text-light-gray'
@@ -80,20 +80,21 @@ class PublishPostModal extends React.Component {
 
         {this.props.isPaywallActive &&
           <React.Fragment>
-            <p className='mb-2 text-sm text-light-gray text-text-center'>Teaser:</p>
+            <div className='mt-px'></div>
+            <p className='mb-2 mt-px text-sm text-light-gray text-text-center'>Teaser:</p>
             <TextArea
               onChange={this.props.onTeaserChange}
               name='teaser'
               value={this.props.teaser}
             />
-            <p className='mb-5 mt-1 text-body text-sm text-light-gray text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
+            <p className='mb-3 mt-1 text-body text-sm text-light-gray text-center'>The content you enter here is available for all to see. Entice, deliver, and earn.</p>
           </React.Fragment>}
 
         <div className=''>
           {!this.props.title &&
-            <p className='text-xs text-red text-center mb-5'>Your post must have a title in order to publish</p>}
+            <p className='text-xs text-red text-center mb-3'>Your post must have a title in order to publish</p>}
           {!(this.props.postLength > 144) &&
-            <p className='text-xs text-red text-center mb-2'>Your post is too short to publish!</p>}
+            <p className='text-xs text-red text-center'>Your post is too short to publish!</p>}
         </div>
         {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
         <div className='text-right'>

@@ -1,55 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { List, PostListItem } from '../../components/List';
-import { MainWrapper, B } from '../../components/Widgets/index';
+import { B } from '../../components/Widgets/index';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
 import SBTagFilter from '../../components/Sidebar/SBTagFilter';
 import IntroHeader from '../../components/IntroHeader';
 
 const MainPage = props => (
-
-  <div className='absolute w-full'>
-
+  <React.Fragment>
     {!props.categoryDisplayName &&
       <div className='container w-full'>
-        <div className='flex'>
-          <MainWrapper styles='w-full'>
+        <div className='max-w-lg mx-auto'>
             <IntroHeader />
-          </MainWrapper>
         </div>
-      </div>}
-
-    <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto '>
-
-      <MainWrapper styles='block sm:block md:block lg:w-4/5 xl:w-4/5'>
-        <div className='mb-5 rounded-lg'>
-          {/* conditionally render the category display  */}
-          {props.categoryDisplayName &&
-            <React.Fragment>
-              <div className='bg-darkest-gray rounded mb-5 p-5'>
-                <div className='mb-2 text-header text-3xl'>{props.categoryDisplayName}</div>
-                <hr className="border-brand-green border hrModals"></hr>
-                <p className='leading-normal mb-2'>{props.categoryDescription}</p>
-                <div>
-                  <AuthUserContext.Consumer>
-                    {authUser => authUser ?
-                      <Link to={{ pathname: `/editor` }}>
-                        <B btnType={'secondary'} >Create Post</B>
-                      </Link> : null}
-                  </AuthUserContext.Consumer>
-                </div>
-              </div>
-
-            </React.Fragment>
-          }
-          <PostList data={props.filteredPosts} />
-        </div>
-      </MainWrapper>
-
-      <MainWrapper styles='block sm:block md:block lg:w-1/5 xl:w-1/5'>
-        {/* right column container, sidebar */}
-        <div className='w-1/5 w-full'>
+      </div>
+    }
+    {props.categoryDisplayName &&
+    <div className='container w-full mb-4'>
+      <div className='max-w-lg bg-darkest-gray text-light-gray p-4 mx-auto rounded-lg'>
+          <div className='mb-2 text-header text-3xl'>{props.categoryDisplayName}</div>
+          <hr className="border-brand-green border hrModals"></hr>
+          <p className='leading-normal mb-2'>{props.categoryDescription}</p>
+          <div>
+            <AuthUserContext.Consumer>
+              {authUser => authUser ?
+                <Link to={{ pathname: `/editor` }}>
+                  <B btnType={'secondary'} >Create Post</B>
+                </Link> : null}
+            </AuthUserContext.Consumer>
+          </div>
+      </div>
+    </div>
+    }
+  
+  <div className='container w-full'>
+    <div className='max-w-lg flex mx-auto'>
+      <div className='mb-5 rounded-lg w-4/5 mr-1'>
+        <PostList data={props.filteredPosts} />
+      </div>
+      <div className='w-1/5 ml-1'>
           <Sidebar>
             <SBTagFilter
               toggleSelectTag={props.toggleSelectTag}
@@ -57,10 +47,66 @@ const MainPage = props => (
             />
           </Sidebar>
         </div>
-      </MainWrapper>
     </div>
   </div>
+  </React.Fragment>
 )
+
+const PostList = props => {
+  return <List data={props.data} keyProp='_id' component={PostListItem} />
+}
+
+export default MainPage
+
+//////////////////////////////////////
+// KEEPING BELOW CODE FOR REFERENCE //
+//////////////////////////////////////
+
+  // <div className='container w-full'>
+
+  //   <div className='container w-full block sm:block md:block lg:flex xl:flex mx-auto '>
+  //   <div className='max-w-lg flex mx-auto'>
+
+  //     <MainWrapper styles='block sm:block md:block lg:w-4/5 xl:w-4/5'>
+  //       <div className='mb-5 rounded-lg w-4/5 mr-1'>
+
+  //         {/* conditionally render the category display  */}
+  //         {props.categoryDisplayName &&
+  //           <React.Fragment>
+  //             <div className='bg-darkest-gray rounded mb-5 p-5'>
+  //               <div className='mb-2 text-header text-3xl'>{props.categoryDisplayName}</div>
+  //               <hr className="border-brand-green border hrModals"></hr>
+  //               <p className='leading-normal mb-2'>{props.categoryDescription}</p>
+  //               <div>
+  //                 <AuthUserContext.Consumer>
+  //                   {authUser => authUser ?
+  //                     <Link to={{ pathname: `/editor` }}>
+  //                       <B btnType={'secondary'} >Create Post</B>
+  //                     </Link> : null}
+  //                 </AuthUserContext.Consumer>
+  //               </div>
+  //             </div>
+
+  //           </React.Fragment>
+  //         }
+  //         <PostList data={props.filteredPosts} />
+  //       </div>
+  //     </MainWrapper>
+
+  //     <MainWrapper styles='block sm:block md:block lg:w-1/5 xl:w-1/5'>
+  //       {/* right column container, sidebar */}
+  //       <div className='w-1/5 ml-1'>
+  //         <Sidebar>
+  //           <SBTagFilter
+  //             toggleSelectTag={props.toggleSelectTag}
+  //             tags={props.categoryTags}
+  //           />
+  //         </Sidebar>
+  //       </div>
+  //   </div>
+  // </div>
+  // </React.Fragment>
+
 /* 
   // introduction header goes here...
   <React.Fragment>
@@ -112,9 +158,3 @@ const MainPage = props => (
     </div>
   </div>
 )*/
-
-const PostList = props => {
-  return <List data={props.data} keyProp='_id' component={PostListItem} />
-}
-
-export default MainPage
