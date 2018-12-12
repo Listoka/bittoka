@@ -6,11 +6,12 @@ const TextButton = props => {
 
   // tied directly to tailwind size styles 'sm', 'lg', '3xl', etc.
   const size = props.size || 'base'
+  const color = props.color || 'text-medium-gray'
 
   return (
     <span
       onClick={onClick}
-      className={`text-${size} text-blue hover:text-blue-dark mr-1 cursor-pointer select-none`}
+      className={`text-${size} ${color} bg-transparent active:text-brand-green hover:text-brand-green cursor-pointer select-none`}
     >
       {text}
     </span>

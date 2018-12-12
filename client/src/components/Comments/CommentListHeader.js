@@ -16,19 +16,24 @@ class CommentListHeader extends React.Component {
 
   render() {
     return (
+
       <AuthUserContext.Consumer>
         {authUser => (
-          <div className='border-grey-lighter border-b mb-2 p-2'>
+          <React.Fragment>
+          <div className='px-3 pt-3 pb-2 mx-1'>
             {authUser &&
-              <TextButton onClick={this.toggleShowForm} text='[ add comment ]' />}
+              <span className='pl-1'>
+              <TextButton onClick={this.toggleShowForm} text='[ Comment ]' color='text-light-gray'/></span>}
             {this.state.showForm &&
               <CommentReplyForm
                 toggleShowForm={this.toggleShowForm}
                 submitComment={this.props.submitComment}
               />}
           </div>
+          </React.Fragment>
         )}
       </AuthUserContext.Consumer>
+      
     )
 
   }

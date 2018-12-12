@@ -35,7 +35,112 @@
   * @import "components/buttons";
   * @import "components/forms";
   */
+
+  /*
+  |-----------------------------------------------------------------------------
+  | Headings and Paragraphs            https://tailwindcss.com/docs/extracting-components/
+  |-----------------------------------------------------------------------------
+  |
+  */
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply text-light-gray font-header;
+    }
+
+    h1 {
+        @apply text-4xl;
+    }
+
+    h2 {
+        @apply font-bold text-2xl;
+    }
  
+    h3 {
+        @apply font-bold text-xl;
+    }
+
+    h4 {
+        @apply text-lg;
+    }
+
+    h5 {
+        @apply text-base;
+    }
+
+    h6 {
+        @apply text-xs;
+    }
+
+    p {
+        @apply text-sm text-light-gray text-left
+    }
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Inputs                           https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */   
+
+    input {
+        @apply bg-input-background border-3 border-mack-the-knife rounded-4px p-10px mb-10px text-light-gray
+    }
+
+    .input:focus {
+        @apply border-light-gray text-input-active outline-none
+    }
+
+    .input:disabled {
+        @apply border-brand-green text-input-disabled
+    }
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Buttons                                https://tailwindcss.com/docs/extracting-components/
+    |-----------------------------------------------------------------------------
+    |
+    */
+
+    .btn {
+        @apply border-2 rounded-20px border-brand-green px-10px py-px ml-20px mt-10px font-header text-xl
+    }
+
+    .btn-primary {
+        @apply bg-brand-green text-light-gray
+    }
+
+    .btn-primary:hover {
+        @apply bg-transparent border-brand-green text-brand-green
+    }
+
+    .btn-primary:active {
+        @apply bg-brand-green text-light-gray outline-none
+    }
+    
+    .btn-secondary {
+        @apply bg-transparent text-brand-green
+    }
+
+    .btn-secondary:hover {
+        @apply bg-brand-green border-brand-green text-light-gray 
+    }
+
+    .btn-secondary:active {
+        @apply bg-brand-green text-light-gray outline-none 
+    }
+
+    .btn-nav {
+      @apply bg-soft-black text-light-gray
+    }
+
+    .btn-nav:hover {
+      @apply bg-brand-green border-brand-green text-light-gray
+    }
+
+    .btn-nav:active {
+      @apply bg-brand-green text-light-gray outline-none rounded-20px
+    }
+    
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
@@ -60,4 +165,3 @@
   * @import "utilities/background-patterns";
   * @import "utilities/skew-transforms";
   */
- 

@@ -55,7 +55,10 @@ let colors = {
   'soft-black': '#030303',
   'input-active': '#979797',
   'input-disabled': '#515356',
+  'input-background': '#39393A',
   'alert-success': '#FF3608',
+  'modal-border': '#444',
+  'mack-the-knife': '#444',
 
   'transparent': 'transparent',
 
@@ -212,6 +215,7 @@ module.exports = {
       '-apple-system',
       'Segoe UI',
       'Roboto',
+      'Montserrat',
       'Oxygen',
       'Ubuntu',
       'Cantarell',
@@ -274,6 +278,13 @@ module.exports = {
     '3xl': '1.875rem',  // 30px
     '4xl': '2.25rem',   // 36px
     '5xl': '3rem',      // 48px
+    'h1f': '56px',      // 74px
+    'h2f': '40px',      // 53px
+    'h3f': '32px',      // 42px
+    'h4f': '32px',      // 42px
+    'h5f': '24px',      // 32px
+    'h6f': '16px',      // 21px
+    'pf': '24px',       // 32px
   },
 
 
@@ -462,6 +473,7 @@ module.exports = {
     'lg': '.5rem',
     'full': '9999px',
     '4px': '4px',
+    '8px': '8px',
     '20px': '20px'
   },
 
@@ -491,6 +503,7 @@ module.exports = {
     'px': '1px',
     '5px': '5px',
     '10px': '10px',
+    '100px': '100px',
     '1': '0.25rem',
     '2': '0.5rem',
     '3': '0.75rem',
@@ -576,6 +589,8 @@ module.exports = {
 
   minWidth: {
     '0': '0',
+    '120' : '120px',
+    '1/2' : '50%',
     'full': '100%',
   },
 
@@ -667,9 +682,11 @@ module.exports = {
 
   padding: {
     'px': '1px',
+    '2px': '2px',
     '5px': '5px',
     '10px': '10px',
     '20px': '20px',
+    '40px': '40px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
@@ -708,6 +725,8 @@ module.exports = {
     '5px': '5px',
     '10px': '10px',
     '20px': '20px',
+    '30px': '30px',
+    '40px': '40px',
     '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
@@ -722,6 +741,7 @@ module.exports = {
     '20': '5rem',
     '24': '6rem',
     '32': '8rem',
+    '1/2': '50%',
   },
 
 
@@ -809,6 +829,8 @@ module.exports = {
     '30': 30,
     '40': 40,
     '50': 50,
+    '90': 90,
+    '100': 100,
   },
 
 
@@ -900,7 +922,7 @@ module.exports = {
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
     borderCollapse: [],
-    borderColors: ['responsive', 'hover', 'focus'],
+    borderColors: ['responsive', 'hover', 'focus', 'group-hover'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
     borderWidths: ['responsive'],
@@ -937,7 +959,7 @@ module.exports = {
     tracking: ['responsive'],
     userSelect: ['responsive'],
     verticalAlign: ['responsive'],
-    visibility: ['responsive'],
+    visibility: ['responsive', 'group-hover'],
     whitespace: ['responsive'],
     width: ['responsive'],
     zIndex: ['responsive'],

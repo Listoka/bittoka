@@ -15,9 +15,9 @@ const CommentNode = props => {
     return (
       <div
         onClick={props.toggleCollapse}
-        className='text-sm bg-grey-lighter border-grey border-2 p-1 m-1 cursor-pointer'
+        className='text-light-gray text-sm bg-darkest-gray border-body-background border-2 p-1 m-1 cursor-pointer'
       >
-        <p>{numVotes} {authorName}</p>
+        <p className='hover:text-brand-green'>{numVotes} {authorName}</p>
       </div>
     )
   }
@@ -27,8 +27,8 @@ const CommentNode = props => {
     <div>
       <AuthUserContext.Consumer>
         {authUser => (
-          <div className='flex text-sm border-grey border-2 m-1'>
-            <div className='w-16 align-middle flex-none'>
+          <div className='flex text-sm border-body-background border m-1'>
+            <div className='w-16 align-middle flex-none border-body-background'>
               <CommentVoteButton
                 addPendingVote={props.addPendingVote}
                 removePendingVote={props.removePendingVote}
@@ -40,13 +40,16 @@ const CommentNode = props => {
                 numVotes={numVotes}
               />
             </div>
-            <div className='p-1'>
-              {/* <p className='text-xs font-bold'>{authorName}</p> */}
+            <div className='p-2'>
               <p><NameLink authorName={authorName} userId={author} /></p>
-              <p>{body}</p>
+              <p className='text-sm text-light-gray my-2'>{body}</p>
               <p>
-                {authUser && <TextButton text='[reply]' size='sm' onClick={props.toggleShowForm} />}
-                <TextButton text='[collapse]' size='sm' onClick={props.toggleCollapse} />
+                {authUser && 
+                <React.Fragment>
+                  <TextButton text='[reply]' size='xs' onClick={props.toggleShowForm} />
+                  <span className='mr-1'></span> 
+                </React.Fragment>} 
+                <TextButton text='[collapse]' size='xs' onClick={props.toggleCollapse} />
               </p>
             </div>
           </div>
@@ -78,7 +81,7 @@ const CommentNode = props => {
 const NameLink = props => (
   <Link
     to={`/users/${props.userId}`}
-    className='no-underline hover:no-underline font-bold text-xs'
+    className='no-underline hover:no-underline text-brand-green text-xs'
   >
     {props.authorName}
   </Link>

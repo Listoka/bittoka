@@ -1,20 +1,46 @@
 [
+  
     {
-        "id": 1,
-        "name": "Listoka",
-        "href": "listoka",
-        "description": "Listoka Introduction"
+      "id": 1,
+      "name": "Listoka",
+      "href": "listoka",
+      "description": "Listoka Introduction"
     },
     {
-        "id": 2,
-        "name": "Your Bitcoin Story",
-        "href": "bitcoin-story",
-        "description": "Your Bitcoin Story Introduction"
+      "id": 2,
+      "name": "Stories",
+      "href": "stories",
+      "description": "Your Bitcoin Story Introduction"
     },
     {
-        "id": 3,
-        "name": "Stories",
-        "href": "stories",
-        "description": "Stories Description"
+      "id": 3,
+      "name": "Bitcoin Stories",
+      "href": "bitcoin-story",
+      "description": "Your Bitcoin Story Introduction"
+    },
+    {
+      "id": 4,
+      "name": "Teach/Learn",
+      "href": "teach-learn",
+      "description": "Teach/Learn Description"
+    },
+    {
+      "id": 5,
+      "name": "Writer's Workshop",
+      "href": "writers-workshop",
+      "description": "Writer's Workshop Description"
+    },
+    {
+      "id": 6,
+      "name": "Wisdom",
+      "href": "wisdom",
+      "description": "Wisdom Description"
+    },
+    {
+      "id": 7,
+      "name": "Artwork",
+      "href": "artwork",
+      "description": "Artwork Description"
     }
+
 ]

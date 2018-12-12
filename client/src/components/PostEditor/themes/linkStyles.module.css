@@ -1,12 +1,13 @@
 .input {
-  height: 34px;
+  height: 18px;
   width: 220px;
-  padding: 0 12px;
-  font-size: 15px;
-  font-family: inherit;
+  padding: 0 6px;
+  font-size: 16px;
+  margin-top: 10px;
+  font-family: 'Montserrat', sans-serif;
   background-color: transparent;
   border: none;
-  color: #ddd;
+  color: #d8d8d8;
 }
 
 .input:focus {
@@ -18,7 +19,7 @@
 }
 
 .inputInvalid {
-  color: #e65757;
+  color: red;
 }
 
 .link {

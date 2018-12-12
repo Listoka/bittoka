@@ -4,6 +4,7 @@ import Editor from 'draft-js-plugins-editor';
 import createInlineToolbarPlugin /*, { Separator }*/ from 'draft-js-inline-toolbar-plugin';
 import createLinkPlugin from 'draft-js-anchor-plugin';
 import createCounterPlugin from 'draft-js-counter-plugin';
+import createBlockBreakoutPlugin from 'draft-js-block-breakout-plugin'
 import blockStyleFn from './blockStyleFn'
 // import { keyBindingFn, handleKeyCommand } from './keyBinds'
 // import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
@@ -25,6 +26,7 @@ import { /*sideToolbarTheme,*/ inlineToolbarTheme, linkTheme, editorTheme } from
 const inlineToolbarPlugin = createInlineToolbarPlugin({ theme: inlineToolbarTheme });
 const linkPlugin = createLinkPlugin({ theme: linkTheme, placeholder: 'http://' });
 const counterPlugin = createCounterPlugin();
+const blockBreakoutPlugin = createBlockBreakoutPlugin()
 // const sideToolbarPlugin = createSideToolbarPlugin({ theme: sideToolbarTheme });
 // const imagePlugin = createImagePlugin();
 // const dividerPlugin = createDividerPlugin();
@@ -39,6 +41,7 @@ const plugins = [
   inlineToolbarPlugin,
   linkPlugin,
   counterPlugin,
+  blockBreakoutPlugin,
   // imagePlugin,
   // sideToolbarPlugin,
   // dividerPlugin,
@@ -117,7 +120,7 @@ class PostEditor extends Component {
                   onChange={this.onChange}
                   modifier={videoPlugin.addVideo}
                 /> */}
-        <div className='float-right -mt-5'><WordCounter /> words</div>
+        <div className='float-right text-xs -mt-6 mr-1 text-light-gray'><WordCounter /> words</div>
       </React.Fragment>
     )
   }

@@ -1,6 +1,8 @@
 import React from 'react'
 import MainPage from './MainPage'
 import API from '../../utils/API';
+import categories from '../../categories.json';
+import SubNav from '../../components/subNav';
 
 const nullCategory = {
   categoryName: '',
@@ -8,7 +10,7 @@ const nullCategory = {
   categoryDescription: '',
   categoryTags: [],
   categorySettings: null,
-}
+}       
 
 class MainPageContainer extends React.Component {
   constructor(props) {
@@ -87,7 +89,21 @@ class MainPageContainer extends React.Component {
   }
 
   render() {
-    return <MainPage toggleSelectTag={this.toggleSelectTag} {...this.state} />
+    return (
+      <React.Fragment>
+        <div className='flex flex-wrap flex-row items-center justify-center'>
+          {categories.map(category => (
+            <SubNav
+              id={category.id}
+              key={category.id}
+              href={category.href}
+              name={category.name}
+            />
+          ))}
+        </div>
+        <MainPage toggleSelectTag={this.toggleSelectTag} {...this.state} />
+    </React.Fragment>
+    )
   }
 }
 
