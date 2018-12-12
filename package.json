@@ -18,6 +18,9 @@
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
+  "resolutions": {
+    "**/event-stream": "^4.0.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
