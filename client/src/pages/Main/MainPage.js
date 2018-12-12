@@ -9,16 +9,18 @@ import IntroHeader from '../../components/IntroHeader';
 
 const MainPage = props => (
   <React.Fragment>
-    {!props.categoryDisplayName &&
-      <div className='container w-full'>
-        <div className='max-w-lg mx-auto'>
+    <AuthUserContext.Consumer>
+      {authUser => !authUser && !props.categoryDisplayName &&
+        <div className='container w-full'>
+          <div className='max-w-lg mx-auto'>
             <IntroHeader />
-        </div>
-      </div>
-    }
+          </div>
+        </div>}
+    </AuthUserContext.Consumer>
+
     {props.categoryDisplayName &&
-    <div className='container w-full mb-4'>
-      <div className='max-w-lg bg-darkest-gray text-light-gray p-4 mx-auto rounded-lg'>
+      <div className='container w-full mb-4'>
+        <div className='max-w-lg bg-darkest-gray text-light-gray p-4 mx-auto rounded-lg'>
           <div className='mb-2 text-header text-3xl'>{props.categoryDisplayName}</div>
           <hr className="border-brand-green border hrModals"></hr>
           <p className='leading-normal mb-2'>{props.categoryDescription}</p>
@@ -30,16 +32,16 @@ const MainPage = props => (
                 </Link> : null}
             </AuthUserContext.Consumer>
           </div>
+        </div>
       </div>
-    </div>
     }
-  
-  <div className='container w-full'>
-    <div className='max-w-lg flex mx-auto'>
-      <div className='mb-5 rounded-lg w-4/5 mr-1'>
-        <PostList data={props.filteredPosts} />
-      </div>
-      <div className='w-1/5 ml-1'>
+
+    <div className='container w-full'>
+      <div className='max-w-lg flex mx-auto'>
+        <div className='mb-5 rounded-lg w-4/5 mr-1'>
+          <PostList data={props.filteredPosts} />
+        </div>
+        <div className='w-1/5 ml-1'>
           <Sidebar>
             <SBTagFilter
               toggleSelectTag={props.toggleSelectTag}
@@ -47,8 +49,8 @@ const MainPage = props => (
             />
           </Sidebar>
         </div>
+      </div>
     </div>
-  </div>
   </React.Fragment>
 )
 
