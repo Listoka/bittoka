@@ -22,7 +22,10 @@ module.exports = {
     db.Transaction
       .create(req.body)
       .then(result => res.json(result))
-      .catch(err => res.status(418).json(err))
+      .catch(err => {
+        console.log('\n >>>>> Create Transaction ERR:\n', err)
+        res.status(418).json(err)
+      })
   },
 
   update: (req, res) => {

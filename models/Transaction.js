@@ -31,7 +31,7 @@ const TransactionSchema = new Schema({
       isListokaAcct: { type: Boolean, default: false }
     }],
   },
-  raw: {
+  raw: { // stringified json object returned by moneybutton
     type: String,
     required: true
   },

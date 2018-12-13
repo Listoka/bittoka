@@ -28,4 +28,11 @@ router.route('/users/:userId/tx/from')
       .catch(err => res.status(500).json(err))
   })
 
+router.route('/users/:userId/tx/to')
+  .get((req, res) => {
+    db.Transaction.find({ 'txOutputs.userId': { $elemMatch: { userId: req.params.userId } } })
+      .then(dbTxns => res.json(dbTxns))
+      .catch(err => res.status(500).json(err))
+  })
+
 module.exports = router
