@@ -21,7 +21,9 @@ router.route('/transactions/paid/:userFieldName/:uid')
 
 router.route('/users/:userId/tx/from')
   .get((req, res) => {
-    db.Transaction.find({ userId: req.params.userId })
+    db.Transaction.find({ fromUser: req.params.userId })
+      .populate('fromUser', 'username')
+      .select('-raw')
       .then(dbTxns => {
         res.json(dbTxns)
       })
@@ -30,9 +32,14 @@ router.route('/users/:userId/tx/from')
 
 router.route('/users/:userId/tx/to')
   .get((req, res) => {
-    db.Transaction.find({ 'txOutputs.userId': { $elemMatch: { userId: req.params.userId } } })
+    db.Transaction.find({ txOutputs: { $elemMatch: { userId: req.params.userId } } })
+      .populate('fromUser', 'username')
+      .select('-raw')
       .then(dbTxns => res.json(dbTxns))
-      .catch(err => res.status(500).json(err))
+      .catch(err => {
+        console.log('\n >>>>> GET user/tx/to ERR:\n', err)
+        res.status(500).json(err)
+      })
   })
 
 module.exports = router

@@ -123,7 +123,6 @@ export default {
   },
 
   createTransaction: (tx) => {
-    console.log('createTransaction: tx: ' + JSON.stringify(tx))
     return axios.post('/api/transactions', tx)
   },
 

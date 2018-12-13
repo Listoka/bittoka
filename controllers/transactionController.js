@@ -1,6 +1,8 @@
 const db = require('../models')
 const mongoose = require('mongoose')
 
+const listokaAcctNum = '783'
+
 // TODO: Change the error status codes to something other than "I'm a teapot"
 module.exports = {
   findAll: (req, res) => {
@@ -18,9 +20,17 @@ module.exports = {
   },
 
   create: (req, res) => {
-    console.log('transactionController req.body: ' + JSON.stringify(req.body))
+    console.log('transactionController req.body: \n' + JSON.stringify(req.body, null, 2))
+    const data = req.body
+    data.txOutputs = data.txOutputs.map(output => ({
+      userId: output.userId,
+      commentId: output.commentId,
+      amount: output.amount,
+      moneyBtnId: output.moneyBtnId,
+      isListokaAcct: output.moneyBtnId === listokaAcctNum
+    }))
     db.Transaction
-      .create(req.body)
+      .create(data)
       .then(result => res.json(result))
       .catch(err => {
         console.log('\n >>>>> Create Transaction ERR:\n', err)

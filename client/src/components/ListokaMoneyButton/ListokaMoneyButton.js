@@ -52,12 +52,13 @@ class ListokaMoneyButton extends Component {
   logPayment = (trans) => {
     console.log('Trans: ' + JSON.stringify(trans))
     const txDetails = {
-      userId: this.props.userId,
-      paidUserId: this.props.payeeId,
+      fromUser: this.props.userId,
+      paidUser: this.props.payeeId,
       txFrom: trans.userId,
       txType: this.props.txType,
-      txOutputs: [{ moneyButtonId: trans.outputs[0].to, amount: trans.outputs[0].amount },
-      { moneyButtonId: trans.outputs[1].to, amount: trans.outputs[1].amount }],
+      raw: JSON.stringify(trans),
+      txOutputs: [{ moneyBtnId: trans.outputs[0].to, amount: trans.outputs[0].amount },
+      { moneyBtnId: trans.outputs[1].to, amount: trans.outputs[1].amount }],
       commentId: this.props.commentId || null,
       postId: this.props.postId || null
     }
@@ -73,18 +74,18 @@ class ListokaMoneyButton extends Component {
     console.log('Batch Transaction: ', trans)
     const txDetails = {
       batch: true,
-      userId: this.props.userId,
+      fromUser: this.props.userId,
       txFrom: trans.userId, // originating moneyBtnId
       txType: this.props.txType,
       raw: JSON.stringify(trans),
       txOutputs: trans.outputs.map(t => {
         const script = JSON.parse(t.script)
         return {
-          moneyButtonId: t.to,
+          moneyBtnId: t.to,
           amount: t.amount,
           userId: script.listokaUserId,
           commentId: script.commentId,
-          isListokaAcct: script.isListokaAcct
+          isListokaAcct: script.isListokaAcct // we check this again server-side to be sure..
         }
       }
       ),
