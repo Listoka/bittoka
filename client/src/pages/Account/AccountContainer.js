@@ -19,8 +19,8 @@ class AccountContainer extends React.Component {
       showMoneyBtnId: true
     }
   }
-  
-  componentDidMount(){
+
+  componentDidMount() {
     let promises = [this.getPostsAndBio(this.state.id), this.getPostsAndDrafts(this.state.id), this.getTotalPaidToUser(this.state.id), this.getTotalPaidFromUser(this.state.id)]
     Promise.all(promises)
       .then(results => {
@@ -89,34 +89,32 @@ class AccountContainer extends React.Component {
     event.preventDefault();
     this.setState({ currentView: viewType })
   }
-  
-  removeDraft = (event, index, id) => {
-    console.log(id)
-    event.preventDefault();
-    let array = this.state.drafts
-    array.splice(index, 1)
-    this.setState({ drafts: array })
+
+  removeDraft = (e, id) => {
+    e.preventDefault()
+    const drafts = this.state.drafts.filter(d => d._id !== id)
+    this.setState({ drafts })
     API.deletePost(id)
       .then(res => console.log(res))
       .catch(err => console.log(err))
-  };
+  }
 
   editBio = () => { this.setState(prevState => ({ showBio: !prevState.showBio })) }
   editmoneyBtnId = () => { this.setState(prevState => ({ showMoneyBtnId: !prevState.showMoneyBtnId })) }
 
-  render(){
-    return(
-        <AccountPage 
-          {...this.state} 
-          userId={this.props.authUser.dbUser._id}
-          switchView={this.switchView}
-          removeDraft={this.removeDraft}
-          editBio={this.editBio}
-          editmoneyBtnId={this.editmoneyBtnId}
-          onChange={this.handleInputChange}
-          handleFormSubmit={this.handleFormSubmit}
-          handleMoneyBtnIdSubmit={this.handleMoneyBtnIdSubmit}
-        />
+  render() {
+    return (
+      <AccountPage
+        {...this.state}
+        userId={this.props.authUser.dbUser._id}
+        switchView={this.switchView}
+        removeDraft={this.removeDraft}
+        editBio={this.editBio}
+        editmoneyBtnId={this.editmoneyBtnId}
+        onChange={this.handleInputChange}
+        handleFormSubmit={this.handleFormSubmit}
+        handleMoneyBtnIdSubmit={this.handleMoneyBtnIdSubmit}
+      />
     )
   }
 }

@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //JSON file and navigation
 import { Nav } from './components/Nav';
 import categories from './categories.json';
-import SubNav from './components/subNav';
 
 // "Pages"
 import EditorPageContainer from './pages/Editor/EditorPageContainer';
@@ -33,16 +32,6 @@ class App extends Component {
       <Router>
         <div>
           <Nav openModal={this.openModal} />
-          <div className='flex justify-center mt-1'>
-            {this.state.categories.map(category => (
-              <SubNav
-                id={category.id}
-                key={category.id}
-                href={category.href}
-                name={category.name}
-              />
-            ))}
-          </div>
           <Switch>
             <Route exact path='/' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />

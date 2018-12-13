@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "8.14.0"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
