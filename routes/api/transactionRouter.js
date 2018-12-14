@@ -21,13 +21,11 @@ router.route('/transactions/paid/:userFieldName/:uid')
 
 router.route('/users/:userId/tx/from')
   .get((req, res) => {
-    console.log(' >>>>> req.query: \n', req.query)
     let { limit, page } = req.query
-    // TODO: This is really simple validation.. might need something better
-    limit = limit ? limit : 10
-    page = page ? page : 1
 
-    console.log(limit, page)
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? parseInt(limit) : 10
+    page = page ? parseInt(page) : 1
 
     db.Transaction.find({ fromUser: req.params.userId })
       .populate('fromUser', 'username')
@@ -43,9 +41,18 @@ router.route('/users/:userId/tx/from')
 
 router.route('/users/:userId/tx/to')
   .get((req, res) => {
+    let { limit, page } = req.query
+
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? parseInt(limit) : 10
+    page = page ? parseInt(page) : 1
+
     db.Transaction.find({ txOutputs: { $elemMatch: { userId: req.params.userId } } })
       .populate('fromUser', 'username')
       .select('-raw')
+      .sort({ createdAt: 'desc' })
+      .skip((page - 1) * limit)
+      .limit(limit)
       .then(dbTxns => res.json(dbTxns))
       .catch(err => {
         console.log('\n >>>>> GET user/tx/to ERR:\n', err)
