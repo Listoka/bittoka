@@ -140,5 +140,16 @@ export default {
 
   getTxToUser: (userId) => {
     return axios.get(`/api/users/${userId}/tx/to`)
+  },
+
+  getAllTx: (userId, paramObj) => {
+    let params = new URLSearchParams()
+
+    if (paramObj) {
+      if (paramObj.limit) params.append('limit', paramObj.limit)
+      if (paramObj.page) params.append('page', paramObj.page)
+    }
+
+    return axios.get(`api/users/${userId}/tx`, params)
   }
 };
