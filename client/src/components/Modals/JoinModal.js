@@ -4,7 +4,7 @@ import axios from 'axios'
 import { B } from '../Widgets';
 
 import ModalWrapper from './ModalWrapper';
-import { parse } from 'protobufjs';
+// import { parse } from 'protobufjs';
 
 class JoinModal extends React.Component {
   constructor(props) {
