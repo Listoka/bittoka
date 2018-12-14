@@ -24,6 +24,64 @@ const deleteTransactions = () => {
   return db.Transaction.deleteMany()
 }
 
+const seedPurchaseTransactions = async () => {
+  const users = await getUsers()
+  const posts = await getPosts()
+
+  for (let user of users) {
+
+    const createTransaction = (post) => {
+      return makePurchaseTransaction(user, post)
+    }
+
+    // don't purchase your own posts
+    let remainingPosts = posts
+      .filter(p => p.author._id !== user._id)
+      .filter(p => p.paywallCost > 0)
+
+    const selectedPosts = []
+    let numberToPick = (remainingPosts.length > 3) ? 3 : remainingPosts.length
+    while (selectedPosts.length < numberToPick) {
+      let post = remainingPosts[Math.floor(Math.random() * remainingPosts.length)]
+
+      // if we already picked this post, try again
+      if (selectedPosts.find(p => p._id === post._id)) continue
+
+      selectedPosts.push(post)
+    }
+
+    await asyncForEach(selectedPosts, createTransaction)
+  }
+}
+
+const makePurchaseTransaction = (fromUser, post) => {
+  const txOutputs = [{
+    moneyBtnId: post.author.moneyBtnId,
+    userId: post.author._id,
+    amount: post.paywallCost,
+    postId: post._id,
+    isListokaAcct: false
+  },
+  {
+    moneyBtnId: listokaAcctNum,
+    amount: 0.01,
+    isListokaAcct: true
+  }]
+
+  const data = {
+    fromUser: fromUser._id,
+    txFrom: fromUser.moneyBtnId,
+    paidUser: post.author._id,
+    txType: 'purchase',
+    raw: 'fake transaction!!',
+    txOutputs: txOutputs,
+    postId: post._id,
+    createdAt: randomDate()
+  }
+
+  return db.Transaction.create(data)
+}
+
 // TODO: note that this currently does not do the other step of actually adding
 // a user to the comment as a voter
 const seedCommentTransactions = async () => {
@@ -103,6 +161,7 @@ async function seed() {
 
   try {
     await seedCommentTransactions()
+    await seedPurchaseTransactions()
   }
   catch (err) {
     console.log('\n seed Err: ', err)
