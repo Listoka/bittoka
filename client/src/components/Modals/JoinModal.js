@@ -30,7 +30,7 @@ class JoinModal extends React.Component {
 
     axios.get('/api/users/username/' + username)
       .then(response => {
-        console.log('join reponse', response)
+        // console.log('join reponse', response)
         if (response.data) {
           throw new Error('Username is already taken')
         }
@@ -41,7 +41,7 @@ class JoinModal extends React.Component {
         return Promise.all([authUser, token])
       })
       .then(([authUser, authToken]) => {
-        console.log(authUser)
+        // console.log(authUser)
         return axios({
           url: '/api/users',
           method: 'post',
@@ -56,7 +56,7 @@ class JoinModal extends React.Component {
           }
         })
       })
-      .then(response => console.log(response))
+      // .then(response => console.log(response))
       .then(() => this.props.closeModal())
       .catch(error => {
         this.setState({ error })
