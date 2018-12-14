@@ -19,6 +19,33 @@ router.route('/transactions/:id')
 router.route('/transactions/paid/:userFieldName/:uid')
   .get(transactionController.totalAmtPaid)
 
+router.route('/users/:userId/tx')
+  .get((req, res) => {
+    let { limit, page } = req.query
+
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? parseInt(limit) : 10
+    page = page ? parseInt(page) : 1
+
+    db.Transaction.find({
+      $or: [
+        { txOutputs: { $elemMatch: { userId: req.params.userId } } },
+        { paidUser: req.params.userId },
+        { fromUser: req.params.userId }
+      ]
+    })
+      .populate('fromUser', 'username')
+      .select('-raw')
+      .sort({ createdAt: 'desc' })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .then(dbTxns => res.json(dbTxns))
+      .catch(err => {
+        console.log('\n >>>>> GET user/tx/ ERR:\n', err)
+        res.status(500).json(err)
+      })
+  })
+
 router.route('/users/:userId/tx/from')
   .get((req, res) => {
     let { limit, page } = req.query
@@ -47,7 +74,12 @@ router.route('/users/:userId/tx/to')
     limit = limit ? parseInt(limit) : 10
     page = page ? parseInt(page) : 1
 
-    db.Transaction.find({ txOutputs: { $elemMatch: { userId: req.params.userId } } })
+    db.Transaction.find({
+      $or: [
+        { txOutputs: { $elemMatch: { userId: req.params.userId } } },
+        { paidUser: req.params.userId }
+      ]
+    })
       .populate('fromUser', 'username')
       .select('-raw')
       .sort({ createdAt: 'desc' })
