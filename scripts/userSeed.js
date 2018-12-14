@@ -33,15 +33,19 @@ const userData = [
   }
 ]
 
-db.User.deleteMany()
-  .then(() => {
-    return db.User.insertMany(userData)
-  })
-  .then(dbUser => {
-    console.log('\n>>>>> Users:\n', dbUser)
-    process.exit(0)
-  })
-  .catch(err => {
-    console.log(err)
-    process.exit(1)
-  })
+function seedUsers() {
+  return db.User.deleteMany()
+    .then(() => {
+      return db.User.insertMany(userData)
+    })
+    .then(dbUser => {
+      console.log('\n>>>>> Users:\n', dbUser)
+      process.exit(0)
+    })
+    .catch(err => {
+      console.log(err)
+      process.exit(1)
+    })
+}
+
+seedUsers()
