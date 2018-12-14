@@ -49,6 +49,8 @@ class ListokaMoneyButton extends Component {
     alert(`MoneyButton transaction failed. ${err}`)
   }
 
+  // TODO: logPayment and logBatchPayment are *close*.. we could probably refactor
+  // this into one form for all transactions..
   logPayment = (trans) => {
     console.log('Trans: ' + JSON.stringify(trans))
     const txDetails = {
@@ -57,14 +59,17 @@ class ListokaMoneyButton extends Component {
       txFrom: trans.userId,
       txType: this.props.txType,
       raw: JSON.stringify(trans),
-      txOutputs: [{
-        moneyBtnId: trans.outputs[0].to,
-        amount: trans.outputs[0].amount
-      },
-      {
-        moneyBtnId: trans.outputs[1].to,
-        amount: trans.outputs[1].amount
-      }],
+      txOutputs: trans.outputs.map(t => {
+        const script = JSON.parse(t.script)
+        return {
+          moneyBtnId: t.to,
+          amount: t.amount,
+          userId: script.listokaUserId,
+          commentId: script.commentId,
+          postId: script.postId,
+          isListokaAcct: script.isListokaAcct
+        }
+      }),
       commentId: this.props.commentId || null,
       postId: this.props.postId || null
     }
@@ -130,7 +135,13 @@ class ListokaMoneyButton extends Component {
       outputs = [{
         to: this.state.payeeMbId,
         amount: this.props.payVal - listokaCut,
-        currency: 'USD'
+        currency: 'USD',
+        script: JSON.stringify({
+          listokaUserId: this.props.payeeId,
+          commentId: this.props.commentId || null,
+          postId: this.props.postId || null,
+          isListokaAcct: false
+        })
       }]
     }
 
