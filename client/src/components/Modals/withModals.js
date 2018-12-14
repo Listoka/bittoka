@@ -20,7 +20,13 @@ const withModals = Component =>
       })
     }
 
-    closeModal = () => {
+    closeModal = (e) => {
+
+      if (e) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+
       this.setState({
         activeModal: null,
         modalProps: null
