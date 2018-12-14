@@ -21,9 +21,20 @@ router.route('/transactions/paid/:userFieldName/:uid')
 
 router.route('/users/:userId/tx/from')
   .get((req, res) => {
+    console.log(' >>>>> req.query: \n', req.query)
+    let { limit, page } = req.query
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? limit : 10
+    page = page ? page : 1
+
+    console.log(limit, page)
+
     db.Transaction.find({ fromUser: req.params.userId })
       .populate('fromUser', 'username')
       .select('-raw')
+      .sort({ createdAt: 'desc' })
+      .skip((page - 1) * limit)
+      .limit(limit)
       .then(dbTxns => {
         res.json(dbTxns)
       })

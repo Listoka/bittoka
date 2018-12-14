@@ -132,5 +132,13 @@ export default {
 
   getTotalPaidToUser: (id) => {
     return axios.get(`/api/transactions/paid/paidUserId/${id}`)
+  },
+
+  getTxFromUser: (userId) => {
+    return axios.get(`/api/users/${userId}/tx/from`)
+  },
+
+  getTxToUser: (userId) => {
+    return axios.get(`/api/users/${userId}/tx/to`)
   }
 };
