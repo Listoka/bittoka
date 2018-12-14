@@ -18,9 +18,9 @@ class ContentDetailContainer extends React.Component {
   }
 
   afterUpvotePayment = (trans) => {
-    console.log('Last transaction' + JSON.stringify(trans))
+    console.log('Last transaction', trans)
     API.upvotePost(this.state._id).then(result => {
-      console.log('After upvote: ' + JSON.stringify(result))
+      console.log('After upvote: ', result)
       let voteNames = []
       result.data.voters.map(voterRec => voteNames.push(voterRec))
       this.setState({
@@ -31,11 +31,11 @@ class ContentDetailContainer extends React.Component {
   };
 
   afterPurchasePayment = (trans) => {
-    console.log('purchase trans: ' + JSON.stringify(trans))
+    console.log('purchase trans: ', trans)
     API.purchasePost(this.state._id).then(result => {
-      console.log('After purchase success: ' + JSON.stringify(result))
+      console.log('After purchase success: ', result)
       this.setState({
-        purchasers: result.data.purchasers
+        purchasers: result.data.purchasers.map(p => p._id)
       });
     });
   };
