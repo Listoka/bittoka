@@ -2,6 +2,7 @@ import React from 'react';
 import { List, PostListItem } from '../../components/List';
 import AccountSettings from './AccountSettings';
 import { Transactions } from '../../components/Transactions';
+import TransactionListContainer from '../../components/Transactions/TransactionListContainer';
 
 const AccountViewConductor = props => {
   switch (props.currentView) {
@@ -23,10 +24,15 @@ const AccountViewConductor = props => {
       )
     case 'TRANSACTIONS':
       return (
-        <Transactions
-          amtEarned={props.amtEarned}
-          amtPaid={props.amtPaid}
-        />
+        <React.Fragment>
+          <Transactions
+            amtEarned={props.amtEarned}
+            amtPaid={props.amtPaid}
+          />
+          <TransactionListContainer
+            userId={props.userId}
+          />
+        </React.Fragment>
       )
     default:
       return null;
