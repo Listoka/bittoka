@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Button = props => {
   return (
-    <button className= 'btn' {...props}>
+    <button className='btn' {...props}>
       <span className={`${props.styles}`}>{props.text}</span>
     </button>
   );
@@ -27,7 +27,11 @@ export const B = props => {
       classes = 'btn btn-nav text-base btn-nav:hover btn-nav:active outline-none ml-0'
       break;
     default:
-      classes = className || 'default button classes'
+      classes = className
+  }
+
+  if (props.disabled) {
+    classes += ' cursor-not-allowed opacity-50'
   }
 
   return (
