@@ -97,12 +97,13 @@ class CommentListContainer extends React.Component {
     console.log('pendingVotes: ', this.state.pendingVotes)
     return (
       <React.Fragment>
-        <VoteBasketContainer
-          pendingVotes={this.state.pendingVotes}
-          addPendingVote={this.addPendingVote}
-          removePendingVote={this.removePendingVote}
-          submitVotes={this.submitVotes}
-        />
+        {this.state.pendingVotes.length > 0 &&
+          <VoteBasketContainer
+            pendingVotes={this.state.pendingVotes}
+            addPendingVote={this.addPendingVote}
+            removePendingVote={this.removePendingVote}
+            submitVotes={this.submitVotes}
+          />}
         <CommentList
           comments={this.state.treeList}
           pendingVotes={this.state.pendingVotes}
