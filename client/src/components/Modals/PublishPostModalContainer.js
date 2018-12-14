@@ -23,6 +23,16 @@ class PublishPostModalContainer extends React.Component {
   onTeaserChange = e => this.setState({ teaser: e.target.value })
   onPaywallCostChange = e => this.setState({ paywallCost: e.target.value })
 
+  componentDidMount() {
+    if (this.state.categoryName) {
+      const categoryObject = this.state.categories.find(c => c.value === this.state.categoryName)
+      const categoryDisplayName = categoryObject ? categoryObject.label : null
+      this.setState({
+        categoryDisplayName: categoryDisplayName
+      })
+    }
+  }
+
   togglePaywall = e => {
     const active = e.target.checked
     this.setState({

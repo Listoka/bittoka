@@ -7,9 +7,11 @@ import { TextArea, B } from '../Widgets'
 
 class PublishPostModal extends React.Component {
   render() {
+    console.log('PublishPostModal props: ', this.props)
     return (
       <ModalWrapper
         closeModal={this.props.closeModal}
+        disableBackgroundClick={true}
         width={'w-3/5'}
       >
         <div className='font-header text-light-gray text-2xl text-center'>Publish Post Settings</div>
@@ -19,6 +21,7 @@ class PublishPostModal extends React.Component {
           <Select
             className="z-100 text-base"
             placeholder='Category'
+            closeMenuOnSelect={true}
             onChange={this.props.onCategorySelectChange}
             options={this.props.categories}
             styles={colourStyles}
@@ -38,7 +41,7 @@ class PublishPostModal extends React.Component {
           </p>}
         </div>
         <div className='mb-4'>
-        <p className='mb-2 text-sm text-light-gray text-text-center'>Tags:</p>
+          <p className='mb-2 text-sm text-light-gray text-text-center'>Tags:</p>
           <Select
             id='tagField'
             className='react-select-container'
@@ -59,13 +62,13 @@ class PublishPostModal extends React.Component {
         <div className='h-8 text-light-gray text-sm'>
           <label htmlFor='paywall-active-box'>Enable Paywall:</label>
           <input
-              onChange={this.props.togglePaywall}
-              id='paywall-active-box'
-              type='checkbox'
-              checked={this.props.isPaywallActive}
-              className='h-4 w-4'
-            />
-          
+            onChange={this.props.togglePaywall}
+            id='paywall-active-box'
+            type='checkbox'
+            checked={this.props.isPaywallActive}
+            className='h-4 w-4'
+          />
+
         </div>
         {this.props.isPaywallActive &&
           <div className='w-full mb-3 text-sm text-light-gray'>
@@ -98,7 +101,7 @@ class PublishPostModal extends React.Component {
         </div>
         {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
         <div className='text-right'>
-          <B onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B> 
+          <B onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B>
           <span className='mr-2'></span>
           <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
           {/* <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button> */}
