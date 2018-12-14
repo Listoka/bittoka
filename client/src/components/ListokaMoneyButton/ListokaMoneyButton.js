@@ -57,13 +57,20 @@ class ListokaMoneyButton extends Component {
       txFrom: trans.userId,
       txType: this.props.txType,
       raw: JSON.stringify(trans),
-      txOutputs: [{ moneyBtnId: trans.outputs[0].to, amount: trans.outputs[0].amount },
-      { moneyBtnId: trans.outputs[1].to, amount: trans.outputs[1].amount }],
+      txOutputs: [{
+        moneyBtnId: trans.outputs[0].to,
+        amount: trans.outputs[0].amount
+      },
+      {
+        moneyBtnId: trans.outputs[1].to,
+        amount: trans.outputs[1].amount
+      }],
       commentId: this.props.commentId || null,
       postId: this.props.postId || null
     }
+
     API.createTransaction(txDetails).then(result => {
-      console.log('tx log result: ' + JSON.stringify(result))
+      console.log('tx log result: ', result)
       this.props.paymentSuccessCbk(trans)
     });
   };
