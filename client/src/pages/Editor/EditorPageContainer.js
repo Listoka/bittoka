@@ -8,7 +8,7 @@ import EditorPage from './EditorPage'
 class EditorPageContainer extends React.Component {
   constructor(props) {
     super(props)
-    const initialCategoryName = this.props.match.categoryId || ''
+    const initialCategoryName = this.props.match.params.categoryName || ''
 
     this.state = {
       editorState: EditorState.createEmpty(),
@@ -81,7 +81,8 @@ class EditorPageContainer extends React.Component {
     const data = {
       title: `Untitled ${new Date().toDateString()}`,
       body: 'And so it begins...',
-      isDraft: true
+      isDraft: true,
+      categoryName: this.props.match.params.categoryName
     }
     return API.createPost(data)
       .then(result => result.data)
@@ -138,6 +139,7 @@ class EditorPageContainer extends React.Component {
   };
 
   render() {
+    console.log('EditorPageContainer props: ', this.props)
     return (
       <EditorPage
         onEditorChange={this.onEditorChange}

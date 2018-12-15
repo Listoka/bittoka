@@ -27,7 +27,7 @@ const MainPage = props => (
           <div>
             <AuthUserContext.Consumer>
               {authUser => authUser ?
-                <Link to={{ pathname: `/editor` }}>
+                <Link to={{ pathname: props.categoryName ? `/categories/${props.categoryName}/posts/new` : `/editor` }}>
                   <B btnType={'secondary'} >Create Post</B>
                 </Link> : null}
             </AuthUserContext.Consumer>
