@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 import { EditButton, DeleteIcon } from '../Widgets';
 
 export const DraftListItem = props => {
-  console.log('DraftListItem props: ', props)
   return (
     <React.Fragment>
       <div className='border-b border-medium-gray mt-2'>
