@@ -24,7 +24,8 @@ class EditorPageContainer extends React.Component {
       postId: null,
       author: props.authUser.dbUser._id,
       paywallCost: 0.00,
-      isPaywallActive: false
+      isPaywallActive: false,
+      savePending: false
     }
   }
 
@@ -115,6 +116,7 @@ class EditorPageContainer extends React.Component {
     event.preventDefault();
     const { title, selectedTags, teaser, editorState } = this.state
     const body = stateToHTML(editorState.getCurrentContent())
+    this.setState({ savePending: true })
 
     const data = {
       title: title,
@@ -127,12 +129,12 @@ class EditorPageContainer extends React.Component {
 
     if (this.state.postId) {
       return API.submitDraft(this.state.postId, data)
-        .then(res => console.log('saveDraft response: ', res))
+        .then(res => this.setState({ savePending: false }))
         .catch(err => console.log('saveDraft Err: ', err))
     } else {
       return API.createPost(data)
         .then(res => {
-          this.setState({ postId: res.data._id })
+          this.setState({ postId: res.data._id, savePending: false })
         })
     }
   };
