@@ -106,11 +106,10 @@ export default {
     data.isDraft = true
     return axios.put('/api/posts/' + postID, data)
       .then(response => {
-        console.log(response);
         return response;
       })
       .catch(error => {
-        console.log(error);
+        console.log('API.submitDraft ERR: ', error);
       });
   },
 

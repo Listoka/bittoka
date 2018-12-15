@@ -11,12 +11,16 @@ router.route('/posts')
     const authorName = dbUser.username
     const { title, teaser, body, tags, isDraft, categoryName, paywallCost } = req.body
     const postData = { author, authorName, title, teaser, body, tags, isDraft, categoryName, paywallCost }
+    console.log('\n >>> CreatePost isDraft: ', isDraft)
 
     db.Post.create(postData)
       .then(result => {
         res.json(result)
       })
-      .catch(err => res.status(400).json(err))
+      .catch(err => {
+        console.log('\n >>> POST /posts ERR:\n', err)
+        res.status(400).json(err)
+      })
   })
 
 router.route('/posts/:postId')
@@ -57,7 +61,7 @@ router.route('/posts/:id/vote')
     const dbUser = res.locals.user.dbUser
     db.Post.findByIdAndUpdate(req.params.id, { $push: { voters: dbUser._id } }, { new: true })
       .populate('voters')
-      .then( (result) => {
+      .then((result) => {
         res.json(result)
       })
   })
@@ -67,9 +71,9 @@ router.route('/posts/:id/purchase')
     const dbUser = res.locals.user.dbUser
     db.Post.findByIdAndUpdate(req.params.id, { $push: { purchasers: dbUser._id } }, { new: true })
       .populate('purchasers')
-      .then( (result) => {
+      .then((result) => {
         res.json(result)
       })
   })
-  
+
 module.exports = router
