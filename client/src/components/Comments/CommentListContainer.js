@@ -93,8 +93,6 @@ class CommentListContainer extends React.Component {
   }
 
   render() {
-    console.log('cachedMoneyBtnIds: ', this.cachedMoneyBtnIds)
-    console.log('pendingVotes: ', this.state.pendingVotes)
     return (
       <React.Fragment>
         {this.state.pendingVotes.length > 0 &&

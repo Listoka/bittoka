@@ -4,12 +4,12 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const TransactionSchema = new Schema({
-  userId: {
+  fromUser: {
     type: ObjectId,
     ref: 'User',
     required: true
   },
-  paidUserId: {
+  paidUser: {
     type: ObjectId,
     ref: 'User'
   },
@@ -23,24 +23,22 @@ const TransactionSchema = new Schema({
     required: true
   },
   txOutputs: {
-    type: [{ moneybuttonId: String, amount: Number }],
+    type: [{
+      moneyBtnId: String,
+      amount: Number,
+      userId: { type: ObjectId, ref: 'User' },
+      commentId: { type: ObjectId, ref: 'Comment' },
+      postId: { type: ObjectId, ref: 'Post' },
+      isListokaAcct: { type: Boolean, default: false }
+    }],
+  },
+  raw: { // stringified json object returned by moneybutton
+    type: String,
+    required: true
   },
   batch: {
     type: Boolean,
     default: false
-  },
-  commentList: {
-    type: [{
-      commentId: {
-        type: ObjectId,
-        ref: 'Comment'
-      },
-      userId: {
-        type: ObjectId,
-        ref: 'User'
-      }
-    }],
-    required: () => this.batch && this.txType === 'comment-vote'
   },
   commentId: {
     type: ObjectId,
@@ -61,6 +59,10 @@ const TransactionSchema = new Schema({
     timestamps: true
   })
 
+// TransactionSchema.virtual('total').get(() => {
+//   return this.txOutputs.reduce((acc, cur) => acc + cur.amount, 0)
+// })
+TransactionSchema.set('toJSON', { virtuals: true })
 const Transaction = mongoose.model('Transaction', TransactionSchema)
 
 module.exports = Transaction

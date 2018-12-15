@@ -4,6 +4,16 @@ const asyncForEach = async (array, func) => {
   }
 }
 
+const randomDate = () => {
+  const endDate = new Date()
+  const startDate = new Date()
+
+  startDate.setMonth(endDate.getMonth() - 2)
+
+  return new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()))
+}
+
 module.exports = {
-  asyncForEach
+  asyncForEach,
+  randomDate
 }

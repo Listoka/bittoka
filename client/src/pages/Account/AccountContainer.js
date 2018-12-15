@@ -21,17 +21,24 @@ class AccountContainer extends React.Component {
   }
 
   componentDidMount() {
-    let promises = [this.getPostsAndBio(this.state.id), this.getPostsAndDrafts(this.state.id), this.getTotalPaidToUser(this.state.id), this.getTotalPaidFromUser(this.state.id)]
+    let promises = [
+      this.getPostsAndBio(this.state.id),
+      this.getPostsAndDrafts(this.state.id),
+      this.getTotalPaidToUser(this.state.id),
+      this.getTotalPaidFromUser(this.state.id)
+    ]
+
     Promise.all(promises)
       .then(results => {
+        console.log('Account Promises Result: ', results)
         this.setState({
           drafts: results[1].filter(post => post.isDraft),
           userPosts: results[1].filter(post => !post.isDraft),
           bio: results[0].user.bio,
           userName: results[0].user.username,
           moneyBtnId: results[0].user.moneyBtnId,
-          amtEarned: (results[2] && results[2].totalPaid.toFixed(2)) || 0,
-          amtPaid: (results[3] && results[3].totalPaid.toFixed(2)) || 0
+          amtEarned: (results[2] && results[2].toFixed(2)) || 0,
+          amtPaid: (results[3] && results[3].toFixed(2)) || 0
         });
       })
   };
@@ -44,13 +51,11 @@ class AccountContainer extends React.Component {
     return API.getPostsAndBio(id).then(results => results.data)
   }
 
-  getTotalPaidToUser = (id) => {
-    return API.getTotalPaidToUser(id).then(results => results.data[0])
-  }
-
-  getTotalPaidFromUser = (id) => {
-    return API.getTotalPaidFromUser(id).then(results => results.data[0])
-  }
+  // TODO: Ended up cleaning the response object up in the API util file, so this isn't really necessary
+  // leaving it for now though, because that is not how we do it anywhere else, and we should probably
+  // make a consistent decsion one way or the other..
+  getTotalPaidToUser = (id) => API.getTotalPaidToUser(id)
+  getTotalPaidFromUser = (id) => API.getTotalPaidFromUser(id)
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -71,7 +76,7 @@ class AccountContainer extends React.Component {
   };
 
   handleFormSubmit = (event) => {
-    console.log(this.state);
+    console.log('handleFormSubmit this.state:', this.state);
     event.preventDefault();
     const data = {
       bio: this.state.bio,
@@ -95,8 +100,8 @@ class AccountContainer extends React.Component {
     const drafts = this.state.drafts.filter(d => d._id !== id)
     this.setState({ drafts })
     API.deletePost(id)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(res => console.log('removeDraft response: ', res))
+      .catch(err => console.log('removeDraft ERR: ', err))
   }
 
   editBio = () => { this.setState(prevState => ({ showBio: !prevState.showBio })) }

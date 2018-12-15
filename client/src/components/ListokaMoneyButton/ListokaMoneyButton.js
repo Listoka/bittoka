@@ -49,20 +49,33 @@ class ListokaMoneyButton extends Component {
     alert(`MoneyButton transaction failed. ${err}`)
   }
 
+  // TODO: logPayment and logBatchPayment are *close*.. we could probably refactor
+  // this into one form for all transactions..
   logPayment = (trans) => {
     console.log('Trans: ' + JSON.stringify(trans))
     const txDetails = {
-      userId: this.props.userId,
-      paidUserId: this.props.payeeId,
+      fromUser: this.props.userId,
+      paidUser: this.props.payeeId,
       txFrom: trans.userId,
       txType: this.props.txType,
-      txOutputs: [{ moneyButtonId: trans.outputs[0].to, amount: trans.outputs[0].amount },
-      { moneyButtonId: trans.outputs[1].to, amount: trans.outputs[1].amount }],
+      raw: JSON.stringify(trans),
+      txOutputs: trans.outputs.map(t => {
+        const script = JSON.parse(t.script)
+        return {
+          moneyBtnId: t.to,
+          amount: t.amount,
+          userId: script.listokaUserId,
+          commentId: script.commentId,
+          postId: script.postId,
+          isListokaAcct: script.isListokaAcct
+        }
+      }),
       commentId: this.props.commentId || null,
       postId: this.props.postId || null
     }
+
     API.createTransaction(txDetails).then(result => {
-      console.log('tx log result: ' + JSON.stringify(result))
+      console.log('tx log result: ', result)
       this.props.paymentSuccessCbk(trans)
     });
   };
@@ -73,11 +86,22 @@ class ListokaMoneyButton extends Component {
     console.log('Batch Transaction: ', trans)
     const txDetails = {
       batch: true,
-      userId: this.props.userId,
+      fromUser: this.props.userId,
       txFrom: trans.userId, // originating moneyBtnId
       txType: this.props.txType,
-      txOutputs: trans.outputs.map(t => ({ moneyButtonId: t.to, amount: t.amount })),
-      commentList: this.props.payeeArray.map(t => ({ userId: t.authorId, commentId: t.commentId }))
+      raw: JSON.stringify(trans),
+      txOutputs: trans.outputs.map(t => {
+        const script = JSON.parse(t.script)
+        return {
+          moneyBtnId: t.to,
+          amount: t.amount,
+          userId: script.listokaUserId,
+          commentId: script.commentId,
+          isListokaAcct: script.isListokaAcct // we check this again server-side to be sure..
+        }
+      }
+      ),
+      // commentList: this.props.payeeArray.map(t => ({ userId: t.authorId, commentId: t.commentId }))
     }
 
     API.createTransaction(txDetails).then(result => {
@@ -87,6 +111,7 @@ class ListokaMoneyButton extends Component {
         cbk(trans)
       }
     })
+      .catch(err => console.log('Batch Transaction Err: ', err))
   }
 
   render() {
@@ -98,25 +123,36 @@ class ListokaMoneyButton extends Component {
         return {
           to: moneyBtnId,
           amount: this.props.payVal - listokaCut,
-          currency: 'USD'
+          currency: 'USD',
+          script: JSON.stringify({
+            listokaUserId: obj.authorId,
+            commentId: obj.commentId,
+            isListokaAcct: false
+          })
         }
       })
     } else {
       outputs = [{
         to: this.state.payeeMbId,
         amount: this.props.payVal - listokaCut,
-        currency: 'USD'
+        currency: 'USD',
+        script: JSON.stringify({
+          listokaUserId: this.props.payeeId,
+          commentId: this.props.commentId || null,
+          postId: this.props.postId || null,
+          isListokaAcct: false
+        })
       }]
     }
 
     let listokaOutput = {
       to: listokaAcctNum,
       amount: listokaCut * outputs.length,
-      currency: 'USD'
+      currency: 'USD',
+      script: JSON.stringify({ isListokaAcct: true })
     }
 
     outputs = [...outputs, listokaOutput]
-    console.log('ListokaMoneyButton outputs: ', outputs)
 
     return (
       <React.Fragment>
@@ -128,6 +164,7 @@ class ListokaMoneyButton extends Component {
             onPayment={this.state.batch ? this.logBatchPayment : this.logPayment}
             onError={this.handleError}
             devMode={this.props.devMode}
+            buttonData={JSON.stringify(this.props.payeeArray)}
           />
           :
           <p>MoneyButton loading...</p>

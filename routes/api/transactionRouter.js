@@ -16,7 +16,86 @@ router.route('/transactions/:id')
 
 // userFieldName === 'userId' means paid BY user
 // userFieldName === 'paidUserId' means paid TO user
-router.route('/transactions/paid/:userFieldName/:uid')
+// router.route('/transactions/paid/:userFieldName/:uid')
+//   .get(transactionController.totalAmtPaid)
+
+router.route('/users/:userId/tx')
+  .get((req, res) => {
+    let { limit, page } = req.query
+
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? parseInt(limit) : 10
+    page = page ? parseInt(page) : 1
+
+    db.Transaction.find({
+      $or: [
+        { txOutputs: { $elemMatch: { userId: req.params.userId } } },
+        { paidUser: req.params.userId },
+        { fromUser: req.params.userId }
+      ]
+    })
+      .populate('fromUser', 'username')
+      .select('-raw')
+      .sort({ createdAt: 'desc' })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .then(dbTxns => res.json(dbTxns))
+      .catch(err => {
+        console.log('\n >>>>> GET user/tx/ ERR:\n', err)
+        res.status(500).json(err)
+      })
+  })
+
+router.route('/users/:userId/tx/from')
+  .get((req, res) => {
+    let { limit, page } = req.query
+
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? parseInt(limit) : 10
+    page = page ? parseInt(page) : 1
+
+    db.Transaction.find({ fromUser: req.params.userId })
+      .populate('fromUser', 'username')
+      .select('-raw')
+      .sort({ createdAt: 'desc' })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .then(dbTxns => {
+        res.json(dbTxns)
+      })
+      .catch(err => res.status(500).json(err))
+  })
+
+router.route('/users/:userId/tx/to')
+  .get((req, res) => {
+    let { limit, page } = req.query
+
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? parseInt(limit) : 10
+    page = page ? parseInt(page) : 1
+
+    db.Transaction.find({
+      $or: [
+        { txOutputs: { $elemMatch: { userId: req.params.userId } } },
+        { paidUser: req.params.userId }
+      ]
+    })
+      .populate('fromUser', 'username')
+      .select('-raw')
+      .sort({ createdAt: 'desc' })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .then(dbTxns => res.json(dbTxns))
+      .catch(err => {
+        console.log('\n >>>>> GET user/tx/to ERR:\n', err)
+        res.status(500).json(err)
+      })
+  })
+
+router.route('/users/:userId/tx/to/total')
+  .get(transactionController.totalAmtReceived)
+
+router.route('/users/:userId/tx/from/total')
   .get(transactionController.totalAmtPaid)
 
 module.exports = router

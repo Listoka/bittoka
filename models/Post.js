@@ -5,15 +5,14 @@ const ObjectId = Schema.Types.ObjectId
 const PostSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: () => !this.isDraft
   },
   body: { // should have a length limit
     type: String,
-    required: true
+    required: () => !this.isDraft
   },
   teaser: { // should have a length limit and a minimum?
     type: String,
-    // required: true
   },
   tags: [String],
   author: { type: ObjectId, ref: 'User', required: true },
