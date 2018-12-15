@@ -27,7 +27,6 @@ router.put('/users/id/:id', (req, res) => {
     })
 })
 
-// TODO: this should check if the username is unique before creating the user
 router.post('/users', (req, res) => {
   console.log('\n>>> POST -- req.originalUrl: ', req.originalUrl)
   console.log('>>> POST -- req.body: \n', req.body)
@@ -40,9 +39,18 @@ router.post('/users', (req, res) => {
     permissions: ['user'],
     moneyBtnId: moneyBtnId
   }
-  db.User.create(userData).then(result => {
-    res.json(result)
-  })
+
+  db.User.find({ username })
+    .then(result => {
+      if (result.length > 0) {
+        res.status(400).send('Error: Username taken.')
+      } else {
+        return db.User.create(userData)
+      }
+    })
+    .then(result => {
+      res.json(result)
+    })
 })
 
 module.exports = router
