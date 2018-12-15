@@ -45,7 +45,12 @@ class TransactionListContainer extends React.Component {
     page++
 
     return API.getAllTx(this.props.userId, { page, limit })
-      .then(result => this.setState({ transactions: result.data, page }))
+      .then(result => {
+        this.setState({
+          transactions: [...this.state.transactions, ...result.data],
+          page
+        })
+      })
       .catch(err => console.log('fetchNextPage ERR: ', err))
   }
 

@@ -16,8 +16,8 @@ router.route('/transactions/:id')
 
 // userFieldName === 'userId' means paid BY user
 // userFieldName === 'paidUserId' means paid TO user
-router.route('/transactions/paid/:userFieldName/:uid')
-  .get(transactionController.totalAmtPaid)
+// router.route('/transactions/paid/:userFieldName/:uid')
+//   .get(transactionController.totalAmtPaid)
 
 router.route('/users/:userId/tx')
   .get((req, res) => {
@@ -91,5 +91,11 @@ router.route('/users/:userId/tx/to')
         res.status(500).json(err)
       })
   })
+
+router.route('/users/:userId/tx/to/total')
+  .get(transactionController.totalAmtReceived)
+
+router.route('/users/:userId/tx/from/total')
+  .get(transactionController.totalAmtPaid)
 
 module.exports = router

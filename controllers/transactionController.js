@@ -52,20 +52,42 @@ module.exports = {
       .catch(err => res.status(418).json(err))
   },
 
+  // totalAmtPaid: (req, res) => {
+  //   db.Transaction
+  //     .aggregate([{
+  //       $group: {
+  //         _id: { [req.params.userFieldName]: mongoose.Types.ObjectId(req.params.uid) },
+  //         totalPaid: { $sum: { "$arrayElemAt": ["$txOutputs.amount", 1] } }
+  //       }
+  //     } // txOutputs[0]=listokaAcct, txOutputs[1]=userAcct
+  //     ])
+  //     .then(result => res.json(result))
+  //     .catch(err => res.status(418).json(err))
+  // },
+
   totalAmtPaid: (req, res) => {
-    db.Transaction
-      .aggregate([{
-        $group: {
-          _id: { [req.params.userFieldName]: mongoose.Types.ObjectId(req.params.uid) },
-          totalPaid: { $sum: { "$arrayElemAt": ["$txOutputs.amount", 1] } }
-        }
-      } // txOutputs[0]=listokaAcct, txOutputs[1]=userAcct
-      ])
+    db.Transaction.aggregate([
+      { $match: { fromUser: mongoose.Types.ObjectId(req.params.userId) } },
+      { $unwind: '$txOutputs' },
+      { $group: { _id: null, total: { $sum: '$txOutputs.amount' } } }
+    ])
       .then(result => res.json(result))
-      .catch(err => res.status(418).json(err))
+      .catch(err => {
+        console.log('\n >>> totalAmtPaid ERR: \n', err)
+        res.status(500).json(err)
+      })
   },
 
-  totalReceivedByUser: (req, res) => {
-
-  }
+  totalAmtReceived: (req, res) => {
+    db.Transaction.aggregate([
+      { $unwind: '$txOutputs' },
+      { $match: { 'txOutputs.userId': mongoose.Types.ObjectId(req.params.userId) } },
+      { $group: { _id: null, total: { $sum: '$txOutputs.amount' } } }
+    ])
+      .then(result => res.json(result))
+      .catch(err => {
+        console.log('\n >>> totalAmountReceived ERR: \n', err)
+        res.status(500).json(err)
+      })
+  },
 }

@@ -126,12 +126,17 @@ export default {
     return axios.post('/api/transactions', tx)
   },
 
+  // breaking convention a bit here.  Cleaning up the response to only return the number
   getTotalPaidFromUser: (id) => {
-    return axios.get(`/api/transactions/paid/userId/${id}`)
+    return axios.get(`/api/users/${id}/tx/from/total`)
+      .then(response => response.data[0].total)
+      .catch(err => console.log('API.getTotalPaidFromUser ERR:', err))
   },
 
   getTotalPaidToUser: (id) => {
-    return axios.get(`/api/transactions/paid/paidUserId/${id}`)
+    return axios.get(`/api/users/${id}/tx/to/total`)
+      .then(response => response.data[0].total)
+      .catch(err => console.log('API.getTotalPaidToUser ERR:', err))
   },
 
   getTxFromUser: (userId) => {
