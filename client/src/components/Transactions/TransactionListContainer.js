@@ -8,7 +8,7 @@ class TransactionListContainer extends React.Component {
     this.state = {
       page: 1,
       limit: 10,
-      transactions: []
+      transactions: [],
     }
   }
 
@@ -58,6 +58,9 @@ class TransactionListContainer extends React.Component {
     console.log('TransactionListContainer Txns:', this.state.transactions)
     return (
       <TransactionList
+        {...this.state}
+        fetchNextPage={this.fetchNextPage}
+        userId={this.props.userId}
       />
     )
   }
