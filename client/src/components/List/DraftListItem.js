@@ -7,7 +7,7 @@ export const DraftListItem = props => {
   return (
     <React.Fragment>
       <div className='border-b border-medium-gray mt-2'>
-        <p className='mb-1 text-base'>Title: {props.title}</p>
+        <p className='mb-1 text-base'>Title: {props.title ? props.title : 'Untitled'}</p>
         <p className='mb-3 text-xs'>Updated: <Moment fromNow>{props.updatedAt}</Moment> in
               <Link to={`/categories/${props.categoryName}`}>
             <span className={`${props.categoryName}Flair flair`}> {props.categoryName}</span>
