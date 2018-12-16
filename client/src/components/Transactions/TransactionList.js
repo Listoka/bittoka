@@ -7,7 +7,7 @@ const TransactionList = props => {
       {console.log(props)}
       <div className='w-full bg-darkest-gray p-4 rounded-lg'>
         <table className='w-full text-left'>
-          <thead className='border-medium-gray border-b-2 hrModals mb-1'>
+          <thead className='border-medium-gray border-b-2 hrModals mb-2'>
             <tr className='flex w-full'>
               <th className='p-1 w-1/4 font-normal font-base'>Date</th>
               <th className='p-1 w-1/4 font-normal font-base'>Type</th>
