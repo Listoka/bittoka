@@ -81,7 +81,7 @@ module.exports = {
   totalAmtReceived: (req, res) => {
     db.Transaction.aggregate([
       { $unwind: '$txOutputs' },
-      { $match: { 'txOutputs.userId': mongoose.Types.ObjectId(req.params.userId) } },
+      { $match: { 'txOutputs.toUser': mongoose.Types.ObjectId(req.params.userId) } },
       { $group: { _id: null, total: { $sum: '$txOutputs.amount' } } }
     ])
       .then(result => res.json(result))

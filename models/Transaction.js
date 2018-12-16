@@ -26,9 +26,9 @@ const TransactionSchema = new Schema({
     type: [{
       moneyBtnId: String,
       amount: Number,
-      userId: { type: ObjectId, ref: 'User' },
-      commentId: { type: ObjectId, ref: 'Comment' },
-      postId: { type: ObjectId, ref: 'Post' },
+      toUser: { type: ObjectId, ref: 'User' },
+      comment: { type: ObjectId, ref: 'Comment' },
+      post: { type: ObjectId, ref: 'Post' },
       isListokaAcct: { type: Boolean, default: false }
     }],
   },
