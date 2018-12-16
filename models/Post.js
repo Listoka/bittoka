@@ -3,13 +3,14 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const PostSchema = new Schema({
+  isDraft: { type: Boolean, default: false },
   title: {
     type: String,
-    required: () => !this.isDraft
+    required: function () { return !this.isDraft }
   },
   body: { // should have a length limit
     type: String,
-    required: () => !this.isDraft
+    required: function () { return !this.isDraft }
   },
   teaser: { // should have a length limit and a minimum?
     type: String,
@@ -22,7 +23,6 @@ const PostSchema = new Schema({
   comments: [{ type: ObjectId, ref: 'Comment' }],
   voters: [{ type: ObjectId, ref: 'User' }],
   purchasers: [{ type: ObjectId, ref: 'User' }],
-  isDraft: { type: Boolean, default: false },
   paywallCost: { type: Number }
 },
   {
