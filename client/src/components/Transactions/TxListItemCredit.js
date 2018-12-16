@@ -5,22 +5,22 @@ const TxListItemCredit = props => {
   const date = props.transaction.createdAt && props.transaction.createdAt.slice(0, 10);
   let amount = 0
   
-  // props.transaction.txOutputs
   return(
     <React.Fragment>
     
-      {props.transaction.txOutputs.forEach(output => { 
-        console.log(output.toUser)
+      {props.transaction.txOutputs.map(output => { 
+        console.log(output)
         if (output.paidUser === props.userId) {
-          amount += output.amount
-        }})
-      }
-    <tr className='flex w-full text-brand-green text-xs'>
-      <td className='p-1 w-1/4'><Moment format="MM-DD-YYYY">{date}</Moment></td>
-      <td className='p-1 w-1/4'>{props.transaction.txType}</td>
-      <td className='p-1 w-1/4'>${amount.toFixed(2)}</td>
-      <td className='p-1 w-1/4'>{props.transaction.fromUser.username}</td>
-    </tr>
+          return amount += output.amount
+        } return null
+      })}
+    
+      <tr className='flex w-full text-brand-green text-xs'>
+        <td className='p-1 w-1/4'><Moment format="MM-DD-YYYY">{date}</Moment></td>
+        <td className='p-1 w-1/4'>{props.transaction.txType}</td>
+        <td className='p-1 w-1/4'>${amount.toFixed(2)}</td>
+        <td className='p-1 w-1/4'>{props.transaction.fromUser.username}</td>
+      </tr>
 
   </React.Fragment>
   )
