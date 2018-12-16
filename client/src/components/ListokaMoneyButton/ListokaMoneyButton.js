@@ -64,9 +64,9 @@ class ListokaMoneyButton extends Component {
         return {
           moneyBtnId: t.to,
           amount: t.amount,
-          userId: script.listokaUserId,
-          commentId: script.commentId,
-          postId: script.postId,
+          toUser: script.listokaUserId,
+          comment: script.commentId,
+          post: script.postId,
           isListokaAcct: script.isListokaAcct
         }
       }),
@@ -95,8 +95,8 @@ class ListokaMoneyButton extends Component {
         return {
           moneyBtnId: t.to,
           amount: t.amount,
-          userId: script.listokaUserId,
-          commentId: script.commentId,
+          toUser: script.listokaUserId,
+          comment: script.commentId,
           isListokaAcct: script.isListokaAcct // we check this again server-side to be sure..
         }
       }

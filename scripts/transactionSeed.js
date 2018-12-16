@@ -57,9 +57,9 @@ const seedPurchaseTransactions = async () => {
 const makePurchaseTransaction = (fromUser, post) => {
   const txOutputs = [{
     moneyBtnId: post.author.moneyBtnId,
-    userId: post.author._id,
+    toUser: post.author._id,
     amount: post.paywallCost,
-    postId: post._id,
+    post: post._id,
     isListokaAcct: false
   },
   {
@@ -130,8 +130,8 @@ const makeCommentTransaction = (fromUser, comments) => {
     return {
       moneyBtnId: c.author.moneyBtnId,
       amount: 0.02,
-      userId: c.author._id,
-      commentId: c._id,
+      toUser: c.author._id,
+      comment: c._id,
     }
   })
 
