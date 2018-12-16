@@ -10,7 +10,7 @@ const nullCategory = {
   categoryDescription: '',
   categoryTags: [],
   categorySettings: null,
-}       
+}
 
 class MainPageContainer extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class MainPageContainer extends React.Component {
       filteredPosts = this.state.posts
     } else {
       filteredPosts = this.state.posts.filter(post => {
-        return post.tags.some(t => selectedTags.includes(t))
+        return selectedTags.every(t => post.tags.includes(t))
       })
     }
 
@@ -102,7 +102,7 @@ class MainPageContainer extends React.Component {
           ))}
         </div>
         <MainPage toggleSelectTag={this.toggleSelectTag} {...this.state} />
-    </React.Fragment>
+      </React.Fragment>
     )
   }
 }
