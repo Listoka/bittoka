@@ -5,30 +5,83 @@ import { Link } from 'react-router-dom'
 const TxListItemDebit = props => {
   const date = props.transaction.createdAt && props.transaction.createdAt.slice(0, 10);
   let path;
+  let amount = 0;
+  let name = '';
   return (
     <React.Fragment>
-      {props.transaction.txOutputs.map(output => {
-        if (props.transaction.txType==='comment-vote'){
-          //Todo: Not sure how to direct page to the specific comment within the post. For now it reverts to the post
-          // path = `/comments/${output.comment}`
-        } else if (props.transaction.txType==='purchase'|| props.transaction.txType==='post-vote') {
-          path = `/posts/${props.transaction.postId}`
-        } 
-        {/* Todo: NEED TO ADD this check to the if statement below: output.toUser._id===props.userId) */}
-        if (output.isListokaAcct===false) {
-          return ( 
-            <tr key={output._id}className='flex w-full text-red text-xs'>
-              <td className='p-1 w-1/4'><Moment format="MM-DD-YYYY">{date}</Moment></td>
-              <td className='p-1 w-1/4 text-red'>${output.amount.toFixed(2)}</td>
-              <td className='p-1 w-1/4'><Link to={{pathname: path}} className='no-underline cursor-pointer text-red'>{props.transaction.txType}</Link></td>
-              <td className='p-1 w-1/4'>{output.toUser.username}</td>
-              {/* Todo: NEED TO ADD ABOVE <Link to={{pathname: `/users/${props.transaction.toUser._id}`}}> */}
-            </tr>
-          )
-        } return null
+      {/* Only includes amounts paid to users, not Listoka accounts */}
+      {props.transaction.txOutputs.forEach(output => {
+        if (output.isListokaAcct === false) {
+          amount += output.amount
+        }
+        // This determines if we have multiple names (which includes a collapse function) or just one name
+        if (props.transaction.batch === true) {
+          name = <span onClick={props.toggleIsCollapsed} className={`cursor-pointer text-medium-gray no-underline`}>[ Multiple ]</span>;
+        } else if (props.transaction.batch === false && output.isListokaAcct === false) {
+          name = <Link to={{ pathname: `/users/${output.toUser._id}` }}
+            className={`no-underline text-red cursor-pointer`}>{output.toUser.username}</Link>
+        }
       })}
+      {/* 1st level of data on the page */}
+      <tr key={''} className='flex w-full text-red text-xs'>
+        <td className='p-1 w-1/4'><Moment format="MM-DD-YYYY">{date}</Moment></td>
+        <td className='p-1 w-1/4 text-red'>${amount.toFixed(2)}</td>
+        <td className='p-1 w-1/4'>{props.transaction.txType}</td>
+        <td className={`p-1 w-1/4`}>{name}</td>
+      </tr>
+      {/* Potentially second level of data on page */}
+      {!props.isCollapsed &&
+        props.transaction.txOutputs.map(output => {
+          if (output.isListokaAcct === false && output.toUser._id !== props.userId) {
+            return (
+              <TxOutputs
+                output={output}
+                txType={props.transaction.txType}
+              />
+            )
+          }
+        })
+      }
+
     </React.Fragment>
   )
 }
+  
+const TxOutputs = props => {
+  return (
+    <tr className='flex w-full text-red text-xs'>
+      <td className='p-1 w-1/4'></td>
+      <td className='p-1 w-1/4'>${props.output.amount}</td>
+      <td className='p-1 w-1/4'>{props.txType}</td>
+      <td className='p-1 w-1/4'><Link to={{ pathname: `/users/${props.output.toUser._id}` }} className='no-underline text-red cursor-pointer'>{props.output.toUser.username}</Link></td>
+    </tr>
+  )
+}
+
+
+
+
+    // <React.Fragment>
+    //   {props.transaction.txOutputs.map(output => {
+    //     if (props.transaction.txType==='comment-vote'){
+    //       //Todo: Not sure how to direct page to the specific comment within the post. For now it reverts to the post
+    //       // path = `/comments/${output.comment}`
+    //     } else if (props.transaction.txType==='purchase'|| props.transaction.txType==='post-vote') {
+    //       path = `/posts/${props.transaction.postId}`
+    //     } 
+    //     {/* Todo: NEED TO ADD this check to the if statement below: output.toUser._id===props.userId) */}
+    //     if (output.isListokaAcct===false && output.toUser._id!==props.userId) {
+    //       return ( 
+    //         <tr key={output._id}className='flex w-full text-red text-xs'>
+    //           <td className='p-1 w-1/4'><Moment format="MM-DD-YYYY">{date}</Moment></td>
+    //           <td className='p-1 w-1/4 text-red'>${output.amount.toFixed(2)}</td>
+    //           <td className='p-1 w-1/4'><Link to={{pathname: path}} className='no-underline cursor-pointer text-red'>{props.transaction.txType}</Link></td>
+    //           <td className='p-1 w-1/4'><Link to={{pathname: `/users/${output.toUser._id}`}} className='no-underline text-red cursor-pointer'>{output.toUser.username}</Link></td>
+    //         </tr>
+    //       )
+    //     } return null
+    //   })}
+    // </React.Fragment>
+
 
 export default TxListItemDebit

@@ -6,9 +6,9 @@ const TxListItemCredit = props => {
   const date = props.transaction.createdAt && props.transaction.createdAt.slice(0, 10);
   let amount = 0;
   let path;
+
   return(
     <React.Fragment>
-    
       {props.transaction.txOutputs.map(output => { 
         if (props.transaction.txType==='comment-vote'){
           //Todo: Not sure how to direct page to the specific comment within the post. For now it reverts to the post
@@ -17,8 +17,8 @@ const TxListItemCredit = props => {
           path = `/posts/${props.transaction.postId}`
         } 
         console.log(output)
-        if (output.paidUser === props.userId) {
-          return amount += output.amount
+        if (output.isListokaAcct === false && output.toUser._id === props.userId) {
+          amount += output.amount
         } return null
         
       })}
