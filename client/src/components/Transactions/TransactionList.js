@@ -16,8 +16,7 @@ const TransactionList = props => {
               <th className='p-1 w-1/4 font-normal font-base'>To/From</th>
             </tr>
           </thead>
-          {/* <hr className="border-medium-gray border-2 hrModals mb-3"></hr> */}
-          <tbody className='flex flex-col items-center justify-between w-full mt-2'>
+          <tbody className='flex flex-col items-center justify-between w-full mt-1'>
             {props.transactions.map(transaction => {
               return (
                 <TxListItem

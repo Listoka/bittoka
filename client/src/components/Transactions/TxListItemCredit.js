@@ -7,7 +7,7 @@ const TxListItemCredit = props => {
   let amount = 0;
   let path;
 
-  return(
+  return (
     <React.Fragment>
       {props.transaction.txOutputs.map(output => { 
         if (props.transaction.txType==='comment-vote'){
@@ -23,10 +23,10 @@ const TxListItemCredit = props => {
         
       })}
     
-      <tr className='flex w-full text-brand-green text-xs'>
-        <td className='p-1 w-1/4'><Moment format="MM-DD-YYYY">{date}</Moment></td>
-        <td className='p-1 w-1/4'>${amount.toFixed(2)}</td>
-        <td className='p-1 w-1/4'><Link to={{pathname: path}} className='no-underline cursor-pointer text-brand-green'>{props.transaction.txType}</Link></td>
+      <tr className='flex w-full text-xs'>
+        <td className='p-1 w-1/4 text-light-gray'><Moment format="MM-DD-YYYY">{date}</Moment></td>
+        <td className='p-1 w-1/4 text-brand-green'>${amount.toFixed(2)}</td>
+        <td className='p-1 w-1/4'><Link to={{pathname: path}} className='no-underline cursor-pointer text-light-gray'>{props.transaction.txType}</Link></td>
         <td className='p-1 w-1/4'><Link to={{pathname: `/users/${props.transaction.fromUser._id}`}} className='text-brand-green cursor-pointer no-underline'>{props.transaction.fromUser.username}</Link></td>
       </tr>
 
