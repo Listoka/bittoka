@@ -12,15 +12,12 @@ const TxListItemCredit = props => {
       {props.transaction.txOutputs.map(output => { 
         if (props.transaction.txType==='comment-vote'){
           //Todo: Not sure how to direct page to the specific comment within the post. For now it reverts to the post
-          // path = `/comments/${output.comment}`
         } else if (props.transaction.txType==='purchase'|| props.transaction.txType==='post-vote') {
           path = `/posts/${props.transaction.postId}`
         } 
-        console.log(output)
         if (output.isListokaAcct === false && output.toUser._id === props.userId) {
           amount += output.amount
         } return null
-        
       })}
     
       <tr className='flex w-full text-xs'>

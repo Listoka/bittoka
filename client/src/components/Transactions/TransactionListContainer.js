@@ -55,7 +55,6 @@ class TransactionListContainer extends React.Component {
   }
 
   render() {
-    console.log('TransactionListContainer Txns:', this.state.transactions)
     return (
       <TransactionList
         {...this.state}

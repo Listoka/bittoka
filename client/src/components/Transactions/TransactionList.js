@@ -5,7 +5,6 @@ import { B } from '../Widgets'
 const TransactionList = props => {
   return (
     <React.Fragment>
-      {console.log('Transaction List props:', props)}
       <div className='w-full bg-darkest-gray p-4 rounded-lg'>
         <table className='w-full text-left'>
           <thead className='border-medium-gray border-b-2 hrModals'>
@@ -28,7 +27,7 @@ const TransactionList = props => {
             })}
           </tbody>
         </table>
-        <B btnType='primary' onClick={props.fetchNextPage}>Next</B>
+        <B btnType='primary' onClick={props.fetchNextPage}>More</B>
       </div>
     </React.Fragment>
   )

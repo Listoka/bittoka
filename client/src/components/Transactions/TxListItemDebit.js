@@ -55,7 +55,6 @@ const TxListItemDebit = props => {
           }
         })
       }
-
     </React.Fragment>
   )
 }
@@ -70,31 +69,5 @@ const TxOutputs = props => {
     </tr>
   )
 }
-
-
-
-
-    // <React.Fragment>
-    //   {props.transaction.txOutputs.map(output => {
-    //     if (props.transaction.txType==='comment-vote'){
-    //       //Todo: Not sure how to direct page to the specific comment within the post. For now it reverts to the post
-    //       // path = `/comments/${output.comment}`
-    //     } else if (props.transaction.txType==='purchase'|| props.transaction.txType==='post-vote') {
-    //       path = `/posts/${props.transaction.postId}`
-    //     } 
-    //     {/* Todo: NEED TO ADD this check to the if statement below: output.toUser._id===props.userId) */}
-    //     if (output.isListokaAcct===false && output.toUser._id!==props.userId) {
-    //       return ( 
-    //         <tr key={output._id}className='flex w-full text-red text-xs'>
-    //           <td className='p-1 w-1/4'><Moment format="MM-DD-YYYY">{date}</Moment></td>
-    //           <td className='p-1 w-1/4 text-red'>${output.amount.toFixed(2)}</td>
-    //           <td className='p-1 w-1/4'><Link to={{pathname: path}} className='no-underline cursor-pointer text-red'>{props.transaction.txType}</Link></td>
-    //           <td className='p-1 w-1/4'><Link to={{pathname: `/users/${output.toUser._id}`}} className='no-underline text-red cursor-pointer'>{output.toUser.username}</Link></td>
-    //         </tr>
-    //       )
-    //     } return null
-    //   })}
-    // </React.Fragment>
-
 
 export default TxListItemDebit
