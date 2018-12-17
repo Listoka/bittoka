@@ -52,11 +52,12 @@ class EditorPageContainer extends React.Component {
 
         let paywallCost = postData ? postData.paywallCost || 0.00 : 0.00
         let isPaywallActive = paywallCost > 0
+        let postBody = postData ? postData.body : ''
 
         this.setState({
           categories: categoryData,
           selectedTags: postData ? postData.tags : [],
-          editorState: postData ? this.createFromHtml(postData.body) : EditorState.createEmpty(),
+          editorState: postBody ? this.createFromHtml(postBody) : EditorState.createEmpty(),
           title: postData ? postData.title : '',
           teaser: postData ? postData.teaser || '' : '',
           isDraft: postData ? postData.isDraft : true,
@@ -74,6 +75,11 @@ class EditorPageContainer extends React.Component {
 
   createFromHtml = html => {
     const blocksFromHtml = convertFromHTML(html)
+
+    if (!blocksFromHtml.contentBlocks) {
+      return EditorState.createEmpty()
+    }
+
     const state = ContentState.createFromBlockArray(
       blocksFromHtml.contentBlocks,
       blocksFromHtml.entityMap
