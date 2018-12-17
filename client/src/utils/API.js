@@ -138,22 +138,16 @@ export default {
       .catch(err => console.log('API.getTotalPaidToUser ERR:', err))
   },
 
-  getTxFromUser: (userId) => {
-    return axios.get(`/api/users/${userId}/tx/from`)
+  // where params is an object like { limit: 10, page: 1 }
+  getTxFromUser: (userId, params) => {
+    return axios.get(`/api/users/${userId}/tx/from`, { params })
   },
 
-  getTxToUser: (userId) => {
-    return axios.get(`/api/users/${userId}/tx/to`)
+  getTxToUser: (userId, params) => {
+    return axios.get(`/api/users/${userId}/tx/to`, { params })
   },
 
-  getAllTx: (userId, paramObj) => {
-    let params = new URLSearchParams()
-
-    if (paramObj) {
-      if (paramObj.limit) params.append('limit', paramObj.limit)
-      if (paramObj.page) params.append('page', paramObj.page)
-    }
-
-    return axios.get(`api/users/${userId}/tx`, params)
+  getAllTx: (userId, params) => {
+    return axios.get(`api/users/${userId}/tx`, { params })
   }
 };

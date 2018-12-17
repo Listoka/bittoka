@@ -10,10 +10,10 @@ import { List } from '../../components/List';
 const AccountPage = props => {
 
   const { switchView, drafts, removeDraft, ...conductorProps } = props
-  
+
   return (
-<div className='absolute w-full mt-5'>
-    <div className='container w-full flex mx-auto'>
+    <div className='absolute w-full mt-5'>
+      <div className='container w-full flex mx-auto'>
         <div className='w-2/3 px-1'>
           <div className='mx-0 mb-2 p-4 rounded-lg bg-darkest-gray'>
             <div className='mb-3'>
@@ -21,8 +21,8 @@ const AccountPage = props => {
             </div>
             <hr className="border-brand-green border hrModals mb-2"></hr>
             <div className='w-full flex'>
-              <B btnType={'primary'} onClick={(e) => switchView(e, 'SETTINGS')}>Settings</B><span className='mr-1'/>
-              <B btnType={'primary'} onClick={(e) => switchView(e, 'POSTS')} >Posts</B><span className='mr-1'/>
+              <B btnType={'primary'} onClick={(e) => switchView(e, 'SETTINGS')}>Settings</B><span className='mr-1' />
+              <B btnType={'primary'} onClick={(e) => switchView(e, 'POSTS')} >Posts</B><span className='mr-1' />
               <B btnType={'primary'} onClick={(e) => switchView(e, 'TRANSACTIONS')} >Transactions</B>
             </div>
           </div>
@@ -40,7 +40,7 @@ const AccountPage = props => {
           </Sidebar>
         </div>
       </div>
-      </div>
+    </div>
   )
 };
 
