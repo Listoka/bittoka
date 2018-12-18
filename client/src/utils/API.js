@@ -86,7 +86,7 @@ export default {
         console.log('updatePost error', error);
       });
   },
-  getPostsAndBio: (id) => {
+  getPostsAndBio: (id, params) => {
     // returns public profile object of the form
     // {
     //         user: {
@@ -96,7 +96,7 @@ export default {
     //         posts: [],
     //         comments: []
     // }
-    return axios.get(`/api/users/id/${id}/profile`)
+    return axios.get(`/api/users/id/${id}/profile`, { params })
   },
 
   updateProfile: (id, updatedData) => {
