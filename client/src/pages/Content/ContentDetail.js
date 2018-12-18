@@ -31,7 +31,7 @@ const ContentDetail = props => {
 
       <div className='max-w-lg md:w-5/6 lg:w-4/5 mx-auto mt-0 p-4 rounded bg-darkest-gray text-light-gray'>
         <div className='font-header text-3xl text-light-gray px-1 mb-2'>{props.title}</div>
-        <p className='ml-0 mt-1 mb-5 text-xs px-1'>
+        <div className='ml-0 mt-1 mb-5 text-xs px-1'>
           <span className='mr-1'>By: <Link className='text-brand-green no-underline' to={{ pathname: `/users/${props.author}` }}>{props.authorName}</Link></span>
           <span className='mr-1'>in <CategoryFlair categoryName={props.categoryName} /></span>
           <span className='mr-1'><UpArrowIcon />{props.voters ? props.voters.length : 0}</span>
@@ -59,7 +59,7 @@ const ContentDetail = props => {
           </span>
           {props._id && <span className='pl-1'>
           <EditButton postId={props._id} authorId={props.author} /></span>}
-        </p>
+        </div>
 
         <Paywall {...props}>
           <div className='text-sm px-1'>
