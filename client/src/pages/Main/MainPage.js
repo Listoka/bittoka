@@ -49,6 +49,7 @@ const MainPage = props => (
             <SBTagFilter
               toggleSelectTag={props.toggleSelectTag}
               tags={props.categoryTags}
+              selectedTags={props.selectedTags}
             />
           </Sidebar>
         </div>

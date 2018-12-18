@@ -6,15 +6,31 @@ const SBTagFilter = props => {
     return null
   }
 
+  const className = 'rounded-lg text-xs mb-2 py-2px list-reset overflow-hidden cursor-pointer'
+
+
   return (
     <SideBarSection>
       <div className='text-left text-xl'>Tags</div>
       <hr className="border-medium-gray border-2 hrModals"></hr>
-      {props.tags.sort().map(tag => (
-        <li className='rounded-lg text-xs mb-2 py-2px list-reset overflow-hidden cursor-pointer tagLinkInactive' key={tag} onClick={(event) => props.toggleSelectTag(event, tag)}>
-          {tag}
-        </li>
-      ))}
+      {props.tags.sort().map(tag => {
+        let tagClasses
+        if (props.selectedTags.includes(tag)) {
+          tagClasses = className + ' tagLinkActive'
+        } else {
+          tagClasses = className + ' tagLinkInactive'
+        }
+        return (
+          <li
+            className={tagClasses}
+            key={tag}
+            onClick={(event) => props.toggleSelectTag(event, tag)}
+          >
+            {tag}
+          </li>
+        )
+      }
+      )}
     </SideBarSection>
   )
 }

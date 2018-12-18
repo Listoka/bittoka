@@ -36,9 +36,6 @@ class MainPageContainer extends React.Component {
   }
 
   toggleSelectTag = (event, tag) => {
-    event.target.classList.toggle('tagLinkInactive');
-    event.target.classList.toggle('tagLinkActive');
-
     let selectedTags, filteredPosts
     if (this.state.selectedTags.includes(tag)) {
       selectedTags = this.state.selectedTags.filter(t => t !== tag)
