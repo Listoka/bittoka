@@ -159,6 +159,7 @@ class ListokaMoneyButton extends Component {
         {(this.state.payeeMbId || (this.state.batch && outputs.length > 1)) ?
           <MoneyButton
             outputs={outputs}
+            // editable={true}
             type='tip'
             label={this.props.label}
             onPayment={this.state.batch ? this.logBatchPayment : this.logPayment}
