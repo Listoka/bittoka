@@ -3,13 +3,18 @@ import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { EditButton, BitcoinIcon, CalendarIcon, DollarIcon, UpArrowIcon, Card } from '../Widgets';
 import CategoryFlair from '../Widgets/CategoryFlair';
+import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
 
 export const PostListItem = props => {
+  const shareUrl = `https://listoka.com/posts/${props._id}`
+    // http://localhost:3000/posts/${props._id}
+  const title = `${props.title} by ${props.authorName}`
+  
   return (
     <Card>
       <div className='w-full'>
         <span>
-          <section className='relative'>
+          <section className='relative clearfix'>
           <div className="hidden sm:hidden md:inline lg:inline xl:inline float-right text-lg pl-2">
               <EditButton authorId={props.author} postId={props._id} text='Edit' />
             </div>
@@ -20,11 +25,16 @@ export const PostListItem = props => {
               <Link to={{ pathname: `/posts/${props._id}` }} className='text-light-gray no-underline hover:text-brand-green'>{props.title}</Link>
             </div>
           </section>
-          <h6 className='clearfix mt-2 mb-5 font-normal text-light-gray leading-normal'>
+          <div className='mt-2 mb-5 w-full'>
+          <h6 className='font-normal text-light-gray leading-normal inline'>
             Posted by 
             <Link to={{ pathname: `/users/${props.author}` }} className='text-brand-green no-underline'> {props.authorName} </Link>
             in <CategoryFlair categoryName={props.categoryName} />
           </h6>
+          <h6 className='inline mx-1 font-normal'>
+            <CalendarIcon /><Moment fromNow>{props.createdAt}</Moment>
+          </h6>
+          </div>
           <p className='mb-5'>{props.teaser}</p>
         </span>
       </div>
@@ -41,9 +51,28 @@ export const PostListItem = props => {
         <h6 className='inline mx-1 font-normal'>
           <BitcoinIcon />$0.75
         </h6>
-        <h6 className='inline mx-1 font-normal'>
-          <CalendarIcon /><Moment fromNow>{props.createdAt}</Moment>
-        </h6>
+        <span className='inline-block align-text-bottom mr-1'>
+            <FacebookShareButton 
+              url={shareUrl}
+              quote={title}
+            >
+              <FacebookIcon 
+                size={16}
+                round={true}
+              />
+            </FacebookShareButton>
+          </span>
+          <span className='inline-block align-text-bottom'>
+            <TwitterShareButton
+              url={shareUrl}
+              title={title}
+            >
+              <TwitterIcon 
+                size={16}
+                round={true}
+              />
+            </TwitterShareButton>
+          </span>
 
         <hr className="border-medium-gray border-2 hrModals mb-2"></hr>
 
