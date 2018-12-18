@@ -1,8 +1,9 @@
 import axios from './authAxios';
 
 export default {
-  getAllPosts: () => {
-    return axios.get('/api/posts');
+  // where params is an object { page, limit }
+  getAllPosts: (params) => {
+    return axios.get('/api/posts', { params });
   },
 
   createPost: (data) => {
@@ -37,8 +38,9 @@ export default {
     return axios.get(`/api/posts/${postId}/comments/all`)
   },
 
-  getCategoryAndPosts: (categoryName) => {
-    return axios.get(`/api/categories/${categoryName}/posts`)
+  // where params is an object { limit, page }
+  getCategoryAndPosts: (categoryName, params) => {
+    return axios.get(`/api/categories/${categoryName}/posts`, { params })
   },
 
   getCategoryInfo: (categoryName) => {
@@ -67,8 +69,8 @@ export default {
   getLayeredComments: (commentID) => {
     return axios.get(`/api/comments/${commentID}/`)
   },
-  getUserPosts: (userID) => {
-    return axios.get(`/api/users/id/${userID}/posts/`);
+  getUserPosts: (userID, params) => {
+    return axios.get(`/api/users/id/${userID}/posts/`, { params });
   },
   deletePost: (id) => {
     console.log(id)
