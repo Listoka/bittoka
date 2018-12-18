@@ -19,6 +19,8 @@ class MainPageContainer extends React.Component {
       posts: [],
       filteredPosts: [],
       selectedTags: [],
+      page: 1,
+      limit: 10,
       ...nullCategory
     }
   }
@@ -65,6 +67,30 @@ class MainPageContainer extends React.Component {
     }
   }
 
+  fetchMorePosts = () => {
+    let { categoryName, page, limit } = this.state
+    let promise
+    page++
+
+    if (categoryName) {
+      promise = API.getCategoryAndPosts(categoryName, { page, limit })
+    } else {
+      promise = API.getAllPosts({ page, limit })
+    }
+
+    promise
+      .then(result => categoryName ? result.data.posts : result.data)
+      .then(posts => {
+        this.setState({
+          posts: [...this.state.posts, ...posts],
+          selectedTags: [],
+          filteredPosts: [...this.state.posts, ...posts],
+          page
+        })
+      })
+      .catch(err => console.log('fetchMorePosts ERR: ', err))
+  }
+
   fetchCategoryAndPosts(categoryName) {
     return API.getCategoryAndPosts(categoryName)
       .then(result => result.data)
@@ -75,7 +101,8 @@ class MainPageContainer extends React.Component {
           categoryDescription: category.description,
           categoryTags: category.tags,
           posts: posts,
-          filteredPosts: posts
+          filteredPosts: posts,
+          page: 1,
         })
       })
       .catch(err => console.log('fetchCategoryAndPosts Err: ', err))
@@ -84,7 +111,7 @@ class MainPageContainer extends React.Component {
   fetchDefault() {
     return API.getAllPosts()
       .then(result => result.data)
-      .then(posts => this.setState({ filteredPosts: posts, ...nullCategory, posts }))
+      .then(posts => this.setState({ filteredPosts: posts, page: 1, ...nullCategory, posts }))
       .catch(err => console.log('fetchDefault Err: ', err))
   }
 
@@ -101,7 +128,11 @@ class MainPageContainer extends React.Component {
             />
           ))}
         </div>
-        <MainPage toggleSelectTag={this.toggleSelectTag} {...this.state} />
+        <MainPage
+          toggleSelectTag={this.toggleSelectTag}
+          fetchMorePosts={this.fetchMorePosts}
+          {...this.state}
+        />
       </React.Fragment>
     )
   }

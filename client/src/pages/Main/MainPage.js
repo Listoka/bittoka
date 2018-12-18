@@ -40,6 +40,9 @@ const MainPage = props => (
       <div className='max-w-lg flex mx-auto'>
         <div className='mb-5 rounded-lg w-4/5 mr-1'>
           <PostList data={props.filteredPosts} />
+          <div>
+            <B btnType='primary' onClick={props.fetchMorePosts}>More</B>
+          </div>
         </div>
         <div className='w-1/5 ml-1'>
           <Sidebar>
