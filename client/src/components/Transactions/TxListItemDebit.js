@@ -63,7 +63,7 @@ const TxOutputs = props => {
   return (
     <tr className='flex w-full text-xs'>
       <td className='p-1 w-1/4'></td>
-      <td className='p-1 w-1/4 text-light-gray italic'>${props.output.amount}</td>
+      <td className='p-1 w-1/4 text-light-gray'>${props.output.amount}</td>
       <td className='p-1 w-1/4'></td>
       <td className='p-1 w-1/4'><Link to={{ pathname: `/users/${props.output.toUser._id}` }} className='no-underline text-red cursor-pointer'>{props.output.toUser.username}</Link></td>
     </tr>
