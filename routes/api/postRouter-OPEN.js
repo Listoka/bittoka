@@ -6,8 +6,16 @@ require('./paramHelpers')(router)
 
 router.route('/posts')
   .get((req, res) => {
+    let { limit, page } = req.query
+
+    // TODO: This is really simple validation.. might need something better
+    limit = limit ? parseInt(limit) : 10
+    page = page ? parseInt(page) : 1
+
     db.Post
       .find({ isDraft: false })
+      .skip((page - 1) * limit)
+      .limit(limit)
       .then(posts => res.json(posts))
       .catch(err => {
         console.log('\n>>>>> GET /posts ERROR:\n', err)

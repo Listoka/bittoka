@@ -5,7 +5,15 @@ const db = require('../../models')
 
 // TODO: Ensure this doesn't return draft posts unless the requester is the owner
 router.get('/users/id/:id/posts', (req, res) => {
+  let { limit, page } = req.query
+
+  // TODO: This is really simple validation.. might need something better
+  limit = limit ? parseInt(limit) : 10
+  page = page ? parseInt(page) : 1
+
   db.Post.find({ author: req.params.id })
+    .skip((page - 1) * limit)
+    .limit(limit)
     .then(dbPost => res.json(dbPost))
     .catch(err => res.status(500).json(err))
 })

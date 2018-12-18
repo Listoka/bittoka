@@ -6,12 +6,12 @@ require('./paramHelpers')(categoryRouter)
 
 categoryRouter.route('/categories')
   .get(categoryController.findAll)
-  // .post(authCheck, categoryController.create)
+// .post(authCheck, categoryController.create)
 
 categoryRouter.route('/categories/id/:id')
   .get(categoryController.findById)
-  // .put(authCheck, categoryController.update)
-  // .delete(authCheck, categoryController.remove)
+// .put(authCheck, categoryController.update)
+// .delete(authCheck, categoryController.remove)
 
 categoryRouter.route('/categories/:categoryName')
   .get(categoryController.findByName)
@@ -33,8 +33,15 @@ categoryRouter.get('/categories/id/:categoryId', function (req, res) {
 })
 
 categoryRouter.get('/categories/:categoryName/posts', function (req, res) {
-  console.log('categoryRouter-OPEN res.locals:\n', res.locals)
+  let { limit, page } = req.query
+
+  // TODO: This is really simple validation.. might need something better
+  limit = limit ? parseInt(limit) : 10
+  page = page ? parseInt(page) : 1
+
   db.Post.find({ categoryName: res.locals.category.name, isDraft: false })
+    .skip((page - 1) * limit)
+    .limit(limit)
     .then(dbPost => {
       if (!dbPost || dbPost.length < 1) {
         return []
@@ -43,7 +50,7 @@ categoryRouter.get('/categories/:categoryName/posts', function (req, res) {
       }
     })
     .then(dbPost => {
-      res.json({category: res.locals.category, posts: dbPost})
+      res.json({ category: res.locals.category, posts: dbPost })
     })
     .catch(err => {
       console.log(err)
