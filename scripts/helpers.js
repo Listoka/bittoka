@@ -4,16 +4,25 @@ const asyncForEach = async (array, func) => {
   }
 }
 
-const randomDate = () => {
-  const endDate = new Date()
-  const startDate = new Date()
+const randomDate = (startDate, endDate) => {
+  let end = endDate || new Date()
+  let start = startDate || new Date()
 
-  startDate.setMonth(endDate.getMonth() - 2)
+  if (!startDate) {
+    start.setMonth(end.getMonth() - 3)
+  }
 
-  return new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()))
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+}
+
+function fakeVoters(num, id) {
+  let arr = new Array(Math.floor(Math.random() * num))
+  arr.fill(id)
+  return arr
 }
 
 module.exports = {
   asyncForEach,
-  randomDate
+  randomDate,
+  fakeVoters
 }

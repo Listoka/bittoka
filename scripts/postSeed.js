@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const fakePostGen = require('./mock-post-html')
+const { randomDate, fakeVoters } = require('./helpers')
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 
@@ -114,19 +116,69 @@ function seedPosts() {
         let idx = Math.floor(dbUser.length * Math.random())
         let author = dbUser[idx]
         x.author = author._id
+        x.voters = fakeVoters(30, author._id)
         x.authorName = author.username
         return x
       })
       return db.Post.insertMany(data)
     })
-    .then(dbPost => {
-      console.log('\n>>>>> Added Posts:\n', dbPost)
-      process.exit(0)
-    })
-    .catch(err => {
-      console.log(err)
-      process.exit(1)
-    })
+  // .then(dbPost => {
+  //   console.log('\n>>>>> Added Posts:\n', dbPost)
+  //   process.exit(0)
+  // })
+  // .catch(err => {
+  //   console.log(err)
+  //   process.exit(1)
+  // })
 }
 
-seedPosts()
+async function bigPostSeed() {
+  await seedPosts()
+  const categories = await db.Category.find()
+  const users = await db.User.find()
+
+  const postData = []
+  for (let category of categories) {
+    for (let i = 0; i < 100; i++) {
+      const author = users[Math.floor(Math.random() * users.length)]
+      const numTags = Math.floor(Math.random() * category.tags.length)
+      const cost = Math.random() * 0.10
+      const data = {
+        title: fakePostGen.getTitleString(),
+        body: fakePostGen.createPostHtml(3, 30),
+        teaser: fakePostGen.getTeaser(),
+        tags: pickTags(category.tags, numTags),
+        author: author._id,
+        authorName: author.username,
+        categoryName: category.name,
+        paywallCost: cost.toFixed(2),
+        voters: fakeVoters(30, author._id),
+        createdAt: randomDate(),
+      }
+      postData.push(data)
+    }
+  }
+
+  return db.Post.insertMany(postData)
+    .then(() => console.log('\n >>>>> Added a bunch of posts...'))
+    .catch(err => console.log('\n >> seeding posts err: ', err))
+}
+
+function pickTags(tags, numTags) {
+  let selectedTags = []
+  while (selectedTags.length < numTags) {
+    let t = tags[Math.floor(Math.random() * tags.length)]
+
+    if (selectedTags.includes(t)) continue
+
+    selectedTags.push(t)
+  }
+
+  return selectedTags
+}
+
+bigPostSeed().then(() => process.exit(0))
+  .catch(err => {
+    console.log('bigPostSeed ERR: ', err)
+    process.exit(1)
+  })

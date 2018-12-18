@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const db = require("../models");
 const mockData = require('./mock-comment-data.json')
 const asyncForEach = require('./helpers').asyncForEach
+const fakeVoters = require('./helpers').fakeVoters
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 
@@ -85,10 +86,5 @@ const doIt = async () => {
   process.exit(0)
 }
 
-function fakeVoters(num, id) {
-  let arr = new Array(Math.floor(Math.random() * num))
-  arr.fill(id)
-  return arr
-}
 
 doIt()

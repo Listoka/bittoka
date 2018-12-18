@@ -19,11 +19,11 @@ const PostSchema = new Schema({
   author: { type: ObjectId, ref: 'User', required: true },
   authorName: { type: String },
   category: { type: ObjectId, ref: 'Category' },
-  categoryName: { type: String },
-  comments: [{ type: ObjectId, ref: 'Comment' }],
-  voters: [{ type: ObjectId, ref: 'User' }],
-  purchasers: [{ type: ObjectId, ref: 'User' }],
-  paywallCost: { type: Number }
+  categoryName: { type: String }, // TODO: we could get this by populating category..
+  comments: [{ type: ObjectId, ref: 'Comment' }], // TODO: comments already point to parentPost, this shouldn't be needed
+  voters: [{ type: ObjectId, ref: 'User' }], // TODO: this should be backed by Transactions, not maintained separately
+  purchasers: [{ type: ObjectId, ref: 'User' }], // TODO: this should be backed by transactions, not maintained separately
+  paywallCost: { type: Number, default: 0 }
 },
   {
     timestamps: true
