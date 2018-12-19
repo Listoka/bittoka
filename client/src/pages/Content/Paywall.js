@@ -26,7 +26,7 @@ const Paywall = props => {
         }
 
         return (
-          <div className='font-body text-base'>
+          <div className={`font-body text-base`}>
             <p className='pl-1 my-4'>{props.teaser}</p>
             <hr className="mx-1 border-medium-gray border-2 hrModals"></hr>
             <div className='pl-1'>

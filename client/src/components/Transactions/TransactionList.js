@@ -3,6 +3,9 @@ import TxListItem from './TxListItem';
 import { B } from '../Widgets'
 
 const TransactionList = props => {
+  // This filter prevents a user voting/paying themselves from being displays
+  let transArray = props.transactions.filter(newOutput => { return newOutput.fromUser._id !== newOutput.paidUser});
+  
   return (
     <React.Fragment>
       <div className='w-full bg-darkest-gray p-4 rounded-lg'>
@@ -16,7 +19,7 @@ const TransactionList = props => {
             </tr>
           </thead>
           <tbody className='flex flex-col items-center justify-between w-full mt-1'>
-            {props.transactions.map(transaction => {
+            {transArray.map(transaction => {
               return (
                 <TxListItem
                   transaction={transaction}

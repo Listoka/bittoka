@@ -376,3 +376,15 @@ input[type=checkbox] {
   bottom: -5px;
   left: 4px;
 }
+
+.contentFormatting pre {
+  padding-left: .75rem;
+  margin-left: .5rem;
+  border-left: .2rem solid #D8D8D8;
+  overflow-x: scroll;
+  overflow-wrap: break-word;
+  background: #2d2d2d;
+}
+.contentFormatting p, .contentFormatting h2, .contentFormatting pre, .contentFormatting blockquote {
+  margin-bottom: .75rem;
+}
