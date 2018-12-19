@@ -7,7 +7,6 @@ const TxListItemDebit = props => {
   let path;
   let amount = 0;
   let name = '';
-
   return (
     <React.Fragment>
       {/* Only includes amounts paid to users, not Listoka accounts */}
@@ -15,7 +14,6 @@ const TxListItemDebit = props => {
         if (output.isListokaAcct === false && output.toUser._id!==props.userId) {
           amount += output.amount
         }
-        
         // This determines if we have multiple names (which includes a collapse function) or just one name
         if (props.transaction.batch === true) {
           name = <span onClick={props.toggleIsCollapsed} 
@@ -23,8 +21,7 @@ const TxListItemDebit = props => {
         } else if (props.transaction.batch === false && output.isListokaAcct === false) {
           name = <Link to={{ pathname: `/users/${output.toUser._id}` }}
             className={`no-underline text-red cursor-pointer`}>{output.toUser.username}</Link>
-        }
-
+        } 
         // This determines what should be done depending on the transaction type.
         if (props.transaction.txType==='purchase'|| props.transaction.txType==='post-vote') {
           path = <Link to={{pathname: `/posts/${props.transaction.postId}`}}
@@ -52,7 +49,7 @@ const TxListItemDebit = props => {
                 txType={props.transaction.txType}
               />
             )
-          }
+          } return null
         })
       }
     </React.Fragment>

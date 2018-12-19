@@ -14,7 +14,7 @@ const AccountPage = props => {
   return (
     <div className='absolute w-full mt-5'>
       <div className='container w-full flex mx-auto'>
-        <div className='w-2/3 px-1'>
+        <div className='w-full px-1 xs:w-full sm:w-full md:w-full lg:w-2/3 xl:w-23'>
           <div className='mx-0 mb-2 p-4 rounded-lg bg-darkest-gray'>
             <div className='mb-3'>
               <div className='text-3xl font-header'>{props.userName}</div>
@@ -30,7 +30,7 @@ const AccountPage = props => {
             <AccountViewConductor {...conductorProps} />
           </div>
         </div>
-        <div className='w-1/3 px-1'>
+        <div className='w-1/3 px-1 hidden xs:hidden sm:hidden md:hidden lg:inline xl:inline'>
           <Sidebar>
             <div className='mb-3'>
               <div className='font-header text-3xl text-center'>Your drafts</div>

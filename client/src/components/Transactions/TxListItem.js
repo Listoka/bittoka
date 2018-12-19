@@ -14,7 +14,6 @@ class TxListItem extends React.Component {
 
   render() {
     const isDebit = this.props.transaction.fromUser._id === this.props.userId
-    
     return (
       isDebit ? <TxListItemDebit {...this.props} {...this.state} toggleIsCollapsed={this.toggleIsCollapsed}/> 
       : <TxListItemCredit {...this.props} {...this.state} toggleIsCollapsed={this.toggleIsCollapsed}/>
