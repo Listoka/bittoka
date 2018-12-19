@@ -3,7 +3,7 @@ import TxListItem from './TxListItem';
 import { B } from '../Widgets'
 
 const TransactionList = props => {
-  // This filter prevents a user voting/paying themselves from being displays
+  // This filter prevents a user voting/paying themselves from being displayed
   let transArray = props.transactions.filter(newOutput => { return newOutput.fromUser._id !== newOutput.paidUser});
   
   return (
