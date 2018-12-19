@@ -7,14 +7,10 @@ const TxListItemDebit = props => {
   let path;
   let amount = 0;
   let name = '';
-  // let newArr = props.transaction.filter(newOutput => { return newOutput.fromUser._id === newOutput.paidUser});
   return (
     <React.Fragment>
       {/* Only includes amounts paid to users, not Listoka accounts */}
-      
       {props.transaction.txOutputs.forEach(output => {
-        
-
         if (output.isListokaAcct === false && output.toUser._id!==props.userId) {
           amount += output.amount
         }
@@ -26,7 +22,6 @@ const TxListItemDebit = props => {
           name = <Link to={{ pathname: `/users/${output.toUser._id}` }}
             className={`no-underline text-red cursor-pointer`}>{output.toUser.username}</Link>
         } 
-
         // This determines what should be done depending on the transaction type.
         if (props.transaction.txType==='purchase'|| props.transaction.txType==='post-vote') {
           path = <Link to={{pathname: `/posts/${props.transaction.postId}`}}
