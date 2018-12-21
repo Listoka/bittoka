@@ -35,26 +35,35 @@ const MainPage = props => (
         </div>
       </div>
     }
-
-    <div className='container w-full'>
-      <div className='max-w-lg flex mx-auto'>
-        <div className='mb-5 rounded-lg w-4/5 mr-1'>
-          <PostList data={props.filteredPosts} />
-          <div>
-            <B btnType='primary' onClick={props.fetchMorePosts}>More</B>
+    {!props.categoryDisplayName ?
+      <div className='container w-full'>
+        <div className='max-w-lg flex mx-auto'>
+          <div className='mb-5 rounded-lg w-full mr-1'>
+            <PostList data={props.filteredPosts} />
+            <div>
+              <B btnType='primary' onClick={props.fetchMorePosts}>More</B>
+            </div>
           </div>
         </div>
-        <div className='w-1/5 ml-1'>
-          <Sidebar>
-            <SBTagFilter
-              toggleSelectTag={props.toggleSelectTag}
-              tags={props.categoryTags}
-              selectedTags={props.selectedTags}
-            />
-          </Sidebar>
+      </div>
+      :
+      <div className='container w-full'>
+        <div className='max-w-lg flex mx-auto'>
+          <div className='mb-5 rounded-lg w-4/5 mr-1'>
+            <PostList data={props.filteredPosts} />
+          </div>
+          <div className='w-1/5 ml-1'>
+            <Sidebar>
+              <SBTagFilter
+                toggleSelectTag={props.toggleSelectTag}
+                tags={props.categoryTags}
+                selectedTags={props.selectedTags}
+              />
+            </Sidebar>
+          </div>
         </div>
       </div>
-    </div>
+    }
   </React.Fragment>
 )
 
