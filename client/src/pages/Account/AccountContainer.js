@@ -30,8 +30,6 @@ class AccountContainer extends React.Component {
 
     Promise.all(promises)
       .then(results => {
-        console.log('Account Promises Result: ', results)
-        console.log('drafts: ', results[1])
         this.setState({
           drafts: results[1],
           userPosts: results[0].posts,

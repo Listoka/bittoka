@@ -1,7 +1,6 @@
 import axios from './authAxios';
 
 export default {
-  // where params is an object { page, limit }
   getPosts: (params) => {
     return axios.get('/api/posts', { params })
   },
@@ -25,11 +24,6 @@ export default {
 
   getAllPostComments: (postId) => {
     return axios.get(`/api/posts/${postId}/comments/`)
-  },
-
-  // where params is an object { limit, page }
-  getCategoryAndPosts: (categoryName, params) => {
-    return axios.get(`/api/categories/${categoryName}/posts`, { params })
   },
 
   getCategoryInfo: (categoryName) => {
@@ -57,12 +51,14 @@ export default {
       .catch(error => console.log('API.createComment Err: ', error));
   },
 
-  getLayeredComments: (commentID) => {
-    return axios.get(`/api/comments/${commentID}/`)
-  },
   getUserPosts: (userID, params) => {
     return axios.get(`/api/users/id/${userID}/posts/`, { params });
   },
+
+  getUserDrafts: (id) => {
+    return axios.get(`/api/users/id/${id}/posts/drafts`)
+  },
+
   deletePost: (id) => {
     console.log(id)
     return axios.delete('/api/posts/' + id);
@@ -104,14 +100,6 @@ export default {
       .catch(error => {
         console.log('API.submitDraft ERR: ', error);
       });
-  },
-
-  getUserPosts: (id) => {
-    return axios.get(`/api/users/id/${id}/posts`)
-  },
-
-  getUserDrafts: (id) => {
-    return axios.get(`/api/users/id/${id}/posts/drafts`)
   },
 
   getMoneyButton: (id) => {
