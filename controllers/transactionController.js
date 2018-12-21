@@ -20,7 +20,6 @@ module.exports = {
   },
 
   create: (req, res) => {
-    console.log('transactionController req.body: \n' + JSON.stringify(req.body, null, 2))
     const data = req.body
     data.txOutputs = data.txOutputs.map(output => ({
       userId: output.userId,
