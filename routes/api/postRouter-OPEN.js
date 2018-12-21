@@ -16,7 +16,7 @@ const sortOrder = {
 
 router.route('/posts')
   .get((req, res) => {
-    console.log('\n>>>> req.query: ', req.query)
+    console.log('\n>>>> GET /posts req.query: ', req.query)
     let { limit, page, order, by, category, days } = req.query
 
     // TODO: This is really simple validation.. might need something better
@@ -34,8 +34,6 @@ router.route('/posts')
       date.setDate(date.getDate() - days)
     }
 
-    console.log('date: ', date)
-    console.log(typeof date)
     const matchArgs = {
       isDraft: false,
       createdAt: { $gte: date }
@@ -83,30 +81,5 @@ router.route('/posts/:id')
 router.route('/posts/:id/comments/')
   .get(postController.getAllPostComments)
 
-// router.get('/categories/:categoryName/posts', function (req, res) {
-//   let { limit, page } = req.query
-
-//   // TODO: This is really simple validation.. might need something better
-//   limit = limit ? parseInt(limit) : 10
-//   page = page ? parseInt(page) : 1
-
-//   db.Post.find({ categoryName: res.locals.category.name, isDraft: false })
-//     .skip((page - 1) * limit)
-//     .limit(limit)
-//     .then(dbPost => {
-//       if (!dbPost || dbPost.length < 1) {
-//         return []
-//       } else {
-//         return dbPost
-//       }
-//     })
-//     .then(dbPost => {
-//       res.json({ category: res.locals.category, posts: dbPost })
-//     })
-//     .catch(err => {
-//       console.log(err)
-//       res.sendStatus(500)
-//     })
-// })
 
 module.exports = router
