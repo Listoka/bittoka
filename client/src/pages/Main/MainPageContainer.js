@@ -12,6 +12,11 @@ const nullCategory = {
   categorySettings: null,
 }
 
+// sorting methods:
+// votes -- alltime highest votes
+// recent -- highest votes, recently
+// new -- newest posts
+
 class MainPageContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -19,6 +24,8 @@ class MainPageContainer extends React.Component {
       posts: [],
       filteredPosts: [],
       selectedTags: [],
+      sortOrder: 'desc',
+      sortType: 'votes',
       page: 1,
       limit: 10,
       ...nullCategory
@@ -57,8 +64,10 @@ class MainPageContainer extends React.Component {
   fetchData() {
     const p = this.props
     const categoryName = (p.match && p.match.params.categoryName) || null
+    const params = { page: 1, limit: this.state.limit }
     if (categoryName) {
-      this.fetchCategoryAndPosts(categoryName)
+      params.category = categoryName
+      this.fetchCategoryAndPosts(categoryName, params)
     } else {
       this.fetchDefault()
     }
@@ -66,32 +75,28 @@ class MainPageContainer extends React.Component {
 
   fetchMorePosts = () => {
     let { categoryName, page, limit } = this.state
-    let promise
-    page++
+    let params = { page, limit, category: categoryName }
+    params.page++
 
-    if (categoryName) {
-      promise = API.getCategoryAndPosts(categoryName, { page, limit })
-    } else {
-      promise = API.getAllPosts({ page, limit })
-    }
 
-    promise
-      .then(result => categoryName ? result.data.posts : result.data)
+    API.getPosts(params)
+      .then(result => result.data)
       .then(posts => {
         this.setState({
           posts: [...this.state.posts, ...posts],
           selectedTags: [],
           filteredPosts: [...this.state.posts, ...posts],
-          page
+          page: params.page
         })
       })
       .catch(err => console.log('fetchMorePosts ERR: ', err))
   }
 
-  fetchCategoryAndPosts(categoryName) {
-    return API.getCategoryAndPosts(categoryName)
-      .then(result => result.data)
-      .then(({ category, posts }) => {
+  fetchCategoryAndPosts(categoryName, params) {
+    const category = API.getCategory(categoryName)
+    const posts = API.getPosts(params).then(result => result.data)
+    return Promise.all([category, posts])
+      .then(([category, posts]) => {
         this.setState({
           categoryName: category.name,
           categoryDisplayName: category.displayName,
@@ -99,14 +104,15 @@ class MainPageContainer extends React.Component {
           categoryTags: category.tags,
           posts: posts,
           filteredPosts: posts,
-          page: 1,
+          page: params.page,
+          limit: params.limit
         })
       })
       .catch(err => console.log('fetchCategoryAndPosts Err: ', err))
   }
 
   fetchDefault() {
-    return API.getAllPosts()
+    return API.getPosts()
       .then(result => result.data)
       .then(posts => this.setState({ filteredPosts: posts, page: 1, ...nullCategory, posts }))
       .catch(err => console.log('fetchDefault Err: ', err))

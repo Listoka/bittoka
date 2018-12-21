@@ -2,8 +2,8 @@ import axios from './authAxios';
 
 export default {
   // where params is an object { page, limit }
-  getAllPosts: (params) => {
-    return axios.get('/api/posts', { params });
+  getPosts: (params) => {
+    return axios.get('/api/posts', { params })
   },
 
   createPost: (data) => {
@@ -23,19 +23,19 @@ export default {
     return axios.get(`/api/posts/${id}/purchase`)
   },
 
-  getPostWithComments: (id) => {
-    return axios.get(`/api/posts/${id}/comments`)
-      .then(response => {
-        console.log(response);
-        return response;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  },
+  // getPostWithComments: (id) => {
+  //   return axios.get(`/api/posts/${id}/comments`)
+  //     .then(response => {
+  //       console.log(response);
+  //       return response;
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // },
 
   getAllPostComments: (postId) => {
-    return axios.get(`/api/posts/${postId}/comments/all`)
+    return axios.get(`/api/posts/${postId}/comments/`)
   },
 
   // where params is an object { limit, page }
@@ -51,21 +51,23 @@ export default {
       tags: categoryName.tags
     });
   },
+
+  getCategory: (categoryName) => {
+    return axios.get(`/api/categories/${categoryName}`)
+      .then(result => result.data)
+      .catch(err => console.log('API.getCategory ERR: ', err))
+  },
+
   getCategoriesTags: (categoryName) => {
     //console.log("getting Category Info")
     return axios.get(`/api/categories`)
   },
+
   createComment: (postId, commentData) => {
     return axios.post(`/api/posts/${postId}/comments`, commentData)
       .catch(error => console.log('API.createComment Err: ', error));
   },
-  createLayeredComment: (id, commentData) => {
-    console.log(commentData.body)
-    console.log(id)
-    return axios.post(`/api/comments/${id}/comments`, {
-      body: commentData.body
-    })
-  },
+
   getLayeredComments: (commentID) => {
     return axios.get(`/api/comments/${commentID}/`)
   },
