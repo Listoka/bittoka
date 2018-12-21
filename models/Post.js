@@ -20,8 +20,12 @@ const PostSchema = new Schema({
   authorName: { type: String },
   category: { type: ObjectId, ref: 'Category' },
   categoryName: { type: String }, // TODO: we could get this by populating category..
-  comments: [{ type: ObjectId, ref: 'Comment' }], // TODO: comments already point to parentPost, this shouldn't be needed
-  voters: [{ type: ObjectId, ref: 'User' }], // TODO: this should be backed by Transactions, not maintained separately
+  numComments: { type: Number, default: 0 },
+  // TODO: voters should be backed by Transactions, not maintained separately
+  // but it turns out that is very, very expensive to call while sorting
+  // the better method is probably to increment a 'numVoters' property here
+  // each time we create a relevant transaction
+  voters: [{ type: ObjectId, ref: 'User' }],
   purchasers: [{ type: ObjectId, ref: 'User' }], // TODO: this should be backed by transactions, not maintained separately
   paywallCost: { type: Number, default: 0 }
 },
@@ -29,7 +33,6 @@ const PostSchema = new Schema({
     timestamps: true
   })
 
-PostSchema.virtual('votes').get(function () { return this.voters.length })
 PostSchema.set('toJSON', { virtuals: true })
 
 const Post = mongoose.model('Post', PostSchema)
