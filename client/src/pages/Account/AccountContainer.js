@@ -23,7 +23,7 @@ class AccountContainer extends React.Component {
   componentDidMount() {
     let promises = [
       this.getPostsAndBio(this.state.id),
-      this.getPostsAndDrafts(this.state.id),
+      this.getDrafts(this.state.id),
       this.getTotalPaidToUser(this.state.id),
       this.getTotalPaidFromUser(this.state.id)
     ]
@@ -31,9 +31,10 @@ class AccountContainer extends React.Component {
     Promise.all(promises)
       .then(results => {
         console.log('Account Promises Result: ', results)
+        console.log('drafts: ', results[1])
         this.setState({
-          drafts: results[1].filter(post => post.isDraft),
-          userPosts: results[1].filter(post => !post.isDraft),
+          drafts: results[1],
+          userPosts: results[0].posts,
           bio: results[0].user.bio,
           userName: results[0].user.username,
           moneyBtnId: results[0].user.moneyBtnId,
@@ -43,8 +44,12 @@ class AccountContainer extends React.Component {
       })
   };
 
-  getPostsAndDrafts = (id) => {
-    return API.getPostsAndDrafts(id).then(results => results.data)
+  getPosts = (id) => {
+    return API.getUserPosts(id).then(results => results.data)
+  }
+
+  getDrafts = (id) => {
+    return API.getUserDrafts(id).then(results => results.data)
   }
 
   getPostsAndBio = (id) => {

@@ -11,7 +11,7 @@ router.get('/users/id/:id/posts', (req, res) => {
   limit = limit ? parseInt(limit) : 10
   page = page ? parseInt(page) : 1
 
-  db.Post.find({ author: req.params.id })
+  db.Post.find({ author: req.params.id, isDraft: false })
     .skip((page - 1) * limit)
     .limit(limit)
     .then(dbPost => res.json(dbPost))

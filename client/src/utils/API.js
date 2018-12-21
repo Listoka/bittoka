@@ -23,17 +23,6 @@ export default {
     return axios.get(`/api/posts/${id}/purchase`)
   },
 
-  // getPostWithComments: (id) => {
-  //   return axios.get(`/api/posts/${id}/comments`)
-  //     .then(response => {
-  //       console.log(response);
-  //       return response;
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // },
-
   getAllPostComments: (postId) => {
     return axios.get(`/api/posts/${postId}/comments/`)
   },
@@ -117,8 +106,12 @@ export default {
       });
   },
 
-  getPostsAndDrafts: (id) => {
+  getUserPosts: (id) => {
     return axios.get(`/api/users/id/${id}/posts`)
+  },
+
+  getUserDrafts: (id) => {
+    return axios.get(`/api/users/id/${id}/posts/drafts`)
   },
 
   getMoneyButton: (id) => {
