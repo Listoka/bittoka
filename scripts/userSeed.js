@@ -30,7 +30,15 @@ const userData = [
     moneyBtnId: '590',
     bio: 'This is Bertrand\'s bio.',
     permissions: [group.USER]
-  }
+  },
+  // {
+  //   username: 'txBot',
+  //   uid: 'fakeUID',
+  //   email: 'txbot@thing.com',
+  //   moneyBtnId: '783',
+  //   bio: 'txBot makes a bunch of fake transactions',
+  //   permissions: [group.USER]
+  // }
 ]
 
 function seedUsers() {

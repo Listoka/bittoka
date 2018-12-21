@@ -116,7 +116,7 @@ function seedPosts() {
         let idx = Math.floor(dbUser.length * Math.random())
         let author = dbUser[idx]
         x.author = author._id
-        x.voters = fakeVoters(30, author._id)
+        x.voters = fakeVoters(300, author._id)
         x.authorName = author.username
         return x
       })
@@ -152,7 +152,7 @@ async function bigPostSeed() {
         authorName: author.username,
         categoryName: category.name,
         paywallCost: cost.toFixed(2),
-        voters: fakeVoters(30, author._id),
+        voters: fakeVoters(300, author._id),
         createdAt: randomDate(),
       }
       postData.push(data)

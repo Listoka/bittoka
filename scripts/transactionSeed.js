@@ -9,8 +9,12 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 const listokaAcctNum = '783'
 
 const getUsers = () => {
-  return db.User.find()
+  return db.User.find({ username: { $ne: 'txBot' } })
 }
+
+// const getTxBot = () => {
+//   return db.User.findOne({ username: 'txBot' })
+// }
 
 const getPosts = () => {
   return db.Post.find().populate('author')
@@ -23,6 +27,48 @@ const getComments = () => {
 const deleteTransactions = () => {
   return db.Transaction.deleteMany()
 }
+
+// Part of experiment to see if we could calculate num votes
+// for each post on the fly and sort by that.. turns out that it
+// was far too expensive.
+
+// const seedPostVoteTransactions = async () => {
+//   const txBot = await getTxBot()
+//   const posts = await getPosts()
+
+//   let txData = []
+//   for (let post of posts) {
+//     let numVotes = Math.floor(Math.random() * 301)
+//     let currentPostTxData = []
+//     while (currentPostTxData.length < numVotes) {
+//       const tx = {
+//         fromUser: txBot._id,
+//         paidUser: post.author._id,
+//         txFrom: txBot.moneyBtnId,
+//         txType: 'post-vote',
+//         postId: post._id,
+//         raw: 'fake transaction!!',
+//         txOutputs: [
+//           {
+//             moneyBtnId: post.author.moneyBtnId,
+//             amount: 0.02,
+//             toUser: post.author._id,
+//             post: post._id,
+//           },
+//           {
+//             moneyBtnId: listokaAcctNum,
+//             amount: 0.01,
+//             isListokaAcct: true
+//           }
+//         ]
+//       }
+//       currentPostTxData.push(tx)
+//     }
+//     txData = [...txData, ...currentPostTxData]
+//   }
+
+//   return db.Transaction.insertMany(txData)
+// }
 
 const seedPurchaseTransactions = async () => {
   const users = await getUsers()
@@ -40,7 +86,7 @@ const seedPurchaseTransactions = async () => {
       .filter(p => p.paywallCost > 0)
 
     const selectedPosts = []
-    let numberToPick = (remainingPosts.length > 3) ? 3 : remainingPosts.length
+    let numberToPick = (remainingPosts.length > 20) ? 20 : remainingPosts.length
     while (selectedPosts.length < numberToPick) {
       let post = remainingPosts[Math.floor(Math.random() * remainingPosts.length)]
 
@@ -162,6 +208,7 @@ async function seed() {
   try {
     await seedCommentTransactions()
     await seedPurchaseTransactions()
+    // await seedPostVoteTransactions()
   }
   catch (err) {
     console.log('\n seed Err: ', err)
