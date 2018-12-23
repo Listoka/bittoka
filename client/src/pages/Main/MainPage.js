@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
 import SBTagFilter from '../../components/Sidebar/SBTagFilter';
 import IntroHeader from '../../components/IntroHeader';
+import PostListContainer from '../../components/PostList/PostListContainer';
 
 const MainPage = props => (
   <React.Fragment>
@@ -35,7 +36,13 @@ const MainPage = props => (
         </div>
       </div>
     }
-    {!props.categoryDisplayName ?
+    <PostListContainer
+      categoryName={props.categoryName}
+      categoryTags={props.categoryTags}
+      renderTagFilter={true}
+
+    />
+    {/* {!props.categoryDisplayName ?
       <div className='container w-full'>
         <div className='max-w-lg flex mx-auto'>
           <div className='mb-5 rounded-lg w-full mr-1'>
@@ -63,7 +70,7 @@ const MainPage = props => (
           </div>
         </div>
       </div>
-    }
+    } */}
   </React.Fragment>
 )
 

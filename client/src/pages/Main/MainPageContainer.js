@@ -12,22 +12,17 @@ const nullCategory = {
   categorySettings: null,
 }
 
-// sorting methods:
-// votes -- alltime highest votes
-// recent -- highest votes, recently
-// new -- newest posts
-
 class MainPageContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      posts: [],
-      filteredPosts: [],
-      selectedTags: [],
-      sortOrder: 'desc',
-      sortType: 'votes',
-      page: 1,
-      limit: 10,
+      // posts: [],
+      // filteredPosts: [],
+      // selectedTags: [],
+      // sortOrder: 'desc',
+      // sortType: 'votes',
+      // page: 1,
+      // limit: 10,
       ...nullCategory
     }
   }
@@ -42,81 +37,88 @@ class MainPageContainer extends React.Component {
     }
   }
 
-  toggleSelectTag = (event, tag) => {
-    let selectedTags, filteredPosts
-    if (this.state.selectedTags.includes(tag)) {
-      selectedTags = this.state.selectedTags.filter(t => t !== tag)
-    } else {
-      selectedTags = this.state.selectedTags.concat(tag).sort()
-    }
+  // toggleSelectTag = (event, tag) => {
+  //   let selectedTags, filteredPosts
+  //   if (this.state.selectedTags.includes(tag)) {
+  //     selectedTags = this.state.selectedTags.filter(t => t !== tag)
+  //   } else {
+  //     selectedTags = this.state.selectedTags.concat(tag).sort()
+  //   }
 
-    if (selectedTags.length === 0) {
-      filteredPosts = this.state.posts
-    } else {
-      filteredPosts = this.state.posts.filter(post => {
-        return selectedTags.every(t => post.tags.includes(t))
-      })
-    }
+  //   if (selectedTags.length === 0) {
+  //     filteredPosts = this.state.posts
+  //   } else {
+  //     filteredPosts = this.state.posts.filter(post => {
+  //       return selectedTags.every(t => post.tags.includes(t))
+  //     })
+  //   }
 
-    this.setState({ selectedTags, filteredPosts })
-  }
+  //   this.setState({ selectedTags, filteredPosts })
+  // }
 
   fetchData() {
     const p = this.props
     const categoryName = (p.match && p.match.params.categoryName) || null
-    const params = { page: 1, limit: this.state.limit }
     if (categoryName) {
-      params.category = categoryName
-      this.fetchCategoryAndPosts(categoryName, params)
+      return API.getCategory(categoryName)
+        .then(category => {
+          this.setState({
+            categoryName: category.name,
+            categoryDisplayName: category.displayName,
+            categoryDescription: category.description,
+            categoryTags: category.tags,
+            categorySettings: category.settings
+          })
+        })
     } else {
-      this.fetchDefault()
+      this.setState({ ...nullCategory })
     }
   }
 
-  fetchMorePosts = () => {
-    let { categoryName, page, limit } = this.state
-    let params = { page, limit, category: categoryName }
-    params.page++
+  // fetchMorePosts = () => {
+  //   let { categoryName, page, limit } = this.state
+  //   let params = { page, limit, category: categoryName }
+  //   params.page++
 
 
-    API.getPosts(params)
-      .then(result => result.data)
-      .then(posts => {
-        this.setState({
-          posts: [...this.state.posts, ...posts],
-          selectedTags: [],
-          filteredPosts: [...this.state.posts, ...posts],
-          page: params.page
-        })
-      })
-      .catch(err => console.log('fetchMorePosts ERR: ', err))
-  }
+  //   API.getPosts(params)
+  //     .then(result => result.data)
+  //     .then(posts => {
+  //       this.setState({
+  //         posts: [...this.state.posts, ...posts],
+  //         selectedTags: [],
+  //         filteredPosts: [...this.state.posts, ...posts],
+  //         page: params.page
+  //       })
+  //     })
+  //     .catch(err => console.log('fetchMorePosts ERR: ', err))
+  // }
 
-  fetchCategoryAndPosts(categoryName, params) {
-    const category = API.getCategory(categoryName)
-    const posts = API.getPosts(params).then(result => result.data)
-    return Promise.all([category, posts])
-      .then(([category, posts]) => {
-        this.setState({
-          categoryName: category.name,
-          categoryDisplayName: category.displayName,
-          categoryDescription: category.description,
-          categoryTags: category.tags,
-          posts: posts,
-          filteredPosts: posts,
-          page: params.page,
-          limit: params.limit
-        })
-      })
-      .catch(err => console.log('fetchCategoryAndPosts Err: ', err))
-  }
+  // fetchCategoryAndPosts(categoryName, params) {
+  //   const category = API.getCategory(categoryName)
+  //   const posts = API.getPosts(params).then(result => result.data)
+  //   return Promise.all([category, posts])
+  //     .then(([category, posts]) => {
+  //       this.setState({
+  //         categoryName: category.name,
+  //         categoryDisplayName: category.displayName,
+  //         categoryDescription: category.description,
+  //         categoryTags: category.tags,
+  //         posts: posts,
+  //         filteredPosts: posts,
+  //         page: params.page,
+  //         limit: params.limit
+  //       })
+  //     })
+  //     .catch(err => console.log('fetchCategoryAndPosts Err: ', err))
+  // }
 
-  fetchDefault() {
-    return API.getPosts()
-      .then(result => result.data)
-      .then(posts => this.setState({ filteredPosts: posts, page: 1, ...nullCategory, posts }))
-      .catch(err => console.log('fetchDefault Err: ', err))
-  }
+  // fetchDefault() {
+  //   return API.getPosts()
+  //     .then(result => result.data)
+  //     .then(posts => this.setState({ filteredPosts: posts, page: 1, ...nullCategory, posts }))
+  //     .catch(err => console.log('fetchDefault Err: ', err))
+  // }
 
   render() {
     return (
@@ -132,8 +134,8 @@ class MainPageContainer extends React.Component {
           ))}
         </div>
         <MainPage
-          toggleSelectTag={this.toggleSelectTag}
-          fetchMorePosts={this.fetchMorePosts}
+          // toggleSelectTag={this.toggleSelectTag}
+          // fetchMorePosts={this.fetchMorePosts}
           {...this.state}
         />
       </React.Fragment>

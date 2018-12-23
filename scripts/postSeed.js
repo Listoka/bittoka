@@ -174,7 +174,7 @@ function pickTags(tags, numTags) {
     selectedTags.push(t)
   }
 
-  return selectedTags
+  return selectedTags.sort()
 }
 
 bigPostSeed().then(() => process.exit(0))
