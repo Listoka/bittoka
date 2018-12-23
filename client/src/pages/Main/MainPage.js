@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { List, PostListItem } from '../../components/List';
 import { B } from '../../components/Widgets/index';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
-import SBTagFilter from '../../components/Sidebar/SBTagFilter';
 import IntroHeader from '../../components/IntroHeader';
 import PostListContainer from '../../components/PostList/PostListContainer';
 
@@ -42,41 +40,8 @@ const MainPage = props => (
       renderTagFilter={true}
 
     />
-    {/* {!props.categoryDisplayName ?
-      <div className='container w-full'>
-        <div className='max-w-lg flex mx-auto'>
-          <div className='mb-5 rounded-lg w-full mr-1'>
-            <PostList data={props.filteredPosts} />
-            <div>
-              <B btnType='primary' onClick={props.fetchMorePosts}>More</B>
-            </div>
-          </div>
-        </div>
-      </div>
-      :
-      <div className='container w-full'>
-        <div className='max-w-lg flex mx-auto'>
-          <div className='mb-5 rounded-lg w-4/5 mr-1'>
-            <PostList data={props.filteredPosts} />
-          </div>
-          <div className='w-1/5 ml-1'>
-            <Sidebar>
-              <SBTagFilter
-                toggleSelectTag={props.toggleSelectTag}
-                tags={props.categoryTags}
-                selectedTags={props.selectedTags}
-              />
-            </Sidebar>
-          </div>
-        </div>
-      </div>
-    } */}
   </React.Fragment>
 )
-
-const PostList = props => {
-  return <List data={props.data} keyProp='_id' component={PostListItem} />
-}
 
 export default MainPage
 
