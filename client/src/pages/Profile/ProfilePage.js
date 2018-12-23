@@ -1,5 +1,5 @@
 import React from "react";
-import { div, Button, Input } from '../../components/Widgets/index';
+import { Button, Input } from '../../components/Widgets/index';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { ProfileViewConductor } from './';
 import ListokaMoneyButton from "../../components/ListokaMoneyButton";
@@ -25,61 +25,61 @@ export const ProfilePage = props => (
         </div>
         <div className='flex flex-col'>
           <ProfileViewConductor
-            userPosts={props.userPosts}
             userComments={props.userComments}
             currentView={props.currentView}
+            userId={props.author}
           />
         </div>
       </div>
 
       <div className='block ml-1 sm:block md:block lg:w-1/3 xl:w-1/3'>
 
-          <Sidebar>
-            <h4 className='mb-2 font-normal'>Bio</h4>
-            <hr className="border-medium-gray border-2 hrModals mb-2"></hr>
-            <p>{props.displayedBio}</p>
-          </Sidebar>
+        <Sidebar>
+          <h4 className='mb-2 font-normal'>Bio</h4>
+          <hr className="border-medium-gray border-2 hrModals mb-2"></hr>
+          <p>{props.displayedBio}</p>
+        </Sidebar>
 
-          <Sidebar>
-            <div>
-              <h4 className='mb-5 font-normal'>Leave a tip!</h4>
-              <div className="flex items-stretch w-full mb-2 relative">
-                <Input
-                  onChange={props.handleTipChange}
-                  type='number'
-                  step='0.01'
-                  min='0.10'
-                  className='flex-1 w-full min-w-100px input input:focus input:disabled border text-xs rounded-r-none h-8 relative'
-                  value={props.tipAmt}
-                  placeholder='.00'
-                  name='tipAmt'
-                />
-                <div className="flex -mr-px">
-                  <span className="flex-none text-sm h-8 items-center p-2 cursor-pointer whitespace-no-wrap btn btn-primary btn-primary:hover border ml-0 mb-5 rounded-l-none rounded-r mt-0" onClick={props.handleTipSubmit}>Update Tip</span>
-                </div>
+        <Sidebar>
+          <div>
+            <h4 className='mb-5 font-normal'>Leave a tip!</h4>
+            <div className="flex items-stretch w-full mb-2 relative">
+              <Input
+                onChange={props.handleTipChange}
+                type='number'
+                step='0.01'
+                min='0.10'
+                className='flex-1 w-full min-w-100px input input:focus input:disabled border text-xs rounded-r-none h-8 relative'
+                value={props.tipAmt}
+                placeholder='.00'
+                name='tipAmt'
+              />
+              <div className="flex -mr-px">
+                <span className="flex-none text-sm h-8 items-center p-2 cursor-pointer whitespace-no-wrap btn btn-primary btn-primary:hover border ml-0 mb-5 rounded-l-none rounded-r mt-0" onClick={props.handleTipSubmit}>Update Tip</span>
               </div>
-                  <AuthUserContext.Consumer>
-                    {authUser => {
-                      if (authUser) {
-                        return (
-                          <React.Fragment>
-                            <ListokaMoneyButton
-                              payVal={props.payVal}
-                              payeeId={props.author}
-                              userId={authUser.dbUser._id}
-                              txType='tip'
-                              label={`Tip`}
-                              paymentSuccessCbk={props.afterPayment}
-                              onError={props.handleError}
-                            />
-                          </React.Fragment>
-                        )
-                      }
-                    }
-                    }
-                  </AuthUserContext.Consumer>
             </div>
-          </Sidebar>
+            <AuthUserContext.Consumer>
+              {authUser => {
+                if (authUser) {
+                  return (
+                    <React.Fragment>
+                      <ListokaMoneyButton
+                        payVal={props.payVal}
+                        payeeId={props.author}
+                        userId={authUser.dbUser._id}
+                        txType='tip'
+                        label={`Tip`}
+                        paymentSuccessCbk={props.afterPayment}
+                        onError={props.handleError}
+                      />
+                    </React.Fragment>
+                  )
+                }
+              }
+              }
+            </AuthUserContext.Consumer>
+          </div>
+        </Sidebar>
 
       </div>
     </div>

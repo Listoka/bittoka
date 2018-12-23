@@ -10,9 +10,6 @@ export class ProfileContainer extends React.Component {
     super(props);
     this.state = {
       author: this.props.match.params.id,
-      userPosts: [],
-      page: 1,
-      limit: 10,
       currentView: 'POSTS',
       userComments: [],
       payees: [{
@@ -36,7 +33,7 @@ export class ProfileContainer extends React.Component {
     Promise.all(promises)
       .then(results => {
         this.setState({
-          userPosts: results[0].posts,
+          // userPosts: results[0].posts,
           displayedBio: results[0].user.bio,
           authorName: results[0].user.username,
           userComments: results[0].comments,
@@ -57,15 +54,6 @@ export class ProfileContainer extends React.Component {
   getPostsAndBio = (id) => {
     return API.getPostsAndBio(id).then(results => results.data);
   };
-
-  fetchMorePosts = () => {
-    let { page, limit } = this.state
-    page++
-
-    API.getPostsAndBio(this.props.match.params.id, { page, limit })
-      .then(result => this.setState({ userPosts: [...this.state.userPosts, ...result.data.posts] }))
-      .catch(err => console.log('fetchMorePosts ERR: ', err))
-  }
 
   afterPayment = () => {
     alert("Payment Successful!")
