@@ -11,6 +11,7 @@ router.route('/posts')
     const author = dbUser._id
     const authorName = dbUser.username
     const { title, teaser, body, tags, isDraft, categoryName, paywallCost } = req.body
+    tags.sort()
     const postData = { author, authorName, title, teaser, body, tags, isDraft, categoryName, paywallCost }
     console.log('\n >>> CreatePost isDraft: ', isDraft)
 

@@ -1,6 +1,7 @@
 const postController = require('../../controllers/postController')
 const router = require('express').Router();
 const db = require('../../models')
+const mongoose = require('mongoose')
 
 require('./paramHelpers')(router)
 
@@ -17,7 +18,7 @@ const sortOrder = {
 router.route('/posts')
   .get((req, res) => {
     console.log('\n>>>> GET /posts req.query: ', req.query)
-    let { limit, page, order, by, category, days } = req.query
+    let { limit, page, order, by, category, days, userId, tags } = req.query
 
     // TODO: This is really simple validation.. might need something better
     limit = limit ? parseInt(limit) : 10
@@ -25,13 +26,14 @@ router.route('/posts')
     days = days ? parseInt(days) : -1
     order = (order === 'asc' || order === 'desc') ? sortOrder[order] : sortOrder['desc']
     by = byMap.has(by) ? byMap.get(by) : byMap.get('votes')
+    // tags = tags ? tags.split(',') : null
 
     let date
     if (days < 0) {
       date = new Date(-1)
     } else {
       date = new Date()
-      date.setDate(date.getDate() - days)
+      date.setDate(date.getDate() - days - 1)
     }
 
     const matchArgs = {
@@ -40,6 +42,8 @@ router.route('/posts')
     }
 
     if (category) matchArgs.categoryName = category
+    if (userId) matchArgs.author = mongoose.Types.ObjectId(userId)
+    // if (tags) matchArgs.tags = { $setEquals: ['$tags', tags] }
 
     db.Post.aggregate([
       { $match: matchArgs },
