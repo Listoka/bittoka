@@ -22,7 +22,20 @@ router.put('/users/id/:id', (req, res) => {
       res.json(result)
     })
     .catch(err => {
-      console.log(`Route Err - /users/id/${req.params.id}\n`, err)
+      console.log(`\n >>> Route Err - /users/id/${req.params.id}\n`, err)
+      res.status(500).json(err)
+    })
+})
+
+router.get('/users/id/:id/posts/drafts', (req, res) => {
+  const dbUser = res.locals.user.dbUser
+  if (dbUser._id.toString() !== req.params.id) {
+    return res.status(403).send('You can only see your own drafts!')
+  }
+  db.Post.find({ author: dbUser._id, isDraft: true })
+    .then(result => res.json(result))
+    .catch(err => {
+      console.log(`\n >>> Route Err - /users/id/${req.params.id}/posts/drafts \n`, err)
       res.status(500).json(err)
     })
 })

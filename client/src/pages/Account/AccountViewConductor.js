@@ -1,13 +1,13 @@
 import React from 'react';
-import { List, PostListItem } from '../../components/List';
 import AccountSettings from './AccountSettings';
 import { Transactions } from '../../components/Transactions';
 import TransactionListContainer from '../../components/Transactions/TransactionListContainer';
+import PostListContainer from '../../components/PostList/PostListContainer'
 
 const AccountViewConductor = props => {
   switch (props.currentView) {
     case 'POSTS':
-      return <PostList data={props.userPosts} />;
+      return <PostListContainer userId={props.userId} />;
     case 'SETTINGS':
       return (
         <AccountSettings
@@ -38,9 +38,5 @@ const AccountViewConductor = props => {
       return null;
   }
 };
-
-const PostList = props => {
-  return <List data={props.data} keyProp='_id' component={PostListItem} />
-}
 
 export default AccountViewConductor;

@@ -7,7 +7,6 @@ class AccountContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userPosts: [],
       currentView: 'SETTINGS',
       drafts: [],
       id: this.props.authUser.dbUser._id,
@@ -23,17 +22,15 @@ class AccountContainer extends React.Component {
   componentDidMount() {
     let promises = [
       this.getPostsAndBio(this.state.id),
-      this.getPostsAndDrafts(this.state.id),
+      this.getDrafts(this.state.id),
       this.getTotalPaidToUser(this.state.id),
       this.getTotalPaidFromUser(this.state.id)
     ]
 
     Promise.all(promises)
       .then(results => {
-        console.log('Account Promises Result: ', results)
         this.setState({
-          drafts: results[1].filter(post => post.isDraft),
-          userPosts: results[1].filter(post => !post.isDraft),
+          drafts: results[1],
           bio: results[0].user.bio,
           userName: results[0].user.username,
           moneyBtnId: results[0].user.moneyBtnId,
@@ -43,10 +40,11 @@ class AccountContainer extends React.Component {
       })
   };
 
-  getPostsAndDrafts = (id) => {
-    return API.getPostsAndDrafts(id).then(results => results.data)
+  getDrafts = (id) => {
+    return API.getUserDrafts(id).then(results => results.data)
   }
 
+  // TODO: Figure out a better API route so we don't have to grab posts here..
   getPostsAndBio = (id) => {
     return API.getPostsAndBio(id).then(results => results.data)
   }

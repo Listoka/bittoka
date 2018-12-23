@@ -10,7 +10,6 @@ export class ProfileContainer extends React.Component {
     super(props);
     this.state = {
       author: this.props.match.params.id,
-      userPosts: [],
       currentView: 'POSTS',
       userComments: [],
       payees: [{
@@ -34,7 +33,7 @@ export class ProfileContainer extends React.Component {
     Promise.all(promises)
       .then(results => {
         this.setState({
-          userPosts: results[0].posts,
+          // userPosts: results[0].posts,
           displayedBio: results[0].user.bio,
           authorName: results[0].user.username,
           userComments: results[0].comments,

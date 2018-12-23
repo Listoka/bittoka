@@ -9,8 +9,6 @@ const CommentSchema = new Schema({
   parentPost: { type: ObjectId, ref: 'Post' },
   parentComment: { type: ObjectId, ref: 'Comment' },
   voters: [{ type: ObjectId, ref: 'User' }],
-  // comments: [{ type: ObjectId, ref: 'Comment' }],
-  // commentPath: { type: String, default: '/' },
   ancestors: [{ type: ObjectId, ref: 'Comment' }]
 },
   {
@@ -18,7 +16,11 @@ const CommentSchema = new Schema({
   })
 
 // CommentSchema.virtual('votes').get(() => this.voters.length)
-// CommentSchema.virtual('depth').get(() => this.ancestors.length)
+
+CommentSchema.virtual('depth').get(function () {
+  return this.ancestors.length
+})
+
 CommentSchema.set('toJSON', { virtuals: true })
 
 const Comment = mongoose.model('Comment', CommentSchema)

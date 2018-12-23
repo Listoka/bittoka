@@ -1,6 +1,7 @@
 const postController = require('../../controllers/postController')
 const router = require('express').Router();
 const db = require('../../models')
+const mongoose = require('mongoose')
 
 require('./paramHelpers')(router)
 
@@ -10,6 +11,7 @@ router.route('/posts')
     const author = dbUser._id
     const authorName = dbUser.username
     const { title, teaser, body, tags, isDraft, categoryName, paywallCost } = req.body
+    tags.sort()
     const postData = { author, authorName, title, teaser, body, tags, isDraft, categoryName, paywallCost }
     console.log('\n >>> CreatePost isDraft: ', isDraft)
 
@@ -56,10 +58,10 @@ router.route('/posts/:postId')
   })
 
 // TODO: add check to esure only one vote per user
-router.route('/posts/:id/vote')
+router.route('/posts/:postId/vote')
   .get((req, res) => {
     const dbUser = res.locals.user.dbUser
-    db.Post.findByIdAndUpdate(req.params.id, { $push: { voters: dbUser._id } }, { new: true })
+    db.Post.findByIdAndUpdate(req.params.postId, { $push: { voters: dbUser._id } }, { new: true })
       .populate('voters')
       .then((result) => {
         res.json(result)

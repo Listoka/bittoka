@@ -1,8 +1,8 @@
 import axios from './authAxios';
 
 export default {
-  getAllPosts: () => {
-    return axios.get('/api/posts');
+  getPosts: (params) => {
+    return axios.get('/api/posts', { params })
   },
 
   createPost: (data) => {
@@ -22,23 +22,8 @@ export default {
     return axios.get(`/api/posts/${id}/purchase`)
   },
 
-  getPostWithComments: (id) => {
-    return axios.get(`/api/posts/${id}/comments`)
-      .then(response => {
-        console.log(response);
-        return response;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  },
-
   getAllPostComments: (postId) => {
-    return axios.get(`/api/posts/${postId}/comments/all`)
-  },
-
-  getCategoryAndPosts: (categoryName) => {
-    return axios.get(`/api/categories/${categoryName}/posts`)
+    return axios.get(`/api/posts/${postId}/comments/`)
   },
 
   getCategoryInfo: (categoryName) => {
@@ -49,27 +34,31 @@ export default {
       tags: categoryName.tags
     });
   },
+
+  getCategory: (categoryName) => {
+    return axios.get(`/api/categories/${categoryName}`)
+      .then(result => result.data)
+      .catch(err => console.log('API.getCategory ERR: ', err))
+  },
+
   getCategoriesTags: (categoryName) => {
     //console.log("getting Category Info")
     return axios.get(`/api/categories`)
   },
+
   createComment: (postId, commentData) => {
     return axios.post(`/api/posts/${postId}/comments`, commentData)
       .catch(error => console.log('API.createComment Err: ', error));
   },
-  createLayeredComment: (id, commentData) => {
-    console.log(commentData.body)
-    console.log(id)
-    return axios.post(`/api/comments/${id}/comments`, {
-      body: commentData.body
-    })
+
+  getUserPosts: (userID, params) => {
+    return axios.get(`/api/users/id/${userID}/posts/`, { params });
   },
-  getLayeredComments: (commentID) => {
-    return axios.get(`/api/comments/${commentID}/`)
+
+  getUserDrafts: (id) => {
+    return axios.get(`/api/users/id/${id}/posts/drafts`)
   },
-  getUserPosts: (userID) => {
-    return axios.get(`/api/users/id/${userID}/posts/`);
-  },
+
   deletePost: (id) => {
     console.log(id)
     return axios.delete('/api/posts/' + id);
@@ -84,7 +73,7 @@ export default {
         console.log('updatePost error', error);
       });
   },
-  getPostsAndBio: (id) => {
+  getPostsAndBio: (id, params) => {
     // returns public profile object of the form
     // {
     //         user: {
@@ -94,7 +83,7 @@ export default {
     //         posts: [],
     //         comments: []
     // }
-    return axios.get(`/api/users/id/${id}/profile`)
+    return axios.get(`/api/users/id/${id}/profile`, { params })
   },
 
   updateProfile: (id, updatedData) => {
@@ -111,10 +100,6 @@ export default {
       .catch(error => {
         console.log('API.submitDraft ERR: ', error);
       });
-  },
-
-  getPostsAndDrafts: (id) => {
-    return axios.get(`/api/users/id/${id}/posts`)
   },
 
   getMoneyButton: (id) => {

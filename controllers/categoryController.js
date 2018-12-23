@@ -17,7 +17,7 @@ module.exports = {
 
   findByName: (req, res) => {
     db.Category
-      .find({name: req.params.categoryName})
+      .findOne({ name: req.params.categoryName })
       .then(result => {
         res.json(result)
       })
@@ -26,7 +26,7 @@ module.exports = {
 
   findOne: (req, res) => {
     db.Category
-      .findOne({name: req.params.name})
+      .findOne({ name: req.params.name })
       .then(result => res.json(result))
       .catch(err => res.status(500).json(err))
   },
@@ -40,7 +40,7 @@ module.exports = {
 
   update: (req, res) => {
     db.Category
-      .findOneAndUpdate({_id: req.params.id}, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(result => res.json(result))
       .catch(err => res.status(500).json(err))
   },

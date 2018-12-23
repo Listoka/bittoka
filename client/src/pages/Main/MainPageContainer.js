@@ -16,9 +16,13 @@ class MainPageContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      posts: [],
-      filteredPosts: [],
-      selectedTags: [],
+      // posts: [],
+      // filteredPosts: [],
+      // selectedTags: [],
+      // sortOrder: 'desc',
+      // sortType: 'votes',
+      // page: 1,
+      // limit: 10,
       ...nullCategory
     }
   }
@@ -33,60 +37,88 @@ class MainPageContainer extends React.Component {
     }
   }
 
-  toggleSelectTag = (event, tag) => {
-    event.target.classList.toggle('tagLinkInactive');
-    event.target.classList.toggle('tagLinkActive');
+  // toggleSelectTag = (event, tag) => {
+  //   let selectedTags, filteredPosts
+  //   if (this.state.selectedTags.includes(tag)) {
+  //     selectedTags = this.state.selectedTags.filter(t => t !== tag)
+  //   } else {
+  //     selectedTags = this.state.selectedTags.concat(tag).sort()
+  //   }
 
-    let selectedTags, filteredPosts
-    if (this.state.selectedTags.includes(tag)) {
-      selectedTags = this.state.selectedTags.filter(t => t !== tag)
-    } else {
-      selectedTags = this.state.selectedTags.concat(tag).sort()
-    }
+  //   if (selectedTags.length === 0) {
+  //     filteredPosts = this.state.posts
+  //   } else {
+  //     filteredPosts = this.state.posts.filter(post => {
+  //       return selectedTags.every(t => post.tags.includes(t))
+  //     })
+  //   }
 
-    if (selectedTags.length === 0) {
-      filteredPosts = this.state.posts
-    } else {
-      filteredPosts = this.state.posts.filter(post => {
-        return selectedTags.every(t => post.tags.includes(t))
-      })
-    }
-
-    this.setState({ selectedTags, filteredPosts })
-  }
+  //   this.setState({ selectedTags, filteredPosts })
+  // }
 
   fetchData() {
     const p = this.props
     const categoryName = (p.match && p.match.params.categoryName) || null
     if (categoryName) {
-      this.fetchCategoryAndPosts(categoryName)
+      return API.getCategory(categoryName)
+        .then(category => {
+          this.setState({
+            categoryName: category.name,
+            categoryDisplayName: category.displayName,
+            categoryDescription: category.description,
+            categoryTags: category.tags,
+            categorySettings: category.settings
+          })
+        })
     } else {
-      this.fetchDefault()
+      this.setState({ ...nullCategory })
     }
   }
 
-  fetchCategoryAndPosts(categoryName) {
-    return API.getCategoryAndPosts(categoryName)
-      .then(result => result.data)
-      .then(({ category, posts }) => {
-        this.setState({
-          categoryName: category.name,
-          categoryDisplayName: category.displayName,
-          categoryDescription: category.description,
-          categoryTags: category.tags,
-          posts: posts,
-          filteredPosts: posts
-        })
-      })
-      .catch(err => console.log('fetchCategoryAndPosts Err: ', err))
-  }
+  // fetchMorePosts = () => {
+  //   let { categoryName, page, limit } = this.state
+  //   let params = { page, limit, category: categoryName }
+  //   params.page++
 
-  fetchDefault() {
-    return API.getAllPosts()
-      .then(result => result.data)
-      .then(posts => this.setState({ filteredPosts: posts, ...nullCategory, posts }))
-      .catch(err => console.log('fetchDefault Err: ', err))
-  }
+
+  //   API.getPosts(params)
+  //     .then(result => result.data)
+  //     .then(posts => {
+  //       this.setState({
+  //         posts: [...this.state.posts, ...posts],
+  //         selectedTags: [],
+  //         filteredPosts: [...this.state.posts, ...posts],
+  //         page: params.page
+  //       })
+  //     })
+  //     .catch(err => console.log('fetchMorePosts ERR: ', err))
+  // }
+
+  // fetchCategoryAndPosts(categoryName, params) {
+  //   const category = API.getCategory(categoryName)
+  //   const posts = API.getPosts(params).then(result => result.data)
+  //   return Promise.all([category, posts])
+  //     .then(([category, posts]) => {
+  //       this.setState({
+  //         categoryName: category.name,
+  //         categoryDisplayName: category.displayName,
+  //         categoryDescription: category.description,
+  //         categoryTags: category.tags,
+  //         posts: posts,
+  //         filteredPosts: posts,
+  //         page: params.page,
+  //         limit: params.limit
+  //       })
+  //     })
+  //     .catch(err => console.log('fetchCategoryAndPosts Err: ', err))
+  // }
+
+  // fetchDefault() {
+  //   return API.getPosts()
+  //     .then(result => result.data)
+  //     .then(posts => this.setState({ filteredPosts: posts, page: 1, ...nullCategory, posts }))
+  //     .catch(err => console.log('fetchDefault Err: ', err))
+  // }
 
   render() {
     return (
@@ -101,7 +133,11 @@ class MainPageContainer extends React.Component {
             />
           ))}
         </div>
-        <MainPage toggleSelectTag={this.toggleSelectTag} {...this.state} />
+        <MainPage
+          // toggleSelectTag={this.toggleSelectTag}
+          // fetchMorePosts={this.fetchMorePosts}
+          {...this.state}
+        />
       </React.Fragment>
     )
   }

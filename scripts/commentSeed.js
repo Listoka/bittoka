@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const db = require("../models");
 const mockData = require('./mock-comment-data.json')
 const asyncForEach = require('./helpers').asyncForEach
+const fakeVoters = require('./helpers').fakeVoters
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 
@@ -24,7 +25,16 @@ const commentData = [
 //  4. add a new comment as a reply to that comment
 let initCommentPromises = db.Comment.deleteMany()
   .then(() => {
-    return Promise.all([db.User.find(), db.Post.findOne()])
+
+    // grab the post with the most votes, so we can easily find it.
+    const dbPost = db.Post.aggregate([
+      { $match: { isDraft: false } },
+      { $addFields: { numVotes: { $size: '$voters' } } },
+      { $sort: { numVotes: -1 } },
+      { $limit: 1 }
+    ]).then(result => result[0])
+
+    return Promise.all([db.User.find(), dbPost])
   })
   .then(([dbUsers, dbPost]) => {
     let data = commentData.map(x => {
@@ -39,8 +49,7 @@ let initCommentPromises = db.Comment.deleteMany()
     return Promise.all([db.Comment.insertMany(data), dbPost])
   })
   .then(([dbComments, dbPost]) => {
-    let commentIds = dbComments.map(x => x._id)
-    let updatedPost = db.Post.findByIdAndUpdate(dbPost._id, { $push: { comments: { $each: commentIds } } })
+    let updatedPost = db.Post.findByIdAndUpdate(dbPost._id, { $inc: { numComments: 1 } })
     return Promise.all([dbComments, updatedPost])
   })
   .then(([dbComments, dbPost]) => {
@@ -72,8 +81,11 @@ const doIt = async () => {
         }
         return db.Comment.create(newCommentData)
       })
+      // .then(dbComment => {
+      //   return db.Post.findByIdAndUpdate(dbComment.parentPost, { $push: { comments: dbComment._id } })
+      // })
       .then(dbComment => {
-        return db.Post.findByIdAndUpdate(dbComment.parentPost, { $push: { comments: dbComment._id } })
+        return db.Post.findByIdAndUpdate(dbComment.parentPost, { $inc: { numComments: 1 } })
       })
       .catch(err => {
         console.log(err)
@@ -85,10 +97,5 @@ const doIt = async () => {
   process.exit(0)
 }
 
-function fakeVoters(num, id) {
-  let arr = new Array(Math.floor(Math.random() * num))
-  arr.fill(id)
-  return arr
-}
 
 doIt()

@@ -11,6 +11,7 @@ module.exports = {
   findById: (req, res) => {
     db.Post
       .findById(req.params.id)
+      .populate('numC')
       .then(result => {
         console.log(result)
         if (!result) {
@@ -34,18 +35,18 @@ module.exports = {
       .catch(err => res.status(500).json(err))
   },
 
-  getPostAndChildComments: (req, res) => {
-    db.Post.findById(req.params.id)
-      .populate('comments')
-      .populate('voters')
-      .then(dbPost => {
-        res.json(dbPost)
-      })
-      .catch(err => res.status(500).json(err))
-  },
+  // getPostAndChildComments: (req, res) => {
+  //   db.Post.findById(req.params.id)
+  //     .populate('comments')
+  //     .populate('voters')
+  //     .then(dbPost => {
+  //       res.json(dbPost)
+  //     })
+  //     .catch(err => res.status(500).json(err))
+  // },
 
   getAllPostComments: (req, res) => {
-    db.Comment.find({parentPost: req.params.id})
+    db.Comment.find({ parentPost: req.params.id })
       .then(comments => {
         if (!comments || comments.length < 1) {
           res.json([])
