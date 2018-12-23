@@ -7,7 +7,6 @@ class AccountContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userPosts: [],
       currentView: 'SETTINGS',
       drafts: [],
       id: this.props.authUser.dbUser._id,
@@ -32,7 +31,6 @@ class AccountContainer extends React.Component {
       .then(results => {
         this.setState({
           drafts: results[1],
-          userPosts: results[0].posts,
           bio: results[0].user.bio,
           userName: results[0].user.username,
           moneyBtnId: results[0].user.moneyBtnId,
@@ -42,14 +40,11 @@ class AccountContainer extends React.Component {
       })
   };
 
-  getPosts = (id) => {
-    return API.getUserPosts(id).then(results => results.data)
-  }
-
   getDrafts = (id) => {
     return API.getUserDrafts(id).then(results => results.data)
   }
 
+  // TODO: Figure out a better API route so we don't have to grab posts here..
   getPostsAndBio = (id) => {
     return API.getPostsAndBio(id).then(results => results.data)
   }
