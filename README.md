@@ -1,44 +1,43 @@
-# "Bittoka" or "Story Time" or "Stories for Bits" or whatever you want to call it
+# Listoka
 
-## MVC ##
+## Description ##
 
-* **User and Admin login (Firebase?)** *
-   - Something to do with the MoneyButton I would think
-   - Admin to moderate discussion / delete posts, and to tip
-* **Three main content pages**
-   1. *Home*
-      - Links to three different search types: Trending, Most upvoted/tipped (if possible), New.
-      - Displays the top 5 trending posts (if possible). If not, display the most upvoted. 
-      - The post displays: Title of post, Username, Upvotes, (tipped amount if possible)
-   2. *Your Bitcoin Story*
-      - Same as Home, except it only includes posts made to this category
-      - Ability for user to add a tipping button to their post
-   3. *Stories*
-      - Same as Home, except it only includes posts made to this category
-      - Ability for user to add a tipping button to their post, and hopefully a paywall
-* **Navbar**
-   - FAQ (Jist), Login, Logout. Link to homepage with website name. Typewriter
-   - Updates page based on whether user is logged in or logged out
-* **Database/Posts**
-   - Posts are linked to user account and category type
-   - Logged-in user can create post, edit post, delete post
-* **React**
-   - All links working properly
-* **Design**
-   - Looks pretty, professional, and appealing to all users
-   - Colors: Grey, Green, Black, White
+Listoka can be thought of as a Social Media website where users make money by contributing content that other people appreciate. Users earn money through votes, comments, tips, and by hiding content behind paywalls. For example, in our Stories category a user may post part of a story for free and hide the remaining portion behind a paywall. In order for another user to view the rest of the story, they will have to make a payment. This is made possible through an NPM package called MoneyButton, which allows Bitcoin micropayments as low as 1 cent to be sent from one party to another. Using MoneyButton enables us to offload all financial responsibilities since we do not have access to user’s funds or accounts. MoneyButton also allows for payment automation and the ability to route payments to multiple parties. Meaning, we can configure the routes so the platform gets paid a small amount whenever a financial transfer is made. 
 
-## Not MVC but very hopeful: ##
-* A Following function (opens the door to adding a category to view only people you follow)
-* Reddit-like decay feature to capture trending/hot topics
-* Add Facebook/Twitter share buttons to every post
-* Threaded comments like Reddit
-* User can view their own posts within their login page
+There are relatively few micropayments platforms in existence and the few that exists appeal strictly to cryptocurrency users. This is because the content is geared towards that user base. To differentiate our platform and appeal to the non-crypto enthusiast, Listoka’s content is geared towards topics that normal people find entertaining or useful. The theme of our platform is to be fun and enjoyable or beneficial towards people’s lives. This is why story telling will be a focal point; along with a Teach/Learn category where users can do things such as post “how-to” tutorials.
 
-## Totally not MVC but maybe someday: ##
-* Search feature
+In short, Listoka is a micropayments platform where users earn money by contributing fun and useful content that is beneficial towards people’s lives. 
 
-## MoneyButton NOT MVC, but must learn ##
-* Capability to prompt user to make payment in order to create a post or comment
-* Capability to see who-tipped-who and what amount
-* Capability to view total tipped amount for the post
+We’ve come a long way, but there's still work to be done. 
+
+## Where we’re at: ##
+
+As of right now, we have the following functionality along with a polished, attractive interface:
+
+- User login/logout
+- Users able to create a post, leave comments, and vote
+- MoneyButton integration: Tipping, cost to vote, User sets the paywall amount, collecting tipped/spent amounts
+- Profile page where other users can view that user’s profile information and tip
+- Account page to view and change settings, stats, posts, etc
+- Save draft capability
+- Rich Text Editor integration with draft-js-plugins to allow Bold, Underline, H2, etc.
+- Modal integration where it makes sense (ie: login & create account)
+- Social Media shares on each post
+- Threaded commenting system
+- Ability to sort posts by newest/oldest & # of votes from the past week, month, and all-time
+
+## Functionality needed before launching: ##
+	
+- Ability to charge for posting/commenting
+- Admin account
+- Password reset and e-mail verification
+- MoneyButton Auth integration
+- MoneyButton Webhooks for Paywall validation
+- Avatar system based on upvotes added to user Profiles
+- Following functionality
+- Bookmark/Saving of posts to view in Account page
+- Search functionality
+- Revamp Subnav into descriptors with categories
+
+![Image of Stories Page on 12.22.18](https://i.imgur.com/gLSdj73.png)
+![Image of Comments Page on 12.21.18](https://i.imgur.com/p66fJGF.png)
