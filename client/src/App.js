@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-//JSON file and navigation
+// Nav
 import { Nav } from './components/Nav';
-// import categories from './categories.json';
+import SubNav from './components/subNav';
 
 // "Pages"
 import EditorPageContainer from './pages/Editor/EditorPageContainer';
@@ -19,7 +19,6 @@ import authTest from './pages/AUTH-TEST';
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
 import API from './utils/API';
-import SubNav from './components/subNav';
 
 class App extends Component {
   constructor(props) {
@@ -46,7 +45,7 @@ class App extends Component {
           {/* Category Navigation */}
           <Route
             exact
-            path={['/', '/categories/:categoryName']}
+            path={['/', '/categories/:categoryName', '/posts/:postId']}
             render={props => <SubNav {...props} categories={this.state.categories} />}
           />
 
