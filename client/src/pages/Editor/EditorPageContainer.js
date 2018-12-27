@@ -98,24 +98,19 @@ class EditorPageContainer extends React.Component {
   // TODO: Clean this up.  Maybe generate the select obj on the fly or
   // at least closer to where it is actually used.
   getCategoryMenuData = () => {
-    return API.getCategoriesTags()
-      .then((result) => {
-        return result.data.map(category => {
+    return this.props.categories.map(category => {
+      return {
+        value: category.name,
+        label: category.displayName,
+        tags: category.tags.sort().map(tag => {
           return {
-            value: category.name,
-            label: category.displayName,
-            tags: category.tags.sort().map(tag => {
-              return {
-                value: tag,
-                label: tag,
-                color: "darkcyan"
-              }
-            })
+            value: tag,
+            label: tag,
+            color: "darkcyan"
           }
         })
-      }).catch(error => {
-        console.log('Error getting Category Data', error);
-      });
+      }
+    })
   };
 
   saveDraft = (event) => {
