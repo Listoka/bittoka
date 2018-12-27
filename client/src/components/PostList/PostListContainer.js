@@ -15,10 +15,12 @@ class PostListContainer extends React.Component {
       page: 1,
       limit: 10,
       days: null,
-      noMoreResults: false
+      noMoreResults: false,
+      freeOnly: false
     }
   }
 
+  toggleFreeOnly = () => this.changeQueryOptions({ freeOnly: !this.state.freeOnly })
   setSortDesc = () => this.changeQueryOptions({ sortOrder: 'desc' })
   setSortAsc = () => this.changeQueryOptions({ sortOrder: 'asc' })
   setSortVotes = () => this.changeQueryOptions({ sortType: 'votes' })
@@ -64,7 +66,7 @@ class PostListContainer extends React.Component {
 
   fetchWithStateOptions = (pageOne = false) => {
     const { categoryName, userId } = this.props
-    const { page, limit, sortOrder, sortType, days } = this.state
+    const { page, limit, sortOrder, sortType, days, freeOnly } = this.state
     const params = {
       page: pageOne ? 1 : page + 1,
       limit: limit,
@@ -75,6 +77,7 @@ class PostListContainer extends React.Component {
     if (categoryName) params.category = categoryName
     if (userId) params.userId = userId
     if (days) params.days = days
+    if (freeOnly) params.maxCost = 0
 
     return this.fetchData(params)
   }
@@ -107,6 +110,7 @@ class PostListContainer extends React.Component {
       <React.Fragment>
         <SortControlBar
           days={this.state.days}
+          freeOnly={this.state.freeOnly}
           sortOrder={this.state.sortOrder}
           sortType={this.state.sortType}
           setSortAsc={this.setSortAsc}
@@ -114,6 +118,7 @@ class PostListContainer extends React.Component {
           setSortVotes={this.setSortVotes}
           setSortTime={this.setSortTime}
           setSortDays={this.setSortDays}
+          toggleFreeOnly={this.toggleFreeOnly}
         />
         <PostListDisplay
           fetchMorePosts={this.fetchWithStateOptions}
