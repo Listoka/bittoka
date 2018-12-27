@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const styles = {
-  'bitcoin-story': {
+  'bitcoin-stories': {
     'color': 'white',
     'backgroundColor': 'royalblue'
   },
