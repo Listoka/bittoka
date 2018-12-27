@@ -21,7 +21,7 @@ const Paywall = props => {
         let authorized = (authUser.dbUser._id === props.author) || purchasers.includes(authUser.dbUser._id)
 
         // if the current user is authorized to view 
-        if (authorized) {
+        if (authorized || parseFloat(props.paywallCost) === 0) {
           return props.children
         }
 
