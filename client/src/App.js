@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //JSON file and navigation
 import { Nav } from './components/Nav';
-import categories from './categories.json';
+// import categories from './categories.json';
 
 // "Pages"
 import EditorPageContainer from './pages/Editor/EditorPageContainer';
@@ -18,30 +18,53 @@ import authTest from './pages/AUTH-TEST';
 // Higher Order Components
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
+import API from './utils/API';
+import SubNav from './components/subNav';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: categories,
+      categories: [],
     };
   };
 
+  componentDidMount() {
+    console.log('App componentDidMount!')
+    API.getCategories()
+      .then(categories => this.setState({ categories }))
+      .catch(err => console.log('App getCategories ERR: ', err))
+  }
+
   render() {
+    console.log('App state: ', this.state)
     return (
       <Router>
         <div>
           <Nav openModal={this.openModal} />
+
+          {/* Category Navigation */}
+          <Route
+            exact
+            path={['/', '/categories/:categoryName']}
+            render={props => <SubNav {...props} categories={this.state.categories} />}
+          />
+
+          {/* Page Routes */}
           <Switch>
-            <Route exact path='/' component={MainPageContainer} />
-            <Route exact path='/categories/:categoryName' component={MainPageContainer} />
-            <Route exact path='/categories/:categoryName/posts/new' component={EditorPageContainer} />
+            <Route
+              exact
+              path={['/', '/categories/:categoryName']}
+              render={props => <MainPageContainer {...props} categories={this.state.categories} />}
+            />
+            <Route
+              exact
+              path={['/editor', '/editor/:postId', '/posts/:postId/edit', '/categories/:categoryName/posts/new']}
+              render={props => <EditorPageContainer {...props} categories={this.state.categories} />}
+            />
             <Route exact path='/posts/:postId' component={PostDetailPage} />
-            <Route exact path='/posts/:postId/edit' component={EditorPageContainer} />
             <Route exact path='/account' component={AccountContainer} />
             <Route exact path='/users/:id' component={ProfileContainer} />
-            <Route exact path='/editor' component={EditorPageContainer} />
-            <Route exact path='/editor/:postId' component={EditorPageContainer} />
             <Route exact path='/(authtest|postman)' component={authTest} />
             <Route component={NoMatch} />
           </Switch>
