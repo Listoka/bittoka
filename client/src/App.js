@@ -29,14 +29,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log('App componentDidMount!')
     API.getCategories()
       .then(categories => this.setState({ categories }))
       .catch(err => console.log('App getCategories ERR: ', err))
   }
 
   render() {
-    console.log('App state: ', this.state)
     return (
       <Router>
         <div>
