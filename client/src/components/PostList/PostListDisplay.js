@@ -6,8 +6,9 @@ import { B, Card } from '../Widgets/index';
 import loader from '../../assets/images/loading.svg'
 
 const PostListDisplay = props => {
+  let showTagFilter = props.renderTagFilter && props.categoryName && props.categoryTags.length > 0
   let divClassName = 'mb-5 rounded-lg mr-1'
-  divClassName = props.categoryName
+  divClassName = showTagFilter
     ? divClassName + ' w-4/5'
     : divClassName + ' w-full'
 
@@ -27,7 +28,7 @@ const PostListDisplay = props => {
             </React.Fragment>
           }
         </div>
-        {props.categoryName &&
+        {showTagFilter &&
           <div className='w-1/5 ml-1'>
             <Sidebar>
               <SBTagFilter
