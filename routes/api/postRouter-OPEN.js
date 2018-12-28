@@ -56,9 +56,6 @@ router.route('/posts')
           numPurchasers: { $size: '$purchasers' }
         }
       },
-      { $sort: { [by]: order } },
-      { $skip: (page - 1) * limit },
-      { $limit: limit },
       {
         $lookup: {
           from: 'comments',
@@ -68,6 +65,9 @@ router.route('/posts')
         }
       },
       { $addFields: { numComments: { $size: '$comments' } } },
+      { $sort: { [by]: order, numComments: -1 } },
+      { $skip: (page - 1) * limit },
+      { $limit: limit },
       { $project: { comments: false, purchasers: false } }
     ])
       .then(posts => res.json(posts))
