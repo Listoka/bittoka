@@ -6,7 +6,7 @@ export const TagOptions = [
 
   export const colourOptions = [
     { value: 'listoka', label: 'Listoka', color: 'darkcyan', },
-    { value: 'bitcoin-story', label: 'Bitcoin-Story', color: 'royalblue'},
+    { value: 'bitcoin-story', label: 'Bitcoin-story', color: 'royalblue'},
     { value: 'stories', label: 'Stories', color: 'orangered' },
   ];
 
@@ -17,13 +17,13 @@ export const TagOptions = [
 
   export const bitcoinstoryTags = [
     { value: 'listoka', label: 'Listoka', color: 'darkcyan', },
-    { value: 'bitcoin-story', label: 'Bitcoin-Story', color: 'royalblue'},
+    { value: 'bitcoin-story', label: 'Bitcoin-story', color: 'royalblue'},
     { value: 'stories', label: 'Stories', color: 'orangered' },
   ];
 
   export const storiesTags = [
     { value: 'Drama', label: 'Listoka', color: 'darkcyan', },
-    { value: 'Fantasy', label: 'Bitcoin-Story', color: 'royalblue'},
+    { value: 'Fantasy', label: 'Bitcoin-story', color: 'royalblue'},
     { value: 'Paranormal Romance', label: 'Paranormal Romance', color: 'orangered' },
     { value: 'Thriller', label: 'Thriller', color: 'purple' },
   ];

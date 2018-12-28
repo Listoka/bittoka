@@ -15,6 +15,10 @@ const CategorySchema = new Schema({
     type: String,
     required: true
   },
+  group: {
+    type: String,
+    required: true
+  },
   tags: [String],
   settings: {
     allowedPosters: { type: [String], required: true }, // string identifiers for permission groups

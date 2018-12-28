@@ -27,6 +27,10 @@ const SortControlBar = props => {
             <ControlButton active={props.days === 30} onClick={() => props.setSortDays(30)}>Month</ControlButton>
             <ControlButton active={!props.days} onClick={() => props.setSortDays(null)}>All-Time</ControlButton>
           </React.Fragment>}
+
+        <span className='border-l border-1 border-medium-gray-darker'></span>
+        <ControlButton active={props.freeOnly} onClick={props.toggleFreeOnly}>Free</ControlButton>
+
       </div>
     </div>
   )

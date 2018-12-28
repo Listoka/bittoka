@@ -15,31 +15,36 @@ class PostListContainer extends React.Component {
       page: 1,
       limit: 10,
       days: null,
-      noMoreResults: false
+      noMoreResults: false,
+      freeOnly: false,
+      isLoading: true,
     }
   }
 
-  setSortDesc = () => this.changeQueryOptions({ sortOrder: 'desc' })
-  setSortAsc = () => this.changeQueryOptions({ sortOrder: 'asc' })
-  setSortVotes = () => this.changeQueryOptions({ sortType: 'votes' })
-  setSortTime = () => this.changeQueryOptions({ sortType: 'time' })
-  setSortDays = days => this.changeQueryOptions({ days })
+  toggleFreeOnly = () => this.setStateAndFetch({ freeOnly: !this.state.freeOnly })
+  setSortDesc = () => this.setStateAndFetch({ sortOrder: 'desc' })
+  setSortAsc = () => this.setStateAndFetch({ sortOrder: 'asc' })
+  setSortVotes = () => this.setStateAndFetch({ sortType: 'votes' })
+  setSortTime = () => this.setStateAndFetch({ sortType: 'time' })
+  setSortDays = days => this.setStateAndFetch({ days })
 
-  changeQueryOptions = newState => {
+  setStateAndFetch = (newState = {}) => {
+    newState.isLoading = true
     this.setState(
       () => newState,
-      () => this.fetchWithStateOptions(true)
+      () => this.fetchWithStateOptions({ page: 1 })
     )
   }
 
   componentDidMount() {
-    // fetchData takes a boolean, true = get page 1
-    this.fetchWithStateOptions(true)
+    this.setStateAndFetch()
+    // this.fetchWithStateOptions({ page: 1 })
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.categoryName !== prevProps.categoryName) {
-      this.fetchWithStateOptions(true);
+      this.setStateAndFetch()
+      // this.fetchWithStateOptions({ page: 1 });
     }
   }
 
@@ -62,11 +67,11 @@ class PostListContainer extends React.Component {
     this.setState({ selectedTags, filteredPosts })
   }
 
-  fetchWithStateOptions = (pageOne = false) => {
+  fetchWithStateOptions = (overrideParams = {}) => {
     const { categoryName, userId } = this.props
-    const { page, limit, sortOrder, sortType, days } = this.state
+    const { page, limit, sortOrder, sortType, days, freeOnly } = this.state
     const params = {
-      page: pageOne ? 1 : page + 1,
+      page: page + 1,
       limit: limit,
       order: sortOrder,
       by: sortType
@@ -75,6 +80,10 @@ class PostListContainer extends React.Component {
     if (categoryName) params.category = categoryName
     if (userId) params.userId = userId
     if (days) params.days = days
+    if (freeOnly) params.maxCost = 0
+
+    // merge the parameter objects, values in overrideParams take precedence
+    Object.assign(params, overrideParams)
 
     return this.fetchData(params)
   }
@@ -95,6 +104,7 @@ class PostListContainer extends React.Component {
           sortOrder: params.order,
           sortType: params.by,
           days: params.days,
+          isLoading: false,
           noMoreResults: posts.length < params.limit // nothing else to get!
         })
       })
@@ -107,6 +117,7 @@ class PostListContainer extends React.Component {
       <React.Fragment>
         <SortControlBar
           days={this.state.days}
+          freeOnly={this.state.freeOnly}
           sortOrder={this.state.sortOrder}
           sortType={this.state.sortType}
           setSortAsc={this.setSortAsc}
@@ -114,6 +125,7 @@ class PostListContainer extends React.Component {
           setSortVotes={this.setSortVotes}
           setSortTime={this.setSortTime}
           setSortDays={this.setSortDays}
+          toggleFreeOnly={this.toggleFreeOnly}
         />
         <PostListDisplay
           fetchMorePosts={this.fetchWithStateOptions}

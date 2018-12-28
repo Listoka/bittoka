@@ -26,6 +26,12 @@ export default {
     return axios.get(`/api/posts/${postId}/comments/`)
   },
 
+  getCategories: () => {
+    return axios.get('/api/categories')
+      .then(result => result.data)
+      .catch(err => console.log('API.getCategories ERR: ', err))
+  },
+
   getCategoryInfo: (categoryName) => {
     console.log("getting Category Info")
     return axios.get(`/api/categories/info/${categoryName}`, {

@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 const postData = [
   {
     title: "The Cyprus Beginning",
-    tags: ["About You", "Your Experience", "Your Future Vision"],
+    tags: ['True Story', 'Entertainment', 'Personal Thoughts'],
     categoryName: 'bitcoin-story',
     teaser: "teaser",
     paywallCost: .05,
@@ -17,7 +17,7 @@ const postData = [
   },
   {
     title: "My Bitcoin Story",
-    tags: ["Other Thoughts", "Your Experience", "Your Future Vision"],
+    tags: ['Entertainment', 'Future Thoughts', 'Personal Thoughts'],
     categoryName: 'bitcoin-story',
     teaser: "teased",
     paywallCost: .02,
@@ -26,7 +26,7 @@ const postData = [
   },
   {
     title: "How I got involved with Bitcoin",
-    tags: ["Other Thoughts", "Your Future Vision"],
+    tags: ['Future Thoughts', 'Personal Thoughts'],
     categoryName: 'bitcoin-story',
     teaser: "Gonna cost you",
     paywallCost: .03,
@@ -60,14 +60,14 @@ const postData = [
   {
     title: "The Haunted Mansion",
     categoryName: "stories",
-    tags: ['Story Prompts', 'Thriller', 'Inspirational'],
+    tags: ['Thriller', 'Inspirational'],
     teaser: "HAUNTED MANSIONS. What could be better...",
     body: "Insert a story about a haunted mansion here."
   },
   {
     title: "A Super Funny Story",
     categoryName: "stories",
-    tags: ["Humor", "Paranormal Romance"],
+    tags: ["Humor"],
     teaser: "Oh this one is a real knee-slappin' paranormal romance",
     paywallCost: .04,
     body: "Insert a comical story here"
@@ -75,7 +75,7 @@ const postData = [
   {
     title: "How I Overcame the Odds",
     categoryName: "stories",
-    tags: ["Thriller", 'Your Story', 'Drama'],
+    tags: ["Thriller", 'Drama'],
     teaser: "I went to great lengths to overcome these odds. It was a long, hard journey.",
     paywallCost: .03,
     body: "Insert Inspirational Story Here"
@@ -83,7 +83,7 @@ const postData = [
   {
     title: "This is a Work in Progress",
     categoryName: "stories",
-    tags: ["Fantasy", 'Fiction', 'Your Story'],
+    tags: ["Fantasy", 'Fiction'],
     teaser: "WIP Teaser",
     body: "Much work in progress.  Such wow.",
     isDraft: true
@@ -99,7 +99,7 @@ const postData = [
   {
     title: "My Bitcoin Story began in 2013 and it's been my passion ever since?",
     categoryName: "bitcoin-story",
-    tags: ["Your Experience", "Your Future Vision"],
+    tags: ['True Story', 'Entertainment', 'Future Thoughts'],
     teaser: "BITCOIN STORY INCOMING!",
     body: "Just kidding! Nothing's here!",
   },
