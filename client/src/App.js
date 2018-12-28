@@ -27,13 +27,25 @@ class App extends Component {
     super(props);
     this.state = {
       categories: [],
+      categoryGroups: {},
       isLoadingCategories: true,
     };
   };
 
   componentDidMount() {
     API.getCategories()
-      .then(categories => this.setState({ categories, isLoadingCategories: false }))
+      .then(categories => {
+        const categoryGroups = {}
+        for (let category of categories) {
+          let group = category.group
+          if (categoryGroups[group]) {
+            categoryGroups[group].push(category)
+          } else {
+            categoryGroups[group] = [category]
+          }
+        }
+        this.setState({ categories, categoryGroups, isLoadingCategories: false })
+      })
       .catch(err => console.log('App getCategories ERR: ', err))
   }
 
