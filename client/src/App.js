@@ -21,6 +21,7 @@ import withModals from './components/Modals/withModals'
 
 // Other
 import API from './utils/API';
+import CategoryNav from './components/CategoryNav/CategoryNav';
 
 class App extends Component {
   constructor(props) {
@@ -60,10 +61,15 @@ class App extends Component {
           <Nav openModal={this.openModal} />
 
           {/* Category Navigation */}
-          <Route
+          {/* <Route
             exact
             path={['/', '/categories/:categoryName', '/posts/:postId']}
             render={props => <SubNav {...props} categories={this.state.categories} />}
+          /> */}
+          <Route
+            exact
+            path={['/', '/categories/:categoryName', '/posts/:postId']}
+            render={props => <CategoryNav {...props} categoryGroups={this.state.categoryGroups} />}
           />
 
           {/* Page Routes */}
