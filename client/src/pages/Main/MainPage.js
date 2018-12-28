@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { List, PostListItem } from '../../components/List';
 import { B } from '../../components/Widgets/index';
 import AuthUserContext from '../../components/AuthUserSession/AuthUserContext';
 import IntroHeader from '../../components/IntroHeader';
