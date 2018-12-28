@@ -9,16 +9,18 @@ class EditorPageContainer extends React.Component {
   constructor(props) {
     super(props)
     const initialCategoryName = this.props.match.params.categoryName || ''
+    const categories = this.props.categories // this won't change, so we just put it into state
 
     this.state = {
       editorState: EditorState.createEmpty(),
       tags: [],
       teaser: '',
       title: '',
-      categories: [],
+      categories,
       categoryName: initialCategoryName,
       categoryDisplayName: '',
       selectedCategoryName: '',
+      categoryMenuObjects: [],
       selectedTags: [],
       selectedTagObjects: null,
       postId: null,
@@ -55,7 +57,7 @@ class EditorPageContainer extends React.Component {
         let postBody = postData ? postData.body : ''
 
         this.setState({
-          categories: categoryData,
+          categoryMenuObjects: categoryData,
           selectedTags: postData ? postData.tags : [],
           editorState: postBody ? this.createFromHtml(postBody) : EditorState.createEmpty(),
           title: postData ? postData.title : '',

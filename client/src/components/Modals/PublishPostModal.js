@@ -23,7 +23,7 @@ class PublishPostModal extends React.Component {
             placeholder='Category'
             closeMenuOnSelect={true}
             onChange={this.props.onCategorySelectChange}
-            options={this.props.categories}
+            options={this.props.categoryMenuObjects}
             styles={colourStyles}
             theme={(theme) => ({ ...theme, borderRadius: 5 })}
             value={{

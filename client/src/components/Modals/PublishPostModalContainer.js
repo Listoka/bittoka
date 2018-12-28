@@ -25,7 +25,7 @@ class PublishPostModalContainer extends React.Component {
 
   componentDidMount() {
     if (this.state.categoryName) {
-      const categoryObject = this.state.categories.find(c => c.value === this.state.categoryName)
+      const categoryObject = this.state.categoryMenuObjects.find(c => c.value === this.state.categoryName)
       const categoryDisplayName = categoryObject ? categoryObject.label : null
       this.setState({
         categoryDisplayName: categoryDisplayName
@@ -47,7 +47,7 @@ class PublishPostModalContainer extends React.Component {
   }
 
   onCategorySelectChange = (event) => {
-    const categoryObject = this.state.categories.find(c => c.value === event.value)
+    const categoryObject = this.state.categoryMenuObjects.find(c => c.value === event.value)
     const categoryDisplayName = categoryObject ? categoryObject.label : null
 
     this.setState({
@@ -85,7 +85,14 @@ class PublishPostModalContainer extends React.Component {
         tags: this.state.selectedTags || [],
       };
 
-      API.updatePost(this.state.postId, data)
+      let request
+      if (this.state.postId) {
+        api = API.updatePost(this.state.postId, data)
+      } else {
+        api = API.createPost(data)
+      }
+
+      request
         .then(result => this.props.history.push(`/posts/${result.data._id}`))
         .catch(err => console.log('publishPost Err: ', err))
     };
@@ -95,13 +102,6 @@ class PublishPostModalContainer extends React.Component {
     const postLength = this.state.editorState.getCurrentContent().getPlainText().length
     const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0 &&
       this.state.title && postLength > 144
-
-    // const customStyles = {
-    //   control: (base) => ({
-    //     ...base,
-    //     background: "#39393A",
-    //   })
-    // };
 
     return (
       <PublishPostModal
