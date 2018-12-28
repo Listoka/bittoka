@@ -30,18 +30,17 @@ class PostListContainer extends React.Component {
   changeQueryOptions = newState => {
     this.setState(
       () => newState,
-      () => this.fetchWithStateOptions(true)
+      () => this.fetchWithStateOptions({ page: 1 })
     )
   }
 
   componentDidMount() {
-    // fetchData takes a boolean, true = get page 1
-    this.fetchWithStateOptions(true)
+    this.fetchWithStateOptions({ page: 1 })
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.categoryName !== prevProps.categoryName) {
-      this.fetchWithStateOptions(true);
+      this.fetchWithStateOptions({ page: 1 });
     }
   }
 
@@ -64,11 +63,11 @@ class PostListContainer extends React.Component {
     this.setState({ selectedTags, filteredPosts })
   }
 
-  fetchWithStateOptions = (pageOne = false) => {
+  fetchWithStateOptions = (overrideParams = {}) => {
     const { categoryName, userId } = this.props
     const { page, limit, sortOrder, sortType, days, freeOnly } = this.state
     const params = {
-      page: pageOne ? 1 : page + 1,
+      page: page + 1,
       limit: limit,
       order: sortOrder,
       by: sortType
@@ -78,6 +77,9 @@ class PostListContainer extends React.Component {
     if (userId) params.userId = userId
     if (days) params.days = days
     if (freeOnly) params.maxCost = 0
+
+    // merge the parameter objects, values in overrideParams take precedence
+    Object.assign(params, overrideParams)
 
     return this.fetchData(params)
   }
