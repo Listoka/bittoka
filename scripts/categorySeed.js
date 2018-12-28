@@ -7,7 +7,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bittokaDB');
 const categoryData = [
   {
     // This category should have a limitation of 1 post per user account
-    name: 'bitcoin-stories',
+    name: 'bitcoin-story',
     group: 'bitcoin-stories',
     displayName: 'Bitcoin Stories',
     description: `In this category, you receive Bitcoin for sharing your Bitcoin Story. 

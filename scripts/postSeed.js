@@ -9,7 +9,7 @@ const postData = [
   {
     title: "The Cyprus Beginning",
     tags: ['True Story', 'Entertainment', 'Personal Thoughts'],
-    categoryName: 'bitcoin-stories',
+    categoryName: 'bitcoin-story',
     teaser: "teaser",
     paywallCost: .05,
     body:
@@ -18,7 +18,7 @@ const postData = [
   {
     title: "My Bitcoin Story",
     tags: ['Entertainment', 'Future Thoughts', 'Personal Thoughts'],
-    categoryName: 'bitcoin-stories',
+    categoryName: 'bitcoin-story',
     teaser: "teased",
     paywallCost: .02,
     body:
@@ -27,7 +27,7 @@ const postData = [
   {
     title: "How I got involved with Bitcoin",
     tags: ['Future Thoughts', 'Personal Thoughts'],
-    categoryName: 'bitcoin-stories',
+    categoryName: 'bitcoin-story',
     teaser: "Gonna cost you",
     paywallCost: .03,
     body:
@@ -98,7 +98,7 @@ const postData = [
   },
   {
     title: "My Bitcoin Story began in 2013 and it's been my passion ever since?",
-    categoryName: "bitcoin-stories",
+    categoryName: "bitcoin-story",
     tags: ['True Story', 'Entertainment', 'Future Thoughts'],
     teaser: "BITCOIN STORY INCOMING!",
     body: "Just kidding! Nothing's here!",
