@@ -16,18 +16,20 @@ class PostListContainer extends React.Component {
       limit: 10,
       days: null,
       noMoreResults: false,
-      freeOnly: false
+      freeOnly: false,
+      isLoading: true,
     }
   }
 
-  toggleFreeOnly = () => this.changeQueryOptions({ freeOnly: !this.state.freeOnly })
-  setSortDesc = () => this.changeQueryOptions({ sortOrder: 'desc' })
-  setSortAsc = () => this.changeQueryOptions({ sortOrder: 'asc' })
-  setSortVotes = () => this.changeQueryOptions({ sortType: 'votes' })
-  setSortTime = () => this.changeQueryOptions({ sortType: 'time' })
-  setSortDays = days => this.changeQueryOptions({ days })
+  toggleFreeOnly = () => this.setStateAndFetch({ freeOnly: !this.state.freeOnly })
+  setSortDesc = () => this.setStateAndFetch({ sortOrder: 'desc' })
+  setSortAsc = () => this.setStateAndFetch({ sortOrder: 'asc' })
+  setSortVotes = () => this.setStateAndFetch({ sortType: 'votes' })
+  setSortTime = () => this.setStateAndFetch({ sortType: 'time' })
+  setSortDays = days => this.setStateAndFetch({ days })
 
-  changeQueryOptions = newState => {
+  setStateAndFetch = (newState = {}) => {
+    newState.isLoading = true
     this.setState(
       () => newState,
       () => this.fetchWithStateOptions({ page: 1 })
@@ -35,12 +37,14 @@ class PostListContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchWithStateOptions({ page: 1 })
+    this.setStateAndFetch()
+    // this.fetchWithStateOptions({ page: 1 })
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.categoryName !== prevProps.categoryName) {
-      this.fetchWithStateOptions({ page: 1 });
+      this.setStateAndFetch()
+      // this.fetchWithStateOptions({ page: 1 });
     }
   }
 
@@ -100,6 +104,7 @@ class PostListContainer extends React.Component {
           sortOrder: params.order,
           sortType: params.by,
           days: params.days,
+          isLoading: false,
           noMoreResults: posts.length < params.limit // nothing else to get!
         })
       })
