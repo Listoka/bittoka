@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-//JSON file and navigation
+// Nav
 import { Nav } from './components/Nav';
-// import categories from './categories.json';
+import SubNav from './components/subNav';
 
 // "Pages"
 import EditorPageContainer from './pages/Editor/EditorPageContainer';
@@ -18,26 +18,30 @@ import authTest from './pages/AUTH-TEST';
 // Higher Order Components
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
+
+// Other
 import API from './utils/API';
-import SubNav from './components/subNav';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categories: [],
+      isLoadingCategories: true,
     };
   };
 
   componentDidMount() {
-    console.log('App componentDidMount!')
     API.getCategories()
-      .then(categories => this.setState({ categories }))
+      .then(categories => this.setState({ categories, isLoadingCategories: false }))
       .catch(err => console.log('App getCategories ERR: ', err))
   }
 
   render() {
-    console.log('App state: ', this.state)
+    // We need the category data to do things
+    // we probably should replace this with a loding animation
+    if (this.state.isLoadingCategories) return null
+
     return (
       <Router>
         <div>
@@ -46,7 +50,7 @@ class App extends Component {
           {/* Category Navigation */}
           <Route
             exact
-            path={['/', '/categories/:categoryName']}
+            path={['/', '/categories/:categoryName', '/posts/:postId']}
             render={props => <SubNav {...props} categories={this.state.categories} />}
           />
 

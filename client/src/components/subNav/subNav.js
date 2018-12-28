@@ -16,21 +16,23 @@ const SubNavItem = props => {
   )
 }
 
-const SubNav = props => (
-  <div className='flex flex-wrap flex-row items-center justify-center'>
-    {props.categories.map(category => {
-      const active = props.match.params.categoryName === category.name
-      return (
-        <SubNavItem
-          id={category._id}
-          key={category._id}
-          href={category.name}
-          name={category.displayName}
-          active={active}
-        />
-      )
-    }
-    )}
-  </div>
-)
+const SubNav = props => {
+  return (
+    <div className='flex flex-wrap flex-row items-center justify-center'>
+      {props.categories.map(category => {
+        const active = props.match.params.categoryName === category.name
+        return (
+          <SubNavItem
+            id={category._id}
+            key={category._id}
+            href={category.name}
+            name={category.displayName}
+            active={active}
+          />
+        )
+      }
+      )}
+    </div>
+  )
+}
 export default SubNav;

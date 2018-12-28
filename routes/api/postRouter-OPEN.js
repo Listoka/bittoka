@@ -18,15 +18,16 @@ const sortOrder = {
 router.route('/posts')
   .get((req, res) => {
     console.log('\n>>>> GET /posts req.query: ', req.query)
-    let { limit, page, order, by, category, days, userId, tags } = req.query
+    let { limit, page, order, by, category, days, userId, tags, maxCost } = req.query
 
     // TODO: This is really simple validation.. might need something better
     limit = limit ? parseInt(limit) : 10
     page = page ? parseInt(page) : 1
     days = days ? parseInt(days) : -1
+    maxCost = maxCost && parseFloat(maxCost)
     order = (order === 'asc' || order === 'desc') ? sortOrder[order] : sortOrder['desc']
     by = byMap.has(by) ? byMap.get(by) : byMap.get('votes')
-    // tags = tags ? tags.split(',') : null
+    tags = tags ? tags.split(',').filter(x => x.length > 0) : null
 
     let date
     if (days < 0) {
@@ -43,7 +44,9 @@ router.route('/posts')
 
     if (category) matchArgs.categoryName = category
     if (userId) matchArgs.author = mongoose.Types.ObjectId(userId)
-    // if (tags) matchArgs.tags = { $setEquals: ['$tags', tags] }
+    if (maxCost === 0) matchArgs.paywallCost = 0
+    if (maxCost > 0) matchArgs.paywallCost = { $lte: maxCost }
+    if (tags) matchArgs.tags = { $all: tags }
 
     db.Post.aggregate([
       { $match: matchArgs },
