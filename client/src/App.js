@@ -18,6 +18,8 @@ import authTest from './pages/AUTH-TEST';
 // Higher Order Components
 import withAuthentication from './components/AuthUserSession/withAuthentication';
 import withModals from './components/Modals/withModals'
+
+// Other
 import API from './utils/API';
 
 class App extends Component {
@@ -25,16 +27,21 @@ class App extends Component {
     super(props);
     this.state = {
       categories: [],
+      isLoadingCategories: true,
     };
   };
 
   componentDidMount() {
     API.getCategories()
-      .then(categories => this.setState({ categories }))
+      .then(categories => this.setState({ categories, isLoadingCategories: false }))
       .catch(err => console.log('App getCategories ERR: ', err))
   }
 
   render() {
+    // We need the category data to do things
+    // we probably should replace this with a loding animation
+    if (this.state.isLoadingCategories) return null
+
     return (
       <Router>
         <div>

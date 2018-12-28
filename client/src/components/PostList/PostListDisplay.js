@@ -49,7 +49,7 @@ const PostList = props => {
 const PostListLoading = props => {
   const a = []
   for (let i = 0; i < 5; i++) {
-    a[i] = <Card key={i}><img src={loader} className='mx-auto my-16' /></Card>
+    a[i] = <Card key={i}><img alt='loading' src={loader} className='mx-auto my-16' /></Card>
   }
   return a
 }
