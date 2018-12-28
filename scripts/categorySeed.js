@@ -236,7 +236,7 @@ const categoryData = [
   {
     name: 'poems',
     group: 'writers-workshop',
-    displayNam: 'Poems',
+    displayName: 'Poems',
     description: `Poems Description`,
     settings: {
       allowedPosters: [group.USER, group.ADMIN],
@@ -348,8 +348,8 @@ const categoryData = [
   {
     name: 'speeches',
     group: 'wisdom',
-    displayName: `Speaches`,
-    description: `Speaches Description`,
+    displayName: `Speeches`,
+    description: `Speeches Description`,
     settings: {
       allowedPosters: [group.USER, group.ADMIN],
       defaultContentPrice: 0,
