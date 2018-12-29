@@ -89,7 +89,7 @@ const categoryData = [
     },
     tags: ['Life', 'Sleep', 'Entrepreneurship', 'Leadership', 'Financial Management', 'Business',
       'Legal', 'Accounting', 'Marketing', 'Customer Service', 'Human Relations',
-      'Automotive', 'Home Ownership', 'Programming', 'Graphic Design', 'UI/UX', 'Writing', 
+      'Automotive', 'Home Ownership', 'Programming', 'Graphic Design', 'UI/UX', 'Writing',
       'Web Development', 'Art', 'Human Relations']
   },
   {
@@ -104,7 +104,7 @@ const categoryData = [
       costToComment: 0,
       costToPost: 0
     },
-    tags: ['React', 'Javascript', 'MongoDB', 'MoneyButton','Tailwind','Draft-js']
+    tags: ['React', 'Javascript', 'MongoDB', 'MoneyButton', 'Tailwind', 'Draft-js']
   },
   {
     name: 'fitness',
@@ -118,7 +118,7 @@ const categoryData = [
       costToComment: 0,
       costToPost: 0
     },
-    tags: ['Weight-Lifting','Exercises','Workouts','Goal-setting']
+    tags: ['Weight-Lifting', 'Exercises', 'Workouts', 'Goal-setting']
   },
   {
     name: 'health',
@@ -130,9 +130,9 @@ const categoryData = [
       defaultContentPrice: 0,
       posterSetsContentPrice: true,
       costToComment: 0,
-      costToPost: 0
+      costToPost: 0.01
     },
-    tags: ['Health','Nutrition']
+    tags: ['Health', 'Nutrition']
   },
   {
     name: 'natural-cooking',
@@ -146,7 +146,7 @@ const categoryData = [
       costToComment: 0,
       costToPost: 0
     },
-    tags: ['Recipes','Advice']
+    tags: ['Recipes', 'Advice']
   },
   {
     name: 'home-repair',
@@ -160,7 +160,7 @@ const categoryData = [
       costToComment: 0,
       costToPost: 0
     },
-    tags: ['Electrical','Appliances','Plumbing','Painting','Windows','HVAC','Repair','Replacement']
+    tags: ['Electrical', 'Appliances', 'Plumbing', 'Painting', 'Windows', 'HVAC', 'Repair', 'Replacement']
   },
   {
     name: 'automotive',
@@ -174,7 +174,7 @@ const categoryData = [
       costToComment: 0,
       costToPost: 0
     },
-    tags: ['Repair','Replacement']
+    tags: ['Repair', 'Replacement']
   },
   {
     name: 'comedy',
@@ -230,8 +230,8 @@ const categoryData = [
       costToComment: 0,
       costToPost: 0
     },
-    tags: ['Love','Appreciation','Praise','Critique','Business','Wronged',
-    'Individuals','Historical Figures','Well-known']
+    tags: ['Love', 'Appreciation', 'Praise', 'Critique', 'Business', 'Wronged',
+      'Individuals', 'Historical Figures', 'Well-known']
   },
   {
     name: 'poems',
@@ -343,7 +343,7 @@ const categoryData = [
       costToComment: 0,
       costToPost: 0
     },
-    tags: ['Business','Consumer Product','Book','Movie','Television','Restaurant','Game','Music']
+    tags: ['Business', 'Consumer Product', 'Book', 'Movie', 'Television', 'Restaurant', 'Game', 'Music']
   },
   {
     name: 'speeches',
@@ -443,7 +443,7 @@ const categoryData = [
     },
     tags: []
   },
-  
+
 
 ]
 
