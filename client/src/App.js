@@ -37,6 +37,7 @@ class App extends Component {
             <Route exact path='/categories/:categoryName' component={MainPageContainer} />
             <Route exact path='/categories/:categoryName/posts/new' component={EditorPageContainer} />
             <Route exact path='/posts/:postId' component={PostDetailPage} />
+            <Route exact path='/posts/:postId/comments/:commentId' component={PostDetailPage} />
             <Route exact path='/posts/:postId/edit' component={EditorPageContainer} />
             <Route exact path='/account' component={AccountContainer} />
             <Route exact path='/users/:id' component={ProfileContainer} />

@@ -23,11 +23,14 @@ class CommentListContainer extends React.Component {
 
   comments = []
   cachedMoneyBtnIds = {}
+  commentRefs = {}
 
   componentDidMount() {
     this.fetchComments()
       .then(() => this.sortComments())
   }
+
+  setCommentRef = (commentId, elem) => this.commentRefs[commentId] = elem
 
   fetchComments() {
     return API.getAllPostComments(this.props.postId)
@@ -37,7 +40,11 @@ class CommentListContainer extends React.Component {
 
   sortComments() {
     const treeList = makeTreeList(this.comments, '_id', 'parentComment', 'replies')
-    this.setState({ treeList })
+    this.setState({ treeList }, () => {
+      if (this.props.commentId) {
+        this.scrollToComment(this.props.commentId)
+      }
+    })
   }
 
   addPendingVote = (commentId, authorName, authorId, cost) => {
@@ -92,7 +99,16 @@ class CommentListContainer extends React.Component {
       .catch(err => console.log('submitComment Err: ', err))
   }
 
+  scrollToComment = commentId => {
+    window.scrollTo({
+      top: this.commentRefs[commentId].offsetTop - 50,
+      // behavior: 'smooth'
+    })
+  }
+
   render() {
+    const selectedComment = this.props.commentId
+
     return (
       <React.Fragment>
         {this.state.pendingVotes.length > 0 &&
@@ -108,6 +124,8 @@ class CommentListContainer extends React.Component {
           submitComment={this.submitComment}
           removePendingVote={this.removePendingVote}
           addPendingVote={this.addPendingVote}
+          setCommentRef={this.setCommentRef}
+          selectedComment={selectedComment}
           root
         />
       </React.Fragment>

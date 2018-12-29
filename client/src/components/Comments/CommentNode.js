@@ -10,6 +10,14 @@ const CommentNode = props => {
   const { _id, authorName, body, voters, replies, isCollapsed, author } = props
   const numVotes = (voters && voters.length) || 0
 
+  // setCommentRef is drilled down all the way from CommentListContainer....
+  let setCommentRef
+  if (props.setCommentRef) {
+    setCommentRef = el => props.setCommentRef(_id, el)
+  } else {
+    setCommentRef = el => console.log('No setCommentRef prop for el: ', el)
+  }
+
   // if we're collapsed, show the minified version of the comment and no children
   if (isCollapsed) {
     return (
@@ -22,12 +30,18 @@ const CommentNode = props => {
     )
   }
 
+  let divStyles
+  if (props._id === props.selectedComment) {
+    divStyles = 'flex text-sm border-red border-3 m-1'
+  } else {
+    divStyles = 'flex text-sm border-body-background border m-1'
+  }
   // otherwise, return the default comment view and render the children comments
   return (
-    <div>
+    <div ref={setCommentRef}>
       <AuthUserContext.Consumer>
         {authUser => (
-          <div className='flex text-sm border-body-background border m-1'>
+          <div className={divStyles}>
             <div className='w-16 align-middle flex-none border-body-background'>
               <CommentVoteButton
                 addPendingVote={props.addPendingVote}
@@ -44,11 +58,11 @@ const CommentNode = props => {
               <p><NameLink authorName={authorName} userId={author} /></p>
               <p className='text-sm text-light-gray my-2'>{body}</p>
               <p>
-                {authUser && 
-                <React.Fragment>
-                  <TextButton text='[reply]' size='xs' onClick={props.toggleShowForm} />
-                  <span className='mr-1'></span> 
-                </React.Fragment>} 
+                {authUser &&
+                  <React.Fragment>
+                    <TextButton text='[reply]' size='xs' onClick={props.toggleShowForm} />
+                    <span className='mr-1'></span>
+                  </React.Fragment>}
                 <TextButton text='[collapse]' size='xs' onClick={props.toggleCollapse} />
               </p>
             </div>
@@ -73,6 +87,8 @@ const CommentNode = props => {
           addPendingVote={props.addPendingVote}
           removePendingVote={props.removePendingVote}
           pendingVotes={props.pendingVotes}
+          setCommentRef={props.setCommentRef}
+          selectedComment={props.selectedComment}
         />}
     </div>
   )
