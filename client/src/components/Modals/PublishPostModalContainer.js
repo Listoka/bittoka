@@ -67,9 +67,7 @@ class PublishPostModalContainer extends React.Component {
     });
   };
 
-  publishPost = (event) => {
-    event.preventDefault();
-
+  publishPost = () => {
     this.props.closeModal()
 
     const { title, editorState, teaser, paywallCost } = this.state
@@ -87,9 +85,9 @@ class PublishPostModalContainer extends React.Component {
 
       let request
       if (this.state.postId) {
-        api = API.updatePost(this.state.postId, data)
+        request = API.updatePost(this.state.postId, data)
       } else {
-        api = API.createPost(data)
+        request = API.createPost(data)
       }
 
       request
@@ -99,9 +97,17 @@ class PublishPostModalContainer extends React.Component {
   };
 
   render() {
+    // TODO: Refactor to give better feedback on why something is not ready to publish
     const postLength = this.state.editorState.getCurrentContent().getPlainText().length
-    const readyToPublish = !!this.state.categoryName && this.state.paywallCost >= 0 &&
+    const readyToPublish = !!this.state.categoryName &&
+      (this.state.paywallCost >= 0.02 || this.state.paywallCost === 0) &&
       this.state.title && postLength > 144
+
+    const { categories, categoryName } = this.state
+    const category = categories.find(c => c.name === categoryName)
+    const categoryPublishCost = category ? category.settings.costToPost : null
+
+    console.log('PubModalContainer category: ', category)
 
     return (
       <PublishPostModal
@@ -115,6 +121,7 @@ class PublishPostModalContainer extends React.Component {
         publishPost={this.publishPost}
         readyToPublish={readyToPublish}
         postLength={postLength}
+        categoryPublishCost={categoryPublishCost}
       />
     )
   }

@@ -4,6 +4,8 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
 import colourStyles from './colourStyles';
 import { TextArea, B } from '../Widgets'
+import PayToPostMoneyButton from '../ListokaMoneyButton/PayToPostMoneyButton';
+import AuthUserContext from '../AuthUserSession/AuthUserContext';
 
 class PublishPostModal extends React.Component {
   render() {
@@ -100,12 +102,33 @@ class PublishPostModal extends React.Component {
             <p className='text-xs text-red text-center'>Your post is too short to publish!</p>}
         </div>
         {/* <Button onClick={this.props.publishPost} text='Publish' disabled={!this.props.readyToPublish}></Button> */}
-        <div className='text-right'>
-          <B onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B>
-          <span className='mr-2'></span>
-          <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
-          {/* <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button> */}
-        </div>
+
+        {this.props.categoryPublishCost
+          ? (
+            <div className='text-right'>
+              {this.props.readyToPublish &&
+                <AuthUserContext.Consumer>
+                  {authuser => (
+                    <PayToPostMoneyButton
+                      costToPost={this.props.categoryPublishCost}
+                      userId={authuser.dbUser._id}
+                      paymentSuccessCbk={this.props.publishPost}
+                    />
+                  )}
+                </AuthUserContext.Consumer>
+              }
+              <span className='mr-2'></span>
+              <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
+            </div>
+          ) : (
+            <div className='text-right'>
+              <B onClick={this.props.publishPost} btnType={'secondary'} disabled={!this.props.readyToPublish}>Publish</B>
+              <span className='mr-2'></span>
+              <B onClick={this.props.closeModal} btnType={'secondary'}>Cancel</B>
+              {/* <Button onClick={this.props.closeModal} text='Cancel'>Ok</Button> */}
+            </div>
+          )
+        }
 
       </ModalWrapper>
     )
