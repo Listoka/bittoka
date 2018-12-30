@@ -110,13 +110,16 @@
     }
 
     .btn-primary:hover {
-        @apply bg-transparent border-brand-green text-brand-green
+        @apply bg-transparent rounded-20px border-brand-green text-brand-green
     }
 
     .btn-primary:active {
-        @apply bg-brand-green text-light-gray outline-none
+        @apply bg-brand-green rounded-20px text-light-gray outline-none
     }
-    
+
+    .btn-primary:focus {
+        @apply bg-brand-green rounded-20px text-light-gray outline-none
+    }
     .btn-secondary {
         @apply bg-transparent text-brand-green
     }
@@ -127,6 +130,10 @@
 
     .btn-secondary:active {
         @apply bg-brand-green text-light-gray outline-none 
+    }
+
+    .btn-secondary:focus {
+        @apply bg-brand-green text-light-gray outline-none rounded-20px
     }
 
     .btn-nav {
