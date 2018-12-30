@@ -147,6 +147,17 @@
     .btn-nav:active {
       @apply bg-brand-green text-light-gray outline-none rounded-20px
     }
+
+    .btn-fld {
+        @apply bg-brand-green text-light-gray border ml-0 mb-5 rounded-l-none rounded-r mt-0 border-brand-green px-10px py-px font-header text-xl
+    }
+
+    .btn-fld:hover {
+        @apply bg-transparent border-brand-green text-brand-green
+    }
+    .btn-fld:active {
+        @apply bg-brand-green text-light-gray outline-none
+    }
     
  /**
   * This injects all of Tailwind's utility classes, generated based on your

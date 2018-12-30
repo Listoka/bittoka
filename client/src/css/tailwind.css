@@ -728,6 +728,38 @@ input {
   border-radius: 20px;
 }
 
+.btn-fld {
+  background-color: #2ba228;
+  color: #d8d8d8;
+  border-width: 1px;
+  margin-left: 0;
+  margin-bottom: 1.25rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  margin-top: 0;
+  border-color: #2ba228;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-family: Roboto;
+  font-size: 1.25rem;
+}
+
+.btn-fld:hover {
+  background-color: transparent;
+  border-color: #2ba228;
+  color: #2ba228;
+}
+
+.btn-fld:active {
+  background-color: #2ba228;
+  color: #d8d8d8;
+  outline: 0;
+}
+
 /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
