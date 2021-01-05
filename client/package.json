@@ -6,7 +6,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.4.1",
     "@moneybutton/react-money-button": "^0.1.8",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chroma-js": "^1.4.0",
     "draft-js": "^0.10.5",
     "draft-js-anchor-plugin": "^2.0.2",
